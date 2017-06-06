@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{% block meta %}
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+  <link rel="stylesheet" href="/nextgeoss.css" />
+      <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,700" />
+{% endblock %}
