@@ -8,3 +8,13 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
   font-weight: 300;
   line-height: 1.5em;
 }
+.masthead .nav > li > a, .masthead .nav > li {
+    color: #000000;
+}
+body,.masthead, [role="main"], .main {
+  background-image: none;
+  background-color: inherit;
+}
+.site-footer {
+    background-color: #292929;
+}
