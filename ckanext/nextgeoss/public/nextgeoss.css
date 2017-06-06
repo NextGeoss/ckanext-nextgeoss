@@ -18,3 +18,9 @@ body,.masthead, [role="main"], .main {
 .site-footer {
     background-color: #292929;
 }
+.hero {
+    height: 500px;
+    background: none;
+    background-size: cover;
+    background-image: url(/nasa_cropped.jpg);
+}
