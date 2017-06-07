@@ -1,0 +1,5 @@
+{% block group_item %}
+  <a class="team-player" href="{{ h.url_for(controller='group', action='read', id=group.name) }}">
+    <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" />
+    <h4 class="title"><a href="{{ h.url_for(controller='group', action='read', id=group.name) }}">{{ group.title or group.name }}</a></h4>
+{% endblock %}
