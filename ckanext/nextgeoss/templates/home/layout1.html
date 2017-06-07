@@ -1,37 +1,96 @@
 <div role="main" class="hero">
   <div class="container">
-    <div class="row row1">
-      <div class="span6 col1">
-        {% block promoted %}
-          {% snippet 'home/snippets/promoted.html' %}
-        {% endblock %}
-      </div>
-      <div class="span6 col2">
-        {% block search %}
-          {% snippet 'home/snippets/search.html' %}
-        {% endblock %}
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="title">{{ _('The European Earth Observation Data Hub') }}</h1>
+        <h4>{{ _('Search satellite images, maps, climate change measurements, geo data and more from providers from Europe and the world.') }}</h4>
       </div>
     </div>
   </div>
 </div>
-<div role="main">
+
+<div class="search-box">
   <div class="container">
-    <div class="row row2">
-      <div class="span6 col1">
-        {# Note: this featured_group block is used as an example in the theming
-           tutorial in the docs! If you change this code, be sure to check
-           whether you need to update the docs. #}
-        {# Start template block example. #}
-        {% block featured_group %}
-          {% snippet 'home/snippets/featured_group.html' %}
-        {% endblock %}
-        {# End template block example. #}
-      </div>
-      <div class="span6 col2">
-        {% block featured_organization %}
-          {% snippet 'home/snippets/featured_organization.html' %}
-        {% endblock %}
+    <div class="section text-center section-landing">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          {% snippet 'home/snippets/search.html' %}
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+          <h5 class="description">{{ _('Want to browse the catalogue by topic instead?') }}</h5>
+          <a href="#explore" class="btn btn-primary">{{ _('Start exploring') }}</a>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="container">
+  <div class="section text-center section-landing">
+    <div class="row">
+      <h2 class="title"><span>{{ _('How to get started?') }}</span></h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="info">
+            <h4 class="info-title">{{ _('Provide') }}</h4>
+            <img src="provide.png" alt="Thumbnail Image" class="img-square">
+            <p class="text-left">{{ _('If you have your own data and wish to become a NextGEOSS provider, you can contribute to our catalogue. Private companies, public institutions, and even citizen scientists are doing their part.') }}</p>
+            <button class="btn btn-primary">{{ _('Find out how') }}</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info">
+            <h4 class="info-title">{{ _('Use') }}</h4>
+            <img src="use.png" alt="Thumbnail Image" class="img-square">
+            <p class="text-left">{{ _("You can use data available from the catalogue and see what it's possible to achieve with open data. People are using open data to prevent disasters, discover new resources, and more.") }}</p>
+            <button class="btn btn-primary">{{ _('Explore use cases') }}</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info">
+            <h4 class="info-title">{{ _('Develop') }}</h4>
+            <img src="develop.png" alt="Thumbnail Image" class="img-square">
+            <p class="text-left">{{ _('You can work with open geo data to develp your own applications by following the API tutorials and documentation. Learn how to integrate NextGEOSS in your research and reporting workflow.') }}</p>
+            <button class="btn btn-primary">{{ _('Start Developing') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section text-center section-landing">
+    <h2 class="title" id="explore"><span>{{ _('Explore Topics') }}</span></h2>
+            <div class="topic-list">
+              <div class="row">
+                {% block featured_group %}
+                  {% snippet 'home/snippets/featured_group.html' %}
+                {% endblock %}
+              </div>
+              <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                  <a href="{{ h.url_for('group') }}" class="btn btn-primary">{{ _('View all topics') }}</a>
+                </div>
+              </div>
+            </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section landing-section">
+    <h2 class="text-center title"><span>{{ _('Where Does the Data Come From?') }}</span></h2>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h4 class="text-left description">{{ _('GEOSS (Global Earth Observation System of Systems) is a central part of GEO’s Information System’s mission. The NextGEOSS project, a European contribution to GEOSS, proposes to develop the next generation centralised hub for Earth Observation data, where the users can connect to access data and deploy EO-based applications.') }}</h4>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4 text-center">
+            <a href="{{ h.url_for(controller='home', action='about') }}" class="btn btn-primary">{{ _('Find out more') }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>

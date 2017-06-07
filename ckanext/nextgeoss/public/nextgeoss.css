@@ -8,19 +8,231 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
   font-weight: 300;
   line-height: 1.5em;
 }
+.navbar {
+    margin-bottom: 0px;
+    background-color: #FFFFFF;
+}
 .masthead .nav > li > a, .masthead .nav > li {
     color: #000000;
 }
+.nav-collapse {
+    display: block;
+}
+nav.section.navigation {
+    padding: 0px;
+}
 body,.masthead, [role="main"], .main {
   background-image: none;
-  background-color: inherit;
+  background-color: #FFFFFF;
+}
+[role="main"] {
+    padding-top: 0px;
 }
 .site-footer {
     background-color: #292929;
+    background-image: none;
+    margin-top: 30px;
 }
 .hero {
-    height: 500px;
+    height: auto;
     background: none;
     background-size: cover;
     background-image: url(/nasa_cropped.jpg);
+}
+.search-box {
+  background-color: #D7EDEC;
+  background-size: cover;
+}
+.search-form {
+    border-bottom: none;
+    margin-bottom: 10px;
+    padding-bottom: 0px;
+}
+.homepage [role=main] {
+    padding: 0px;
+}
+.col-md-8.col-md-offset-2 {
+    margin-bottom: 20px;
+}
+.info {
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 0px 0 30px;
+}
+}
+.info .info-title {
+  color: #3C4858;
+  margin: 30px 0 15px;
+}
+.info p {
+  color: #999999;
+}
+.section-navigation {
+    z-index: 999;
+}
+.section {
+  padding: 10px 0 20px;
+}
+.topic-list {
+  margin-top: 40px;
+}
+
+.topic-list .topic-item {
+  max-width: 250px;
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+*:focus {
+  outline: 0;
+}
+
+a:focus, a:active,
+button:active, button:focus, button:hover,
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+  outline: 0 !important;
+}
+
+.topic-list .topic-item .title {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.topic-list .topic-item img {
+  max-width: 170px;
+}
+.hero {
+  height: 60vh;
+}
+.hero .container {
+  padding-top: 7%;
+}
+.hero h1 {
+  color: #38A79F;
+  font-weight: 700;
+}
+.hero h4 {
+  color: #292929;
+  font-weight: 500;
+}
+.navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: auto;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #38A79F;
+    border-color: #38A79F;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background-color: #38A79F;
+  *background-color: #38A79F;
+}
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #38A79F \9;
+}
+h2.heading {
+    margin-bottom: 15px;
+}
+.col-md-8.col-md-offset-2 {
+    margin-bottom: 0px;
+}
+.span9 {
+    width: 80%;
+}
+.masthead .navigation .nav-pills li a:hover, .masthead .navigation .nav-pills li.active a {
+    background-color: #38A79F;
+}
+.toolbar {
+    background-color: #D7EDEC;
+    padding-right: 15px;
+    padding-left: 30px;
+    margin: 0px;
+}
+.span3 {
+    background-color: #D7EDEC;
+    border-radius: 4px;
+    border: 1px solid #dddddd;
+}
+.module-heading {
+    background-color: inherit;
+    border-top: none;    
+}
+.filters h3 {
+    text-align: center;
+    border-bottom: 2px solid #484A4C;
+}
+.wrapper {
+    border: none;
+    background: none;
+    -webkit-box-shadow: none;
+    -box-shadow: none
+}
+.search-result-count {
+    text-align: left;
+}
+.search-input {
+    width: 100%;
+    float: center;
+}
+#green {
+    background-color: #D7EDEC;
+    border-radius: 0px 0px 4px 4px;
+    border: 0px 1px 1px 1px solid #dddddd;
+}
+li.dataset-item {
+    border-radius: 4px;
+    border: 1px solid #dddddd;
+    padding: 20px;
+    box-shadow: 3px 3px 3px #888888;
+}
+.dataset-heading {
+}
+.dataset-heading a {
+    color: #38A79F;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+.module {
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+.breadcrumb>li+li:before {
+    content: none;
+}
+.toolbar .breadcrumb .active a, .toolbar .breadcrumb a.active {
+    font-weight: inherit;
+}
+h2.title {
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+    text-align:center;
+}
+h2::before
+{
+  border-top: 2px solid #292929;
+  content:"";
+  margin: 0 auto;
+  position: absolute; 
+  top: 50%; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+}
+h2 span
+{
+  background: #fff; 
+  padding: 0 20px; 
 }
