@@ -192,6 +192,7 @@ h2.heading {
     background-color: #D7EDEC;
     border-radius: 0px 0px 4px 4px;
     border: 0px 1px 1px 1px solid #dddddd;
+    margin-top: -67px;
 }
 li.dataset-item {
     border-radius: 4px;
@@ -251,4 +252,13 @@ h4.title a {
 }
 .topic-item a img {
     padding-top: 20px;
+}
+
+.container .toolbar {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.module-narrow #dataset-map-container {
+  height: 400px;
 }
