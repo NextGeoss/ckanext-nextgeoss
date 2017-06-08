@@ -102,7 +102,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 
 .topic-list .topic-item .title {
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: 30px;
 }
 .topic-list .topic-item img {
@@ -242,4 +242,13 @@ h2 span
 }
 .info p {
     color: inherit;
+}
+h4.title {
+    padding-bottom: 10px;
+}
+h4.title a {
+    color: inherit;
+}
+.topic-item a img {
+    padding-top: 10px;
 }
