@@ -244,11 +244,11 @@ h2 span
     color: inherit;
 }
 h4.title {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 h4.title a {
-    color: inherit;
+    color: #078C7A;
 }
 .topic-item a img {
-    padding-top: 10px;
+    padding-top: 20px;
 }
