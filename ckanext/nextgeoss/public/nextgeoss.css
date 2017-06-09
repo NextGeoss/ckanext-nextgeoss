@@ -37,7 +37,7 @@ body,.masthead, [role="main"], .main {
     height: auto;
     background: none;
     background-size: cover;
-    background-image: url(/nasa_cropped.jpg);
+    background-image: url(/hero.jpg);
 }
 .search-box {
   background-color: #D7EDEC;
