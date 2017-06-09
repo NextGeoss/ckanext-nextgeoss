@@ -37,7 +37,7 @@ body,.masthead, [role="main"], .main {
     height: auto;
     background: none;
     background-size: cover;
-    background-image: url(/nasa_cropped.jpg);
+    background-image: url(/hero.jpg);
 }
 .search-box {
   background-color: #D7EDEC;
@@ -127,8 +127,10 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 .btn-primary {
     color: #fff;
-    background-color: #38A79F;
+    background-color: #008B7A;
     border-color: #38A79F;
+    border-radius: 0px;
+    font-size: 16px;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -218,17 +220,20 @@ li.dataset-item {
     font-weight: inherit;
 }
 h2.title {
+  font-weight: 400;
+}
+h2.lined {
     font-weight: 400;
     position: relative;
     z-index: 1;
     text-align:center;
 }
-h2::before
+h2.lined::before
 {
   border-top: 2px solid #292929;
   content:"";
-  margin: 0 auto;
-  position: absolute; 
+  margin: 0 auto
+ ; position: absolute; 
   top: 50%; left: 0; right: 0; bottom: 0;
   z-index: -1;
 }
@@ -248,12 +253,18 @@ h4.title {
     padding-bottom: 20px;
 }
 h4.title a {
-    color: #078C7A;
+    color: #008B7A;
 }
 .topic-item a img {
-    padding-top: 20px;
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
-
+.topic-list .text-center {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .container .toolbar {
   margin-left: -15px;
   margin-right: -15px;
