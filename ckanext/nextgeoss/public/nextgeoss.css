@@ -232,8 +232,8 @@ h2.lined::before
 {
   border-top: 2px solid #292929;
   content:"";
-  margin: 0 auto;
-  position: absolute; 
+  margin: 0 auto
+ ; position: absolute; 
   top: 50%; left: 0; right: 0; bottom: 0;
   z-index: -1;
 }
@@ -259,7 +259,12 @@ h4.title a {
     padding-top: 30px;
     padding-bottom: 20px;
 }
-
+.topic-list .text-center {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .container .toolbar {
   margin-left: -15px;
   margin-right: -15px;
