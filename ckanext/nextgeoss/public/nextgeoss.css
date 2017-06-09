@@ -228,7 +228,7 @@ h2.lined {
     z-index: 1;
     text-align:center;
 }
-h2::before
+h2.lined::before
 {
   border-top: 2px solid #292929;
   content:"";
