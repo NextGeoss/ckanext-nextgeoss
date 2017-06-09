@@ -184,15 +184,15 @@ h2.heading {
 .search-result-count {
     text-align: left;
 }
-.search-input {
-    width: 100%;
-    float: center;
-}
 #green {
     background-color: #D7EDEC;
     border-radius: 0px 0px 4px 4px;
     border: 0px 1px 1px 1px solid #dddddd;
-    margin-top: -67px;
+    margin-top: -30px;
+    height: 300px;
+}
+#green:first-child {
+  padding-top: 0;
 }
 li.dataset-item {
     border-radius: 4px;
@@ -261,4 +261,44 @@ h4.title a {
 
 .module-narrow #dataset-map-container {
   height: 400px;
+}
+
+#dataset-map-attribution {
+  display: none;
+}
+
+#dataset-map .module-heading {
+  display: none;
+}
+
+.datasets-search-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.datasets-search-form-container__controls {
+  display: flex;
+  justify-content: center;
+}
+
+.datasets-search-form-container__controls .search-input {
+  width: 560px;
+}
+
+.datasets-search-form-container__controls .search {
+  border-radius: 8px;
+  padding-left: 70px !important;
+  box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
+}
+
+.datasets-search-form-container__controls select {
+  border-radius: 8px;
+  box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
+  width: 325px !important;
+  height: 52px;
+  padding-left: 25px;
+  margin-left: 15px;
 }
