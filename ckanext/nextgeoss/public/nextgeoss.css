@@ -127,7 +127,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 .btn-primary {
     color: #fff;
-    background-color: #008B7A;
+    background-color: #38A79F;
     border-color: #38A79F;
     border-radius: 0px;
     font-size: 16px;
@@ -253,7 +253,7 @@ h4.title {
     padding-bottom: 20px;
 }
 h4.title a {
-    color: #008B7A;
+    color: #38A79F;
 }
 .topic-item a img {
     padding-top: 30px;
