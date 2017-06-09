@@ -127,8 +127,10 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 .btn-primary {
     color: #fff;
-    background-color: #38A79F;
+    background-color: #008B7A;
     border-color: #38A79F;
+    border-radius: 0px;
+    font-size: 16px;
 }
 .btn-primary:hover,
 .btn-primary:focus,
