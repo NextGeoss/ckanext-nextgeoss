@@ -171,7 +171,7 @@ h2.heading {
     background-color: inherit;
     border-top: none;    
 }
-.filters h3 {
+.filters-header {
     text-align: center;
     border-bottom: 2px solid #484A4C;
 }
@@ -301,4 +301,37 @@ h4.title a {
   height: 52px;
   padding-left: 25px;
   margin-left: 15px;
+}
+
+.filters-header {
+  margin-top: 30px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.filters-header .icon-filter {
+  font-size: 15px;
+  position: relative;
+  top: -3px;
+}
+
+.filters-header__title {
+  font-size: 20px;
+}
+
+.datasets-page .span3 {
+  width: 30%;
+  box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
+}
+
+.datasets-page .span9 {
+  width: 70%;
+}
+
+.datasets-filters-facet-title {
+  margin-left: 20px;
+  margin-right: 20px;
+  border-bottom-color: #146304;
+  padding-left: 3px !important;
+  padding-right: 3px !important;
 }

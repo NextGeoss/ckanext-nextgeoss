@@ -1,3 +1,5 @@
+{% resource 'nextgeoss/js/search.js' %}
+
 {% ckan_extends %}
 
 {% import 'macros/form.html' as form %}
@@ -75,7 +77,10 @@
 {% block secondary_content %}
 <div class="filters">
   <div>
-    <h3><i class="icon-large icon-filter"></i> {{ _('Filters') }}</h3>
+    <div class="filters-header">
+      <i class="icon-large icon-filter"></i>
+      <span class="filters-header__title">{{ _('Filters') }}</span>
+    </div>
     {% for facet in c.facet_titles %}
       {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
     {% endfor %}
