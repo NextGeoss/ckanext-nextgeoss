@@ -1,0 +1,20 @@
+{% ckan_extends %}
+
+{% block heading %}
+  {{ super() }}
+
+  {% set org_title = h.nextgeoss_get_org_title(package.owner_org) %}
+  {% set org_link = h.url_for(controller='organization', action='read', id=package.owner_org) %}
+
+  <div class="dataset-item-org-title">
+    <a href="{{ org_link }}">{{ org_title }}</a>
+  </div>
+{% endblock %}
+
+{% block resources_inner %}
+  {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+  <li>
+    <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label">{{ resource }}</a>
+  </li>
+  {% endfor %}
+{% endblock %}
