@@ -115,7 +115,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   padding-top: 7%;
 }
 .hero h1 {
-  color: #38A79F;
+  color: #168B7A;
   font-weight: 700;
 }
 .hero h4 {
@@ -127,7 +127,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 .btn-primary {
     color: #fff;
-    background-color: #38A79F;
+    background-color: #168B7A;
     border-color: #38A79F;
     border-radius: 0px;
     font-size: 16px;
@@ -139,12 +139,12 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #38A79F;
-  *background-color: #38A79F;
+  background-color: #168B7A;
+  *background-color: #168B7A;
 }
 .btn-primary:active,
 .btn-primary.active {
-  background-color: #38A79F \9;
+  background-color: #168B7A \9;
 }
 h2.heading {
     margin-bottom: 15px;
@@ -156,7 +156,7 @@ h2.heading {
     width: 80%;
 }
 .masthead .navigation .nav-pills li a:hover, .masthead .navigation .nav-pills li.active a {
-    background-color: #38A79F;
+    background-color: #168B7A;
 }
 .toolbar {
     background-color: #D7EDEC;
@@ -205,7 +205,7 @@ li.dataset-item {
 .dataset-heading {
 }
 .dataset-heading a {
-    color: #38A79F;
+    color: #168B7A;
     font-size: 1.5em;
     font-weight: 400;
 }
@@ -253,7 +253,7 @@ h4.title {
     padding-bottom: 20px;
 }
 h4.title a {
-    color: #38A79F;
+    color: #168B7A;
 }
 .topic-item a img {
     padding-top: 30px;
@@ -365,9 +365,9 @@ h4.title a {
 }
 
 .dataset-resources li a {
-  padding: 7px 15px;
+  padding: 9px 15px;
   font-size: 14px;
-  background-color: #38A79F;
+  background-color: #168B7A;
   border-radius: 0px;
   display: inline-block;
 }
@@ -387,8 +387,8 @@ h4.title a {
 }
 
 .dataset-item-share {
-  background-color: #38A79F;
-  padding: 7px;
+  background-color: #168B7A;
+  padding: 9px;
   border-radius: 50%;
   color: #FFFFFF;
   display: inline-block;
@@ -428,4 +428,12 @@ h4.title a {
 
 .dataset-resources h5 {
   margin-bottom: 5px;
+}
+
+.masthead .nav > li > a, .masthead .nav > li {
+  border-radius: 0px;
+}
+
+.btn {
+  border-radius: 0px !important;
 }
