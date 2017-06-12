@@ -385,3 +385,11 @@ h4.title a {
 .icon-search:before {
   color: #168B7A;
 }
+
+.dataset-item-share {
+  background-color: #38A79F;
+  padding: 7px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  float: right;
+}
