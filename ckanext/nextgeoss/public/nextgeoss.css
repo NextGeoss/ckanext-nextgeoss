@@ -374,3 +374,13 @@ h4.title a {
 .dataset-resources {
   margin-top: 40px;
 }
+
+.search-form .search-input.search-giant input {
+  border-radius: 8px;
+  padding-left: 70px !important;
+  box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
+}
+
+.icon-search:before {
+  color: #168B7A;
+}
