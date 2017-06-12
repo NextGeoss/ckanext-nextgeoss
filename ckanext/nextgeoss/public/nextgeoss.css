@@ -397,3 +397,8 @@ h4.title a {
     color: #1660A8;
     margin-bottom: 20px;
 }
+
+.dataset-item-org-logo {
+  float: right;
+  clear: left;
+}

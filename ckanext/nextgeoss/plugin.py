@@ -21,5 +21,6 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
     def get_helpers(self):
         return {
-            'nextgeoss_get_org_title': helpers.get_org_title
+            'nextgeoss_get_org_title': helpers.get_org_title,
+            'nextgeoss_get_org_logo': helpers.get_org_logo
         }

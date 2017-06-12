@@ -1,10 +1,19 @@
 {% ckan_extends %}
 
 {% block heading %}
-  {{ super() }}
 
   {% set org_title = h.nextgeoss_get_org_title(package.owner_org) %}
   {% set org_link = h.url_for(controller='organization', action='read', id=package.owner_org) %}
+  {%set org_logo = h.nextgeoss_get_org_logo(package.owner_org) %}
+  <div class="dataset-item-org-logo">
+        <div class="image">
+          <a href="{{ org_link }}">
+            <img src="{{ org_logo or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "70" width="70" alt="{{ org_title }}" />
+          </a>
+        </div>
+  </div>
+
+  {{ super() }}
 
   <div class="dataset-item-org-title">
     <a href="{{ org_link }}">{{ org_title }}</a>
