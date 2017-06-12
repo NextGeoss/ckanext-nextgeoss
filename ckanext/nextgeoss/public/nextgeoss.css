@@ -466,10 +466,37 @@ h5.dataset-detail-title {
   border-bottom: 1px solid #292929;
 }
 
+
+.additional-info {
+  margin-top: 50px;
+}
 .additional-info h3 {
     border-bottom: 1px solid #292929;
 }
 
 .social h3 {
   border-bottom: 1px solid #292929;
+}
+
+th.dataset-label {
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: right;
+  padding-right: 20px !important;
+}
+
+td.dataset-details {
+  font-weight: 300;
+  text-align: left;
+  padding-left: 20px !important;
+}
+
+
+
+table.table-dataset {
+  margin-top: 40px;
+  margin-bottom: 50px;
+  border-radius: 4px;
+  border: 1px solid #dddddd;
+  box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
 }
