@@ -402,3 +402,23 @@ h4.title a {
   float: right;
   clear: left;
 }
+
+.dataset-item-org-title a {
+  color: #1660A8;
+}
+
+.badge {
+  background-color: #1660A8 !important;
+}
+
+.nav-item.active > a, .nav-aside li.active a {
+  background-color: #f6f6f6;
+  color: inherit;
+}
+
+.nav-item.active > a span, .nav-aside li.active a span {
+  display: inline;
+}
+
+.nav-item.active > a:before, .nav-aside li.active a:before {
+  background-image: none;
