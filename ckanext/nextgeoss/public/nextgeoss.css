@@ -461,3 +461,15 @@ h5.dataset-detail-title {
 .dataset-notes {
   margin-top: 50px;
 }
+
+#dataset-resources h3 {
+  border-bottom: 1px solid #292929;
+}
+
+.additional-info h3 {
+    border-bottom: 1px solid #292929;
+}
+
+.social h3 {
+  border-bottom: 1px solid #292929;
+}
