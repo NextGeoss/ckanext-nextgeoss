@@ -116,7 +116,8 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 .hero h1 {
   color: #168B7A;
-  font-weight: 700;
+  font-weight: 400;
+  font-size: 50px
 }
 .hero h4 {
   color: #292929;
@@ -221,6 +222,7 @@ li.dataset-item {
 }
 h2.title {
   font-weight: 400;
+  margin-bottom: 20px;
 }
 h2.lined {
     font-weight: 400;
@@ -436,4 +438,26 @@ h4.title a {
 
 .btn {
   border-radius: 0px !important;
+}
+
+.section-landing {
+  margin-top: 30px;
+}
+
+.dataset-detail-org-logo {
+  float: right;
+  clear: left;
+  margin-top: 0px;
+}
+
+h1.dataset-detail-title {
+  margin-bottom: 0px;
+}
+
+h5.dataset-detail-title {
+  margin-top: 0px;
+}
+
+.dataset-notes {
+  margin-top: 50px;
 }
