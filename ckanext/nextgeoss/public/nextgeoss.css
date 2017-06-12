@@ -360,9 +360,8 @@ h4.title a {
 }
 
 .dataset-item-org-title {
-  color: #673fb0;
+  color: #1660A8;
   margin-top: -7px;
-  margin-bottom: 20px;
 }
 
 .dataset-resources li a {
@@ -392,4 +391,9 @@ h4.title a {
   border-radius: 50%;
   color: #FFFFFF;
   float: right;
+}
+
+.dataset-item-org-recent-views {
+    color: #1660A8;
+    margin-bottom: 20px;
 }
