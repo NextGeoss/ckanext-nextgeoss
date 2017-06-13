@@ -42,6 +42,7 @@ body,.masthead, [role="main"], .main {
 .search-box {
   background-color: #D7EDEC;
   background-size: cover;
+  padding-bottom: 20px;
 }
 .search-form {
     border-bottom: none;
@@ -583,4 +584,8 @@ section.resources {
   position: absolute;
   top: 75px;
   left: 200px;
+}
+
+h4.text-left.description {
+  margin-bottom: 25px;
 }
