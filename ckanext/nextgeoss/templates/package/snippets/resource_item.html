@@ -2,31 +2,32 @@
 {% set url_action = 'resource_edit' if url_is_edit and can_edit else 'resource_read' %}
 {% set url = h.url_for(controller='package', action=url_action, id=pkg.name, resource_id=res.id) %}
 
-<li class="resource-item" data-id="{{ res.id }}">
-  {% block resource_item_title %}
-  <a class="heading" href="{{ url }}" title="{{ res.name or res.description }}">
-    {{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
-    {{ h.popular('views', res.tracking_summary.total, min=10) }}
-  </a>
-  {% endblock %}
-  {% block resource_item_description %}
-    <p class="description">
-      {% if res.description %}
-        {{ h.markdown_extract(h.get_translated(res, 'description'), extract_length=80) }}
-      {% endif %}
-    </p>
-  {% endblock %}
-  {% block resource_item_explore %}
-  {% if not url_is_edit %}
-  <div class="dataset-resource-buttons">
-  {% if not url_is_edit %}
-    <a href="{{ url }}" class="btn btn-primary"><i class="fa fa-info-circle"></i> {{ _('Details') }}</a>
-    <a href="{{ res.url }}" class="btn btn-primary"><i class="fa fa-download"></i> {{ _('Download') }}</a>
-    {% if can_edit %}
-      <a href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}" class="btn btn-primary"><i class="fa fa-edit"></i> {{ _('Edit') }}</a>
-    {% endif %} 
-  {% endif %}
-  </div>
-  {% endif %}
-  {% endblock %}
-</li>
+
+          <div class="col-md-6" id="resource-col">
+            <div class="info" id="resource-box">
+            <div class="resource-box-left">
+              <div class="resource-box-file-type">
+                <div class="resource-box-icon">
+                <i class="fa fa-file-archive-o"></i>
+                </div>
+              </div>
+                <p class="resource-box-file-ext">{{ res.format.upper() or _('DATA') }}</p>
+            </div>
+            <div class="resource-box-right">
+              <div>
+                <h3>
+                  <a href="{{ url }}" title="{{ res.name or res.description }}" class="resource-box-title">{{ h.resource_display_name(res) | truncate(50) }}</a></h3>
+                <p>
+                  {% if res.description %}
+                    {{ h.markdown_extract(h.get_translated(res, 'description'), extract_length=120) }}
+                  {% endif %}
+                </p>
+              </div>
+              <div class="resource-box-buttons">
+              <a a href="{{ url }}" class="btn btn-primary btn-left"><i class="fa fa-info-circle"></i> {{ _('More info') }}</a>
+              <a href="{{ res.url }}"  class="btn btn-primary"><i class="fa fa-download"></i> {{ _('Download') }}</a>
+              </div>
+            </div>
+            </div>
+          </div>
+

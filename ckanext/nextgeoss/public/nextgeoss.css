@@ -59,7 +59,6 @@ body,.masthead, [role="main"], .main {
   margin: 0 auto;
   padding: 0px 0 30px;
 }
-}
 .info .info-title {
   color: #3C4858;
   margin: 30px 0 15px;
@@ -513,7 +512,6 @@ section.resources {
 }
 
 .single-column {
-  max-width: 1000px;
   margin-top: 30px;
 }
 
@@ -529,4 +527,54 @@ section.resources {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+#resource-col {
+  margin-bottom: 30px;
+}
+#resource-box {
+  background-image: url(/resource-box.png);
+  max-width: none;
+  width: 555px;
+  height: 249px;
+}
+
+.resource-box-left {
+  float: left;
+  width: 198px;
+  background: none;
+}
+
+.resource-box-right {
+  float: right;
+  width: 285px;
+}
+
+.btn-left {
+  margin-right: 10px;
+}
+
+.resource-box-buttons {
+  position: absolute;
+  bottom: 20px;
+
+}
+
+.resource-box-file-type {
+  position: absolute;
+  top: 45px;
+  left: 65px;
+}
+.resource-box-icon {
+  font-size: 120px;
+}
+
+.resource-box-file-ext {
+  font-size: 40px;
+  margin-top: 180px;
+  text-align: center;
+}
+
+.resource-box-title {
+  color: #292929;
 }
