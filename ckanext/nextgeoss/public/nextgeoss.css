@@ -578,3 +578,9 @@ section.resources {
 .resource-box-title {
   color: #292929;
 }
+
+.hero-text {
+  position: absolute;
+  top: 75px;
+  left: 200px;
+}
