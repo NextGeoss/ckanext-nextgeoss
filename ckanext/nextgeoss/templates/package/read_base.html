@@ -9,7 +9,7 @@
   <meta property="og:description" content="{{ description|forceescape|trim }}">
 {% endblock -%}
 
-{% block primary_content_inner %}
+{% block pre_primary %}
     {% block package_revision_info %}
       {% if c.revision_date %}
         <div class="module info alert alert-info">
@@ -22,29 +22,4 @@
         </div>
       {% endif %}
     {% endblock %}
-{% endblock %}
-
-{% block secondary_content %}
-
-  {% block secondary_help_content %}{% endblock %}
-
-  {% block package_info %}
-    {% snippet 'package/snippets/info.html', pkg=pkg %}
-  {% endblock %}
-
-  {% block package_organization %}
-    {% if pkg.organization %}
-      {% set org = h.get_organization(pkg.organization.name) %}
-      {% snippet "snippets/organization.html", organization=org, has_context_title=true %}
-    {% endif %}
-  {% endblock %}
-
-  {% block package_social %}
-    {% snippet "snippets/social.html" %}
-  {% endblock %}
-
-  {% block package_license %}
-    {% snippet "snippets/license.html", pkg_dict=pkg %}
-  {% endblock %}
-
 {% endblock %}

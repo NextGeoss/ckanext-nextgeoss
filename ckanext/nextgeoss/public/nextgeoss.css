@@ -447,7 +447,7 @@ h4.title a {
 .dataset-detail-org-logo {
   float: right;
   clear: left;
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 h1.dataset-detail-title {
@@ -510,4 +510,9 @@ section.resources {
   border-radius: 4px;
   border: 1px solid #dddddd;
   box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
+}
+
+.single-column {
+  max-width: 1000px;
+  margin-top: 30px;
 }
