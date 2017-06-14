@@ -605,3 +605,10 @@ h4.text-left.description {
 .sponsor {
   margin-top: 10px;
 }
+
+.media-heading {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 400;
+}
