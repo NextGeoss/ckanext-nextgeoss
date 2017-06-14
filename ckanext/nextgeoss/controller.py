@@ -13,3 +13,12 @@ class StaticController(base.BaseController):
 
     def privacy(self):
         return base.render('static/privacy.html')
+
+    def provide(self):
+        return base.render('static/provide.html')
+
+    def use(self):
+        return base.render('static/use.html')
+
+    def develop(self):
+        return base.render('static/develop.html')
