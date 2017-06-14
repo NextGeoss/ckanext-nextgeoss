@@ -2,13 +2,13 @@
 {% set placeholder = _('Try "sea level portugal"') %}
 
   <form class="search-form" method="get" action="{% url_for controller='package', action='search' %}">
-  {% set dataset_count = h.get_site_statistics().dataset_count %}
-    {% if dataset_count %}
-        {% set search_message = ungettext('Search {number} Earth observation dataset', 'Search {number} Earth observation datasets', number) %}
+  {% set count = h.get_site_statistics().dataset_count %}
+    {% if count %}
+        {% set search_message = ungettext('Search {number} Earth observation dataset', 'Search {number} Earth observation datasets', count) %}
     {% else %}
         {% set search_message = _('No datasets available for search') %}
     {% endif %}
-  <h2 class="heading">{{ search_message.format(number=h.localised_number(dataset_count)) }}</h3>
+  <h2 class="heading">{{ search_message.format(number=h.localised_number(count)) }}</h3>
     <div class="search-input control-group search-giant">
       {% block search_input_button %}
         <button type="submit" value="search" style="left: 20px;">
