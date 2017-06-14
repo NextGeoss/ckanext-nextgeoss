@@ -589,3 +589,19 @@ section.resources {
 h4.text-left.description {
   margin-bottom: 25px;
 }
+
+.policy-links {
+  margin-top: 20px;
+}
+
+.policy-links .text-center {
+  color: #AEAEAE;
+}
+
+.policy-links .text-center a{
+  color: #AEAEAE;
+}
+
+.sponsor {
+  margin-top: 10px;
+}

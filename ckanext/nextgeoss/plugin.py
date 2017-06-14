@@ -1,5 +1,6 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+import routes.mapper
 
 from ckanext.nextgeoss import helpers
 
@@ -9,6 +10,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
     '''
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
+    plugins.implements(plugins.IRoutes)
 
     # IConfigurer
 
@@ -24,3 +26,20 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             'nextgeoss_get_org_title': helpers.get_org_title,
             'nextgeoss_get_org_logo': helpers.get_org_logo
         }
+
+    # IRoutes
+
+    def before_map(self, map):
+        controller = 'ckanext.nextgeoss.controller:StaticController'
+        with routes.mapper.SubMapper(map, controller=controller) as m:
+            m.connect('privacy', '/privacy', action='privacy')
+            m.connect('termsandconditions', '/terms-and-conditions',
+                      action='termsandconditions')
+            m.connect('cookies', '/cookies', action='cookies')
+            m.connect('codeofconduct', '/code-of-conduct',
+                      action='codeofconduct')
+
+        return map
+
+    def after_map(self, map):
+        return map
