@@ -37,7 +37,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                      _redirect_code='301 Moved Permanently')
         org_controller = 'ckan.controllers.organization:OrganizationController'
         with routes.mapper.SubMapper(map, controller=org_controller) as m:
-            m.connect('providers_index', '/provider', action='index')
+            m.connect('provider_index', '/provider', action='index')
             m.connect('/provider/list', action='list')
             m.connect('/provider/new', action='new')
             m.connect('/provider/{action}/{id}',
@@ -64,6 +64,42 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='members', ckan_icon='group')
             m.connect('provider_bulk_process',
                       '/provider/bulk_process/{id}',
+                      action='bulk_process', ckan_icon='sitemap')
+
+        # Rename groups
+        map.redirect('/group', '/topic',
+                     _redirect_code='301 Moved Permanently')
+        map.redirect('/group/{url:.*}', '/topic/{url}',
+                     _redirect_code='301 Moved Permanently')
+        group_controller = 'ckan.controllers.group:GroupController'
+        with routes.mapper.SubMapper(map, controller=group_controller) as m:
+            m.connect('topic_index', '/topic', action='index')
+            m.connect('/topic/list', action='list')
+            m.connect('/topic/new', action='new')
+            m.connect('/topic/{action}/{id}',
+                      requirements=dict(action='|'.join([
+                          'delete',
+                          'admins',
+                          'member_new',
+                          'member_delete',
+                          'history'
+                          'followers',
+                          'follow',
+                          'unfollow',
+                      ])))
+            m.connect('topic_activity', '/topic/activity/{id}',
+                      action='activity', ckan_icon='time')
+            m.connect('topic_read', '/topic/{id}', action='read')
+            m.connect('topic_about', '/topic/about/{id}',
+                      action='about', ckan_icon='info-sign')
+            m.connect('topic_read', '/topic/{id}', action='read',
+                      ckan_icon='sitemap')
+            m.connect('topic_edit', '/topic/edit/{id}',
+                      action='edit', ckan_icon='edit')
+            m.connect('topic_members', '/topic/edit_members/{id}',
+                      action='members', ckan_icon='group')
+            m.connect('topic_bulk_process',
+                      '/topic/bulk_process/{id}',
                       action='bulk_process', ckan_icon='sitemap')
 
         # Add static pages
