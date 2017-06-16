@@ -1,0 +1,18 @@
+{% ckan_extends %}
+
+{% block secondary_content %}
+  {{ super() }}
+  <div class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+      <i class="icon-large icon-info-sign"></i>
+      {{ _('What are roles?') }}
+    </h2>
+    <div class="module-content">
+      {% trans %}
+         <p><strong>Admin:</strong> Can edit topic information, as well as
+           manage provider members.</p>
+         <p><strong>Member:</strong> Can add/remove datasets from groups</p>
+      {% endtrans %}
+    </div>
+  </div>
+{% endblock %}

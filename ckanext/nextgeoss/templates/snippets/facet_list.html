@@ -67,6 +67,8 @@ within_tertiary
               {% set title = title or h.get_facet_title(name) %}
               {% if title == 'Organizations' %}
                 {% set title = 'Providers' %}
+              {% elif title == 'Groups' %}
+                {% set title = 'Topics' %}
               {% endif %}
               {{ _(title) }}
             </h2>
