@@ -281,7 +281,8 @@ h4.title a {
 }
 
 #dataset-map .module-heading {
-  display: none;
+  display: block;
+  background-color: #D7EDEC;
 }
 
 .datasets-search-form-container {
@@ -611,4 +612,27 @@ h4.text-left.description {
   margin-bottom: 10px;
   text-align: center;
   font-weight: 400;
+}
+
+.dataset-map-expanded #dataset-map {
+  position: absolute;
+  height: 400px;
+  width: 1170px;
+  top: -383px;
+  left: 0px;
+  background-color: #D7EDEC;
+  border: none;
+  margin: 0;
+}
+
+.dataset-map-expanded #dataset-map #dataset-map-container {
+  height: 400px;
+}
+
+.dataset-map-expanded #green {
+  margin-top: 52px;
+}
+
+#dataset-map .module-heading {
+  border-color: #D7EDEC;
 }
