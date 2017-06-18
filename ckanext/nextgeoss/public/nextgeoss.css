@@ -636,3 +636,28 @@ h4.text-left.description {
 #dataset-map .module-heading {
   border-color: #D7EDEC;
 }
+
+.dataset-map-section h3 {
+  border-bottom: 1px solid #292929;
+}
+
+#dataset-map-big {
+  margin-top: 40px;
+}
+
+#dataset-map-attribution-big {
+  display: block;
+  margin-top: 10px;
+}
+
+.dataset-map-section {
+  margin-top: 30px;
+}
+
+section.resources {
+  margin-top: 50px;
+}
+
+section.dataset-map-section {
+  margin-top: 50px;
+}
