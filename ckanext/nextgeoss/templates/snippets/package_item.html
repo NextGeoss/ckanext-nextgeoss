@@ -18,8 +18,8 @@
   <div class="dataset-item-org-title">
     <a href="{{ org_link }}">{{ org_title }}</a>
   </div>
-  <div class="dataset-item-org-recent-views"> 
-    <i class="fa fa-line-chart"></i> 0 {{ _('recent views') }} <!-- Replace with package tracking recent views after demo -->
+  <div class="dataset-item-org-license">
+    {% snippet "snippets/license_inline.html", pkg_dict=package %} 
   </div>
 {% endblock %}
 

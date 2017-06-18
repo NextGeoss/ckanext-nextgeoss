@@ -661,3 +661,12 @@ section.resources {
 section.dataset-map-section {
   margin-top: 50px;
 }
+
+.dataset-item-org-license {
+    color: #1660A8;
+    margin-bottom: 20px;
+}
+
+.dataset-item-org-license a{
+    color: #1660A8;
+}
