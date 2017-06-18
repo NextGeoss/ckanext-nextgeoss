@@ -27,12 +27,14 @@
   <h5>{{ _('Download resources directly from source:') }}</h5>
   {% for resource in package.resources %}
     {% if resource.format %}
+      {% set url = resource.url %}
       {% set format = resource.format|upper %}
     {% else %}
+      {% set url = h.url_for(controller='package', action='read', id=package.name) %}
       {% set format = 'DATA' %}
     {% endif %}
     <li>
-      <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label"><i class="fa fa-download"></i>  {{ format }}</a>
+      <a href="{{ url }}" class="label"><i class="fa fa-download"></i>  {{ format }}</a>
     </li>
   {% endfor %}
 <i class="fa fa-share-alt dataset-item-share"></i>
