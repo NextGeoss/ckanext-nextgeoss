@@ -11,7 +11,7 @@
     {% if pkg_dict.license_id %}
       {{ license_string(pkg_dict) }}
     {% else %}
-      {{ _('No License Provided') }}
+      {{ _('License not specified') }}
     {% endif %}
   {% else %}
     {% if pkg_dict.license_id %}
@@ -21,6 +21,8 @@
                       <img class="open-data" src="{{ h.url_for_static('/base/images/od_80x15_blue.png') }}" alt="[Open Data]" />
                   </a>
                 {% endif %}
+    {% else %}
+      {{ _('License not specified') }}
     {% endif %}
   {% endif %}
 {% endblock %}
