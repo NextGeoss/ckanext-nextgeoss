@@ -18,7 +18,8 @@
 {% endif %}
 {% endblock %}
 <h1 class="page-heading">{% block page_heading %}{{ _('Providers') }}{% endblock %}</h1>
-  {% snippet "organization/snippets/helper.html" %}
+<h4>{{ _('NextGEOSS engages the main providers of earth observation data, including Copernicus Collaborative Ground Segments and Core Services. The data hub draws upon resources provided by public, commercial, and research institutions working with satellite, aerial, and in situ measurements.') }}</h4>
+<h4>{{ _('The following providers are currently integrated in the NextGEOSS system:') }}</h4>
 
 {% set count = c.page.items|length %}
 {% set providers_count = ungettext('{number} provider', '{number} providers', count) %}
