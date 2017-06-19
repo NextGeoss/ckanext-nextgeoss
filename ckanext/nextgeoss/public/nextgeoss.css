@@ -673,10 +673,16 @@ section.dataset-map-section {
 
 .media-item {
   width: 250px;
+  text-align: center;
 }
 
 .media-item img {
   padding: 10px;
+}
+
+.media-item p {
+  text-align: left;
+  display: none;
 }
 
 .media-grid {
