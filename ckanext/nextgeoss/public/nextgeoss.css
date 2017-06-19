@@ -731,3 +731,7 @@ article.module {
 .span9>article.module {
   margin-top: 0px !important;
 }
+
+header.module-content.page-header {
+  display: none;
+}
