@@ -193,6 +193,7 @@ h2.heading {
     border: 0px 1px 1px 1px solid #dddddd;
     margin-top: -30px;
     height: 300px;
+    margin-bottom: -40px;
 }
 #green:first-child {
   padding-top: 0;
@@ -707,7 +708,6 @@ section.dataset-map-section {
 }
 
 .group-org-header {
-  margin-bottom: 50px;
 }
 
 .span3 {
@@ -745,3 +745,12 @@ header.module-content.page-header {
   margin-top: -20px;
   margin-bottom: 50px;
  }
+
+ .primary.span9 {
+  margin-top: 50px;
+ }
+
+  .secondary.span3 {
+  margin-top: 50px;
+ }
+ 
