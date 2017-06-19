@@ -8,17 +8,28 @@
 
 {% block page_header %}{% endblock %}
 
+
+{% block primary %}
+  <article class="module">
+    <div class="module-content">
 {% block page_primary_action %}
   {% if h.check_access('group_create') %}
     {% link_for _('Add Topic'), controller='group', action='new', class_='btn btn-primary', icon='plus-sign-alt' %}
   {% endif %}
 {% endblock %}
+  <h1 class="page-heading">{% block page_heading %}{{ _('Topics') }}{% endblock %}</h1>
+    {% snippet "group/snippets/helper.html" %}
 
-{% block primary_content_inner %}
-  <h1 class="hide-heading">{{ _('Topics') }}</h1>
-  {% block groups_search_form %}
-    {% snippet 'snippets/search_form.html', form_id='group-search-form', type='group', query=c.q, sorting_selected=c.sort_by_selected, count=c.page.item_count, placeholder=_('Search topics...'), show_empty=request.params, no_bottom_border=true if c.page.items, sorting = [(_('Name Ascending'), 'title asc'), (_('Name Descending'), 'title desc')] %}
-  {% endblock %}
+  {% set count = c.page.items|length %}
+  {% set topics_count = ungettext('{number} topic', '{number} topics', count) %}
+  {% set topics_none = _('No topics yet') %}
+  {%- if count -%}
+    {% set topics_count = topics_count.format(number=h.localised_number(count)) %}
+  {%- else -%}
+    {% set topics_count = topics_none %}
+  {% endif %}
+  <h2 class="text-center">{{ topics_count }}</h2>
+
   {% block groups_list %}
     {% if c.page.items or request.params %}
       {% if c.page.items %}
@@ -36,8 +47,8 @@
   {% block page_pagination %}
     {{ c.page.pager(q=c.q or '', sort=c.sort_by_selected or '') }}
   {% endblock %}
+</div>
+</article>
 {% endblock %}
 
-{% block secondary_content %}
-  {% snippet "group/snippets/helper.html" %}
-{% endblock %}
+{% block secondary %}{% endblock %}
