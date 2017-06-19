@@ -14,12 +14,14 @@
       </a>
     </div>
   </div>
-      <h1>
+      <h1 class="dataset-detail-title">
         {% block page_heading %}
         {% set name = c.group_dict.title or c.group_dict.name %}
         {{ name }}
       {% endblock %}
     </h1>
+    <h5 class="dataset-detail-title">Website: (coming soon)</h5>
+    <h5 class="dataset-detail-title">Contact person: (coming soon)</h5>
     {% block package_notes %}
       {% if c.group_dict.description %}
         <div class="notes embedded-content dataset-notes">
@@ -53,7 +55,7 @@
         (_('Last Modified'), 'metadata_modified desc'),
         (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
       %}
-      {% snippet 'snippets/search_form.html', form_id='organization-datasets-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, placeholder=_('Search datasets...'), show_empty=request.params, fields=c.fields %}
+      {% snippet 'snippets/search_form.html', form_id='organization-datasets-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, placeholder=_('Search datasets from ')+c.group_dict.title, show_empty=request.params, fields=c.fields %}
     {% endblock %}
   {% block packages_list %}
     {% if c.page.items %}

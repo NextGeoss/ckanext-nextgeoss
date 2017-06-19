@@ -707,7 +707,7 @@ section.dataset-map-section {
 }
 
 .group-org-header {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .span3 {
@@ -735,3 +735,13 @@ article.module {
 header.module-content.page-header {
   display: none;
 }
+
+#group-datasets-search-form {
+  margin-top: -20px;
+  margin-bottom: 50px;
+ }
+
+ #organization-datasets-search-form {
+  margin-top: -20px;
+  margin-bottom: 50px;
+ }
