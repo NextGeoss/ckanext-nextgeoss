@@ -670,3 +670,23 @@ section.dataset-map-section {
 .dataset-item-org-license a{
     color: #1660A8;
 }
+
+.media-item {
+  width: 250px;
+}
+
+.media-item img {
+  padding: 10px;
+}
+
+.media-grid {
+  margin: 0px;
+  padding-left: 20px;
+  background: none;
+  border: none;
+}
+
+@media (min-width: 768px)
+.media-grid {
+    margin-left: 0px;
+}
