@@ -24,6 +24,8 @@ nav.section.navigation {
 body,.masthead, [role="main"], .main {
   background-image: none;
   background-color: #FFFFFF;
+  top: 65px;
+  z-index: 998;
 }
 [role="main"] {
     padding-top: 0px;
@@ -278,7 +280,7 @@ h4.title a {
 }
 
 #dataset-map-attribution {
-  display: none;
+  display: block;
 }
 
 #dataset-map .module-heading {
@@ -753,4 +755,73 @@ header.module-content.page-header {
   .secondary.span3 {
   margin-top: 50px;
  }
- 
+
+@media only screen and (max-width: 500px) {
+    .hero h1 {
+        font-size: 3em;
+        position: absolute;
+        left: -150px;
+        top: -30%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .hero h4 {
+      display: none;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .hero-text .row .col-md-6 {
+        width: 200%;
+    }
+}
+
+
+button.btn.btn-navbar {
+  background-color: #168B7A;
+}
+
+@media only screen and (max-width: 500px) {
+    .topic-list .topic-item {
+      max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    h2.lined:before {
+      border-top: none !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .info {
+      margin-bottom: 20px;
+    }
+}
+
+.disclaimer {
+  color: #292929;
+  text-align: center;
+  background-color: #FCF8E3;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+}
+
+.disclaimer p {
+  padding-top: 20px;
+  padding-bottom: 15px;
+  font-size: 24px;
+}
+
+@media (max-width: 767px) {
+.disclaimer {
+    left: 0px;
+  }
+}
+@media (max-width: 767px) {
+.disclaimer p {
+    font-size: 14px;
+  }
+}
