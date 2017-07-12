@@ -757,22 +757,22 @@ header.module-content.page-header {
   margin-top: 50px;
  }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 767px) {
     .hero h1 {
         font-size: 3em;
         position: absolute;
         left: -150px;
-        top: -30%;
+        top: -70px;
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 767px) {
     .hero h4 {
       display: none;
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 767px) {
     .hero-text .row .col-md-6 {
         width: 200%;
     }
@@ -783,19 +783,19 @@ button.btn.btn-navbar {
   background-color: #168B7A;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 767px) {
     .topic-list .topic-item {
       max-width: 100%;
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 767px) {
     h2.lined:before {
       border-top: none !important;
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 767px) {
     .info {
       margin-bottom: 20px;
     }
@@ -948,4 +948,18 @@ button.btn.btn-navbar {
   }
 .search-form .control-order-by select {
   width: 100% !important;
+}
+
+@media (max-width: 360px) {
+  .hero h1 {
+    top: -60px;
+    left: -170px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero h1 {
+    top: -60px;
+    left: -170px;
+  }
 }
