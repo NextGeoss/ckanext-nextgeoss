@@ -896,3 +896,8 @@ button.btn.btn-navbar {
   margin-left: 15px;
   }
 }
+
+.metadata-col-header {
+  display: none;
+  visibility: hidden;
+}
