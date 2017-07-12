@@ -841,6 +841,14 @@ button.btn.btn-navbar {
   float: none;
   width: auto;
   }
+.resource-box-right h3 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.resource-box-right p {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .resource-box-icon {
   visibility: hidden;
   display: none;
@@ -884,8 +892,8 @@ button.btn.btn-navbar {
   padding: 0px;
   }
 .module-content {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
   }
 .secondary.span3 {
   float: none;
@@ -901,4 +909,42 @@ button.btn.btn-navbar {
 .metadata-col-header {
   display: none;
   visibility: hidden;
+}
+
+@media (max-width: 767px) {
+  .datasets-page .span9 div.module-content {
+    padding-left: 0px !important;
+  }
+  li.dataset-item {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  .dataset-item-org-logo {
+    margin-left: 10px;
+  }
+  .datasets-search-form-container__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .datasets-search-form-container__controls .search-input {
+    width: 100%;
+  }
+  .filters {
+    display: block !important;
+    position: relative !important;
+    background-color: inherit !important;
+  }
+  .filters > div {
+    background-color: inherit !important; 
+  }
+}
+
+@media (max-width: 360px) {
+.datasets-search-form-container__controls {
+  width: 90%;
+  }
+.search-form .control-order-by select {
+  width: 100% !important;
 }
