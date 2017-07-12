@@ -864,10 +864,11 @@ button.btn.btn-navbar {
   margin-bottom: 5px;
   }
 #dataset-resources h3 {
-  text-align: center;
-  margin-left: 10px;
-  margin-right: 10px;
+  text-align: left;
   margin-top: 5px;
+  }
+#dataset-resources .empty {
+  margin-left: 0px;
   }
 #dataset-resources p {
   margin-right: 10px;
