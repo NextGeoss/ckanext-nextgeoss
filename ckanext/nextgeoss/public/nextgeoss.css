@@ -872,5 +872,27 @@ button.btn.btn-navbar {
 #dataset-resources p {
   margin-right: 10px;
   margin-left: 10px;
+  }
 }
+
+@media (max-width: 767px) {
+.primary.span9 {
+  float: none;
+  display: block;
+  width: auto;
+  padding: 0px;
+  }
+.module-content {
+  padding-left: 15px;
+  padding-right: 15px;
+  }
+.secondary.span3 {
+  float: none;
+  display: block;
+  width: auto;
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-right: 15px;
+  margin-left: 15px;
+  }
 }
