@@ -825,3 +825,52 @@ button.btn.btn-navbar {
     font-size: 14px;
   }
 }
+
+@media (max-width: 767px) {
+#resource-box {
+    width: auto;
+    height: auto;
+    background-image: url(/resource-box-mobile.png);
+  }
+.resource-box-left {
+  float: none;
+  width: auto;
+  text-align: center;
+}
+.resource-box-right {
+  float: none;
+  width: auto;
+  }
+.resource-box-icon {
+  visibility: hidden;
+  display: none;
+  }
+.resource-box-file-ext {
+  font-size: inherit;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 10px;
+  }
+.resource-box-file-type {
+  position: relative;
+  bottom: 0px;
+  left: 0px;
+  }
+.resource-box-buttons {
+  text-align: center;
+  position: relative;
+  bottom: 0px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  }
+#dataset-resources h3 {
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  }
+#dataset-resources p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+}
