@@ -279,7 +279,7 @@ h4.title a {
 }
 
 #dataset-map-attribution {
-  display: block;
+  display: none;
 }
 
 #dataset-map .module-heading {
