@@ -735,10 +735,6 @@ article.module {
   margin-top: 0px !important;
 }
 
-header.module-content.page-header {
-  display: none;
-}
-
 #group-datasets-search-form {
   margin-top: -20px;
   margin-bottom: 50px;
