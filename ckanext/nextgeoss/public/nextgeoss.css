@@ -620,7 +620,7 @@ h4.text-left.description {
 .dataset-map-expanded #dataset-map {
   position: absolute;
   height: 400px;
-  width: 1170px;
+  width: 100%;
   top: -383px;
   left: 0px;
   background-color: #D7EDEC;
