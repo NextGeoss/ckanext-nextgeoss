@@ -940,6 +940,12 @@ button.btn.btn-navbar {
   .filters > div {
     background-color: inherit !important; 
   }
+  .toolbar .breadcrumb {
+    color: inherit !important;
+  }
+  .toolbar .breadcrumb a {
+    color: inherit !important;
+  }
 }
 
 @media (max-width: 360px) {
@@ -948,6 +954,7 @@ button.btn.btn-navbar {
   }
 .search-form .control-order-by select {
   width: 100% !important;
+  }
 }
 
 @media (max-width: 360px) {
