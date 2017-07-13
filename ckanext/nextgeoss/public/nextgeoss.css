@@ -946,6 +946,12 @@ button.btn.btn-navbar {
   .toolbar .breadcrumb a {
     color: inherit !important;
   }
+  h1.dataset-detail-title {
+    font-size: 24px;
+  }
+  .dataset-detail-org-logo {
+    width: 60px;
+  }
 }
 
 @media (max-width: 360px) {
