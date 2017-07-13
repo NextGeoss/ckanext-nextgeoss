@@ -24,7 +24,6 @@ nav.section.navigation {
 body,.masthead, [role="main"], .main {
   background-image: none;
   background-color: #FFFFFF;
-  top: 65px;
   z-index: 998;
 }
 [role="main"] {
@@ -806,8 +805,6 @@ button.btn.btn-navbar {
   text-align: center;
   background-color: #FCF8E3;
   width: 100%;
-  position: fixed;
-  z-index: 999;
 }
 
 .disclaimer p {

@@ -1,7 +1,9 @@
 {% ckan_extends %}
 
 {% block footer_content %}
-
+    <div class="disclaimer">
+      <p>Alpha version: Features and data may change.</p>
+    </div>
   <div class="policy-links">
     <div class="text-center">
       <a href="{{ h.url_for(controller='ckanext.nextgeoss.controller:StaticController', action='cookies') }}">Cookies</a> | <a href="{{ h.url_for(controller='ckanext.nextgeoss.controller:StaticController', action='privacy') }}">Data Protection</a> | <a href="{{ h.url_for(controller='ckanext.nextgeoss.controller:StaticController', action='codeofconduct') }}">Code of Conduct</a> | <a href="{{ h.url_for(controller='ckanext.nextgeoss.controller:StaticController', action='termsandconditions') }}">Terms &amp; Conditions</a> | <a href="http://docs.ckan.org/en/latest/api/index.html" target="_blank">CKAN API</a>
@@ -11,5 +13,4 @@
   <div class="sponsor text-center">
     <a href="https://ec.europa.eu/programmes/horizon2020/"><img src="{{ h.url_for_static('/sponsor.png') }}" width="300" alt="EUH 2020"></a>
   </div>
-
 {% endblock %}
