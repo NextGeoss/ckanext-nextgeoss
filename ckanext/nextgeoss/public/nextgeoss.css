@@ -638,6 +638,7 @@ h4.text-left.description {
 
 #dataset-map .module-heading {
   border-color: #D7EDEC;
+  border-radius: 0px;
 }
 
 .dataset-map-section h3 {
