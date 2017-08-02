@@ -8,6 +8,9 @@
 
 {% block styles %}
 {{ super() }}
+  {% set issue_tracker_script = h.nextgeoss_get_jira_script() %}
+  {{ issue_tracker_script|safe }}
+
   <link rel="stylesheet" href="/bootstrap.min.css" />
   <link rel="stylesheet" href="/nextgeoss.css" />
       <!--     Fonts and icons     -->
