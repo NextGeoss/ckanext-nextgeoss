@@ -801,7 +801,7 @@ button.btn.btn-navbar {
   color: #292929;
   text-align: center;
   background-color: #FCF8E3;
-  width: 120%;
+  width: 100%;
 }
 
 .disclaimer p {
@@ -815,9 +815,16 @@ button.btn.btn-navbar {
     left: 0px;
   }
 }
+
 @media (max-width: 768px) {
 .disclaimer p {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 321px) {
+.disclaimer p {
+    font-size: 10px;
   }
 }
 
