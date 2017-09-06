@@ -59,6 +59,10 @@
     {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
   {% endblock %}
 
+  {% block dataset_feedback %}
+    {% snippet "package/snippets/community_feedback.html", pkg=pkg %}
+  {% endblock %}
+
   {% snippet "snippets/social_inline.html" %}
 
   </div>

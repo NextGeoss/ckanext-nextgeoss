@@ -1,0 +1,18 @@
+<section class="additional-info" id="community-feedback">
+
+  <h3 id="community-feedback-header"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ _('Community Feedback') }}</h3>
+
+  <!--Get the URL for the package's feedback feed and 
+  make it available to the communityfeedback script -->
+  {% set feedback_url = h.nextgeoss_get_feedback_url(pkg) %}
+  <meta id="feedback_url" data-url="{{ feedback_url }}">
+
+  <!-- Display the community feedback if available -->
+  <script>loadFeedback();</script>
+
+  <!-- Open the add feedback window in a popup window and 
+  reload the page when the popup is closed in order to cause
+  the user's new comment to be displayed -->
+  <div id="feedback-button-center"><a href="#community-feedback" onclick="javascript:showFeedbackForm('{{ h.nextgeoss_get_add_feedback_url(pkg) }}');" class="btn btn-primary">{{ _('Add feedback') }}</a></div>
+
+</section>
