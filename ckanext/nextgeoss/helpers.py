@@ -37,18 +37,3 @@ def get_add_feedback_url(dataset):
         target_codespace=config.get('ckan.site_url'))
 
     return feedback_url
-
-
-def get_feedback_url(dataset):
-    """
-    Get the feedback url for a specific dataset.
-
-    The namespace is currently set to the CKAN instance URL,
-    but it should be updated in the same way as the namespace
-    for `get_add_feedback_url()`.
-    """
-    feed_url = 'http://www.opengis.uab.cat/cgi-bin/nimmbus/nimmbus.cgi?SERVICE=WPS&REQUEST=EXECUTE&IDENTIFIER=NB_RESOURCE:ENUMERATE&LANGUAGE=eng&STARTINDEX=1&COUNT=100&FORMAT=text/xml&TYPE=FEEDBACK&TRG_TYPE_1=CITATION&TRG_FLD_1=CODE&TRG_VL_1={catalogue_id}&TRG_OPR_1=EQ&TRG_NXS_1=AND&TRG_TYPE_2=CITATION&TRG_FLD_2=NAMESPACE&TRG_VL_2={catalogue_namespace}&TRG_OPR_2=EQ'.format(
-        catalogue_id=dataset['id'],
-        catalogue_namespace=config.get('ckan.site_url'))
-
-    return feed_url
