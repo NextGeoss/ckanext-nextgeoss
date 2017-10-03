@@ -1022,3 +1022,41 @@ button.btn.btn-navbar {
     width: auto !important;
   }
 }
+
+.feedback-list {
+  list-style-type: none;
+  margin-top: 30px;
+  margin-left: 0;
+  padding: 0;
+}
+
+.feedback-item {
+  margin-bottom: 20px;
+}
+.comment-part-name {
+  font-style: italic;
+}
+
+[data-toggle="collapse"].collapsed .if-not-collapsed {
+  display: none;
+}
+[data-toggle="collapse"]:not(.collapsed) .if-collapsed {
+  display: none;
+}
+
+#feedback-button-center {
+  text-align: center;
+}
+
+.collapse {
+  position:relative;
+  height:0;
+  overflow:hidden;
+  -webkit-transition:height 0.35s ease;
+  -moz-transition:height 0.35s ease;
+  -o-transition:height 0.35s ease;
+  transition:height 0.35s ease;
+}
+.collapse.in {
+  height:auto;
+}

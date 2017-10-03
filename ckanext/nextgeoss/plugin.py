@@ -25,7 +25,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         return {
             'nextgeoss_get_org_title': helpers.get_org_title,
             'nextgeoss_get_org_logo': helpers.get_org_logo,
-            'nextgeoss_get_jira_script': helpers.get_jira_script
+            'nextgeoss_get_jira_script': helpers.get_jira_script,
+            'nextgeoss_get_add_feedback_url': helpers.get_add_feedback_url
         }
 
     # IRoutes
