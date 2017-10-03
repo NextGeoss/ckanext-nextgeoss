@@ -233,7 +233,8 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
       "author": author,
       "abstract": abstract,
       "rating": rating,
-      "comment": comment
+      "comment": comment,
+      "motivation": motivation
     };
 
     this.createFeedbackHtml(entryDict, commentId)
