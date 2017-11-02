@@ -1060,3 +1060,7 @@ button.btn.btn-navbar {
 .collapse.in {
   height:auto;
 }
+
+.spacer {
+  margin-top: 30px;
+}
