@@ -65,11 +65,6 @@ within_tertiary
               {% endif %}
               <i class="icon-medium {{ icon }}"></i>
               {% set title = title or h.get_facet_title(name) %}
-              {% if title == 'Organizations' %}
-                {% set title = 'Providers' %}
-              {% elif title == 'Groups' %}
-                {% set title = 'Topics' %}
-              {% endif %}
               {{ _(title) }}
             </h2>
           {% endblock %}
