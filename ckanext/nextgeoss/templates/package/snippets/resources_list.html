@@ -15,13 +15,13 @@ Example:
   {% block resource_list %}
     {% if resources %}
       <div class="topic-list">
-        <div class="row">
+        <ul class="resource-list">
         {% block resource_list_inner %}
           {% for resource in resources %}
             {% snippet 'package/snippets/resource_item.html', pkg=pkg, res=resource %}
           {% endfor %}
         {% endblock %}
-        </div>
+        </ul>
       </div>
     {% else %}
       {% if h.check_access('resource_create', {'package_id': pkg['id']}) %}

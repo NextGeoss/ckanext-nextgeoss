@@ -537,11 +537,21 @@ section.resources {
 #resource-col {
   margin-bottom: 30px;
 }
+
+.resource-list {
+  list-style: none;
+  max-width: inherit;
+  width: inherit;
+  margin: inherit;
+}
+
 #resource-box {
   background-image: url(/resource-box.png);
-  max-width: none;
-  width: 555px;
+  background-repeat: no-repeat;
+  max-width: 98%;
   height: 249px;
+  display: block;
+  margin-bottom: 20px;
 }
 
 .resource-box-left {
@@ -551,8 +561,16 @@ section.resources {
 }
 
 .resource-box-right {
-  float: right;
-  width: 285px;
+  width: 70%;
+  height: 100%;
+  float: left;
+  display: inline-block;
+  margin-left: 70px;
+}
+@media (max-width: 990px) {
+.resource-box-right {
+    width: 60%;
+  }
 }
 
 .btn-left {
@@ -560,23 +578,27 @@ section.resources {
 }
 
 .resource-box-buttons {
-  position: absolute;
-  bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
 
+.resource-box-text-area {
+  height: 65%;
 }
 
 .resource-box-file-type {
-  position: absolute;
+  position: relative;
   top: 45px;
-  left: 65px;
+  left: 20px;
 }
 .resource-box-icon {
   font-size: 120px;
+  text-align: center;
 }
 
 .resource-box-file-ext {
   font-size: 40px;
-  margin-top: 180px;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -832,20 +854,24 @@ button.btn.btn-navbar {
 #resource-box {
     width: auto;
     height: auto;
-    background-image: url(/resource-box-mobile.png);
-  }
+    background-image: none;
+}
 .resource-box-left {
   float: none;
-  width: auto;
+  width: 70px;
   text-align: center;
+  visibility: hidden;
+  display: none;
 }
 .resource-box-right {
   float: none;
-  width: auto;
-  }
+  width: 100%;
+  margin-left: 0px;
+}
 .resource-box-right h3 {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #d0e9e6
 }
 .resource-box-right p {
   padding-left: 10px;
@@ -875,7 +901,7 @@ button.btn.btn-navbar {
   }
 #dataset-resources h3 {
   text-align: left;
-  margin-top: 5px;
+  margin-top: 0px;
   }
 #dataset-resources .empty {
   margin-left: 0px;
