@@ -10,7 +10,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
     ''' Plugin for the NextGEOSS theme.
     '''
     plugins.implements(plugins.IConfigurer)
-    plugins.implements(plugins.ITemplateHelpers)
+    plugins.implements(plugins.ITemplateHelpers, inherit=True)
     plugins.implements(plugins.IRoutes)
     plugins.implements(plugins.IFacets)
 

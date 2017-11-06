@@ -1,0 +1,18 @@
+{% if h.check_access('package_update', {'id':pkg.id }) %}
+  <ul class="nav nav-tabs">
+    {% block content_primary_nav %}
+      {{ h.build_nav_icon('dataset_read', _('Dataset'), id=pkg.name) }}
+      {{ h.build_nav_icon('dataset_groups', _('Topics'), id=pkg.name) }}
+      {{ h.build_nav_icon('dataset_activity', _('Activity Stream'), id=pkg.name) }}
+      {% if self.content_action() | trim %}
+        <div class="content-action-button">
+          {% block content_action %}
+            {% if h.check_access('package_update', {'id':pkg.id }) %}
+              {% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn', icon='wrench' %}
+            {% endif %}
+          {% endblock %}
+        </div>
+      {% endif %}
+    {% endblock %}
+  </ul>
+{% endif %}
