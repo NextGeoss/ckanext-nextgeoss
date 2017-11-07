@@ -1118,3 +1118,9 @@ button.btn.btn-navbar {
 .spacer {
   margin-top: 30px;
 }
+
+.modal {
+  top: 50% !important;
+  bottom: unset;
+  left: 50%;
+}
