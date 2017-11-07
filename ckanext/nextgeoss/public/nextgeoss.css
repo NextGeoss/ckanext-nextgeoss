@@ -278,6 +278,15 @@ h4.title a {
   height: 400px;
 }
 
+@media (max-width: 500px) {
+  .module-narrow #dataset-map-container {
+    height: 300px;
+  }
+  .dataset-map-expanded #dataset-map #dataset-map-container {
+    height: 300px !important;
+  }
+}
+
 #dataset-map-attribution {
   background-color: #D7EDEC;
   margin: 0px !important;
