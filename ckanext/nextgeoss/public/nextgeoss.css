@@ -976,6 +976,10 @@ button.btn.btn-navbar {
   visibility: hidden;
 }
 
+.show-filters.btn {
+  margin-top: 20px;
+}
+
 @media (max-width: 768px) {
   .datasets-page .span9 div.module-content {
     padding-left: 0px !important;
@@ -997,8 +1001,6 @@ button.btn.btn-navbar {
     width: 100%;
   }
   .filters {
-    display: block !important;
-    position: relative !important;
     background-color: inherit !important;
   }
   .filters > div {
@@ -1015,6 +1017,12 @@ button.btn.btn-navbar {
   }
   .dataset-detail-org-logo {
     width: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-form .control-order-by select {
+    margin-left: 0px !important;
   }
 }
 
