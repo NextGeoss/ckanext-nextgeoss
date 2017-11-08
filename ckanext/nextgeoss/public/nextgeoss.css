@@ -501,6 +501,14 @@ h5.dataset-detail-title {
     border-bottom: 1px solid #292929;
 }
 
+.edit-dataset-info {
+  margin-top: 50px;
+}
+.edit-dataset-info h3 {
+    border-bottom: 1px solid #292929;
+    margin-bottom: 50px;
+}
+
 .social h3 {
   border-bottom: 1px solid #292929;
 }
@@ -530,7 +538,7 @@ section.resources {
   margin-top: 30px;
 }
 .resource-list {
-  margin-top: 30px;
+  margin-top: 40px !important;
 }
 
 .resource-item {
@@ -897,7 +905,10 @@ article.module {
     }
 }
 
-
+.add-res-btn {
+  text-align: center;
+  margin-top: 50px;
+}
 
 button.btn.btn-navbar {
   background-color: #168B7A;

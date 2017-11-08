@@ -1,0 +1,50 @@
+{% extends 'package/edit_base.html' %}
+
+{% set pkg = c.pkg_dict %}
+{% set org_title = h.nextgeoss_get_org_title(pkg.owner_org) %}
+{% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
+{%set org_logo = h.nextgeoss_get_org_logo(pkg.owner_org) %}
+
+
+{% block pre_primary %}
+  <div class="container single-column">
+  {% snippet "package/snippets/edit_tabs.html", pkg=pkg %}
+  {% block package_description %}
+  <div class="dataset-detail-org-logo">
+    <div class="image">
+      <a href="{{ org_link }}">
+        <img src="{{ org_logo or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ org_title }}" />
+      </a>
+    </div>
+  </div>
+    {% if pkg.private %}
+      <span class="dataset-private label label-inverse pull-right">
+        <i class="icon-lock"></i>
+        {{ _('Private') }}
+      </span>
+    {% endif %}
+    <h1 class="dataset-detail-title">
+      {% block page_heading %}
+        {{ h.dataset_display_name(pkg) }}
+        {% if pkg.state.startswith('draft') %}
+          [{{ _('Draft') }}]
+        {% endif %}
+        {% if pkg.state == 'deleted' %}
+          [{{ _('Deleted') }}]
+        {% endif %}
+      {% endblock %}
+    </h1>
+    <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
+    <h5 class="dataset-detail-title">{{ _('Licensed under ') }} {% snippet "snippets/license_inline.html", pkg_dict=pkg %}</h5>
+  {% endblock %}
+  <section class="edit-dataset-info">
+    <h3><i class="fa fa-info-circle"></i> {{ _('Edit Metadata') }}</h3>
+    {% block form %}
+      {#- passing c to a snippet is bad but is required here
+      for backwards compatibility with old templates and
+      plugins using setup_template_variables() -#}
+      {{- h.snippet(form_snippet, c=c, **form_vars) -}}
+    {% endblock %}
+  </section>
+</div>
+{% endblock %}
