@@ -630,9 +630,69 @@ section.resources {
 }
 
 .hero-text {
-  position: absolute;
-  top: 75px;
-  left: 200px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  padding-right: 100px;
+  padding-left: 100px;
+}
+
+.col-md-12.col-sm-12 {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+h1.hero-title {
+  font-size: 5em;
+}
+
+h4.hero-subtitle {
+  font-size:2.5em;
+}
+
+@media (max-width: 1750px) {
+  h1.hero-title {
+    font-size: 4em;
+  }
+  h4.hero-subtitle {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 1373px) {
+  h1.hero-title {
+    font-size: 3.5em;
+  }
+  h4.hero-subtitle {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 1216px) {
+  h1.hero-title {
+    font-size: 3em;
+  }
+  h4.hero-subtitle {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 1066px) {
+  .col-md-12.col-sm-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero-text {
+    padding-right: 35px;
+    padding-left: 35px;
+  }
+  h1.hero-title {
+    font-size: 2.3em;
+  }
 }
 
 h4.text-left.description {
@@ -812,26 +872,35 @@ article.module {
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .hero h1 {
-        font-size: 3em;
-        position: absolute;
-        left: -150px;
-        top: -70px;
-    }
+.hero {
+  max-height: 500px;
+  min-height: 250px;
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 1450px) {
+  .hero {
+    max-height: 400px;
+}
+
+@media (max-width: 1220px) {
+  .hero {
+    max-height: 350px;
+}
+
+@media (max-width: 1046px) {
+  .hero {
+    max-height: 250px;
+}
+
+@media (max-width: 886px) {
+    .hero {
+      max-height: 250px;
+    }
     .hero h4 {
       display: none;
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .hero-text .row .col-md-6 {
-        width: 200%;
-    }
-}
 
 
 button.btn.btn-navbar {
