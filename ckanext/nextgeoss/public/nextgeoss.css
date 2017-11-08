@@ -809,6 +809,7 @@ section.dataset-map-section {
 .page-header {
   background-color: inherit;
   border-bottom: none;
+  padding-bottom: 0px;
 }
 
 .search-form .search-input.search-giant button {
