@@ -111,22 +111,6 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
     // Parse the feedback and insert fallback values if certain
     // data is missing.
     try {
-      var title = feedback.getElementsByTagName("mcc\:description")[0]
-        .getElementsByTagName("gco\:CharacterString")[0].textContent;
-    } catch(err) {
-      var title = "";
-    };
-
-    if (title.length == 0) {
-      try {
-        title = feedback.getElementsByTagName("description")[0]
-          .getElementsByTagName("CharacterString")[0].textContent;
-      } catch(err) {
-        title = "Untitled";
-      };
-    };
-
-    try {
       var updated = feedback.getElementsByTagName("cit\:date")[0]
         .getElementsByTagName("gco\:DateTime")[0].textContent;
     } catch(err) {
@@ -227,7 +211,6 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
     }
 
     var entryDict = {
-      "title": title,
       "commentId": commentId,
       "updated": updated,
       "author": author,
