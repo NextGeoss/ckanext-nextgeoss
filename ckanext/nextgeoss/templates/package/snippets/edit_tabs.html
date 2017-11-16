@@ -1,0 +1,15 @@
+{% if h.check_access('package_update', {'id':pkg.id }) %}
+  <ul class="nav nav-tabs">
+    {% block content_primary_nav %}
+      {{ h.build_nav_icon('dataset_edit', _('Edit metadata'), id=pkg.name) }}
+      {{ h.build_nav_icon('dataset_resources', _('Resources'), id=pkg.name) }}
+      {% if self.content_action() | trim %}
+        <div class="content-action-button">
+          {% block content_action %}
+            {% link_for _('View dataset'), controller='package', action='read', id=pkg.name, class_='btn', icon='eye-open' %}
+          {% endblock %}
+        </div>
+      {% endif %}
+    {% endblock %}
+  </ul>
+{% endif %}

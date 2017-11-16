@@ -1,6 +1,12 @@
-{% extends "package/base.html" %}
+{% extends "package/base_single_col.html" %}
 
 {% set res = c.resource %}
+{% set pkg = c.package %}
+
+{% set org_title = h.nextgeoss_get_org_title(pkg.owner_org) %}
+{% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
+{% set dataset_link = h.url_for(controller='package', action='read', id=pkg.id) %}
+{% set org_logo = h.nextgeoss_get_org_logo(pkg.owner_org) %}
 
 {% block head_extras -%}
   {{ super() }}
@@ -19,31 +25,15 @@
 {% endblock %}
 
 {% block pre_primary %}
+  <div class="container single-column">
   {% block resource %}
-    <section class="module module-resource">
       {% block resource_inner %}
-      <div class="module-content">
         <div class="actions">
           {% block resource_actions %}
           <ul>
             {% block resource_actions_inner %}
             {% if h.check_access('package_update', {'id':pkg.id }) %}
               <li>{% link_for _('Manage'), controller='package', action='resource_edit', id=pkg.name, resource_id=res.id, class_='btn', icon='wrench' %}</li>
-            {% endif %}
-            {% if res.url and h.is_url(res.url) %}
-              <li>
-                <a class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}" href="{{ res.url }}">
-                  {% if res.resource_type in ('listing', 'service') %}
-                    <i class="icon-eye-open"></i> {{ _('View') }}
-                  {% elif  res.resource_type == 'api' %}
-                    <i class="icon-key"></i> {{ _('API Endpoint') }}
-                  {% elif not res.has_views or not res.can_be_previewed %}
-                    <i class="icon-external-link"></i> {{ _('Go to resource') }}
-                  {% else %}
-                    <i class="icon-download"></i> {{ _('Download') }}
-                  {% endif %}
-                </a>
-              </li>
             {% endif %}
             {% if 'datastore' in g.plugins %}
               <li>{% snippet 'package/snippets/data_api_button.html', resource=res, datastore_root_url=c.datastore_api %}</li>
@@ -53,99 +43,60 @@
           {% endblock %}
         </div>
         {% block resource_content %}
-          {% block resource_read_title %}<h1 class="page-heading">{{ h.resource_display_name(res) | truncate(50) }}</h1>{% endblock %}
+          {% block resource_read_title %}
+            <h1 class="dataset-detail-title">{{ h.resource_display_name(res) | truncate(50) }}</h1>
+            <h5 class="dataset-detail-title">{{ _('Part of dataset ') }} <a href="{{ dataset_link }}">{{ pkg.title }}</a></h5>
+            <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
+            <h5 class="dataset-detail-title">{{ _('Licensed under ') }} {% snippet "snippets/license_inline.html", pkg_dict=pkg %}</h5>
+          {% endblock %}
+
           {% block resource_read_url %}
+            {% set url_explanation = _('URL to access resource at source:')%}
             {% if res.url and h.is_url(res.url) %}
-              <p class="muted ellipsis">{{ _('URL:') }} <a href="{{ res.url }}" title="{{ res.url }}">{{ res.url }}</a></p>
+              <p>{{ url_explanation }} <a href="{{ res.url }}" title="{{ res.url }}" class="resource-url-analytics">{{ res.url }}</a></p>
             {% elif res.url %}
-              <p class="muted ellipsis">{{ _('URL:') }} {{ res.url }}</p>
+              <p>{{ url_explanation }} {{ res.url }}</p>
+            {% else %}
+              <p>_('No URL to access resource provided by source.')
             {% endif %}
           {% endblock %}
           <div class="prose notes" property="rdfs:label">
             {% if res.description %}
-              {{ h.render_markdown(res.description) }}
-            {% endif %}
-            {% if not res.description and c.package.notes %}
+              {{ h.render_markdown('res.description') }}
+            {% elif not res.description and c.package.notes %}
               <h3>{{ _('From the dataset abstract') }}</h3>
               <blockquote>{{ h.markdown_extract(h.get_translated(c.package, 'notes')) }}</blockquote>
-              <p>{% trans dataset=c.package.title, url=h.url_for(controller='package', action='read', id=c.package['name']) %}Source: <a href="{{ url }}">{{ dataset }}</a>{% endtrans %}
+              <p>{% trans dataset=c.package.title, url=h.url_for(controller='package', action='read', id=c.package['name']) %}Source: <a href="{{ url }}">{{ dataset }}</a>{% endtrans %}</p>
+            {% else %}
+              {{ _('No description available.') }}
             {% endif %}
           </div>
         {% endblock %}
-      </div>
-      {% block data_preview %}
-      {% block resource_view %}
-        {% block resource_view_nav %}
-          {% set resource_preview = h.resource_preview(c.resource, c.package) %}
-          {% snippet "package/snippets/resource_views_list.html",
-             views=resource_views,
-             pkg=pkg,
-             is_edit=false,
-             view_id=current_resource_view['id'],
-             resource_preview=resource_preview,
-             resource=c.resource,
-             extra_class="nav-tabs-plain"
-           %}
-        {% endblock %}
-        <div class="module-content">
-          {% block resource_view_content %}
-            <div class="resource-view">
-              {% set resource_preview = h.resource_preview(c.resource, c.package) %}
-              {% set views_created = res.has_views or resource_preview %}
-              {% if views_created %}
-                {% if resource_preview and not current_resource_view %}
-                  {{ h.resource_preview(c.resource, c.package) }}
-                {% else %}
-                  {% for resource_view in resource_views %}
-                    {% if resource_view == current_resource_view %}
-                      {% snippet 'package/snippets/resource_view.html',
-                         resource_view=resource_view,
-                         resource=c.resource,
-                         package=c.package
-                       %}
-                    {% endif %}
-                  {% endfor %}
-                {% endif %}
-              {% else %}
-                {# Views not created #}
-                <div class="module-content data-viewer-info">
-                  <p>{{ _("There are no views created for this resource yet.") }}</p>
-                  {% if h.check_access('resource_view_create', {'resource_id': c.resource.id}) %}
-                    <p class="muted">
-                      <i class="icon-info-sign"></i>
-                      {{ _("Not seeing the views you were expecting?")}}
-                      <a href="javascript:void(0);" data-toggle="collapse" data-target="#data-view-info">
-                        {{ _('Click here for more information.') }}</a>
-                    </p>
-                    <div id="data-view-info" class="collapse">
-                      <p>{{ _('Here are some reasons you may not be seeing expected views:') }}</p>
-                      <ul>
-                        <li>{{ _("No view has been created that is suitable for this resource")}}</li>
-                        <li>{{ _("The site administrators may not have enabled the relevant view plugins")}}</li>
-                        <li>{{ _("If a view requires the DataStore, the DataStore plugin may not be enabled, or the data may not have been pushed to the DataStore, or the DataStore hasn't finished processing the data yet")}}</li>
-                      </ul>
-                    </div>
-                  {% endif %}
-                </div>
-              {% endif %}
-            </div>
-          {% endblock %}
-        </div>
-      {% endblock %}
-      {% endblock %}
-      {% endblock %}
-    </section>
-  {% endblock %}
-{% endblock %}
 
-{% block primary_content %}
+        {% if res.url and h.is_url(res.url) %}
+          <div class="spacer text-center">
+            <a class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}" href="{{ res.url }}">
+              {% if res.resource_type in ('listing', 'service') %}
+                <i class="icon-eye-open"></i> {{ _('View') }}
+              {% elif  res.resource_type == 'api' %}
+                <i class="icon-key"></i> {{ _('API Endpoint') }}
+              {% elif not res.has_views or not res.can_be_previewed %}
+                <i class="icon-external-link"></i> {{ _('Go to resource') }}
+              {% else %}
+                <i class="icon-download"></i> {{ _('Download') }}
+              {% endif %}
+            </a>
+          </div>
+        {% endif %}
+      {% endblock %}
+  {% endblock %}
+
+
+
   {% block resource_additional_information %}
-    {% if res %}
-      <section class="module">
-        {% block resource_additional_information_inner %}
-        <div class="module-content additional-info">
+        <div class="additional-info">
           <h3><i class="fa fa-info-circle"></i> {{ _('Additional Info') }}</h3>
-          <table class="table table-bordered table-dataset" data-module="table-toggle-more">
+          <table class="table table-bordered table-dataset">
             <thead class="metadata-col-header">
               <tr>
                 <th scope="col">{{ _('Field') }}</th>
@@ -175,20 +126,9 @@
             </tbody>
           </table>
         </div>
-        {% endblock %}
-      </section>
-    {% endif %}
+
   {% endblock %}
+
+  {% snippet "snippets/social_inline.html" %}
+  </div>
 {% endblock %}
-
-{% block secondary_content %}
-
-  {% block resources_list %}
-    {% snippet "package/snippets/resources.html", pkg=pkg, active=res.id %}
-  {% endblock %}
-
-  {% block resource_license %}
-    {% snippet "snippets/social.html" %}
-  {% endblock %}
-{% endblock %}
-

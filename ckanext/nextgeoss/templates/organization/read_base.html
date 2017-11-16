@@ -8,8 +8,10 @@
 {% endblock %}
 
 {% block content_primary_nav %}
-  {{ h.build_nav_icon('provider_read', _('Datasets'), id=c.group_dict.name) }}
-  {{ h.build_nav_icon('provider_activity', _('Activity Stream'), id=c.group_dict.name) }}
+  {% if h.check_access('package_create', {'owner_org': c.group_dict.id}) %}
+    {{ h.build_nav_icon('provider_read', _('Datasets'), id=c.group_dict.name) }}
+    {{ h.build_nav_icon('provider_activity', _('Activity Stream'), id=c.group_dict.name) }}
+  {% endif %}
 {% endblock %}
 
 {% block secondary_content %}

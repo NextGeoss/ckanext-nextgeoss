@@ -278,8 +278,18 @@ h4.title a {
   height: 400px;
 }
 
+@media (max-width: 500px) {
+  .module-narrow #dataset-map-container {
+    height: 300px;
+  }
+  .dataset-map-expanded #dataset-map #dataset-map-container {
+    height: 300px !important;
+  }
+}
+
 #dataset-map-attribution {
-  display: none;
+  background-color: #D7EDEC;
+  margin: 0px !important;
 }
 
 #dataset-map .module-heading {
@@ -360,6 +370,15 @@ h4.title a {
   padding-top: 0;
 }
 
+.content-action-button {
+  float: right;
+}
+
+.media-item .media-edit {
+  position: unset;
+  opacity: 1;
+}
+
 .datasets-page .module-content {
   padding-right: 0;
 }
@@ -380,6 +399,10 @@ h4.title a {
 
 .dataset-resources {
   margin-top: 40px;
+}
+
+.activity-stream {
+  margin-top: 50px;
 }
 
 .search-form .search-input.search-giant input {
@@ -478,6 +501,14 @@ h5.dataset-detail-title {
     border-bottom: 1px solid #292929;
 }
 
+.edit-dataset-info {
+  margin-top: 50px;
+}
+.edit-dataset-info h3 {
+    border-bottom: 1px solid #292929;
+    margin-bottom: 50px;
+}
+
 .social h3 {
   border-bottom: 1px solid #292929;
 }
@@ -507,7 +538,7 @@ section.resources {
   margin-top: 30px;
 }
 .resource-list {
-  margin-top: 30px;
+  margin-top: 40px !important;
 }
 
 .resource-item {
@@ -537,11 +568,21 @@ section.resources {
 #resource-col {
   margin-bottom: 30px;
 }
+
+.resource-list {
+  list-style: none;
+  max-width: inherit;
+  width: inherit;
+  margin: inherit;
+}
+
 #resource-box {
   background-image: url(/resource-box.png);
-  max-width: none;
-  width: 555px;
+  background-repeat: no-repeat;
+  max-width: 98%;
   height: 249px;
+  display: block;
+  margin-bottom: 20px;
 }
 
 .resource-box-left {
@@ -551,8 +592,16 @@ section.resources {
 }
 
 .resource-box-right {
-  float: right;
-  width: 285px;
+  width: 70%;
+  height: 100%;
+  float: left;
+  display: inline-block;
+  margin-left: 70px;
+}
+@media (max-width: 990px) {
+.resource-box-right {
+    width: 60%;
+  }
 }
 
 .btn-left {
@@ -560,23 +609,27 @@ section.resources {
 }
 
 .resource-box-buttons {
-  position: absolute;
-  bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
 
+.resource-box-text-area {
+  height: 65%;
 }
 
 .resource-box-file-type {
-  position: absolute;
+  position: relative;
   top: 45px;
-  left: 65px;
+  left: 20px;
 }
 .resource-box-icon {
   font-size: 120px;
+  text-align: center;
 }
 
 .resource-box-file-ext {
   font-size: 40px;
-  margin-top: 180px;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -585,9 +638,69 @@ section.resources {
 }
 
 .hero-text {
-  position: absolute;
-  top: 75px;
-  left: 200px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  padding-right: 100px;
+  padding-left: 100px;
+}
+
+.col-md-12.col-sm-12 {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+h1.hero-title {
+  font-size: 5em;
+}
+
+h4.hero-subtitle {
+  font-size:2.5em;
+}
+
+@media (max-width: 1750px) {
+  h1.hero-title {
+    font-size: 4em;
+  }
+  h4.hero-subtitle {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 1373px) {
+  h1.hero-title {
+    font-size: 3.5em;
+  }
+  h4.hero-subtitle {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 1216px) {
+  h1.hero-title {
+    font-size: 3em;
+  }
+  h4.hero-subtitle {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 1066px) {
+  .col-md-12.col-sm-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero-text {
+    padding-right: 35px;
+    padding-left: 35px;
+  }
+  h1.hero-title {
+    font-size: 2.3em;
+  }
 }
 
 h4.text-left.description {
@@ -615,6 +728,11 @@ h4.text-left.description {
   margin-bottom: 10px;
   text-align: center;
   font-weight: 400;
+  border-bottom: 0px !important;
+}
+
+.primary .tertiary {
+  width: 270px;
 }
 
 .dataset-map-expanded #dataset-map {
@@ -696,21 +814,14 @@ section.dataset-map-section {
   border: none;
 }
 
-@media (min-width: 768px)
-.media-grid {
-    margin-left: 0px;
-}
-
 .page-header {
   background-color: inherit;
   border-bottom: none;
+  padding-bottom: 0px;
 }
 
 .search-form .search-input.search-giant button {
   left: 20px;
-}
-
-.group-org-header {
 }
 
 .span3 {
@@ -753,27 +864,51 @@ article.module {
   margin-top: 50px;
  }
 
-@media only screen and (max-width: 768px) {
-    .hero h1 {
-        font-size: 3em;
-        position: absolute;
-        left: -150px;
-        top: -70px;
+@media only screen and (max-width: 500px) {
+    .toolbar {
+      display: none;
+    }
+    .single-column {
+      margin-top: 0px;
     }
 }
 
-@media only screen and (max-width: 768px) {
+.hero {
+  max-height: 500px;
+  min-height: 250px;
+}
+
+@media (max-width: 1450px) {
+  .hero {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .hero {
+    max-height: 350px;
+  }
+}
+
+@media (max-width: 1046px) {
+  .hero {
+    max-height: 250px;
+  }
+}
+
+@media (max-width: 886px) {
+    .hero {
+      max-height: 250px;
+    }
     .hero h4 {
       display: none;
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .hero-text .row .col-md-6 {
-        width: 200%;
-    }
+.add-res-btn {
+  text-align: center;
+  margin-top: 50px;
 }
-
 
 button.btn.btn-navbar {
   background-color: #168B7A;
@@ -832,20 +967,24 @@ button.btn.btn-navbar {
 #resource-box {
     width: auto;
     height: auto;
-    background-image: url(/resource-box-mobile.png);
-  }
+    background-image: none;
+}
 .resource-box-left {
   float: none;
-  width: auto;
+  width: 70px;
   text-align: center;
+  visibility: hidden;
+  display: none;
 }
 .resource-box-right {
   float: none;
-  width: auto;
-  }
+  width: 100%;
+  margin-left: 0px;
+}
 .resource-box-right h3 {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #d0e9e6
 }
 .resource-box-right p {
   padding-left: 10px;
@@ -875,7 +1014,7 @@ button.btn.btn-navbar {
   }
 #dataset-resources h3 {
   text-align: left;
-  margin-top: 5px;
+  margin-top: 0px;
   }
 #dataset-resources .empty {
   margin-left: 0px;
@@ -913,6 +1052,10 @@ button.btn.btn-navbar {
   visibility: hidden;
 }
 
+.show-filters.btn {
+  margin-top: 20px;
+}
+
 @media (max-width: 768px) {
   .datasets-page .span9 div.module-content {
     padding-left: 0px !important;
@@ -934,8 +1077,6 @@ button.btn.btn-navbar {
     width: 100%;
   }
   .filters {
-    display: block !important;
-    position: relative !important;
     background-color: inherit !important;
   }
   .filters > div {
@@ -955,26 +1096,18 @@ button.btn.btn-navbar {
   }
 }
 
+@media (max-width: 768px) {
+  .search-form .control-order-by select {
+    margin-left: 0px !important;
+  }
+}
+
 @media (max-width: 360px) {
 .datasets-search-form-container__controls {
   width: 90%;
   }
 .search-form .control-order-by select {
   width: 100% !important;
-  }
-}
-
-@media (max-width: 360px) {
-  .hero h1 {
-    top: -60px;
-    left: -170px;
-  }
-}
-
-@media (max-width: 360px) {
-  .hero h1 {
-    top: -60px;
-    left: -170px;
   }
 }
 
@@ -1059,4 +1192,14 @@ button.btn.btn-navbar {
 }
 .collapse.in {
   height:auto;
+}
+
+.spacer {
+  margin-top: 30px;
+}
+
+.modal {
+  top: 50% !important;
+  bottom: unset;
+  left: 50%;
 }

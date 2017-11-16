@@ -3,14 +3,16 @@ import ckan.plugins.toolkit as toolkit
 import routes.mapper
 
 from ckanext.nextgeoss import helpers
+from ckan.common import _
 
 
 class NextgeossPlugin(plugins.SingletonPlugin):
     ''' Plugin for the NextGEOSS theme.
     '''
     plugins.implements(plugins.IConfigurer)
-    plugins.implements(plugins.ITemplateHelpers)
+    plugins.implements(plugins.ITemplateHelpers, inherit=True)
     plugins.implements(plugins.IRoutes)
+    plugins.implements(plugins.IFacets)
 
     # IConfigurer
 
@@ -124,3 +126,30 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
     def after_map(self, map):
         return map
+
+
+    # IFacets
+
+    def _update_facets(self, facets_dict):
+      """
+      Make it easier to consistently update the various
+      facets_dicts. facets_dict will be an ordered dictionary,
+      so we need to preserve the order when we update.
+      """
+      print(facets_dict)
+      facets_dict['groups'] = _('Topics')
+      facets_dict['organization'] = _('Providers')
+
+      return facets_dict
+
+    def dataset_facets(self, facets_dict, package_type):
+      """Update the facets used on dataset search pages."""
+      return self._update_facets(facets_dict)
+
+    def group_facets(self, facets_dict, group_type, package_type):
+      """Update the facets used on group search pages."""
+      return self._update_facets(facets_dict)
+
+    def organization_facets(self, facets_dict, organization_type, package_type):
+      """Update the facets used on organization search pages."""
+      return self._update_facets(facets_dict)

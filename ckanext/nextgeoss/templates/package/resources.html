@@ -1,4 +1,8 @@
-{% extends "package/read_base.html" %}
+{% extends "package/edit_base.html" %}
+
+{% set has_reorder = c.pkg_dict and c.pkg_dict.resources and c.pkg_dict.resources|length > 0 %}
+
+{% block subtitle %}{{ _('Resources') }} - {{ h.dataset_display_name(pkg) }}{% endblock %}
 
 {% set pkg = c.pkg_dict %}
 {% set org_title = h.nextgeoss_get_org_title(pkg.owner_org) %}
@@ -7,13 +11,8 @@
 
 
 {% block pre_primary %}
-
-
-
-
-
   <div class="container single-column">
-  {% snippet "package/snippets/nav_tabs.html", pkg=pkg %}
+  {% snippet "package/snippets/edit_tabs.html", pkg=pkg %}
   {% block package_description %}
   <div class="dataset-detail-org-logo">
     <div class="image">
@@ -41,35 +40,24 @@
     </h1>
     <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
     <h5 class="dataset-detail-title">{{ _('Licensed under ') }} {% snippet "snippets/license_inline.html", pkg_dict=pkg %}</h5>
-    {% block package_notes %}
-      {% if pkg.notes %}
-        <div class="notes embedded-content dataset-notes">
-          {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
-        </div>
+  {% endblock %}
+
+    <section id="dataset-resources" class="resources">
+      <h3><i class="fa fa-download"></i> {{ _('Data and Resources') }}</h3>
+      {% if pkg.resources %}
+        <ul class="resource-list"{% if has_reorder %} data-module="resource-reorder" data-module-id="{{ pkg.id }}"{% endif %}>
+          {% for resource in pkg.resources %}
+            {% snippet 'package/snippets/resource_item.html', pkg=pkg, res=resource, url_is_edit=true %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        {% trans url=h.url_for(controller='package', action='new_resource', id=pkg.name) %}
+          <p class="empty">This dataset has no data, <a href="{{ url }}">why not add some?</a></p>
+        {% endtrans %}
       {% endif %}
-    {% endblock %}
-    {# FIXME why is this here? seems wrong #}
-    <span class="insert-comment-thread"></span>
-  {% endblock %}
-
-  {% set dataset_extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
-  {% if dataset_extent %}
-    {% snippet "spatial/snippets/dataset_map_big.html", extent=dataset_extent %}
-  {% endif %}
-
-  {% block package_resources %}
-    {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
-  {% endblock %}
-
-  {% block package_additional_info %}
-    {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
-  {% endblock %}
-
-  {% block dataset_feedback %}
-    {% snippet "package/snippets/community_feedback.html", pkg=pkg %}
-  {% endblock %}
-
-  {% snippet "snippets/social_inline.html" %}
-
+      <div class="add-res-btn">
+        {% link_for _('Add new resource'), controller='package', action='new_resource', id=c.pkg_dict.name, class_='btn btn-primary btn-center', icon='plus' %}
+      </div>
+    </section>
   </div>
 {% endblock %}

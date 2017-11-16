@@ -65,11 +65,6 @@ within_tertiary
               {% endif %}
               <i class="icon-medium {{ icon }}"></i>
               {% set title = title or h.get_facet_title(name) %}
-              {% if title == 'Organizations' %}
-                {% set title = 'Providers' %}
-              {% elif title == 'Groups' %}
-                {% set title = 'Topics' %}
-              {% endif %}
               {{ _(title) }}
             </h2>
           {% endblock %}
@@ -81,11 +76,10 @@ within_tertiary
                   {% for item in items %}
                     {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
                     {% set label = label_function(item) if label_function else item.display_name %}
-                    {% set label_truncated = h.truncate(label, 22) if not label_function else label %}
                     {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
                       <li class="{{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
                         <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}" style="padding-left: 20px;">
-                          <span>{{ label_truncated }} <span class="badge" style="background-color: #673fb0;">{{ count }}</span></span>
+                          <span>{{ label }} <span class="badge" style="background-color: #673fb0;">{{ count }}</span></span>
                         </a>
                       </li>
                   {% endfor %}
