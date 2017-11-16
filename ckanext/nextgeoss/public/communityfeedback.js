@@ -114,16 +114,15 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
       var updated = feedback.getElementsByTagName("cit\:date")[0]
         .getElementsByTagName("gco\:DateTime")[0].textContent;
     } catch(err) {
-      var updated = "";
-    };
-
-    if (updated.length == 0) {
       try {
-        updated = feedback.getElementsByTagName("date")[0]
+        var updated = feedback.getElementsByTagName("date")[0]
           .getElementsByTagName("DateTime")[0].textContent;
       } catch(err) {
-        updated = "Undefined";
+        var updated = "";
       };
+    };
+    if (updated.length == 0) {
+      updated = "Undefined";
     };
 
     try {
@@ -131,84 +130,95 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
         .getElementsByTagName("cit\:name")[0]
         .getElementsByTagName("gco\:CharacterString")[0].textContent;
     } catch(err) {
-      author = "";
-    };
-
-    if (author.length == 0) {
       try {
-        author = feedback.getElementsByTagName("CI_Individual")[0]
+        var author = feedback.getElementsByTagName("CI_Individual")[0]
           .getElementsByTagName("name")[0]
           .getElementsByTagName("CharacterString")[0].textContent;
       } catch(err) {
-        author = "Unknown";
+        var author = "";
       };
+    };
+    if (author.length == 0) {
+      author = "Unknown";
     };
 
     try {
       var abstract = feedback.getElementsByTagName("guf\:abstract")[0]
         .getElementsByTagName("gco\:CharacterString")[0].textContent;
     } catch(err) {
-      var abstract = "";
-    };
-
-    if (abstract.length == 0) {
       try {
         abstract = feedback.getElementsByTagName("abstract")[0]
           .getElementsByTagName("CharacterString")[0].textContent;
       } catch(err) {
-        abstract = "No abstract available";
+        abstract = "";
       };
+    };
+    if (abstract.length == 0) {
+    abstract = "No abstract available"
     };
 
     try {
       var rating = feedback.getElementsByTagName("guf\:GUF_RatingCode")[0]
         .getAttribute("codeListValue");
     } catch(err) {
-      var rating = ""
-    };
-
-    if (rating.length == 0) {
       try {
-        rating = feedback.getElementsByTagName("GUF_RatingCode")[0]
+        var rating = feedback.getElementsByTagName("GUF_RatingCode")[0]
           .getAttribute("codeListValue");
       } catch(err) {
-        rating = "No rating available"
+        var rating = ""
       };
-    }
+    };
+    if (rating.length == 0) {
+      rating = "No rating available"
+    };
 
     try {
       var comment = feedback.getElementsByTagName("guf\:comment")[0]
         .getElementsByTagName("gco\:CharacterString")[0].textContent;
     } catch(err) {
-      var comment = ""
-    };
-
-    if (comment.length == 0) {
       try {
         comment = feedback.getElementsByTagName("comment")[0]
           .getElementsByTagName("CharacterString")[0].textContent;
       } catch(err) {
-        comment = "No comment available"
+        var comment = ""
       };
+    };
+    if (comment.length == 0) {
+      comment = "No comment available"
     };
 
     try {
-      var motivation = feedback
-        .getElementsByTagName("guf\:GUF_MotivationCode")[0]
+      var motivation = feedback.getElementsByTagName("guf\:GUF_MotivationCode")[0]
         .getAttribute("codeListValue");
     } catch(err) {
-      var motivation = "";
-    };
-
-    if (motivation.length == 0) {
       try {
-        motivation = feedback
-          .getElementsByTagName("GUF_MotivationCode")[0]
+        var motivation = feedback.getElementsByTagName("GUF_MotivationCode")[0]
           .getAttribute("codeListValue");
       } catch(err) {
-        motivation = "No motivation available";
+        var motivation = "";
       };
-    }
+    };
+    if (motivation.length == 0) {
+      motivation = "No motivation available";
+    };
+
+ //   try {
+ //     var motivation = feedback
+ //       .getElementsByTagName("guf\:GUF_MotivationCode")[0]
+ //       .getAttribute("codeListValue");
+ //   } catch(err) {
+ //     var motivation = "";
+ //   };
+
+//    if (motivation.length == 0) {
+//      try {
+ //       motivation = feedback
+  //        .getElementsByTagName("GUF_MotivationCode")[0]
+   //       .getAttribute("codeListValue");
+//      } catch(err) {
+  //      motivation = "No motivation available";
+  //    };
+  //  }
 
     var entryDict = {
       "commentId": commentId,
