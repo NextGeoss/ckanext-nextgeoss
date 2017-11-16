@@ -118,7 +118,12 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
     };
 
     if (title.length == 0) {
-      title = "Untitled";
+      try {
+        title = feedback.getElementsByTagName("description")[0]
+          .getElementsByTagName("CharacterString")[0].textContent;
+      } catch(err) {
+        title = "Untitled";
+      };
     };
 
     try {
@@ -129,7 +134,12 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
     };
 
     if (updated.length == 0) {
-      updated = "Undefined";
+      try {
+        updated = feedback.getElementsByTagName("date")[0]
+          .getElementsByTagName("DateTime")[0].textContent;
+      } catch(err) {
+        updated = "Undefined";
+      };
     };
 
     try {
@@ -141,7 +151,13 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
     };
 
     if (author.length == 0) {
-      author = "Unknown";
+      try {
+        author = feedback.getElementsByTagName("CI_Individual")[0]
+          .getElementsByTagName("name")[0]
+          .getElementsByTagName("CharacterString")[0].textContent;
+      } catch(err) {
+        author = "Unknown";
+      };
     };
 
     try {
@@ -152,15 +168,29 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
     };
 
     if (abstract.length == 0) {
-      abstract = "No abstract available"
+      try {
+        abstract = feedback.getElementsByTagName("abstract")[0]
+          .getElementsByTagName("CharacterString")[0].textContent;
+      } catch(err) {
+        abstract = "No abstract available";
+      };
     };
 
     try {
       var rating = feedback.getElementsByTagName("guf\:GUF_RatingCode")[0]
         .getAttribute("codeListValue");
     } catch(err) {
-      var rating = "No rating available"
+      var rating = ""
     };
+
+    if (rating.length == 0) {
+      try {
+        rating = feedback.getElementsByTagName("GUF_RatingCode")[0]
+          .getAttribute("codeListValue");
+      } catch(err) {
+        rating = "No rating available"
+      };
+    }
 
     try {
       var comment = feedback.getElementsByTagName("guf\:comment")[0]
@@ -170,7 +200,12 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
     };
 
     if (comment.length == 0) {
-      comment = "No comment available"
+      try {
+        comment = feedback.getElementsByTagName("comment")[0]
+          .getElementsByTagName("CharacterString")[0].textContent;
+      } catch(err) {
+        comment = "No comment available"
+      };
     };
 
     try {
@@ -178,8 +213,18 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
         .getElementsByTagName("guf\:GUF_MotivationCode")[0]
         .getAttribute("codeListValue");
     } catch(err) {
-      var motivation = "Undefined";
+      var motivation = "";
     };
+
+    if (motivation.length == 0) {
+      try {
+        motivation = feedback
+          .getElementsByTagName("GUF_MotivationCode")[0]
+          .getAttribute("codeListValue");
+      } catch(err) {
+        motivation = "No motivation available";
+      };
+    }
 
     var entryDict = {
       "title": title,
@@ -188,7 +233,8 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
       "author": author,
       "abstract": abstract,
       "rating": rating,
-      "comment": comment
+      "comment": comment,
+      "motivation": motivation
     };
 
     this.createFeedbackHtml(entryDict, commentId)
