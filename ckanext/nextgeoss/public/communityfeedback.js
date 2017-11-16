@@ -202,24 +202,6 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
       motivation = "No motivation available";
     };
 
- //   try {
- //     var motivation = feedback
- //       .getElementsByTagName("guf\:GUF_MotivationCode")[0]
- //       .getAttribute("codeListValue");
- //   } catch(err) {
- //     var motivation = "";
- //   };
-
-//    if (motivation.length == 0) {
-//      try {
- //       motivation = feedback
-  //        .getElementsByTagName("GUF_MotivationCode")[0]
-   //       .getAttribute("codeListValue");
-//      } catch(err) {
-  //      motivation = "No motivation available";
-  //    };
-  //  }
-
     var entryDict = {
       "commentId": commentId,
       "updated": updated,
