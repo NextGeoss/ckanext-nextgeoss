@@ -7,13 +7,13 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
 
   this.getFeedbackUrl = function() {
     // Get the URL for feedback feed.
-    var url = 'http://www.opengis.uab.cat/cgi-bin/nimmbus/nimmbus.cgi?SERVICE=WPS&REQUEST=EXECUTE&IDENTIFIER=NB_RESOURCE:ENUMERATE&LANGUAGE=eng&STARTINDEX=1&COUNT=100&FORMAT=text/xml&TYPE=FEEDBACK&TRG_TYPE_1=CITATION&TRG_FLD_1=CODE&TRG_VL_1='+this.catalogueID+'&TRG_OPR_1=EQ&TRG_NXS_1=AND&TRG_TYPE_2=CITATION&TRG_FLD_2=NAMESPACE&TRG_VL_2='+this.catalogueNamespace+'&TRG_OPR_2=EQ'
+    var url = 'https://www.opengis.uab.cat/cgi-bin/nimmbus/nimmbus.cgi?SERVICE=WPS&REQUEST=EXECUTE&IDENTIFIER=NB_RESOURCE:ENUMERATE&LANGUAGE=eng&STARTINDEX=1&COUNT=100&FORMAT=text/xml&TYPE=FEEDBACK&TRG_TYPE_1=CITATION&TRG_FLD_1=CODE&TRG_VL_1='+this.catalogueID+'&TRG_OPR_1=EQ&TRG_NXS_1=AND&TRG_TYPE_2=CITATION&TRG_FLD_2=NAMESPACE&TRG_VL_2='+this.catalogueNamespace+'&TRG_OPR_2=EQ'
     return url
   };
 
   this.getAddFeedbackUrl = function() {
     // Get the URL for adding feedback.
-    var url = 'http://www.opengis.uab.cat/nimmbus/index.htm?target_title='+this.title+'&target_code='+this.catalogueID+'&target_codespace='+this.catalogueNamespace+'&page=ADDFEEDBACK&share_borrower_1=Anonymous'
+    var url = 'https://www.opengis.uab.cat/nimmbus/index.htm?target_title='+this.title+'&target_code='+this.catalogueID+'&target_codespace='+this.catalogueNamespace+'&page=ADDFEEDBACK&share_borrower_1=Anonymous'
     return url
   };
 
