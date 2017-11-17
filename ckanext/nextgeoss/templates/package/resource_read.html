@@ -60,6 +60,7 @@
               <p>_('No URL to access resource provided by source.')
             {% endif %}
           {% endblock %}
+
           <div class="prose notes" property="rdfs:label">
             {% if res.description %}
               {{ h.render_markdown('res.description') }}
@@ -77,13 +78,13 @@
           <div class="spacer text-center">
             <a class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}" href="{{ res.url }}">
               {% if res.resource_type in ('listing', 'service') %}
-                <i class="icon-eye-open"></i> {{ _('View') }}
+                <i class="fa-eye-open"></i> {{ _('View') }}
               {% elif  res.resource_type == 'api' %}
-                <i class="icon-key"></i> {{ _('API Endpoint') }}
+                <i class="fa-key"></i> {{ _('API Endpoint') }}
               {% elif not res.has_views or not res.can_be_previewed %}
-                <i class="icon-external-link"></i> {{ _('Go to resource') }}
+                <i class="fa-external-link"></i> {{ _('Go to resource') }}
               {% else %}
-                <i class="icon-download"></i> {{ _('Download') }}
+                <i class="fa-download"></i> {{ _('Download') }}
               {% endif %}
             </a>
           </div>
@@ -91,42 +92,40 @@
       {% endblock %}
   {% endblock %}
 
-
-
   {% block resource_additional_information %}
-        <div class="additional-info">
-          <h3><i class="fa fa-info-circle"></i> {{ _('Additional Info') }}</h3>
-          <table class="table table-bordered table-dataset">
-            <thead class="metadata-col-header">
-              <tr>
-                <th scope="col">{{ _('Field') }}</th>
-                <th scope="col">{{ _('Value') }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th class="dataset-label" scope="row">{{ _('Last updated') }}</th>
-                <td class="dataset-details">{{ h.render_datetime(res.last_modified) or h.render_datetime(res.revision_timestamp) or h.render_datetime(res.created) or _('unknown') }}</td>
-              </tr>
-              <tr>
-                <th class="dataset-label" scope="row">{{ _('Created') }}</th>
-                <td class="dataset-details">{{ h.render_datetime(res.created) or _('unknown') }}</td>
-              </tr>
-              <tr>
-                <th class="dataset-label" scope="row">{{ _('Format') }}</th>
-                <td class="dataset-details">{{ res.mimetype_inner or res.mimetype or res.format or _('unknown') }}</td>
-              </tr>
-              <tr>
-                <th class="dataset-label" scope="row">{{ _('License') }}</th>
-                <td class="dataset-details">{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
-              </tr>
-              {% for key, value in h.format_resource_items(res.items()) %}
-                <tr class="toggle-more"><th class="dataset-label" scope="row">{{ key }}</th><td class="dataset-details">{{ value }}</td></tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+    <div class="additional-info">
+      <h3><i class="fa fa-info-circle"></i> {{ _('Additional Info') }}</h3>
+      <table class="table table-bordered table-dataset">
+        <thead class="metadata-col-header">
+          <tr>
+            <th scope="col">{{ _('Field') }}</th>
+            <th scope="col">{{ _('Value') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="dataset-label" scope="row">{{ _('Last updated') }}</th>
+            <td class="dataset-details">{{ h.render_datetime(res.last_modified) or h.render_datetime(res.revision_timestamp) or h.render_datetime(res.created) or _('unknown') }}</td>
+          </tr>
+          <tr>
+            <th class="dataset-label" scope="row">{{ _('Created') }}</th>
+            <td class="dataset-details">{{ h.render_datetime(res.created) or _('unknown') }}</td>
+          </tr>
+          <tr>
+            <th class="dataset-label" scope="row">{{ _('Format') }}</th>
+            <td class="dataset-details">{{ res.mimetype_inner or res.mimetype or res.format or _('unknown') }}</td>
+          </tr>
+          <tr>
+            <th class="dataset-label" scope="row">{{ _('License') }}</th>
+            <td class="dataset-details">{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
+          </tr>
 
+          {% for key, value in h.format_resource_items(res.items()) %}
+            <tr class="toggle-more"><th class="dataset-label" scope="row">{{ key }}</th><td class="dataset-details">{{ value }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   {% endblock %}
 
   {% snippet "snippets/social_inline.html" %}

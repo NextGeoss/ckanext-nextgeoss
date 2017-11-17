@@ -13,7 +13,7 @@
       <div class="search-input control-group {{ search_class }}">
         {% block search_input_button %}
         <button type="submit" value="search" style="left: 20px;">
-          <i class="icon-search"></i>
+          <i class="fa-search"></i>
           <span>{{ _('Submit') }}</span>
         </button>
         {% endblock %}
@@ -50,16 +50,17 @@
       <h2>{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</h2>
     {% endif %}
   {% endblock %}
-{% if show_empty and count == 0 %}
-  {% trans %}
-    <p class="extra">Please try another search.</p>
-  {% endtrans %}
-{% endif %}
-{% if error %}
-  {% trans %}
-    <p><strong>There was an error while searching.</strong> Please try again.</p>
-  {% endtrans %}
-{% endif %}
-<a class="show-filters btn">{{ _('Filter Results') }}</a>
-</form>
 
+  {% if show_empty and count == 0 %}
+    {% trans %}
+      <p class="extra">Please try another search.</p>
+    {% endtrans %}
+  {% endif %}
+
+  {% if error %}
+    {% trans %}
+      <p><strong>There was an error while searching.</strong> Please try again.</p>
+    {% endtrans %}
+  {% endif %}
+  <a class="show-filters btn">{{ _('Filter Results') }}</a>
+</form>
