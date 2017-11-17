@@ -77,13 +77,13 @@
   <div class="filters">
     <div>
       <div class="filters-header">
-        <i class="fa-lg fa-filter"></i>
+        <i class="fa fa-lg fa-filter"></i>
         <span class="filters-header__title">{{ _('Filters') }}</span>
       </div>
       {% for facet in c.facet_titles %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
       {% endfor %}
     </div>
-    <a class="close no-text hide-filters"><i class="fa-remove-sign"></i><span class="text">close</span></a>
+    <a class="close no-text hide-filters"><i class="fa fa-remove-sign"></i><span class="text">close</span></a>
   </div>
 {% endblock %}

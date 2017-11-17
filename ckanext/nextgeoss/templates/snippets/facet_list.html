@@ -51,17 +51,17 @@ within_tertiary
           {% block facet_list_heading %}
             <h2 class="module-heading datasets-filters-facet-title">
               {% if name == 'tags' %}
-                {% set icon = 'fa-tags' %}
+                {% set icon = 'fa fa-tags' %}
               {% elif name == 'groups' %}
-                {% set icon = 'fa-comments' %}
+                {% set icon = 'fa fa-comments' %}
               {% elif name == 'res_format' %}
-                {% set icon = 'fa-edit' %}
+                {% set icon = 'fa fa-edit' %}
               {% elif name == 'license_id' %}
-                {% set icon = 'fa-certificate' %}
+                {% set icon = 'fa fa-certificate' %}
               {% elif name == 'organization' %}
-                {% set icon = 'fa-sitemap' %}
+                {% set icon = 'fa fa-sitemap' %}
               {% else %}
-                {% set icon = 'fa-filter' %}
+                {% set icon = 'fa fa-filter' %}
               {% endif %}
               <i class="{{ icon }}"></i>
               {% set title = title or h.get_facet_title(name) %}
