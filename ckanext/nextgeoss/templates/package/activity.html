@@ -20,7 +20,7 @@
       </div>
       {% if pkg.private %}
         <span class="dataset-private label label-inverse pull-right">
-          <i class="icon-lock"></i>
+          <i class="fa fa-lock"></i>
           {{ _('Private') }}
         </span>
       {% endif %}
@@ -38,6 +38,7 @@
       <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
       <h5 class="dataset-detail-title">{{ _('Licensed under ') }} {% snippet "snippets/license_inline.html", pkg_dict=pkg %}</h5>
     {% endblock %}
+
     <section class="additional-info">
       <h3><i class="fa fa-info-circle"></i> {{ _('Activity Stream') }}</h3>
       <div class="activity-stream">

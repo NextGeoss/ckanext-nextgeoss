@@ -6,7 +6,9 @@
 {% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
 {% set org_logo = h.nextgeoss_get_org_logo(pkg.owner_org) %}
 
-{% block subtitle %}{{ _('Topics') }} - {{ super() }}{% endblock %}
+{% block subtitle %}
+  {{ _('Topics') }} - {{ super() }}
+{% endblock %}
 
 {% block pre_primary %}
   <div class="container single-column">
@@ -21,7 +23,7 @@
       </div>
       {% if pkg.private %}
         <span class="dataset-private label label-inverse pull-right">
-          <i class="icon-lock"></i>
+          <i class="fa fa-lock"></i>
           {{ _('Private') }}
         </span>
       {% endif %}
@@ -39,6 +41,7 @@
       <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
       <h5 class="dataset-detail-title">{{ _('Licensed under ') }} {% snippet "snippets/license_inline.html", pkg_dict=pkg %}</h5>
     {% endblock %}
+
     <section class="additional-info">
       <h3><i class="fa fa-info-circle"></i> {{ _('Topics') }}</h3>
       <div class="activity-stream">
@@ -60,7 +63,6 @@
         {% else %}
           <p class="empty">{{ _('There are no topics associated with this dataset') }}</p>
         {% endif %}
-
       </div>
     </section>
     </br>

@@ -10,19 +10,21 @@
   <div class="container single-column">
   {% snippet "package/snippets/edit_tabs.html", pkg=pkg %}
   {% block package_description %}
-  <div class="dataset-detail-org-logo">
-    <div class="image">
-      <a href="{{ org_link }}">
-        <img src="{{ org_logo or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ org_title }}" />
-      </a>
+    <div class="dataset-detail-org-logo">
+      <div class="image">
+        <a href="{{ org_link }}">
+          <img src="{{ org_logo or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ org_title }}" />
+        </a>
+      </div>
     </div>
-  </div>
+
     {% if pkg.private %}
       <span class="dataset-private label label-inverse pull-right">
-        <i class="icon-lock"></i>
+        <i class="fa fa-lock"></i>
         {{ _('Private') }}
       </span>
     {% endif %}
+
     <h1 class="dataset-detail-title">
       {% block page_heading %}
         {{ h.dataset_display_name(pkg) }}
@@ -37,6 +39,7 @@
     <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
     <h5 class="dataset-detail-title">{{ _('Licensed under ') }} {% snippet "snippets/license_inline.html", pkg_dict=pkg %}</h5>
   {% endblock %}
+
   <section class="edit-dataset-info">
     <h3><i class="fa fa-info-circle"></i> {{ _('Edit Metadata') }}</h3>
     {% block form %}
