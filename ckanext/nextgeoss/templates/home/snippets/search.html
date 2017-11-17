@@ -1,21 +1,23 @@
 {% set tags = h.get_facet_items_dict('tags', limit=3) %}
 {% set placeholder = _('Try "sea level portugal"') %}
 
-  <form class="search-form" method="get" action="{% url_for controller='package', action='search' %}">
+<form class="search-form" method="get" action="{% url_for controller='package', action='search' %}">
   {% set count = h.get_site_statistics().dataset_count %}
-    {% if count %}
-        {% set search_message = ungettext('Search {number} Earth observation dataset', 'Search {number} Earth observation datasets', count) %}
-    {% else %}
-        {% set search_message = _('No datasets available for search') %}
-    {% endif %}
+  {% if count %}
+      {% set search_message = ungettext('Search {number} Earth observation dataset', 'Search {number} Earth observation datasets', count) %}
+  {% else %}
+      {% set search_message = _('No datasets available for search') %}
+  {% endif %}
+
   <h2 class="heading">{{ search_message.format(number=h.localised_number(count)) }}</h3>
-    <div class="search-input control-group search-giant">
-      {% block search_input_button %}
-        <button type="submit" value="search" style="left: 20px;">
-          <i class="icon-search"></i>
-          <span>{{ _('Submit') }}</span>
-        </button>
-      {% endblock %}
-      <input type="text" class="search" name="q" value="" autocomplete="off" placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}" />
-    </div>
-  </form>
+
+  <div class="search-input control-group search-giant">
+    {% block search_input_button %}
+      <button type="submit" value="search" style="left: 20px;">
+        <i class="fa-search"></i>
+        <span>{{ _('Submit') }}</span>
+      </button>
+    {% endblock %}
+    <input type="text" class="search" name="q" value="" autocomplete="off" placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}" />
+  </div>
+</form>

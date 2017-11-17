@@ -61,18 +61,18 @@
 <div class="container">
   <div class="section text-center section-landing">
     <h2 class="title lined" id="explore"><span><img src="compass.jpg" alt="Compass" height="80" width="80"> {{ _('Explore Topics') }}</span></h2>
-            <div class="topic-list">
-              <div class="row">
-                {% block featured_group %}
-                  {% snippet 'home/snippets/featured_group.html' %}
-                {% endblock %}
-              </div>
-              <div class="row">
-                <div class="col-md-4 col-md-offset-4 text-center">
-                  <a href="{{ h.url_for('group') }}" class="btn btn-primary">{{ _('View all topics') }}</a>
-                </div>
-              </div>
-            </div>
+    <div class="topic-list">
+      <div class="row">
+        {% block featured_group %}
+          {% snippet 'home/snippets/featured_group.html' %}
+        {% endblock %}
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4 text-center">
+          <a href="{{ h.url_for('group') }}" class="btn btn-primary">{{ _('View all topics') }}</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
