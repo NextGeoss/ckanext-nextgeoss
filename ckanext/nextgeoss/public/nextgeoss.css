@@ -754,6 +754,12 @@ h4.text-left.description {
   margin-top: 68px;
 }
 
+@media (max-width: 500px) {
+  .dataset-map-expanded #green {
+  margin-top: 36px;
+  }
+}
+
 #dataset-map .module-heading {
   border-color: #D7EDEC;
   border-radius: 0px;
