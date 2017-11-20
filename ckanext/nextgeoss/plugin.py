@@ -115,12 +115,6 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             m.connect('cookies', '/cookies', action='cookies')
             m.connect('codeofconduct', '/code-of-conduct',
                       action='codeofconduct')
-            m.connect('provide', '/provide',
-                      action='provide')
-            m.connect('use', '/use',
-                      action='use')
-            m.connect('develop', '/develop',
-                      action='develop')
 
         return map
 
