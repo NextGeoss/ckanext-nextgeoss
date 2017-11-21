@@ -64,7 +64,7 @@
         {% endif %}
 
       {% block extras scoped %}
-        {% for extra in h.sorted_extras(pkg_dict.extras) %}
+        {% for extra in h.sorted_extras(pkg_dict.extras, subs=h.ng_extra_names(), exclude=h.ng_extras_to_exclude()) %}
           {% set key, value = extra %}
           <tr rel="dc:relation" resource="_:extra{{ i }}">
             <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>

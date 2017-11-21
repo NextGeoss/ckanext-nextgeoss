@@ -37,3 +37,41 @@ def get_add_feedback_url(dataset):
         target_codespace=config.get('ckan.site_url'))
 
     return feedback_url
+
+
+def get_extra_names():
+    """
+    Return a dictionary of new names for use with
+    the subs parameter of h.sorted_extras. We may
+    want to grab these names from the config in
+    the future.
+    """
+    new_names = {
+        'CloudCoverage': 'Cloud Coverage',
+        'FamilyName': 'Family Name',
+        'InstrumentFamilyName': 'Instrument Family Name',
+        'InstrumentMode': 'Instrument Mode',
+        'InstrumentName': 'Instrument Name',
+        'OrbitDirection': 'Orbit Direction',
+        'ProductType': 'Product Type',
+        'StartTime': 'Start Time',
+        'StopTime': 'Stop Time',
+        'spatial': 'Spatial Extent',
+        'uuid': 'Identifier'
+    }
+
+    return new_names
+
+
+def get_extras_to_exclude():
+    """
+    Return a list of extras to exclude from
+    rendered templates using the exclude parameter
+    of h.sorted_extras. We may want to grab this
+    list from the config in the future.
+    """
+    extras_to_exclude = [
+        'thumbnail'
+    ]
+
+    return extras_to_exclude
