@@ -1,0 +1,28 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _('Provide Data') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('Provide Data'), controller='ckanext.nextgeoss.controller:StaticController', action='provide' %}</li>
+{% endblock %}
+
+{% block primary %}
+  <article class="module">
+    <div class="module-content">
+      <h1 class="page-heading">How to Provide Data</h1>
+
+      <p>This page is a stub.</p>
+
+      <p>This page will contain information about:</p>
+      <ul>
+        <li>Contributing datasets</li>
+        <li>Signing up as an organization</li>
+        <li>Guidelines</li>
+        <li>Contact information</li>
+      </ul>
+
+    </div>
+  </article>
+{% endblock %}
+
+{% block secondary %}{% endblock %}
