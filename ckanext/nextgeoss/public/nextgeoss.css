@@ -1218,3 +1218,9 @@ button.btn.btn-navbar {
   padding-top: 6px;
   padding-bottom: 6px;
 }
+
+@media (max-width: 412px) {
+  .resource-box-buttons a {
+    font-size: 14px;
+  }
+}
