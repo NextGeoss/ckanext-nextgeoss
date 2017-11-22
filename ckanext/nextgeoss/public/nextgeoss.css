@@ -751,7 +751,13 @@ h4.text-left.description {
 }
 
 .dataset-map-expanded #green {
-  margin-top: 52px;
+  margin-top: 68px;
+}
+
+@media (max-width: 500px) {
+  .dataset-map-expanded #green {
+  margin-top: 36px;
+  }
 }
 
 #dataset-map .module-heading {
