@@ -1210,3 +1210,11 @@ button.btn.btn-navbar {
   bottom: unset;
   left: 50%;
 }
+
+.coming-soon-header {
+  color: #fff;
+  background-color: #168B7A;
+  font-size: 16px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
