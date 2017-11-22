@@ -37,3 +37,16 @@ def get_add_feedback_url(dataset):
         target_codespace=config.get('ckan.site_url'))
 
     return feedback_url
+
+
+def get_bug_disclaimer():
+    """
+    Get the text of the disclaimer that will appear beneath the
+    issue tracker banner while waiting for it to load (or instead
+    of the banner in case the script does not load at all).
+    """
+    setting = 'ckanext.nextgeoss.bug_disclaimer'
+    default = 'This is a testing portal. Click here to submit a bug.'
+    disclaimer = config.get(setting, default)
+
+    return disclaimer

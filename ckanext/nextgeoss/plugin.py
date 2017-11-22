@@ -20,6 +20,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'nextgeoss')
+        toolkit.add_resource('vendor', '')
 
     # ITemplateHelpers
 
@@ -28,7 +29,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             'nextgeoss_get_org_title': helpers.get_org_title,
             'nextgeoss_get_org_logo': helpers.get_org_logo,
             'nextgeoss_get_jira_script': helpers.get_jira_script,
-            'nextgeoss_get_add_feedback_url': helpers.get_add_feedback_url
+            'nextgeoss_get_add_feedback_url': helpers.get_add_feedback_url,
+            'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer
         }
 
     # IRoutes
