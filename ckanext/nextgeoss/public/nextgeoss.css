@@ -335,7 +335,7 @@ h4.title a {
   margin-bottom: 20px;
 }
 
-.filters-header .icon-filter {
+.filters-header .fa-filter {
   font-size: 15px;
   position: relative;
   top: -3px;
@@ -411,7 +411,7 @@ h4.title a {
   box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
 }
 
-.icon-search:before {
+.fa-search:before {
   color: #168B7A;
 }
 
@@ -822,6 +822,7 @@ section.dataset-map-section {
 
 .search-form .search-input.search-giant button {
   left: 20px;
+  margin-top: -12px;
 }
 
 .span3 {
