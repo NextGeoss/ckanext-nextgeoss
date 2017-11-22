@@ -641,18 +641,18 @@ section.resources {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  text-align: center;
+  text-align: left;
   padding-right: 100px;
-  padding-left: 100px;
+  padding-left: 50px;
 }
 
 .col-md-12.col-sm-12 {
-  padding-left: 10%;
-  padding-right: 10%;
+  width: 50%;
 }
 
 h1.hero-title {
   font-size: 5em;
+  line-height: 1.2em;
 }
 
 h4.hero-subtitle {
@@ -686,20 +686,17 @@ h4.hero-subtitle {
   }
 }
 
-@media (max-width: 1066px) {
-  .col-md-12.col-sm-12 {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-}
-
 @media (max-width: 500px) {
   .hero-text {
     padding-right: 35px;
     padding-left: 35px;
+    text-align: center;
   }
   h1.hero-title {
     font-size: 2.3em;
+  }
+  .col-md-12.col-sm-12 {
+    width: 100%;
   }
 }
 
@@ -897,9 +894,12 @@ article.module {
   }
 }
 
-@media (max-width: 886px) {
+@media (max-width: 1035px) {
     .hero {
-      max-height: 250px;
+      max-height: 250px; /*2.7em for title, let subitle appear, and make the no-subtitle cutoff lower */
+    }
+    .hero h1 {
+      font-size: 2.7em;
     }
     .hero h4 {
       display: none;
