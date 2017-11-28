@@ -1219,6 +1219,13 @@ button.btn.btn-navbar {
   padding-bottom: 6px;
 }
 
+.read-button {
+    cursor: pointer;
+}
+.additional-content {
+    display: none;
+}
+
 @media (max-width: 412px) {
   .resource-box-buttons a {
     font-size: 14px;
