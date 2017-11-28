@@ -20,6 +20,8 @@
         <p>
           {% if res.description %}
             {{ h.markdown_extract(h.get_translated(res, 'description'), extract_length=300) }}
+          {% else %}
+            <p class="empty">{{ _('There is no description for this resource') }}</p>    
           {% endif %}
         </p>
       </div>
