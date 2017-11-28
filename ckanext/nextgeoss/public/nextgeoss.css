@@ -1218,3 +1218,28 @@ button.btn.btn-navbar {
   padding-top: 6px;
   padding-bottom: 6px;
 }
+
+@media (max-width: 412px) {
+  .resource-box-buttons a {
+    font-size: 14px;
+  }
+}
+
+table.table.table-bordered.table-dataset.mobile-table {
+  border-collapse: collapse;
+}
+
+table.mobile-table th.dataset-label {
+  text-align: left;
+  border-bottom: none;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px !important;
+}
+
+table.mobile-table td.dataset-details {
+  border-top: none;
+  padding-top: 4px;
+  padding-left: 10px !important;
+  padding-right: 10px;
+}
