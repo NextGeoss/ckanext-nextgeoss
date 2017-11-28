@@ -53,6 +53,7 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
 
       };
     };
+    this.readMore();
   };
 
   this.createBaseEntryDict = function(entry) {
@@ -226,11 +227,8 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
         <div class="feedback-item">\
           <h4>'+entryDict['title']+'</h4>\
           <p>'+entryDict['updated']+' by '+entryDict['author']+'</p>\
-          <div id="'+entryDict['commentId']+'" class="collapse"></div>\
-          <a href="#'+entryDict['commentId']+'" data-toggle="collapse" class="collapsed">\
-            <span class="if-collapsed">Read more</span>\
-            <span class="if-not-collapsed">Read less</span>\
-          </a>\
+          <div id="'+entryDict['commentId']+'" class="additional-content"></div>\
+          <a class="read-button">Read more</a>\
         </div>\
       </li>';
     
@@ -239,6 +237,7 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
     } else if (context["action"] == "update") {
       $("#start-feedback-items").after(feedItem);
     };
+    $('collapse').off();
   };
 
   this.createFeedbackHtml = function(entryDict, commentId) {
@@ -307,7 +306,7 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
     // 2.
     } else if (entries.length == 0 && !$("#no-comments-yet").length) {
       $(".feedback-list").remove();
-      showFeedback(feedbackFeed, context={"action": "show"});
+      this.showFeedback(feedbackFeed, context={"action": "show"});
     // 3.
     } else if (entries.length != 0 && $("#no-comments-yet").length) {
       $("#no-comments-yet").remove();
@@ -334,14 +333,32 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
           this.getFromNimmbus(entryDict["link"], getFeedbackItem, context);
 
         } else {
+          this.readMore(); // Ensure updates are bound to our toggle function.
           break;
         };
       };
     };
   };
 
-  // Add the add feedback button to the page.
-  $("#community-feedback-anchor").after('<div id="feedback-button-center"><a href="#community-feedback" onclick="javascript:showFeedbackForm();" class="btn btn-primary">Add feedback</a></div>');
+  this.readMore = function () {
+    // Show/hide additional content for each feedback item.
+    $(".read-button").off();
+    // readMore is called each time feedback is loaded or updated,
+    // so we need to call off first to prevent binding the function multiple
+    // times each time the updates are added to the page.
+    $(".read-button").on("click", function () {
+      $readButton = $(this);
+      $additionalContent = $readButton.prev();
+      $additionalContent.slideToggle(200, function () {
+        $readButton.text(function () {
+          return $additionalContent.
+            is(":visible") ? "Read less" : "Read more";
+        });
+      });
+    });
+  };
 
+  // Add the add feedback button to the page and load the feedback.
+  $("#community-feedback-anchor").after('<div id="feedback-button-center"><a href="#community-feedback" onclick="javascript:showFeedbackForm();" class="btn btn-primary">Add feedback</a></div>');
   return this.loadFeedback()
 } 
