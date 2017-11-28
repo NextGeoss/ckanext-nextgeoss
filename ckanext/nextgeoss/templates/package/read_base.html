@@ -1,4 +1,4 @@
-{% extends "package/base_single_col.html" %}
+{% extends "package/base.html" %}
 
 {% block subtitle %}{{ h.dataset_display_name(pkg) }} - {{ super() }}{% endblock %}
 
@@ -21,4 +21,5 @@
         </div>
       {% endif %}
     {% endblock %}
+
 {% endblock %}

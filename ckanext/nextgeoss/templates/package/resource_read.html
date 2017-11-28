@@ -1,4 +1,4 @@
-{% extends "package/base_single_col.html" %}
+{% extends "package/base.html" %}
 
 {% set res = c.resource %}
 {% set pkg = c.package %}
@@ -130,4 +130,11 @@
 
   {% snippet "snippets/social_inline.html" %}
   </div>
+
+  <script>mobileTable();</script>
+
+{% endblock %}
+
+{% block single_column %}
+  {# prevents page template from inluding primary and secondary columns #}
 {% endblock %}
