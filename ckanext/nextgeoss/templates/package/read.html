@@ -49,7 +49,7 @@
 
     {% set dataset_extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
     {% if dataset_extent %}
-      {% thumbnail = h.get_pkg_dict_extra(c.pkg_dict, 'thumbnail', 'none') %}
+      {% set thumbnail = h.get_pkg_dict_extra(c.pkg_dict, 'thumbnail', 'none') %}
       {% snippet "spatial/snippets/dataset_map_big.html", extent=dataset_extent, thumbnail=thumbnail %}
     {% endif %}
 
