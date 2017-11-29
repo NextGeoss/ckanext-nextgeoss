@@ -15,5 +15,5 @@ extent
 
 <section class="dataset-map-section {% if g.ckan_base_version.startswith('2.0') %}dataset-map-section-20x{% endif %}">
   <h3><i class="fa fa-globe"></i> {{ _('Dataset Extent') }}</h3>
-  {% snippet "spatial/snippets/dataset_map_base_big.html", extent=extent %}
+  {% snippet "spatial/snippets/dataset_map_base_big.html", extent=extent, thumbnail=thumbnail %}
 </section>
