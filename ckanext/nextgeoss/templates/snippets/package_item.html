@@ -2,13 +2,13 @@
 
 {% block heading %}
 
-  {% set org_title = h.nextgeoss_get_org_title(package.owner_org) %}
+  {% set org_title = package.organization.get('title') or package.organization['name'] %}
   {% set org_link = h.url_for(controller='organization', action='read', id=package.owner_org) %}
-  {%set org_logo = h.nextgeoss_get_org_logo(package.owner_org) %}
+  {% set org_logo = package.organization.get('image_url') or h.url_for_static('/base/images/placeholder-organization.png')%}
   <div class="dataset-item-org-logo">
     <div class="image">
       <a href="{{ org_link }}">
-        <img src="{{ org_logo or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "70" width="70" alt="{{ org_title }}" />
+        <img src="{{ org_logo }}" height= "70" width="70" alt="{{ org_title }}" />
       </a>
     </div>
   </div>
