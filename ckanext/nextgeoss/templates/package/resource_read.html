@@ -82,10 +82,8 @@
                 <i class="fa fa-eye-open"></i> {{ _('View') }}
               {% elif  res.resource_type == 'api' %}
                 <i class="fa fa-key"></i> {{ _('API Endpoint') }}
-              {% elif not res.has_views or not res.can_be_previewed %}
-                <i class="fa fa-external-link"></i> {{ _('Go to resource') }}
               {% else %}
-                <i class="fa fa-download"></i> {{ _('Download') }}
+                <i class="fa fa-download"></i> {{ _('Access data') }}
               {% endif %}
             </a>
           </div>

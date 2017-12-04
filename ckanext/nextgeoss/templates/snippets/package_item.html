@@ -26,11 +26,10 @@
 {% block resources_inner %}
   <h5>{{ _('Download resources directly from source:') }}</h5>
   {% for resource in package.resources %}
+    {% set url = resource.url %}
     {% if resource.format %}
-      {% set url = resource.url %}
       {% set format = resource.format|upper %}
     {% else %}
-      {% set url = h.url_for(controller='package', action='read', id=package.name) %}
       {% set format = 'DATA' %}
     {% endif %}
     <li>
