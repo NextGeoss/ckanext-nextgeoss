@@ -35,3 +35,107 @@ def get_bug_disclaimer():
     disclaimer = config.get(setting, default)
 
     return disclaimer
+
+
+def get_extra_names():
+    """
+    Return a dictionary of new names for use with the subs parameter of
+    h.sorted_extras. We may want to grab these names from the config
+    in the future.
+    """
+    new_names = {
+        'CloudCoverage': 'Cloud Coverage',
+        'FamilyName': 'Family Name',
+        'InstrumentFamilyName': 'Instrument Family Name',
+        'InstrumentMode': 'Instrument Mode',
+        'InstrumentName': 'Instrument Name',
+        'OrbitDirection': 'Orbit Direction',
+        'ProductType': 'Product Type',
+        'StartTime': 'Start Time',
+        'StopTime': 'Stop Time',
+        'uuid': 'UUID',
+        'beginposition': 'Sensing start',
+        'cloudcoverpercentage': 'Cloud coverage percentage',
+        'endposition': 'Sensing end',
+        'footprint': 'Footprint',
+        'highprobacloudspercentage': 'High probability clouds (%)',
+        'identifier': 'Identifier',
+        'ingestiondate': 'Ingestion date',
+        'instrumentname': 'Instrument name',
+        'instrumentshortname': 'Instrument abbreviation',
+        'mediumprobacloudspercentage': 'Medium probability clouds (%)',
+        'notvegetatedpercentage': 'Non-vegetated percentage',
+        'orbitdirection': 'Orbit direction (start)',
+        'orbitnumber': 'Orbit number (start)',
+        'platformidentifier': 'Platform identifier',
+        'platformname': 'Platform name',
+        'platformserialidentifier': 'Platform serial identifier',
+        'processingbaseline': 'Processing baseline',
+        'processinglevel': 'Processing level',
+        'producttype': 'Product type',
+        'relativeorbitnumber': 'Start relative orbit number',
+        's2datatakeid': 'S2 datatke id',
+        'sensoroperationalmode': 'Sensor operational mode',
+        'snowicepercentage': 'Snow/ice percentage',
+        'unclassifiedpercentage': 'Unclassified percentage',
+        'vegetationpercentage': 'Vegetation percentage',
+        'waterpercentage': 'Water percentage',
+        'missiondatatakeid': 'Mission datatake id',
+        'lastorbitnumber': 'Orbit number (stop)',
+        'lastrelativeorbitnumber': 'Stop relative orbit number',
+        'slicenumber': 'Slice number',
+        'acquisitiontype': 'Acquisition type',
+        'polarisationmode': 'Polarisation mode',
+        'productclass': 'Product class',
+        'productconsolidation': 'Product consolidation',
+        'status': 'Status',
+        'swathidentifier': 'Instrument swath',
+        'lrmpercentage': 'Measurement records in LRM mode (%)',
+        'sarpercentage': 'Measurement records in SAR mode (%)',
+        'closedseapercentage': 'Measurement records on closed sea (%)',
+        'continentalicepercentage': 'Measurement records on continenal ice (%)',
+        'landpercentage': 'Measurement records on land (%)',
+        'openseapercentage': 'Measurement records on open sea (%)',
+        'mode': 'Mode',
+        'onlinequalitycheck': 'Online quality check',
+        'lastorbitdirection': 'Orbit direction (stop)',
+        'pduduration': 'PDU duration',
+        'passnumber': 'Pass number (start)',
+        'lastpassnumber': 'Pass number (stop)',
+        'passdirection': 'Pass direction (start)',
+        'lastpassdirection': 'Pass direction',
+        'procfacilityorg': 'Processing facility organization',
+        'processinglevel': 'Processing level',
+        'processingname': 'Processing name',
+        'productlevel': 'Product level',
+        'relorbitdir': 'Relative orbit direction (start)',
+        'lastrelorbitdirection': 'Relative orbit direction (stop)',
+        'relpassnumber': 'Relative pass number (start)',
+        'lastrelpassnumber': 'Relative pass number (stop)',
+        'relpassdirection': 'Relative pass direction (start)',
+        'lastrelpassdirection': 'Relative pass direction (stop)',
+        'timeliness': 'Timeliness category'
+    }
+
+    return new_names
+
+
+def get_extras_to_exclude():
+    """
+    Return a list of extras to exclude from rendered templates using the
+    exclude parameter of h.sorted_extras. We may want to grab this list from
+    the config in the future.
+    """
+    extras_to_exclude = [
+        'thumbnail',
+        'filename',
+        'spatial',
+        'format',
+        'gmlfootprint',
+        'size',
+        'link',
+        'summary',
+        'filename'
+    ]
+
+    return extras_to_exclude

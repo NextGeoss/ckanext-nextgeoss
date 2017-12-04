@@ -27,7 +27,9 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         return {
             'nextgeoss_get_jira_script': helpers.get_jira_script,
             'nextgeoss_get_add_feedback_url': helpers.get_add_feedback_url,
-            'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer
+            'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
+            'ng_extra_names': helpers.get_extra_names,
+            'ng_extras_to_exclude': helpers.get_extras_to_exclude
         }
 
     # IRoutes
