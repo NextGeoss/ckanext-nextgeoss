@@ -515,7 +515,6 @@ h5.dataset-detail-title {
 }
 
 th.dataset-label {
-  text-transform: uppercase;
   font-weight: 300;
   text-align: right;
   padding-right: 20px !important;
