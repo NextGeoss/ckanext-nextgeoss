@@ -114,7 +114,10 @@ def get_extra_names():
         'lastrelpassnumber': 'Relative pass number (stop)',
         'relpassdirection': 'Relative pass direction (start)',
         'lastrelpassdirection': 'Relative pass direction (stop)',
-        'timeliness': 'Timeliness category'
+        'timeliness': 'Timeliness category',
+        'tileid': 'Tile identifier',
+        'hv_order_tileid': 'HV order tile ID',
+        'procfacilityname': 'Processing facility',
     }
 
     return new_names
