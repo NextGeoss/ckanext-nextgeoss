@@ -203,6 +203,48 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
       motivation = "No motivation available";
     };
 
+    // Get information about the "target" of the feedback
+    try {
+      var target = feedback.getElementsByTagName("guf\:GUF_FeedbackTarget")[0]
+        .getElementsByTagName("guf\:resourceRef")[0]
+        .getElementsByTagName("cit\:CI_Citation")[0]
+        .getElementsByTagName("cit\:title")[0]
+        .getElementsByTagName("gco\:CharacterString")[0].textContent
+    } catch(err) {
+      try {
+        var target = feedback.getElementsByTagName("GUF_FeedbackTarget")[0]
+          .getElementsByTagName("resourceRef")[0]
+          .getElementsByTagName("CI_Citation")[0]
+          .getElementsByTagName("title")[0]
+          .getElementsByTagName("CharacterString")[0].textContent
+      } catch(err) {
+        var target = "";
+      };
+    };
+    if (target.length == 0) {
+      target = "No info about target available";
+    };
+
+    // Get information about the "publication" related to the feedback
+    try {
+      var publication = feedback.getElementsByTagName("guf\:publication")[0]
+        .getElementsByTagName("qcm\:QCM_Publication")[0]
+        .getElementsByTagName("cit\:title")[0]
+        .getElementsByTagName("gco\:CharacterString")[0].textContent
+    } catch(err) {
+      try {
+        var publication = feedback.getElementsByTagName("publication")[0]
+          .getElementsByTagName("QCM_Publication")[0]
+          .getElementsByTagName("title")[0]
+          .getElementsByTagName("CharacterString")[0].textContent
+      } catch(err) {
+        var publication = "";
+      };
+    };
+    if (publication.length == 0) {
+      publication = "No publication info available";
+    };
+
     var entryDict = {
       "commentId": commentId,
       "updated": updated,
@@ -210,7 +252,9 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
       "abstract": abstract,
       "rating": rating,
       "comment": comment,
-      "motivation": motivation
+      "motivation": motivation,
+      "target": target,
+      "publication": publication
     };
 
     this.createFeedbackHtml(entryDict, commentId)
@@ -247,7 +291,9 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
       '<p><span class="comment-part-name">Abstract: </span>'+entryDict['abstract']+'</p>\
       <p><span class="comment-part-name">Rating: </span>'+entryDict['rating']+'</p>\
       <p><span class="comment-part-name">Comment: </span>'+entryDict['comment']+'</p>\
-      <p><span class="comment-part-name">Motivation: </span>'+entryDict['motivation']+'</p>'
+      <p><span class="comment-part-name">Motivation: </span>'+entryDict['motivation']+'</p>\
+      <p><span class="comment-part-name">Target title: </span>'+entryDict['target']+'</p>\
+      <p><span class="comment-part-name">Publication title: </span>'+entryDict['publication']+'</p>'
 
     $("#"+entryDict["commentId"]).prepend(feedbackItem);
   };
