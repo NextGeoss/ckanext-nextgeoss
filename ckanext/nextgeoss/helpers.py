@@ -1,6 +1,6 @@
 from ckan.plugins.toolkit import get_action
 from ckan.common import config
-
+from ckan.lib.helpers import sorted_extras
 
 def get_jira_script():
     jira_script = config.get('ckanext.nextgeoss.jira_issue_tracker')
@@ -142,3 +142,15 @@ def get_extras_to_exclude():
     ]
 
     return extras_to_exclude
+
+
+def get_dataset_thumbnail_path(dataset):
+    """
+    Return the local path for a dataset's thumbnail. If no thumbnail is
+    available, return the path to a placeholder image.
+    """
+    if 'thumbnail' in sorted_extras(dataset['extras']):    
+        return '/thumbnails/{}.jpg'.format(dataset.id)
+    else:
+        return '/base/images/placeholder-image.png'
+

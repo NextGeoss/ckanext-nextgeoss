@@ -29,7 +29,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             'nextgeoss_get_add_feedback_url': helpers.get_add_feedback_url,
             'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
             'ng_extra_names': helpers.get_extra_names,
-            'ng_extras_to_exclude': helpers.get_extras_to_exclude
+            'ng_extras_to_exclude': helpers.get_extras_to_exclude,
+            'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path
         }
 
     # IRoutes

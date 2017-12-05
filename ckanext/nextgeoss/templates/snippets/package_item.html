@@ -4,12 +4,12 @@
 
   {% set org_title = package.organization.get('title') or package.organization['name'] %}
   {% set org_link = h.url_for(controller='organization', action='read', id=package.owner_org) %}
-  {% set org_logo = package.organization.get('image_url') or h.url_for_static('/base/images/placeholder-organization.png')%}
+  {% set thumbnail_path = h.ng_get_dataset_thumbnail_path(package) %}
+  {% set thumbnail = h.url_for_static(thumbnail_path)%}
+  
   <div class="dataset-item-org-logo">
     <div class="image">
-      <a href="{{ org_link }}">
-        <img src="{{ org_logo }}" height= "70" width="70" alt="{{ org_title }}" />
-      </a>
+      <img src="{{ thumbnail }}" height= "210" width="210" alt="{{ package.name}} thumbnail" />
     </div>
   </div>
 

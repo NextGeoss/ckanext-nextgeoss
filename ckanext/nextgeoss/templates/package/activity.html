@@ -3,7 +3,8 @@
 {% set pkg = c.pkg_dict %}
 {% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
 {% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
-{% set org_logo = pkg.organization.get('image_url') or h.url_for_static('/base/images/placeholder-organization.png')%}
+{% set thumbnail_path = h.ng_get_dataset_thumbnail_path(pkg) %}
+{% set thumbnail = h.url_for_static(thumbnail_path)%}
 
 {% block subtitle %}{{ _('Activity Stream') }} - {{ super() }}{% endblock %}
 
@@ -13,9 +14,7 @@
     {% block package_description %}
       <div class="dataset-detail-org-logo">
         <div class="image">
-          <a href="{{ org_link }}">
-            <img src="{{ org_logo }}" />
-          </a>
+          <img src="{{ thumbnail }}" height= "210" width="210" alt="{{ pkg.name}} thumbnail" />
         </div>
       </div>
       {% if pkg.private %}

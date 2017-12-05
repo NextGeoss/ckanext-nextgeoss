@@ -434,6 +434,12 @@ h4.title a {
   clear: left;
 }
 
+@media (max-width: 599px) {
+.dataset-item-org-logo .image img {
+    width: 100px !important;
+  }
+}
+
 .dataset-item-org-title a {
   color: #1660A8;
 }
