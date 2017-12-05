@@ -149,8 +149,8 @@ def get_dataset_thumbnail_path(dataset):
     Return the local path for a dataset's thumbnail. If no thumbnail is
     available, return the path to a placeholder image.
     """
-    if 'thumbnail' in sorted_extras(dataset['extras']):    
-        return '/thumbnails/{}.jpg'.format(dataset.id)
+    extras = {extra['key']: extra['value'] for extra in dataset['extras']}
+    if 'thumbnail' in extras and 'uuid' in extras:
+        return '/thumbnails/{}.jpg'.format(extras['uuid'])
     else:
         return '/base/images/placeholder-image.png'
-
