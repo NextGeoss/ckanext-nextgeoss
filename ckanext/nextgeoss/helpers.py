@@ -118,6 +118,16 @@ def get_extra_names():
         'tileid': 'Tile identifier',
         'hv_order_tileid': 'HV order tile ID',
         'procfacilityname': 'Processing facility',
+        'acquisitionparameters': 'Acquisition parameters',
+        'parentidentifier': 'Parent identifier',
+        'sensortype': 'Sensor type',
+        'snowcoverpercentage': 'Snow cover percentage',
+        'productinformation': 'Product information',
+        'referencesystemidentifier': 'Reference system identifier',
+        'resulttime': 'Result time',
+        'timeinstant': 'Time instant',
+        'timeposition': 'Time position',
+        'pos': 'Position'
     }
 
     return new_names
@@ -138,7 +148,14 @@ def get_extras_to_exclude():
         'size',
         'link',
         'summary',
-        'filename'
+        'filename',
+        'acquisition',
+        'thumbanil',
+        'box',
+        'localval',
+        'published',
+        'updated',
+        'collection_name'
     ]
 
     return extras_to_exclude
