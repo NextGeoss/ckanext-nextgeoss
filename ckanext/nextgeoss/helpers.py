@@ -152,10 +152,12 @@ def get_extras_to_exclude():
         'acquisition',
         'thumbanil',
         'box',
-        'localval',
+        'localvalue',
         'published',
         'updated',
-        'collection_name'
+        'collection_name',
+        'date',
+        'product'
     ]
 
     return extras_to_exclude
