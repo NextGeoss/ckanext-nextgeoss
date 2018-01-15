@@ -154,3 +154,26 @@ def get_dataset_thumbnail_path(dataset):
         return '/thumbnails/{}.jpg'.format(extras['uuid'])
     else:
         return '/base/images/placeholder-image.png'
+
+
+def get_from_extras(data_dict, key, alt_value=None):
+    """Return the value of a key in the extras list, or an alternate value."""
+    extras = data_dict.get('extras')
+
+    for extra in extras:
+        if extra['key'] == key:
+            return extra['value']
+
+    return alt_value
+
+
+def get_source_namespace(data_dict):
+    """Return the source namespace for a product."""
+    source = data_dict['organization']['title']
+
+    namespaces = {
+        'Sentinel': 'https://scihub.copernicus.eu',
+        'Vito': 'http://vito-eodata.be'
+    }
+
+    return namespaces.get(source, None)
