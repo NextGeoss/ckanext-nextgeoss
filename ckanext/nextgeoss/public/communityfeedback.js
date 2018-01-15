@@ -7,7 +7,7 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
 
   this.getFeedbackUrl = function() {
     // Get the URL for feedback feed.
-    var url = 'https://www.opengis.uab.cat/cgi-bin/nimmbus/nimmbus.cgi?SERVICE=WPS&REQUEST=EXECUTE&IDENTIFIER=NB_RESOURCE:ENUMERATE&LANGUAGE=eng&STARTINDEX=1&COUNT=100&FORMAT=text/xml&TYPE=FEEDBACK&TRG_TYPE_1=CITATION&TRG_FLD_1=CODE&TRG_VL_1='+this.catalogueID+'&TRG_OPR_1=EQ&TRG_NXS_1=AND&TRG_TYPE_2=CITATION&TRG_FLD_2=NAMESPACE&TRG_VL_2='+this.catalogueNamespace+'&TRG_OPR_2=EQ'
+    var url = 'https://www.opengis.uab.cat/cgi-bin/nimmbus/nimmbus.cgi?SERVICE=WPS&REQUEST=EXECUTE&IDENTIFIER=NB_RESOURCE:ENUMERATE&CONTENT=full&LANGUAGE=eng&STARTINDEX=1&COUNT=100&FORMAT=text/xml&TYPE=FEEDBACK&TRG_TYPE_1=CITATION&TRG_FLD_1=CODE&TRG_VL_1='+this.catalogueID+'&TRG_OPR_1=EQ&TRG_NXS_1=AND&TRG_TYPE_2=CITATION&TRG_FLD_2=NAMESPACE&TRG_VL_2='+this.catalogueNamespace+'&TRG_OPR_2=EQ'
     return url
   };
 
@@ -48,9 +48,6 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
           "action": "show",
           "commentId": entryDict["commentId"]
         };
-
-        this.getFromNimmbus(entryDict["link"], getFeedbackItem, context);
-
       };
     };
     this.readMore();
@@ -69,12 +66,123 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
 
     var commentId = link.split("RESOURCE=")[1].split("&USER=")[0];
 
+    var content = entry.getElementsByTagName("content")[0];
+
+    try {
+      var abstract = content.getElementsByTagName("guf\:abstract")[0]
+        .getElementsByTagName("gco\:CharacterString")[0].textContent;
+    } catch(err) {
+      try {
+        abstract = content.getElementsByTagName("abstract")[0]
+          .getElementsByTagName("CharacterString")[0].textContent;
+      } catch(err) {
+        abstract = "";
+      };
+    };
+    if (abstract.length == 0) {
+    abstract = "No abstract available"
+    };
+
+    try {
+      var rating = content.getElementsByTagName("guf\:GUF_RatingCode")[0]
+        .getAttribute("codeListValue");
+    } catch(err) {
+      try {
+        var rating = content.getElementsByTagName("GUF_RatingCode")[0]
+          .getAttribute("codeListValue");
+      } catch(err) {
+        var rating = ""
+      };
+    };
+    if (rating.length == 0) {
+      rating = "No rating available"
+    };
+
+
+    try {
+      var comment = content.getElementsByTagName("guf\:comment")[0]
+        .getElementsByTagName("gco\:CharacterString")[0].textContent;
+    } catch(err) {
+      try {
+        comment = content.getElementsByTagName("comment")[0]
+          .getElementsByTagName("CharacterString")[0].textContent;
+      } catch(err) {
+        var comment = ""
+      };
+    };
+    if (comment.length == 0) {
+      comment = "No comment available"
+    };
+
+    try {
+      var motivation = content.getElementsByTagName("guf\:GUF_MotivationCode")[0]
+        .getAttribute("codeListValue");
+    } catch(err) {
+      try {
+        var motivation = content.getElementsByTagName("GUF_MotivationCode")[0]
+          .getAttribute("codeListValue");
+      } catch(err) {
+        var motivation = "";
+      };
+    };
+    if (motivation.length == 0) {
+      motivation = "No motivation available";
+    };
+
+    // Get information about the "target" of the feedback
+    try {
+      var target = content.getElementsByTagName("guf\:GUF_FeedbackTarget")[0]
+        .getElementsByTagName("guf\:resourceRef")[0]
+        .getElementsByTagName("cit\:CI_Citation")[0]
+        .getElementsByTagName("cit\:title")[0]
+        .getElementsByTagName("gco\:CharacterString")[0].textContent
+    } catch(err) {
+      try {
+        var target = content.getElementsByTagName("GUF_FeedbackTarget")[0]
+          .getElementsByTagName("resourceRef")[0]
+          .getElementsByTagName("CI_Citation")[0]
+          .getElementsByTagName("title")[0]
+          .getElementsByTagName("CharacterString")[0].textContent
+      } catch(err) {
+        var target = "";
+      };
+    };
+    if (target.length == 0) {
+      target = "No info about target available";
+    };
+
+    // Get information about the "publication" related to the feedback
+    try {
+      var publication = content.getElementsByTagName("guf\:publication")[0]
+        .getElementsByTagName("qcm\:QCM_Publication")[0]
+        .getElementsByTagName("cit\:title")[0]
+        .getElementsByTagName("gco\:CharacterString")[0].textContent
+    } catch(err) {
+      try {
+        var publication = content.getElementsByTagName("publication")[0]
+          .getElementsByTagName("QCM_Publication")[0]
+          .getElementsByTagName("title")[0]
+          .getElementsByTagName("CharacterString")[0].textContent
+      } catch(err) {
+        var publication = "";
+      };
+    };
+    if (publication.length == 0) {
+      publication = "No publication info available";
+    };
+
     var entryDict = {
       "title": title,
       "author": author,
       "updated": updated,
       "link": link,
-      "commentId": commentId
+      "commentId": commentId,
+      "abstract": abstract,
+      "rating": rating,
+      "comment": comment,
+      "motivation": motivation,
+      "target": target,
+      "publication": publication
     };
 
     return entryDict
@@ -256,8 +364,6 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
       "target": target,
       "publication": publication
     };
-
-    this.createFeedbackHtml(entryDict, commentId)
   };
 
   this.renderFeedbackFeed = function(entryDict, context) {
@@ -271,7 +377,14 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
         <div class="feedback-item">\
           <h4>'+entryDict['title']+'</h4>\
           <p>'+entryDict['updated']+' by '+entryDict['author']+'</p>\
-          <div id="'+entryDict['commentId']+'" class="additional-content"></div>\
+          <div id="'+entryDict['commentId']+'" class="additional-content">\
+            <p><span class="comment-part-name">Abstract: </span>'+entryDict['abstract']+'</p>\
+            <p><span class="comment-part-name">Rating: </span>'+entryDict['rating']+'</p>\
+            <p><span class="comment-part-name">Comment: </span>'+entryDict['comment']+'</p>\
+            <p><span class="comment-part-name">Motivation: </span>'+entryDict['motivation']+'</p>\
+            <p><span class="comment-part-name">Target title: </span>'+entryDict['target']+'</p>\
+            <p><span class="comment-part-name">Publication title: </span>'+entryDict['publication']+'</p>\
+          </div>\
           <a class="read-button">Read more</a>\
         </div>\
       </li>';
@@ -282,20 +395,6 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
       $("#start-feedback-items").after(feedItem);
     };
     $('collapse').off();
-  };
-
-  this.createFeedbackHtml = function(entryDict, commentId) {
-    // Create the HTML representing a feedback item's additional data
-    // and insert it into the existing item in the list.
-    var feedbackItem = 
-      '<p><span class="comment-part-name">Abstract: </span>'+entryDict['abstract']+'</p>\
-      <p><span class="comment-part-name">Rating: </span>'+entryDict['rating']+'</p>\
-      <p><span class="comment-part-name">Comment: </span>'+entryDict['comment']+'</p>\
-      <p><span class="comment-part-name">Motivation: </span>'+entryDict['motivation']+'</p>\
-      <p><span class="comment-part-name">Target title: </span>'+entryDict['target']+'</p>\
-      <p><span class="comment-part-name">Publication title: </span>'+entryDict['publication']+'</p>'
-
-    $("#"+entryDict["commentId"]).prepend(feedbackItem);
   };
 
   this.showFeedbackForm = function() {
@@ -376,8 +475,6 @@ function communityFeedback(catalogueID, catalogueNamespace, title)
             "commentId": commentId
           };
           this.renderFeedbackFeed(entryDict, context);
-          this.getFromNimmbus(entryDict["link"], getFeedbackItem, context);
-
         } else {
           this.readMore(); // Ensure updates are bound to our toggle function.
           break;
