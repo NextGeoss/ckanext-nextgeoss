@@ -169,8 +169,13 @@ def get_dataset_thumbnail_path(dataset):
     available, return the path to a placeholder image.
     """
     extras = {extra['key']: extra['value'] for extra in dataset['extras']}
-    if 'thumbnail' in extras and 'uuid' in extras:
-        return '/thumbnails/{}.jpg'.format(extras['uuid'])
+
+    if dataset['organization']['title'] == 'Vito':
+        if 'thumbnail' in extras or 'thumbanil' in extras and 'identifer' in extras:
+            return '/thumbnails/{}.png'.format(extras['uuid'])
+    elif dataset['organization']['title'] == 'Sentinel':
+        if 'thumbnail' in extras and 'uuid' in extras:
+            return '/thumbnails/{}.jpg'.format(extras['uuid'])
     else:
         return '/base/images/placeholder-image.png'
 
