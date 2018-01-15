@@ -434,9 +434,15 @@ h4.title a {
   clear: left;
 }
 
+.dataset-item-org-logo .image img {
+  max-width: 210px;
+  max-height: 210px;
+}
+
 @media (max-width: 599px) {
 .dataset-item-org-logo .image img {
-    width: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
   }
 }
 
