@@ -171,7 +171,7 @@ def get_dataset_thumbnail_path(dataset):
     extras = {extra['key']: extra['value'] for extra in dataset['extras']}
 
     if dataset['organization']['title'] == 'Vito':
-        if 'thumbnail' in extras or 'thumbanil' in extras and 'identifer' in extras:
+        if 'thumbnail' in extras or 'thumbanil' in extras and 'identifier' in extras:
             return '/thumbnails/{}.png'.format(extras['identifier'])
         else:
             return '/base/images/placeholder-image.png'
