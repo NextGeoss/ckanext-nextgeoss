@@ -1,6 +1,5 @@
-from ckan.plugins.toolkit import get_action
 from ckan.common import config
-from ckan.lib.helpers import sorted_extras
+
 
 def get_jira_script():
     jira_script = config.get('ckanext.nextgeoss.jira_issue_tracker')
@@ -16,7 +15,7 @@ def get_add_feedback_url(dataset):
     and namespace of the dataset, once we've determined how they'll
     be represented in the metadata.
     """
-    feedback_url = 'http://www.opengis.uab.cat/nimmbus/index.htm?target_title={target_title}&target_code={target_code}&target_codespace={target_codespace}&page=ADDFEEDBACK&share_borrower_1=Anonymous'.format(
+    feedback_url = 'http://www.opengis.uab.cat/nimmbus/index.htm?target_title={target_title}&target_code={target_code}&target_codespace={target_codespace}&page=ADDFEEDBACK&share_borrower_1=Anonymous'.format(  # noqa: E501
         target_title=dataset['title'],
         target_code=dataset['id'],
         target_codespace=config.get('ckan.site_url'))
@@ -93,7 +92,7 @@ def get_extra_names():
         'lrmpercentage': 'Measurement records in LRM mode (%)',
         'sarpercentage': 'Measurement records in SAR mode (%)',
         'closedseapercentage': 'Measurement records on closed sea (%)',
-        'continentalicepercentage': 'Measurement records on continenal ice (%)',
+        'continentalicepercentage': 'Measurement records on continenal ice (%)',  # noqa: E501
         'landpercentage': 'Measurement records on land (%)',
         'openseapercentage': 'Measurement records on open sea (%)',
         'mode': 'Mode',
@@ -171,7 +170,8 @@ def get_dataset_thumbnail_path(dataset):
     extras = {extra['key']: extra['value'] for extra in dataset['extras']}
 
     if dataset['organization']['title'] == 'Vito':
-        return '/thumbnails/{}.png'.format(extras.get('identifier', 'placeholder'))
+        return '/thumbnails/{}.png'.format(extras.get('identifier',
+                                                      'placeholder'))
     elif dataset['organization']['title'] == 'Sentinel':
         return '/thumbnails/{}.jpg'.format(extras.get('uuid', 'placeholder'))
     else:

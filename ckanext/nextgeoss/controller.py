@@ -1,5 +1,6 @@
 import ckan.lib.base as base
 
+
 class StaticController(base.BaseController):
 
     def cookies(self):

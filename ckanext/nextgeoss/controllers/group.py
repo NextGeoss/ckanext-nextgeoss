@@ -8,7 +8,6 @@ from pylons.i18n import get_lang
 
 import ckan.lib.base as base
 import ckan.lib.helpers as h
-import ckan.lib.maintain as maintain
 import ckan.lib.navl.dictization_functions as dict_fns
 import ckan.logic as logic
 import ckan.lib.search as search
@@ -40,7 +39,7 @@ class GroupController(base.BaseController):
 
     group_types = ['group']
 
-    ## hooks for subclasses
+    # hooks for subclasses
 
     def _group_form(self, group_type=None):
         return lookup_group_plugin(group_type).group_form()
@@ -84,7 +83,7 @@ class GroupController(base.BaseController):
     def _bulk_process_template(self, group_type):
         return lookup_group_plugin(group_type).bulk_process_template()
 
-    ## end hooks
+    # end hooks
     def _replace_group_org(self, string):
         ''' substitute organization for group if this is an org'''
         return string
@@ -109,27 +108,13 @@ class GroupController(base.BaseController):
         return h.redirect_to(*args, **kw)
 
     def _url_for_this_controller(self, *args, **kw):
-        ''' wrapper around url_for but it adds in this request's controller
-        (so that it works for Organization or other derived controllers)'''
+        """Wrapper around url_for but it adds in this request's controller
+        (so that it works for Organization or other derived controllers)."""
         kw['controller'] = request.environ['pylons.routes_dict']['controller']
         return h.url_for(*args, **kw)
 
     def _guess_group_type(self, expecting_name=False):
-        """
-            Guess the type of group from the URL.
-            * The default url '/group/xyz' returns None
-            * group_type is unicode
-            * this handles the case where there is a prefix on the URL
-              (such as /data/organization)
-        """
-        parts = [x for x in request.path.split('/') if x]
-
-        idx = -1
-        if expecting_name:
-            idx = -2
-
-        gt = parts[idx]
-
+        """Return 'group' (differs from the CKAN core implementation)."""
         return 'group'
 
     def _ensure_controller_matches_group_type(self, id):
@@ -286,7 +271,7 @@ class GroupController(base.BaseController):
             c.fields = []
             search_extras = {}
             for (param, value) in request.params.items():
-                if not param in ['q', 'page', 'sort'] \
+                if param not in ['q', 'page', 'sort'] \
                         and len(value) and not param.startswith('_'):
                     if not param.startswith('ext_'):
                         c.fields.append((param, value))
@@ -353,7 +338,7 @@ class GroupController(base.BaseController):
             c.search_facets_limits = {}
             for facet in c.search_facets.keys():
                 limit = int(request.params.get('_%s_limit' % facet,
-                                               config.get('search.facets.default', 10)))
+                            config.get('search.facets.default', 10)))
                 c.search_facets_limits[facet] = limit
             c.page.items = query['results']
 
@@ -401,7 +386,7 @@ class GroupController(base.BaseController):
             # FIXME: better error
             raise Exception('Must be an organization')
 
-        #use different form names so that ie7 can be detected
+        # use different form names so that ie7 can be detected
         form_names = set(["bulk_action.public", "bulk_action.delete",
                           "bulk_action.private"])
         actions_in_form = set(request.params.keys())
@@ -415,13 +400,13 @@ class GroupController(base.BaseController):
             return render(self._bulk_process_template(group_type),
                           extra_vars={'group_type': group_type})
 
-        #ie7 puts all buttons in form params but puts submitted one twice
+        # ie7 puts all buttons in form params but puts submitted one twice
         for key, value in dict(request.params.dict_of_lists()).items():
             if len(value) == 2:
                 action = key.split('.')[-1]
                 break
         else:
-            #normal good browser form submission
+            # normal good browser form submission
             action = actions.pop().split('.')[-1]
 
         # process the action first find the datasets to perform the action on.
@@ -657,7 +642,6 @@ class GroupController(base.BaseController):
         context = {'model': model, 'session': model.Session,
                    'user': c.user}
 
-        #self._check_access('group_delete', context, {'id': id})
         try:
             data_dict = {'id': id}
             data_dict['include_datasets'] = False
@@ -761,7 +745,7 @@ class GroupController(base.BaseController):
             c.group_dict = self._action('group_show')(context, data_dict)
             c.group_revisions = self._action('group_revision_list')(context,
                                                                     data_dict)
-            #TODO: remove
+            # TODO: remove
             # Still necessary for the authz check in group/layout.html
             c.group = context['group']
         except (NotFound, NotAuthorized):
@@ -785,7 +769,7 @@ class GroupController(base.BaseController):
                     revision_dict['timestamp'])
                 try:
                     dayHorizon = int(request.params.get('days'))
-                except:
+                except TypeError:
                     dayHorizon = 30
                 dayAge = (datetime.datetime.now() - revision_date).days
                 if dayAge >= dayHorizon:
@@ -831,7 +815,7 @@ class GroupController(base.BaseController):
             c.group_activity_stream = self._action('group_activity_list_html')(
                 context, {'id': c.group_dict['id'], 'offset': offset})
 
-        except ValidationError as error:
+        except ValidationError:
             base.abort(400)
 
         return render(self._activity_template(group_type),

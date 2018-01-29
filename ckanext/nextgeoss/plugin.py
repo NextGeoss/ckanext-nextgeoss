@@ -30,7 +30,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
             'ng_extra_names': helpers.get_extra_names,
             'ng_extras_to_exclude': helpers.get_extras_to_exclude,
-            'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,
+            'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
             'ng_get_from_extras': helpers.get_from_extras,
             'ng_get_source_namespace': helpers.get_source_namespace
         }
@@ -79,7 +79,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                      _redirect_code='301 Moved Permanently')
         map.redirect('/group/{url:.*}', '/topic/{url}',
                      _redirect_code='301 Moved Permanently')
-        group_controller = 'ckanext.nextgeoss.controllers.group:GroupController'
+        group_controller = 'ckanext.nextgeoss.controllers.group:GroupController'  # noqa: E501
         with routes.mapper.SubMapper(map, controller=group_controller) as m:
             m.connect('topic_index', '/topic', action='index')
             m.connect('/topic/list', action='list')
@@ -131,29 +131,28 @@ class NextgeossPlugin(plugins.SingletonPlugin):
     def after_map(self, map):
         return map
 
-
     # IFacets
 
     def _update_facets(self, facets_dict):
-      """
-      Make it easier to consistently update the various
-      facets_dicts. facets_dict will be an ordered dictionary,
-      so we need to preserve the order when we update.
-      """
-      print(facets_dict)
-      facets_dict['groups'] = _('Topics')
-      facets_dict['organization'] = _('Providers')
+        """
+        Make it easier to consistently update the various
+        facets_dicts. facets_dict will be an ordered dictionary,
+        so we need to preserve the order when we update.
+        """
+        print(facets_dict)
+        facets_dict['groups'] = _('Topics')
+        facets_dict['organization'] = _('Providers')
 
-      return facets_dict
+        return facets_dict
 
     def dataset_facets(self, facets_dict, package_type):
-      """Update the facets used on dataset search pages."""
-      return self._update_facets(facets_dict)
+        """Update the facets used on dataset search pages."""
+        return self._update_facets(facets_dict)
 
     def group_facets(self, facets_dict, group_type, package_type):
-      """Update the facets used on group search pages."""
-      return self._update_facets(facets_dict)
+        """Update the facets used on group search pages."""
+        return self._update_facets(facets_dict)
 
-    def organization_facets(self, facets_dict, organization_type, package_type):
-      """Update the facets used on organization search pages."""
-      return self._update_facets(facets_dict)
+    def organization_facets(self, facets_dict, organization_type, package_type):  # noqa: E501
+        """Update the facets used on organization search pages."""
+        return self._update_facets(facets_dict)
