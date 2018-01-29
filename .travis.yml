@@ -6,6 +6,9 @@ env: PGVERSION=9.1
 install:
     - bash bin/travis-build.bash
     - pip install coveralls
-script: sh bin/travis-run.sh
+    - pip install flake 8
+script:
+    - sh bin/travis-run.sh
+    - flake8
 after_success:
     - coveralls
