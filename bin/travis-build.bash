@@ -51,13 +51,10 @@ export CPLUS_INCLUDE_PATH=/usr/include/gdal
 export C_INCLUDE_PATH=/usr/include/gdal
 pip install GDAL==1.10.0
 
-echo "Installing ckanext-harvest and its requirements..."
-pip install -r pip-requirements.txt
-pip install -r dev-requirements.txt
+echo "Installing ckanext-nextgeoss and its requirements..."
+pip install -r requirements.txt
 
 python setup.py develop
-
-paster harvester initdb -c ckan/test-core.ini
 
 echo "Moving test.ini into a subdir..."
 mkdir subdir
