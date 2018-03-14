@@ -64,7 +64,21 @@
         {% endif %}
 
       {% block extras scoped %}
-        {% for extra in h.sorted_extras(pkg_dict.extras, subs=h.ng_extra_names(), exclude=h.ng_extras_to_exclude()) %}
+        {% set exclude = ['codede_download_url', 'codede_product_url',
+        'collection_description', 'collection_name', 'collection_id',
+        'spatial', 'scihub_download_url', 'scihub_product_url',
+        'scihub_thumbnail', 'noa_download_url', 'noa_product_url',
+        'noa_thumbnail', 'noa_manifest_url', 'scihub_manifest_url',
+        'code_manifest_url', 'code_thumbnail_url', 'code_download_url',
+        'code_thumbnail', 'code_product_url', 'timerange_start',
+        'timerange_end'] %}
+        {% set subs = {'FamilyName': 'Family Name',
+        'InstrumentFamilyName': 'Instrument Family Name',
+        'InstrumentMode': 'Instrument Mode',
+        'InstrumentName': 'Instrument Name',
+        'OrbitDirection': 'Orbit Direction', 'StartTime': 'Start Time',
+        'StopTime': 'Stop Time'}%}
+        {% for extra in h.sorted_extras(pkg_dict.extras, subs=subs, exclude=exclude) %}
           {% set key, value = extra %}
           <tr rel="dc:relation" resource="_:extra{{ i }}">
             <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
