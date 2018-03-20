@@ -11,13 +11,13 @@
 
   <h2 class="heading">{{ search_message.format(number=h.localised_number(count)) }}</h3>
 
-  <div class="search-input control-group search-giant">
+  <div class="search-input control-group search-giant" style="padding-top: 10px">
     {% block search_input_button %}
       <button type="submit" value="search">
         <i class="fa fa-search"></i>
         <span>{{ _('Submit') }}</span>
       </button>
     {% endblock %}
-    <input type="text" class="search" name="q" value="" autocomplete="off" placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}" />
+    <input type="text" style="margin-top: 10px !important" class="search" name="q" value="" autocomplete="off" placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}" />
   </div>
 </form>

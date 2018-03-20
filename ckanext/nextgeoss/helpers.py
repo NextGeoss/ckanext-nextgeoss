@@ -50,3 +50,73 @@ def get_bug_disclaimer():
     disclaimer = config.get(setting, default)
 
     return disclaimer
+
+
+def get_topic_information(extras):
+    idetification_info = []
+    identification_info_values = {'title_topic', 'date', 'edition', 'abstract', 'purpose', 'status_topic',
+                                  'dateType', 'tags', 'otherConstraints'}
+
+    for extra in extras:
+        if extra[0] in identification_info_values:
+            print extra[0]
+            idetification_info.append({'key': extra[0], 'value': extra[1]})
+
+    return idetification_info
+
+
+def get_contact_information(extras):
+    contact_info = []
+    contact_info_values = {'individualName', 'organisationName', 'positionName', 'deliveryPoint', 'city',\
+                           'postalCode', 'country', 'electronicMailAddress'}
+
+    for extra in extras:
+        if extra[0] in contact_info_values:
+            contact_info.append({'key': extra[0], 'value': extra[1]})
+
+    return contact_info
+
+
+def get_metadata_information(extras):
+    metadata_info = []
+    metadata_info_values = {'fileIdentifier', 'characterSet', 'CharacterString', 'dateStamp', 'metadataStandardName',\
+                           'metadataStandardVersion'}
+
+    for extra in extras:
+        if extra[0] in metadata_info_values:
+            metadata_info.append({'key': extra[0], 'value': extra[1]})
+
+    return metadata_info
+
+
+def get_distribution_information(extras):
+    distribution_info = []
+    distribution_info_values = {'URL', 'protocol', 'name', 'description'}
+
+    for extra in extras:
+        if any(ext in extra[0] for ext in distribution_info_values):
+            distribution_info.append({'key': extra[0], 'value': extra[1]})
+
+    return distribution_info
+
+
+def get_spatial_information(extras):
+    spatial_info = []
+    spatial_info_values = {'numberOfDimensions', 'transformationParameterAvailability'}
+
+    for extra in extras:
+        if extra[0] in spatial_info_values:
+            spatial_info.append({'key': extra[0], 'value': extra[1]})
+
+    return spatial_info
+
+
+def get_reference_sys_information(extras):
+    reference_sys_info = []
+    reference_sys_info_values = ['code']
+
+    for extra in extras:
+        if extra[0] in reference_sys_info_values:
+            reference_sys_info.append({'key': extra[0], 'value': extra[1]})
+
+    return reference_sys_info

@@ -1,0 +1,364 @@
+{# This snippet creates an Additional Info Table
+
+extras is a list of tuples of the form (key, value)
+
+#}
+
+{% if extras and name == 'test_pilot' %}
+  <h3>{{ _('Metadata Info') }}</h3>
+  <p>Download metadata file:
+    <a href="/iso19139.xml" download>
+    <button type="button" class="btn btn-default btn-sm">
+      <span class="fa fa-cloud-download"></span>
+      ISO19139
+    </button>
+    </a>
+  </p>
+  </br>
+  <h4>Information extracted from metadata file {{data_dict}}</h4>
+
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
+          Information</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in show">
+        <div class="panel-body">
+          {% set topic_information = h.nextgeoss_get_topic_information(extras) %}
+            <table class="table table-striped table-bordered table-condensed">
+              <tbody>
+                {% for extra in topic_information %}
+                  {% set key, value = extra %}
+
+                  {% if extra['key'] == 'status_topic' %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Status</th>
+                      <td class="dataset-details" property="rdf:value">On going</td>
+                    </tr>
+                  {% endif %}
+                  {% if extra['key'] == 'edition' %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Edition</th>
+                      <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                    </tr>
+                  {% endif %}
+                  {% if extra['key'] == 'date' %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Date</th>
+                      <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                    </tr>
+                  {% endif %}
+                  {% if extra['key'] == 'title_topic' %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Title</th>
+                      <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                    </tr>
+                  {% endif %}
+                  {% if extra['key'] == 'abstract' %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Abstract</th>
+                      <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                    </tr>
+                  {% endif %}
+                  {% if extra['key'] == 'tags' %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Keywords</th>
+                      <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                    </tr>
+                  {% endif %}
+                  {% if extra['key'] == 'otherConstraints' %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Other Constraints</th>
+                      <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Presentation Model</th>
+                      <td class="dataset-details" property="rdf:value">Digital model</td>
+                    </tr>
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Maintenance and update frequency</th>
+                      <td class="dataset-details" property="rdf:value">Continual</td>
+                    </tr>
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Use constraints</th>
+                      <td class="dataset-details" property="rdf:value">License</td>
+                    </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+          Distribution Information</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse show">
+        <div class="panel-body">
+          {% set contact_information = h.nextgeoss_get_distribution_information(extras) %}
+            <table class="table table-striped table-bordered table-condensed">
+              <tbody>
+                {% for extra in contact_information %}
+                  {% set key, value = extra %}
+
+                  {% if 'description' in extra['key'] %}
+                    {% set desc_tmp = extra['value'] %}
+                  {% endif %}
+
+                  {% if 'URL' in extra['key'] %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Online Resource:</th>
+                      <td class="dataset-details" property="rdf:value">
+                        <a href={{ extra['value'] }}>
+                          {% if desc_tmp %}
+                            {{ desc_tmp }}
+                          {% else %}
+                            {{ _('Link to Resource') }}
+                          {% endif %}
+                        </a>
+                      </td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+          Reference System Information</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse show">
+        <div class="panel-body">
+          {% set contact_information = h.nextgeoss_get_reference_sys_information(extras) %}
+            <table class="table table-striped table-bordered table-condensed">
+              <tbody>
+                {% for extra in contact_information %}
+                  {% set key, value = extra %}
+
+                  {% if 'code' in extra['key'] %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Unique resource identifier</th>
+                      <td class="dataset-details" property="rdf:value">{{extra['value']}}</td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+         <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+          Data Quality Info</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+            <table class="table table-striped table-bordered table-condensed">
+              <tbody>
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Hierarchy level</th>
+                      <td class="dataset-details" property="rdf:value">Dataset: Information applies to the dataset</td>
+                    </tr>
+              </tbody>
+            </table>
+        </div>
+        </div>
+      </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+          Spatial representation info</a>
+        </h4>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse show">
+        <div class="panel-body">
+          {% set contact_information = h.nextgeoss_get_spatial_information(extras) %}
+            <table class="table table-striped table-bordered table-condensed">
+              <tbody>
+                {% for extra in contact_information %}
+                  {% set key, value = extra %}
+                  {% if extra['key'] == 'numberOfDimensions' %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Number of dimensions</th>
+                      <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                    </tr>
+                  {% endif %}
+                  {% if extra['key'] == 'transformationParameterAvailability' %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Transformation Parameter Availablility</th>
+                      <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Dimension name</th>
+                      <td class="dataset-details" property="rdf:value">
+                        Row: Ordinate (y) axis
+                      </td>
+                    </tr>
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Dimension name</th>
+                      <td class="dataset-details" property="rdf:value">
+                        Column: Abscissa (x) axis
+                      </td>
+                    </tr>
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Dimension name</th>
+                      <td class="dataset-details" property="rdf:value">
+                        Vertical: Vertical (z) axis
+                      </td>
+                    </tr>
+                    <tr rel="dc:relation" resource="_:extra{{ i }}">
+                      <th scope="row" class="dataset-label" property="rdfs:label">Cell geometry</th>
+                      <td class="dataset-details" property="rdf:value">
+                        Area: Each cell represents an area
+                      </td>
+                    </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+            Metadata</a>
+          </h4>
+        </div>
+        <div id="collapse6" class="panel-collapse collapse show">
+          <div class="panel-body">
+            {% set metadata_information = h.nextgeoss_get_metadata_information(extras) %}
+              <table class="table table-striped table-bordered table-condensed">
+                <tbody>
+                  {% for extra in metadata_information %}
+                    {% set key, value = extra %}
+                    {% if extra['key'] == 'metadataStandardName' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Metadata Standard Name:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'metadataStandardVersion' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Metadata Standard Version:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'characterSet' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Character Set:</th>
+                        <td class="dataset-details" property="rdf:value">UTF8</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'dateStamp' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Date stamp:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'CharacterString' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Metadata language:</th>
+                        <td class="dataset-details" property="rdf:value">English</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'fileIdentifier' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">File identifier:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
+            Contact</a>
+          </h4>
+        </div>
+        <div id="collapse7" class="panel-collapse collapse show">
+          <div class="panel-body">
+            {% set contact_information = h.nextgeoss_get_contact_information(extras) %}
+              <table class="table table-striped table-bordered table-condensed">
+                <tbody>
+                  {% for extra in contact_information %}
+                    {% set key, value = extra %}
+                    {% if extra['key'] == 'individualName' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Individual Name:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'organisationName' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Organisation Name:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'positionName' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Position Name:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'deliveryPoint' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Delivery Point:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'city' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">City:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'postalCode' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Postal Code:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'country' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Country:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                    {% if extra['key'] == 'electronicMailAddress' %}
+                      <tr rel="dc:relation" resource="_:extra{{ i }}">
+                        <th scope="row" class="dataset-label" property="rdfs:label">Email:</th>
+                        <td class="dataset-details" property="rdf:value">{{ extra['value'] }}</td>
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
