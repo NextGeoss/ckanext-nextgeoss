@@ -39,7 +39,6 @@
 
 {% block primary_content_inner %}
   {% block group_extras %}
-    {% snippet 'group/snippets/additional_info.html', extras = h.sorted_extras(c.group_dict.extras),\
-      name=c.group_dict.name %}
+    {% snippet 'group/snippets/additional_info.html', extras = h.sorted_extras(c.group_dict.extras), name=c.group_dict.name %}
   {% endblock %}
 {% endblock %}
