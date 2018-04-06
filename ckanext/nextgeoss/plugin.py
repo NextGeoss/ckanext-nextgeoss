@@ -77,7 +77,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                      _redirect_code='301 Moved Permanently')
         map.redirect('/group/{url:.*}', '/topic/{url}',
                      _redirect_code='301 Moved Permanently')
-        group_controller = 'ckanext.nextgeoss.controllers.group:GroupController'
+        group_controller = 'ckanext.nextgeoss.controllers.group:NextgeossGroupController'
         with routes.mapper.SubMapper(map, controller=group_controller) as m:
             m.connect('topic_index', '/topic', action='index')
             m.connect('/topic/list', action='list')
