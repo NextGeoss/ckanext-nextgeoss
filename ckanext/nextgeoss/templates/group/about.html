@@ -2,7 +2,7 @@
 
 {% block pre_primary %}
   {% set group = c.group_dict %}
-  <div class="container single-column group-org-header">
+    <div class="container single-column group-org-header" xmlns="http://www.w3.org/1999/html">
     {{ super() }}
 
     {% block package_description %}
@@ -46,10 +46,10 @@
         <i class="fa fa-lg fa-filter"></i>
         <span class="filters-header__title">{{ _('Filters') }}</span>
       </div>
+        {# We need to change this!!!
+        what do we want to display in the Metadata tab??? #}
+        There are no filters available in this section </br>
 
-      {% for facet in c.facet_titles %}
-        {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet, extras={'id':c.group_dict.id}) }}
-      {% endfor %}
     </div>
     <a class="close no-text hide-filters"><i class="fa-remove-sign"></i><span class="text">close</span></a>
   </div>

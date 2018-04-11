@@ -96,10 +96,10 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                           'unfollow',
                       ])))
             m.connect('topic_activity', '/topic/activity/{id}',
-                      action='activity', ckan_icon='time')
+                      action='activity', ckan_icon='clock')
             m.connect('topic_read', '/topic/{id}', action='read')
             m.connect('topic_about', '/topic/about/{id}',
-                      action='about', ckan_icon='info-sign')
+                      action='about', ckan_icon='info-circle')
             m.connect('topic_read', '/topic/{id}', action='read',
                       ckan_icon='sitemap')
             m.connect('topic_edit', '/topic/edit/{id}',
