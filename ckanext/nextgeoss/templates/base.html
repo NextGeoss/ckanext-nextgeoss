@@ -1,9 +1,5 @@
 {% ckan_extends %}
 
-{% block meta %}
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-{% endblock %}
-
 {% block styles %}
   {{ super() }}
   {% set issue_tracker_script = h.nextgeoss_get_jira_script() %}
