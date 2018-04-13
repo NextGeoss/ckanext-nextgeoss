@@ -111,7 +111,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='bulk_process', ckan_icon='sitemap')
 
         # Add static pages
-        controller = 'ckanext.nextgeoss.controller:StaticController'
+        controller = 'ckanext.nextgeoss.controllers.static:StaticController'
         with routes.mapper.SubMapper(map, controller=controller) as m:
             m.connect('privacy', '/privacy', action='privacy')
             m.connect('termsandconditions', '/terms-and-conditions',
