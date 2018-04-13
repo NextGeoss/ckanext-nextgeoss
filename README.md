@@ -1,6 +1,6 @@
-[![Travis](https://travis-ci.org/nextgeoss/ckanext-nextgeoss.svg?branch=master)](https://travis-ci.org/nextgeoss/ckanext-nextgeoss)
+[![Travis](https://travis-ci.org/NextGeoss/ckanext-nextgeoss.svg?branch=master)](https://travis-ci.org/NextGeoss/ckanext-nextgeoss)
 
-[![Coveralls](https://coveralls.io/repos/nextgeoss/ckanext-nextgeoss/badge.svg)](https://coveralls.io/r/nextgeoss/ckanext-nextgeoss)
+[![Coveralls](https://coveralls.io/repos/NextGeoss/ckanext-nextgeoss/badge.svg)](https://coveralls.io/r/NextGeoss/ckanext-nextgeoss)
 
 # ckanext-nextgeoss
 
