@@ -84,8 +84,9 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             m.connect('topic_index', '/topic', action='index')
             m.connect('/topic/list', action='list')
             m.connect('/topic/new', action='new')
-            m.connect('/topic/{action}/{id}',
+            m.connect('topic_action', '/topic/{action}/{id}',
                       requirements=dict(action='|'.join([
+                          'edit',
                           'delete',
                           'admins',
                           'member_new',
@@ -94,6 +95,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                           'followers',
                           'follow',
                           'unfollow',
+                          'activity',
                       ])))
             m.connect('topic_activity', '/topic/activity/{id}',
                       action='activity', ckan_icon='clock')
@@ -104,7 +106,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       ckan_icon='sitemap')
             m.connect('topic_edit', '/topic/edit/{id}',
                       action='edit', ckan_icon='edit')
-            m.connect('topic_members', '/topic/edit_members/{id}',
+            m.connect('topic_members', '/topic/members/{id}',
                       action='members', ckan_icon='group')
             m.connect('topic_bulk_process',
                       '/topic/bulk_process/{id}',
