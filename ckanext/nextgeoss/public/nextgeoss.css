@@ -1231,6 +1231,10 @@ button.btn.btn-navbar {
   padding-bottom: 6px;
 }
 
+.delete-paddig {
+  padding-top: 20px;
+}
+
 .read-button {
     cursor: pointer;
 }
@@ -1281,4 +1285,3 @@ table.mobile-table td.dataset-details {
     margin-right: 0px;
     margin-left: 0px;
   }
-}
