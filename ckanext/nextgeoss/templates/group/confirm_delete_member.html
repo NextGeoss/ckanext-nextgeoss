@@ -1,7 +1,12 @@
 {% ckan_extends %}
 
+{% block breadcrumb_content %}
+  <li>{% link_for _('Topics'), controller='group', action='index' %}</li>
+  <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name %}</li>
+{% endblock %}
+
 {% block main_content %}
-  <section class="module span6 offset3">
+  <section class="module delete-padding">
     <div class="module-content">
       {% block form %}
         <p>{{ _('Are you sure you want to delete member - {name}?').format(name=c.user_dict.name) }}</p>

@@ -1218,3 +1218,7 @@ button.btn.btn-navbar {
   padding-top: 6px;
   padding-bottom: 6px;
 }
+
+.delete-paddig {
+  padding-top: 20px;
+}
