@@ -1262,3 +1262,23 @@ table.mobile-table td.dataset-details {
   padding-left: 10px !important;
   padding-right: 10px;
 }
+
+.beta-access {
+  margin-right: 20%;
+  margin-left: 20%;
+}
+
+
+@media (max-width: 768px) {
+.beta-access {
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+}
+
+@media (max-width: 375px) {
+.beta-access {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+}
