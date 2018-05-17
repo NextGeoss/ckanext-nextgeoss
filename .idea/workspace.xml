@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe2116e2-4934-471d-8569-d0e78246fbbd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/public/metadata_example.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/read_base_primary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/snippets/additional_info.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/snippets/search_form.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/templates/group_page.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/templates/page_primary.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MANIFEST.in" afterPath="$PROJECT_DIR$/MANIFEST.in" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ckanext/nextgeoss/helpers.py" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/helpers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ckanext/nextgeoss/plugin.py" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/plugin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ckanext/nextgeoss/public/nextgeoss.css" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/public/nextgeoss.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/about.html" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ckanext/nextgeoss/templates/page.html" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/templates/page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/snippets/additional_info.html" afterPath="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/snippets/additional_info.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,38 +16,18 @@
       <file leaf-file-name="read.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/templates/group/read.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="27" column="38" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="38" />
+            <state relative-caret-position="522">
+              <caret line="29" column="38" lean-forward="false" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="read_base_primary.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/templates/group/read_base_primary.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page_primary.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/templates/page_primary.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="about.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/templates/group/about.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="36" column="32" lean-forward="false" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+            <state relative-caret-position="617">
+              <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -84,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="additional_info.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="additional_info.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/templates/group/snippets/additional_info.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
-              <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+              <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -99,7 +68,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="643">
               <caret line="95" column="40" lean-forward="false" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
-              <folding />
+              <folding>
+                <marker date="1526547012253" expanded="true" signature="3205:3206" ph="..." />
+                <marker date="1526547012253" expanded="true" signature="3205:3407" ph="..." />
+                <marker date="1526547012253" expanded="true" signature="3233:3377" ph="..." />
+                <marker date="1526547012253" expanded="true" signature="3446:3721" ph="..." />
+                <marker date="1526547012253" expanded="true" signature="3582:3696" ph="..." />
+                <marker date="1526547012253" expanded="true" signature="3766:4018" ph="..." />
+                <marker date="1526547012253" expanded="true" signature="3861:3987" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/templates/page.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
-              <caret line="18" column="56" lean-forward="false" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+              <caret line="18" column="54" lean-forward="false" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -194,8 +171,8 @@
         <option value="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/read.html" />
         <option value="$PROJECT_DIR$/ckanext/nextgeoss/public/description_read.js" />
         <option value="$PROJECT_DIR$/ckanext/nextgeoss/helpers.py" />
-        <option value="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/snippets/additional_info.html" />
         <option value="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/about.html" />
+        <option value="$PROJECT_DIR$/ckanext/nextgeoss/templates/group/snippets/additional_info.html" />
       </list>
     </option>
   </component>
@@ -436,7 +413,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -587,7 +563,7 @@
     <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/templates/page.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="18" column="56" lean-forward="false" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+          <caret line="18" column="54" lean-forward="false" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
           <folding />
         </state>
       </provider>
@@ -596,7 +572,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -604,25 +579,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/templates/group/read.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="38" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="38" />
+        <state relative-caret-position="522">
+          <caret line="29" column="38" lean-forward="false" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/public/description_read.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/public/description_read.js" />
     <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/public/communityfeedback.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -643,22 +611,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="643">
           <caret line="95" column="40" lean-forward="false" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
-          <folding />
+          <folding>
+            <marker date="1526547012253" expanded="true" signature="3205:3206" ph="..." />
+            <marker date="1526547012253" expanded="true" signature="3205:3407" ph="..." />
+            <marker date="1526547012253" expanded="true" signature="3233:3377" ph="..." />
+            <marker date="1526547012253" expanded="true" signature="3446:3721" ph="..." />
+            <marker date="1526547012253" expanded="true" signature="3582:3696" ph="..." />
+            <marker date="1526547012253" expanded="true" signature="3766:4018" ph="..." />
+            <marker date="1526547012253" expanded="true" signature="3861:3987" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/templates/group/snippets/additional_info.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+          <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ckanext/nextgeoss/templates/group/about.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="36" column="32" lean-forward="false" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+        <state relative-caret-position="617">
+          <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
           <folding />
         </state>
       </provider>
