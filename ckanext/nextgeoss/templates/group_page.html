@@ -34,18 +34,7 @@
           <div class="row wrapper{% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' %} no-nav{% endif %}">
             {% block pre_primary %}
             {% endblock %}
-                    {% block page_header %}
-                      <header class="module-content page-header">
-                        {% if self.content_action() | trim %}
-                          <div class="content_action">
-                            {% block content_action %}{% endblock %}
-                          </div>
-                        {% endif %}
-                        <ul class="nav nav-tabs">
-                          {% block content_primary_nav %}{% endblock %}
-                        </ul>
-                      </header>
-                    {% endblock %}
+
             {% block primary %}
               <div class="primary span9">
                 {#
@@ -72,7 +61,8 @@
                     </div>
                   </article>
                 {% endblock %}
-              </div>             {% endblock %}
+              </div>
+              {% endblock %}
 
             {% block secondary %}
               {{ super() }}

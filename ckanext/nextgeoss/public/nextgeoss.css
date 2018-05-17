@@ -1222,3 +1222,11 @@ button.btn.btn-navbar {
 .delete-paddig {
   padding-top: 20px;
 }
+
+.search-padding {
+ padding-top: 20px;
+}
+
+.search-button {
+  margin: 0px !important;
+}
