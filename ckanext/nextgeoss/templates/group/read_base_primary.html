@@ -1,0 +1,18 @@
+{% extends "page_primary.html" %}
+
+{% block subtitle %}{{ c.group_dict.display_name }} - {{ _('Topics') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li>{% link_for _('Topics'), controller='group', action='index' %}</li>
+  <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name %}</li>
+{% endblock %}
+
+{% block content_primary_nav %}
+  {{ h.build_nav_icon('topic_read', _('Datasets'), id=c.group_dict.name) }}
+  {{ h.build_nav_icon('topic_about', _('Metadata'), id=c.group_dict.name) }}
+
+  {# Activity section available only for users that can create #}
+  {% if h.check_access('package_create', {'owner_org': c.group_dict.id}) %}
+    {{ h.build_nav_icon('topic_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}
+  {% endif %}
+{% endblock %}

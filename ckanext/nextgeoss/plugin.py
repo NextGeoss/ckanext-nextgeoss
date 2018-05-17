@@ -33,6 +33,13 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
             'ng_get_from_extras': helpers.get_from_extras,
             'ng_get_source_namespace': helpers.get_source_namespace
+            'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
+            'nextgeoss_get_topic_information': helpers.get_topic_information,
+            'nextgeoss_get_contact_information': helpers.get_contact_information,
+            'nextgeoss_get_metadata_information': helpers.get_metadata_information,
+            'nextgeoss_get_distribution_information': helpers.get_distribution_information,
+            'nextgeoss_get_spatial_information': helpers.get_spatial_information,
+            'nextgeoss_get_reference_sys_information': helpers.get_reference_sys_information
         }
 
     # IRoutes

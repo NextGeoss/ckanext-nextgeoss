@@ -1,4 +1,4 @@
 include README.rst
 include LICENSE
 include requirements.txt
-recursive-include ckanext/nextgeoss *.html *.json *.js *.less *.css *.mo *.png *.jpg
+recursive-include ckanext/nextgeoss *.html *.json *.js *.less *.css *.mo *.png *.jpg *.xml

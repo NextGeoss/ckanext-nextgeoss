@@ -1285,3 +1285,11 @@ table.mobile-table td.dataset-details {
     margin-right: 0px;
     margin-left: 0px;
   }
+
+.search-padding {
+ padding-top: 20px;
+}
+
+.search-button {
+  margin: 0px !important;
+}
