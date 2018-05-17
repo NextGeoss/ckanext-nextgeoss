@@ -4,7 +4,7 @@ extras is a list of tuples of the form (key, value)
 
 #}
 
-{% if extras %}
+{% if extras and name == 'agriculture' %}
   <h3>{{ _('Information extracted from metadata file') }}</h3>
 
   {% if h.nextgeoss_get_topic_information(extras) %}
