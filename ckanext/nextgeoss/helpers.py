@@ -36,7 +36,6 @@ def get_bug_disclaimer():
     return disclaimer
 
 
-<<<<<<< HEAD
 def get_extra_names():
     """
     Return a dictionary of new names for use with the subs parameter of
