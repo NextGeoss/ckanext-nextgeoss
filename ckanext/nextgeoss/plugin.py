@@ -32,7 +32,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             'ng_extras_to_exclude': helpers.get_extras_to_exclude,
             'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
             'ng_get_from_extras': helpers.get_from_extras,
-            'ng_get_source_namespace': helpers.get_source_namespace
+            'ng_get_source_namespace': helpers.get_source_namespace,
             'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
             'nextgeoss_get_topic_information': helpers.get_topic_information,
             'nextgeoss_get_contact_information': helpers.get_contact_information,
