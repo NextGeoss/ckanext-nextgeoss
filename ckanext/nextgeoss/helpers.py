@@ -1,5 +1,6 @@
 from ckan.plugins.toolkit import get_action
 from ckan.common import config
+import ast
 
 def get_org_title(id):
     try:
@@ -52,73 +53,46 @@ def get_bug_disclaimer():
     return disclaimer
 
 
-
-def get_topic_information(extras):
-    idetification_info = []
-    identification_info_values = {'title_topic', 'date', 'edition', 'abstract', 'purpose', 'status_topic',
-                                  'dateType', 'tags', 'otherConstraints', 'topicCategory' }
+def topic_resources(extras):
+    resources = []
+    no_resources = 0
 
     for extra in extras:
-        if extra[0] in identification_info_values:
-            print extra[0]
-            idetification_info.append({'key': extra[0], 'value': extra[1]})
-
-    return idetification_info
-
-
-def get_contact_information(extras):
-    contact_info = []
-    contact_info_values = {'individualName', 'organisationName', 'positionName', 'deliveryPoint', 'city',\
-                           'postalCode', 'country', 'electronicMailAddress'}
+        if extra[0] == 'no_resources':
+            no_resources = int(extra[1])
 
     for extra in extras:
-        if extra[0] in contact_info_values:
-            contact_info.append({'key': extra[0], 'value': extra[1]})
-
-    return contact_info
-
-
-def get_metadata_information(extras):
-    metadata_info = []
-    metadata_info_values = {'fileIdentifier', 'characterSet', 'CharacterString', 'dateStamp', 'metadataStandardName',\
-                           'metadataStandardVersion'}
-
-    for extra in extras:
-        if extra[0] in metadata_info_values:
-            metadata_info.append({'key': extra[0], 'value': extra[1]})
-
-    return metadata_info
+        k, v = extra[0], extra[1]
+        if 'resource_' in k and 'Social Media' not in v:
+            no_resources = no_resources - 1            
+            import ast
+            values = ast.literal_eval(extra[1])
+            resources.append({'key': extra[0], 'value': str(values)})
+    return resources
 
 
-def get_distribution_information(extras):
-    distribution_info = []
-    distribution_info_values = {'URL', 'protocol', 'name', 'description', 'maintenanceAndUpdateFrequency', 'code', \
-                                'lineage'}
+def get_value(resources, key):
+    import ast
+    resources_tmp = ast.literal_eval(resources)
+    value = ''
 
-    for extra in extras:
-        if any(ext in extra[0] for ext in distribution_info_values):
-            distribution_info.append({'key': extra[0], 'value': extra[1]})
+    for resource in resources_tmp:
+        if resource['key'] == key:
+            value = resource['value']
 
-    return distribution_info
+    return value
 
 
-def get_spatial_information(extras):
-    spatial_info = []
-    spatial_info_values = {'numberOfDimensions', 'transformationParameterAvailability'}
+def get_pilot_extras(extras):
+    pilot_extras = []
+    print type(pilot_extras)
+    skip = {'resource_'}
 
     for extra in extras:
-        if extra[0] in spatial_info_values:
-            spatial_info.append({'key': extra[0], 'value': extra[1]})
+        k, v = extra[0], extra[1]
 
-    return spatial_info
-
-
-def get_reference_sys_information(extras):
-    reference_sys_info = []
-    reference_sys_info_values = ['code']
-
-    for extra in extras:
-        if extra[0] in reference_sys_info_values:
-            reference_sys_info.append({'key': extra[0], 'value': extra[1]})
-
-    return reference_sys_info
+        if 'resource' not in k:
+            pilot_extras.append({'key': k, 'value': v})
+            print pilot_extras
+    print type(pilot_extras)
+    return pilot_extras
