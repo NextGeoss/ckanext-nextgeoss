@@ -3,7 +3,7 @@
 {%- block page -%}
 
 {% set url = h.current_url() %}
-{% if c.user_obj.discoverUser != "true" and url != "/user/login" and  url != "/user/register" %}
+{% if c.user_obj.about != "true" and url != "/user/login" and  url != "/user/register" %}
 
   <article class="module">
     <div class="module-content">
