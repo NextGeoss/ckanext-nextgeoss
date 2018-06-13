@@ -2,6 +2,27 @@
 
 {%- block page -%}
 
+{% set url = h.current_url() %}
+{% if c.user_obj.discoverUser != "true" and url != "/user/login" and  url != "/user/register" %}
+
+  <article class="module">
+    <div class="module-content">
+        <h1 class="text-center">NextGEOSS is in a Closed Beta Phase</h1>
+        <div class="beta-access">
+          <p>To use the data hub during the closed beta phase you'll need to log in or register for an account.</p>
+          <p>Only participants in the closed beta may register.</p>
+          <p>Once the closed beta is completed, the data hub will be open to all users and will not require an account to use.</p>
+          </br>
+          <div class="text-center">
+            <a href="/user/login" class="btn btn-primary" type="button">{{ _('Log in') }}</a> or <a href="/user/register" class="btn btn-primary" type="button">{{ _('Register') }}</a>
+          </div>
+        </div>
+
+    </div>
+  </article>
+
+
+{% else %}
   {% block skip %}
     {{ super() }}
   {% endblock %}
@@ -26,7 +47,11 @@
   {%- block content %}
     {% block maintag %}<div role="main">{% endblock %}
       <div id="content" class="container">
+
+
         {% block main_content %}
+
+
           {% block flash %}
             {{ super() }}
           {% endblock %}
@@ -34,51 +59,17 @@
           <div class="row wrapper{% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' %} no-nav{% endif %}">
             {% block pre_primary %}
             {% endblock %}
-                    {% block page_header %}
-                      <header class="module-content page-header">
-                        {% if self.content_action() | trim %}
-                          <div class="content_action">
-                            {% block content_action %}{% endblock %}
-                          </div>
-                        {% endif %}
-                        <ul class="nav nav-tabs">
-                          {% block content_primary_nav %}{% endblock %}
-                        </ul>
-                      </header>
-                    {% endblock %}
+
             {% block primary %}
-              <div class="primary span9">
-                {#
-                The primary_content block can be used to add content to the page.
-                This is the main block that is likely to be used within a template.
-
-                Example:
-
-                  {% block primary_content %}
-                    <h1>My page content</h1>
-                    <p>Some content for the page</p>
-                  {% endblock %}
-                #}
-                {% block primary_content %}
-                  <article class="module">
-                    <div class="module-content">
-                      {% if self.page_primary_action() | trim %}
-                        <div class="page_primary_action">
-                          {% block page_primary_action %}{% endblock %}
-                        </div>
-                      {% endif %}
-                      {% block primary_content_inner %}
-                      {% endblock %}
-                    </div>
-                  </article>
-                {% endblock %}
-              </div>             {% endblock %}
+              {{ super() }}
+             {% endblock %}
 
             {% block secondary %}
               {{ super() }}
             {% endblock %}
          </div>
         {% endblock %}
+
       </div>
     </div>
   {% endblock -%}
@@ -91,6 +82,7 @@
   {%- block footer %}
     {% include "footer.html" %}
   {% endblock -%}
+{% endif %}
 {%- endblock -%}
 
 {%- block scripts %}
