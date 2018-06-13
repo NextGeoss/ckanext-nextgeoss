@@ -34,7 +34,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
             'nextgeoss_get_topic_resources': helpers.topic_resources,
             'nextgeoss_get_value': helpers.get_value,
-            'nextgeoss_get_pilot_extras': helpers.get_pilot_extras
+            'nextgeoss_get_pilot_extras': helpers.get_pilot_extras,
+            'harvest_sorted_extras': helpers.harvest_sorted_extras
         }
 
     # IRoutes
