@@ -130,4 +130,4 @@ def harvest_sorted_extras(package_extras, auto_clean=False, subs=None, exclude=N
             if isinstance(v, (list, tuple)):
                 v = ", ".join(map(unicode, v))
             output.append((k, v))
-return output
+    return output
