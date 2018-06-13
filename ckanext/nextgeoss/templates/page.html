@@ -3,8 +3,7 @@
 {%- block page -%}
 
 {% set url = h.current_url() %}
-{% if c.user_obj.about != "true" and url != "/user/login" and  url != "/user/register" %}
-
+{% if c.userobj.about != "true" and url != "/user/login" and  url != "/user/register" %}
   <article class="module">
     <div class="module-content">
         <h1 class="text-center">NextGEOSS is in a Closed Beta Phase</h1>
