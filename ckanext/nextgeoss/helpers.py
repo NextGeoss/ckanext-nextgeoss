@@ -116,8 +116,8 @@ def harvest_sorted_extras(package_extras, auto_clean=False, subs=None, exclude=N
             output.append((k, v))
     return output
 
-  
-  def get_extra_names():
+
+def get_extra_names():
     """
     Return a dictionary of new names for use with the subs parameter of
     h.sorted_extras. We may want to grab these names from the config
