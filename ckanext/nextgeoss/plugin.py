@@ -28,18 +28,15 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             'nextgeoss_get_jira_script': helpers.get_jira_script,
             'nextgeoss_get_add_feedback_url': helpers.get_add_feedback_url,
             'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
+            'nextgeoss_get_topic_resources': helpers.topic_resources,
+            'nextgeoss_get_value': helpers.get_value,
+            'nextgeoss_get_pilot_extras': helpers.get_pilot_extras,
+            'harvest_sorted_extras': helpers.harvest_sorted_extras
             'ng_extra_names': helpers.get_extra_names,
             'ng_extras_to_exclude': helpers.get_extras_to_exclude,
             'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
             'ng_get_from_extras': helpers.get_from_extras,
-            'ng_get_source_namespace': helpers.get_source_namespace,
-            'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
-            'nextgeoss_get_topic_information': helpers.get_topic_information,
-            'nextgeoss_get_contact_information': helpers.get_contact_information,
-            'nextgeoss_get_metadata_information': helpers.get_metadata_information,
-            'nextgeoss_get_distribution_information': helpers.get_distribution_information,
-            'nextgeoss_get_spatial_information': helpers.get_spatial_information,
-            'nextgeoss_get_reference_sys_information': helpers.get_reference_sys_information
+            'ng_get_source_namespace': helpers.get_source_namespace
         }
 
     # IRoutes
