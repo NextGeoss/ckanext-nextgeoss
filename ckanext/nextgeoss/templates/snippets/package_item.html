@@ -2,14 +2,14 @@
 
 {% block heading %}
 
-  {% set org_title = h.nextgeoss_get_org_title(package.owner_org) %}
+  {% set org_title = package.organization.get('title') or package.organization['name'] %}
   {% set org_link = h.url_for(controller='organization', action='read', id=package.owner_org) %}
-  {%set org_logo = h.nextgeoss_get_org_logo(package.owner_org) %}
+  {% set thumbnail_path = h.ng_get_dataset_thumbnail_path(package) %}
+  {% set thumbnail = h.url_for_static(thumbnail_path)%}
+  
   <div class="dataset-item-org-logo">
     <div class="image">
-      <a href="{{ org_link }}">
-        <img src="{{ org_logo or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "70" width="70" alt="{{ org_title }}" />
-      </a>
+      <img src="{{ thumbnail }}" height= "210" width="210" alt="{{ package.name}} thumbnail" />
     </div>
   </div>
 
@@ -26,11 +26,10 @@
 {% block resources_inner %}
   <h5>{{ _('Download resources directly from source:') }}</h5>
   {% for resource in package.resources %}
+    {% set url = resource.url %}
     {% if resource.format %}
-      {% set url = resource.url %}
       {% set format = resource.format|upper %}
     {% else %}
-      {% set url = h.url_for(controller='package', action='read', id=package.name) %}
       {% set format = 'DATA' %}
     {% endif %}
     <li>

@@ -434,6 +434,18 @@ h4.title a {
   clear: left;
 }
 
+.dataset-item-org-logo .image img {
+  max-width: 210px;
+  max-height: 210px;
+}
+
+@media (max-width: 599px) {
+.dataset-item-org-logo .image img {
+    max-width: 100px !important;
+    max-height: 100px !important;
+  }
+}
+
 .dataset-item-org-title a {
   color: #1660A8;
 }
@@ -483,6 +495,7 @@ h1.dataset-detail-title {
 
 h5.dataset-detail-title {
   margin-top: 0px;
+  margin-bottom: 5px;
 }
 
 .dataset-notes {
@@ -514,7 +527,6 @@ h5.dataset-detail-title {
 }
 
 th.dataset-label {
-  text-transform: uppercase;
   font-weight: 300;
   text-align: right;
   padding-right: 20px !important;
@@ -1222,6 +1234,57 @@ button.btn.btn-navbar {
 .delete-paddig {
   padding-top: 20px;
 }
+
+.read-button {
+    cursor: pointer;
+}
+.additional-content {
+    display: none;
+}
+
+@media (max-width: 412px) {
+  .resource-box-buttons a {
+    font-size: 14px;
+  }
+}
+
+table.table.table-bordered.table-dataset.mobile-table {
+  border-collapse: collapse;
+}
+
+table.mobile-table th.dataset-label {
+  text-align: left;
+  border-bottom: none;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px !important;
+}
+
+table.mobile-table td.dataset-details {
+  border-top: none;
+  padding-top: 4px;
+  padding-left: 10px !important;
+  padding-right: 10px;
+}
+
+.beta-access {
+  margin-right: 20%;
+  margin-left: 20%;
+}
+
+
+@media (max-width: 768px) {
+.beta-access {
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+}
+
+@media (max-width: 375px) {
+.beta-access {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
 
 .search-padding {
  padding-top: 20px;

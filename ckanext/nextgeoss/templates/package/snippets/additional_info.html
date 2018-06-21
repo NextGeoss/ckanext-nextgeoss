@@ -45,15 +45,9 @@
           </tr>
         {% endif %}
 
-        {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
-          <tr>
-            <th scope="row" class="dataset-label">{{ _("State") }}</th>
-            <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
-          </tr>
-        {% endif %}
         {% if pkg_dict.metadata_modified %}
           <tr>
-            <th scope="row" class="dataset-label">{{ _("Last Updated") }}</th>
+            <th scope="row" class="dataset-label">{{ _("Metadata Updated on NextGEOSS Catalogue") }}</th>
             <td class="dataset-details">
                 {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_modified %}
             </td>
@@ -61,7 +55,7 @@
         {% endif %}
         {% if pkg_dict.metadata_created %}
           <tr>
-            <th scope="row" class="dataset-label">{{ _("Created") }}</th>
+            <th scope="row" class="dataset-label">{{ _("Metadata Created on NextGEOSS Catalogue") }}</th>
 
             <td class="dataset-details">
                 {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_created %}
@@ -73,9 +67,11 @@
         {% set exclude = ['codede_download_url', 'codede_product_url',
         'collection_description', 'collection_name', 'collection_id',
         'spatial', 'scihub_download_url', 'scihub_product_url',
-        'scihub_thumbnail_url', 'noa_download_url', 'noa_product_url',
-        'noa_thumbnail_url', 'noa_manifest_url', 'scihub_manifest_url',
-        'codede_manifest_url'] %}
+        'scihub_thumbnail', 'noa_download_url', 'noa_product_url',
+        'noa_thumbnail', 'noa_manifest_url', 'scihub_manifest_url',
+        'code_manifest_url', 'code_thumbnail_url', 'code_download_url',
+        'code_thumbnail', 'code_product_url', 'timerange_start',
+        'timerange_end'] %}
         {% set subs = {'FamilyName': 'Family Name',
         'InstrumentFamilyName': 'Instrument Family Name',
         'InstrumentMode': 'Instrument Mode',

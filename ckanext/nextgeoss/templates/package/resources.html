@@ -5,9 +5,9 @@
 {% block subtitle %}{{ _('Resources') }} - {{ h.dataset_display_name(pkg) }}{% endblock %}
 
 {% set pkg = c.pkg_dict %}
-{% set org_title = h.nextgeoss_get_org_title(pkg.owner_org) %}
+{% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
 {% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
-{% set org_logo = h.nextgeoss_get_org_logo(pkg.owner_org) %}
+{% set org_logo = pkg.organization.get('image_url') or h.url_for_static('/base/images/placeholder-organization.png')%}
 
 
 {% block pre_primary %}
@@ -17,7 +17,7 @@
       <div class="dataset-detail-org-logo">
         <div class="image">
           <a href="{{ org_link }}">
-            <img src="{{ org_logo or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ org_title }}" />
+            <img src="{{ org_logo }}" height= "100" width="100" alt="{{ org_title }}" />
           </a>
         </div>
       </div>
@@ -60,4 +60,8 @@
       </div>
     </section>
   </div>
+{% endblock %}
+
+{% block single_column %}
+  {# prevents page template from inluding primary and secondary columns #}
 {% endblock %}

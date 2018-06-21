@@ -20,22 +20,23 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'nextgeoss')
-        toolkit.add_resource('vendor', '')
 
     # ITemplateHelpers
 
     def get_helpers(self):
         return {
-            'nextgeoss_get_org_title': helpers.get_org_title,
-            'nextgeoss_get_org_logo': helpers.get_org_logo,
             'nextgeoss_get_jira_script': helpers.get_jira_script,
             'nextgeoss_get_add_feedback_url': helpers.get_add_feedback_url,
-            'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
             'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
             'nextgeoss_get_topic_resources': helpers.topic_resources,
             'nextgeoss_get_value': helpers.get_value,
             'nextgeoss_get_pilot_extras': helpers.get_pilot_extras,
             'harvest_sorted_extras': helpers.harvest_sorted_extras
+            'ng_extra_names': helpers.get_extra_names,
+            'ng_extras_to_exclude': helpers.get_extras_to_exclude,
+            'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
+            'ng_get_from_extras': helpers.get_from_extras,
+            'ng_get_source_namespace': helpers.get_source_namespace
         }
 
     # IRoutes
@@ -136,29 +137,28 @@ class NextgeossPlugin(plugins.SingletonPlugin):
     def after_map(self, map):
         return map
 
-
     # IFacets
 
     def _update_facets(self, facets_dict):
-      """
-      Make it easier to consistently update the various
-      facets_dicts. facets_dict will be an ordered dictionary,
-      so we need to preserve the order when we update.
-      """
-      print(facets_dict)
-      facets_dict['groups'] = _('Topics')
-      facets_dict['organization'] = _('Providers')
+        """
+        Make it easier to consistently update the various
+        facets_dicts. facets_dict will be an ordered dictionary,
+        so we need to preserve the order when we update.
+        """
+        print(facets_dict)
+        facets_dict['groups'] = _('Topics')
+        facets_dict['organization'] = _('Providers')
 
-      return facets_dict
+        return facets_dict
 
     def dataset_facets(self, facets_dict, package_type):
-      """Update the facets used on dataset search pages."""
-      return self._update_facets(facets_dict)
+        """Update the facets used on dataset search pages."""
+        return self._update_facets(facets_dict)
 
     def group_facets(self, facets_dict, group_type, package_type):
-      """Update the facets used on group search pages."""
-      return self._update_facets(facets_dict)
+        """Update the facets used on group search pages."""
+        return self._update_facets(facets_dict)
 
-    def organization_facets(self, facets_dict, organization_type, package_type):
-      """Update the facets used on organization search pages."""
-      return self._update_facets(facets_dict)
+    def organization_facets(self, facets_dict, organization_type, package_type):  # noqa: E501
+        """Update the facets used on organization search pages."""
+        return self._update_facets(facets_dict)

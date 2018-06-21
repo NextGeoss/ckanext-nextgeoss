@@ -1,12 +1,10 @@
-{% extends "package/base_single_col.html" %}
+{% extends "package/base.html" %}
 
 {% set res = c.resource %}
 {% set pkg = c.package %}
-
-{% set org_title = h.nextgeoss_get_org_title(pkg.owner_org) %}
+{% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
 {% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
-{% set dataset_link = h.url_for(controller='package', action='read', id=pkg.id) %}
-{% set org_logo = h.nextgeoss_get_org_logo(pkg.owner_org) %}
+{% set org_logo = pkg.organization.get('image_url') or h.url_for_static('/base/images/placeholder-organization.png')%}
 
 {% block head_extras -%}
   {{ super() }}
@@ -28,20 +26,23 @@
   <div class="container single-column">
   {% block resource %}
       {% block resource_inner %}
-        <div class="actions">
-          {% block resource_actions %}
-          <ul>
-            {% block resource_actions_inner %}
-            {% if h.check_access('package_update', {'id':pkg.id }) %}
-              <li>{% link_for _('Manage'), controller='package', action='resource_edit', id=pkg.name, resource_id=res.id, class_='btn', icon='wrench' %}</li>
-            {% endif %}
-            {% if 'datastore' in g.plugins %}
-              <li>{% snippet 'package/snippets/data_api_button.html', resource=res, datastore_root_url=c.datastore_api %}</li>
-            {% endif %}
+        
+        {% if h.check_access('package_update', {'id':pkg.id }) %}
+          <ul class="nav nav-tabs">
+            {% block content_primary_nav %}
+              <li class=active><a><i class="fa fa-sitemap"></i> Resource</a></li>
+
+              {% if self.content_action() | trim %}
+                <div class="content-action-button">
+                  {% block content_action %}
+                    {% link_for _('Manage'), controller='package', action='resource_edit', id=pkg.name, resource_id=res.id, class_='btn', icon='wrench' %}
+                  {% endblock %}
+                </div>
+              {% endif %}
             {% endblock %}
           </ul>
-          {% endblock %}
-        </div>
+        {% endif %}
+
         {% block resource_content %}
           {% block resource_read_title %}
             <h1 class="dataset-detail-title">{{ h.resource_display_name(res) | truncate(50) }}</h1>
@@ -61,7 +62,7 @@
             {% endif %}
           {% endblock %}
 
-          <div class="prose notes" property="rdfs:label">
+          <div class="notes embedded-content dataset-notes" property="rdfs:label">
             {% if res.description %}
               {{ h.render_markdown('res.description') }}
             {% elif not res.description and c.package.notes %}
@@ -69,7 +70,7 @@
               <blockquote>{{ h.markdown_extract(h.get_translated(c.package, 'notes')) }}</blockquote>
               <p>{% trans dataset=c.package.title, url=h.url_for(controller='package', action='read', id=c.package['name']) %}Source: <a href="{{ url }}">{{ dataset }}</a>{% endtrans %}</p>
             {% else %}
-              {{ _('No description available.') }}
+              <p class="empty">{{ _('There is no description for this resource') }}</p>    
             {% endif %}
           </div>
         {% endblock %}
@@ -81,10 +82,8 @@
                 <i class="fa fa-eye-open"></i> {{ _('View') }}
               {% elif  res.resource_type == 'api' %}
                 <i class="fa fa-key"></i> {{ _('API Endpoint') }}
-              {% elif not res.has_views or not res.can_be_previewed %}
-                <i class="fa fa-external-link"></i> {{ _('Go to resource') }}
               {% else %}
-                <i class="fa fa-download"></i> {{ _('Download') }}
+                <i class="fa fa-download"></i> {{ _('Access data') }}
               {% endif %}
             </a>
           </div>
@@ -130,4 +129,11 @@
 
   {% snippet "snippets/social_inline.html" %}
   </div>
+
+  <script>mobileTable();</script>
+
+{% endblock %}
+
+{% block single_column %}
+  {# prevents page template from inluding primary and secondary columns #}
 {% endblock %}

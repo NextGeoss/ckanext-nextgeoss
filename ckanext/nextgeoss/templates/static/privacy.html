@@ -1,6 +1,6 @@
 {% extends "page.html" %}
 
-{% block subtitle %}{{ _('Data Protection') }}{% endblock %}
+{% block subtitle %}{{ _('NextGEOSS Datahub Privacy Page') }}{% endblock %}
 
 {% block breadcrumb_content %}
   <li class="active">{% link_for _('Data Protection'), controller='ckanext.nextgeoss.controller:StaticController', action='termsandconditions' %}</li>
@@ -11,25 +11,94 @@
     <div class="module-content">
       <h1 class="page-heading">Data Protection and Privacy Policy</h1>
 
-      <p>Under the Data Protection Act 1998, we have a legal duty to protect any information we collect from you. We will not pass on your personal details to any third party without your permission or unless we are obliged or permitted by law to do so.</p>
+      <h3>Purpose of the Site</h3>
 
-      <h3>Your personal data</h3>
+      <p>The purpose of this site is to collect metadata of machine produced earth observation data and provide services to search within them with a GUI (Graphical User Interface) or an API (Application Programming Interface). There are no person related data as aim of the processing. If there are person related data in the contact information of the metadata the harvested source has gathered informed consent that this data can be published as open data without any privacy.</p>
 
-      <p>From time to time, you may be asked to submit personal information about yourself (e.g. name and e-mail address) in order to request a dataset or give feedback on datasets posted.</p>
+      <h3>Responsibility</h3>
+      
+      <p>This site is part of the NextGEOSS-project of the EU horizon 2020 program and is  operated by</br>
+      Viderum GmbH</br>
+      Marchlewskistr. 101</br>
+      D-10243 Berlin</br>
+      Germany</br>
+      Mail: services@viderum.com</br>
+      Web: https://www.viderum.com/de/</br>
+      Phone +49 30 5557084 644 20 33186056</br></p>
 
-      <p>Any personal information you provide to us will only be used by us, our agents and service providers, and will not be disclosed without your consent or unless we are obliged or permitted by law to do so.</p>
 
-      <p>However if you post or send offensive, inappropriate or objectionable content anywhere on this site, we may use whatever information about you is available to us to stop such behaviour.</p>
+      <h3>Data Protection Officer</h3>
 
-      <h3>Accessibility statement</h3>
+      <p>Due to Article 37 of GDPR and § 38, 1 of the German BDSG-new a designation of a data protection officer is not necessary.</p>
 
-      <p>It is our intention that the website is usable and accessible to all users. The website's objective is to conform to the Guidelines for (UK Government Websites), which supports Web Content Accessibility Guidelines of the World Wide Web Consortium.</p>
+      <h3>Privacy Policy</h3>
 
-      <h3>Feedback</h3>
+      <p>Access to this site is either anonymous or by a single sign on service where this site gives access to certain services with receiving SSO-credentials. But the personal data are stored in an extra SSO-server elsewhere.</p>
 
-      <p>We very much welcome and actively encourage your feedback on this site.</p>
+      <p>If there are accounts created with name and mail-adresse user will have submitted a informed consent that he wants to have an account created with their personal name.</p>
 
-      <p>We will not pass on any of your personal information when dealing with your enquiry, unless you have given us permission to do so or unless we are obliged or permitted by law to do so.</p>
+      <p>Viderum websites collect no more data about you than most other websites. This policy describes our approach to your personal data.</p>
+
+      <p>As a general rule, we use information we have collected about you for the purposes you supplied it — for example if you have ordered goods or services from us, then we will use it to help us supply those goods or services. We also use information we have collected from all our sites to help us understand how those sites are used in order to improve them or to design new services we might offer.</p>
+
+      <p>Under the General Data Protection Regulation (GDPR), you may at any time request a copy of the information we hold on you (for which we may charge a small fee to offset our administration costs) by writing to us (see above).</p>
+
+      <p>This privacy policy will be reviewed, and may be revised, from time to time. You may wish to revisit it regularly.</p>
+
+      <h3>Public Data and Publishing</h3>
+
+      <p>Browsing this site doesn’t reveal your identity publicly, though see Private Logging later in this document for more information.</p>
+
+      <h3>Email</h3>
+
+      <p>If you have given us your email address, you agree to allow us to send email to that address in order to deliver our services to you. In practice this will usually involve emails about service down-time or important changes to services to which you subscribe. Some emails — such as those subscribed to mailing lists — will receive more traffic as an integral part of the service.</p>
+
+      <p>In addition to necessary emails, we will also occasionally use your email address to contact you for our own purposes. E.g. we might want to tell you about new services we are offering. We will only do so sparingly. We understand how annoying it can be to receive large quantities of unsolicited mail. We will do our best to ensure that anything we do send to you will be relevant and unobtrusive.</p>
+
+      <h3>Cookies</h3>
+
+      <p>The data hub is based on the open source CKAN application. CKAN uses a cookie to keep track whether a user is logged in and whether they have selected specific preferences.
+
+      The data hub also relies on third-party services that set their own cookies. The Bootstrap CDN, which is used for the data hub's user interface, uses an analytics cookie for generating usage statistics. Atlassian, which provides the data hub's bug tracking integration, also uses several cookies for usage analytics as well as for enabling the functionality of the bug tracker.</p>
+
+      <h3>Social Media Plugins</h3>
+
+      <p>There are no social media plugins (e.g. Twitter, Facebook, Google) in usage. Maybe at a later time two-clicks-versions will be implemented enabling informed consent.</p>
+
+      <h3>Webserver Logging</h3>
+
+      <p>Any time you visit a page on the internet, you send quite a bit of information to the server. The webservers that host this site maintain access logs with the information that you send. This information is used to provide site statistics and to get an idea of popular pages and what sites link here. We do not intend to use these logs to identify legitimate users.</p>
+
+      <p>The data logged may be used by us to solve technical problems with the site and, in cases of abuse of this site, to investigate the abuse.</p>
+
+      <p>If you are concerned about attempts to match your IP address to your identity, you may wish to use an anonymous browsing service or attempt some means to obfuscate your real IP address.</p>
+
+      <p>Logins from users are tracked for abuse monitoring only.</p>
+
+      <h3>Web Analytics</h3>
+
+      <p>Web analytics services (e.g. Google Analytics) are not used.</p>
+
+      <h3>Data Release Policy</h3>
+
+      <p>Our policy is only to release the data we collect in the following circumstances:
+        <ul>
+          <li>As required by law, such as in response to a valid request from law enforcement.</li>
+          <li>To designated third parties to resolve or investigate abuse complaints.</li>
+          <li>When the information is related to spiders or bots, usually when investigating technical issues.</li>
+          <li>For abusive users, we may release information to assist in attempting to block the abusive user or to complain to that user’s Internet Service Provider.</li>
+          <li>If necessary to defend legal claims against us by third parties.</li>
+          <li>When we deem it necessary to protect the property or rights of the user community, or this website.</li>
+        </ul>
+      </p>
+
+      <h3>No Selling of Information</h3>
+
+      <p>We will not sell information collected via this site, such as your email address, to third parties without your explicit consent.</p>
+
+      <h3>Information Security</h3>
+
+      <p>We make no guarantee that the information that you provide us will be secure.</p>
 
       <h3>Links to other websites</h3>
 
@@ -38,6 +107,7 @@
       <h3>Changes to this privacy policy</h3>
 
       <p>If this privacy policy changes in any way, we will place an updated version on this page. Regularly reviewing this page ensures you are always aware of what information we collect, how we use it and under what circumstances, if any, we will share it with other parties.</p>
+    
     </div>
   </article>
 {% endblock %}
