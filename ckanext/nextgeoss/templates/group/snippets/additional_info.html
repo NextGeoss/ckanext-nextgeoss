@@ -3,11 +3,8 @@
 
 #}
 {% if extras %}
-    {% set dataset_extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
-    {% if dataset_extent %}
-       {% snippet "spatial/snippets/dataset_map_big.html", extent=dataset_extent %}
-    {% endif %}
 
+  {% snippet "spatial/snippets/topic_map_big.html" %}
 	<!-- Resources -->
 	<section id="dataset-resources" class="resources">
 		<h3><i class="fa fa-download"></i> {{ _('Download and links') }}</h3>
@@ -86,6 +83,19 @@
 			</div>
 			{% endblock %}
 		</section>
+
+		<section class="thumbnails-info">
+          <h3><i class="fa fa-image"></i> {{ _('Thumbnails') }}</h3>
+
+          <ul class="media-grid masonry" data-module="media-grid" style="position: relative">
+          	<li class="media-item masonry-brick">
+          		<a href="/thumb_eg1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg1.jpg')}}"></a>
+          	</li>
+          	<li class="media-item masonry-brick">
+          		<a href="/thumb_eg2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg2.jpg')}}"></a>
+          	</li>          	
+          </ul>
+        </section>
 
         <section class="additional-info">
           <h3><i class="fa fa-info-circle"></i> {{ _('Pilot Metadata') }}</h3>
