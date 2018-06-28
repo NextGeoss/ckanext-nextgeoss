@@ -506,11 +506,17 @@ h5.dataset-detail-title {
   border-bottom: 1px solid #292929;
 }
 
-
 .additional-info {
   margin-top: 50px;
 }
 .additional-info h3 {
+    border-bottom: 1px solid #292929;
+}
+
+.thumbnails-info {
+  margin-top: 50px;
+}
+.thumbnails-info h3 {
     border-bottom: 1px solid #292929;
 }
 
