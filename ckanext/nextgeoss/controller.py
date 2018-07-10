@@ -36,3 +36,6 @@ class StaticController(base.BaseController):
 
     def develop(self):
         return base.render('static/develop.html')
+
+    def private(self):
+        return base.render('static/private.html')

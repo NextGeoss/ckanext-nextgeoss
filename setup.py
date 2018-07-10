@@ -24,8 +24,8 @@ setup(
     url='https://github.com/kmbn/ckanext-nextgeoss',
 
     # Author details
-    author='''Kevin Brochet-Nguyen''',
-    author_email='''kevin@viderum.com''',
+    author='''Viderum''',
+    author_email='''info@viderum.com''',
 
     # Choose your license
     license='AGPL',
