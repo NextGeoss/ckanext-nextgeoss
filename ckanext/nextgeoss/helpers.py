@@ -1,4 +1,5 @@
 from ckan.common import config
+import ast
 
 
 def get_jira_script():
@@ -34,6 +35,86 @@ def get_bug_disclaimer():
     disclaimer = config.get(setting, default)
 
     return disclaimer
+
+
+def topic_resources(extras):
+    resources = []
+    no_resources = 0
+
+    for extra in extras:
+        if extra[0] == 'no_resources':
+            no_resources = int(extra[1])
+
+    for extra in extras:
+        k, v = extra[0], extra[1]
+        if 'resource_' in k and 'Social Media' not in v:
+            no_resources = no_resources - 1            
+            import ast
+            values = ast.literal_eval(extra[1])
+            resources.append({'key': extra[0], 'value': str(values)})
+    return resources
+
+
+def get_value(resources, key):
+    import ast
+    resources_tmp = ast.literal_eval(resources)
+    value = ''
+
+    for resource in resources_tmp:
+        if resource['key'] == key:
+            value = resource['value']
+
+    return value
+
+
+def get_pilot_extras(extras):
+    pilot_extras = []
+    print type(pilot_extras)
+    skip = {'resource_'}
+
+    for extra in extras:
+        k, v = extra[0], extra[1]
+
+        if 'resource' not in k:
+            pilot_extras.append({'key': k, 'value': v})
+            print pilot_extras
+    print type(pilot_extras)
+    return pilot_extras
+
+
+def harvest_sorted_extras(package_extras, auto_clean=False, subs=None, exclude=None):
+    ''' Used for outputting package extras
+    :param package_extras: the package extras
+    :type package_extras: dict
+    :param auto_clean: If true capitalize and replace -_ with spaces
+    :type auto_clean: bool
+    :param subs: substitutes to use instead of given keys
+    :type subs: dict {'key': 'replacement'}
+    :param exclude: keys to exclude
+    :type exclude: list of strings
+    '''
+
+    # If exclude is not supplied use values defined in the config
+    if not exclude:
+        exclude = config.get('package_hide_extras', [])
+    output = []
+    for extra in sorted(package_extras, key=lambda x: x['key']):
+        if extra.get('state') == 'deleted':
+            continue
+        extras_tmp = ast.literal_eval(extra['value'])
+
+        for ext in extras_tmp:
+            k, v = ext['key'], ext['value']
+            if k in exclude:
+                continue
+            if subs and k in subs:
+                k = subs[k]
+            elif auto_clean:
+                k = k.replace('_', ' ').replace('-', ' ').title()
+            if isinstance(v, (list, tuple)):
+                v = ", ".join(map(unicode, v))
+            output.append((k, v))
+    return output
 
 
 def get_extra_names():
@@ -199,74 +280,3 @@ def get_source_namespace(data_dict):
     }
 
     return namespaces.get(source, None)
-
-
-def get_topic_information(extras):
-    idetification_info = []
-    identification_info_values = {'title_topic', 'date', 'edition', 'abstract', 'purpose', 'status_topic',
-                                  'dateType', 'tags', 'otherConstraints', 'topicCategory' }
-
-    for extra in extras:
-        if extra[0] in identification_info_values:
-            print extra[0]
-            idetification_info.append({'key': extra[0], 'value': extra[1]})
-
-    return idetification_info
-
-
-def get_contact_information(extras):
-    contact_info = []
-    contact_info_values = {'individualName', 'organisationName', 'positionName', 'deliveryPoint', 'city',\
-                           'postalCode', 'country', 'electronicMailAddress'}
-
-    for extra in extras:
-        if extra[0] in contact_info_values:
-            contact_info.append({'key': extra[0], 'value': extra[1]})
-
-    return contact_info
-
-
-def get_metadata_information(extras):
-    metadata_info = []
-    metadata_info_values = {'fileIdentifier', 'characterSet', 'CharacterString', 'dateStamp', 'metadataStandardName',\
-                           'metadataStandardVersion'}
-
-    for extra in extras:
-        if extra[0] in metadata_info_values:
-            metadata_info.append({'key': extra[0], 'value': extra[1]})
-
-    return metadata_info
-
-
-def get_distribution_information(extras):
-    distribution_info = []
-    distribution_info_values = {'URL', 'protocol', 'name', 'description', 'maintenanceAndUpdateFrequency', 'code', \
-                                'lineage'}
-
-    for extra in extras:
-        if any(ext in extra[0] for ext in distribution_info_values):
-            distribution_info.append({'key': extra[0], 'value': extra[1]})
-
-    return distribution_info
-
-
-def get_spatial_information(extras):
-    spatial_info = []
-    spatial_info_values = {'numberOfDimensions', 'transformationParameterAvailability'}
-
-    for extra in extras:
-        if extra[0] in spatial_info_values:
-            spatial_info.append({'key': extra[0], 'value': extra[1]})
-
-    return spatial_info
-
-
-def get_reference_sys_information(extras):
-    reference_sys_info = []
-    reference_sys_info_values = ['code']
-
-    for extra in extras:
-        if extra[0] in reference_sys_info_values:
-            reference_sys_info.append({'key': extra[0], 'value': extra[1]})
-
-    return reference_sys_info
