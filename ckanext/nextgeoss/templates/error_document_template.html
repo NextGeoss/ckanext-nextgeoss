@@ -1,16 +1,24 @@
 {% extends "page.html" %}
-{%- block page -%}
+
+{% block subtitle %}{{ gettext('Error %(error_code)s', error_code=c.code[0]) }}{% endblock %}
+
+{% block primary %}
   <article class="module">
     <div class="module-content">
-        <h1 class="text-center">The NextGEOSS Data Hub is in a Closed Beta Phase</h1>
+      {% if c.code[0] == '403' or c.code[0] == 403 %}
+        <h1 class="text-center">NextGEOSS is in a Closed Beta Phase</h1>
         <div class="beta-access">
           <p>To use the data hub during the closed beta phase you'll need to log in or register for an account.</p>
-          <p>While everyone may create an account via the NextGEOSS User Management portal, <strong>only participants in the closed beta may access the data hub</strong>. If you are able to log in via the NextGEOSS User Management portal but see an "unauthorized user" message when trying to access the Data Hub, <a href="https://nextgeoss.eu/engage-with-nextgeoss/">contact NextGEOSS</a> to request access to the closed beta.</p>
-          <p>Once the closed beta is completed, the data hub will be open to all users. Use of the open data hub will not require an account.</p>
+          <p>Only participants in the closed beta may register.</p>
+          <p>Once the closed beta is completed, the data hub will be open to all users and will not require an account to use.</p>
           </br>
           <div class="text-center">
             <a href="/user/login" class="btn btn-primary" type="button">{{ _('Log in') }}</a> or <a href="/user/register" class="btn btn-primary" type="button">{{ _('Register') }}</a>
           </div>
+        </div>
+      {% else %}
+        {{ c.content }}
+      {% endif %}
     </div>
   </article>
 {% endblock %}

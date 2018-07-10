@@ -2,11 +2,8 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import routes.mapper
 
-import ckan.lib.helpers as h
-
 from ckanext.nextgeoss import helpers
-from ckan.common import _, c
-import ckan.lib.base as base
+from ckan.common import _
 
 
 class NextgeossPlugin(plugins.SingletonPlugin):
@@ -39,14 +36,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             'ng_extras_to_exclude': helpers.get_extras_to_exclude,
             'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
             'ng_get_from_extras': helpers.get_from_extras,
-            'ng_get_source_namespace': helpers.get_source_namespace,
-            'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
-            'nextgeoss_get_topic_information': helpers.get_topic_information,
-            'nextgeoss_get_contact_information': helpers.get_contact_information,  # noqa: E501
-            'nextgeoss_get_metadata_information': helpers.get_metadata_information,  # noqa: E501
-            'nextgeoss_get_distribution_information': helpers.get_distribution_information,  # noqa: E501
-            'nextgeoss_get_spatial_information': helpers.get_spatial_information,  # noqa: E501
-            'nextgeoss_get_reference_sys_information': helpers.get_reference_sys_information  # noqa: E501
+            'ng_get_source_namespace': helpers.get_source_namespace
         }
 
     # IRoutes
@@ -93,7 +83,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                      _redirect_code='301 Moved Permanently')
         map.redirect('/group/{url:.*}', '/topic/{url}',
                      _redirect_code='301 Moved Permanently')
-        group_controller = 'ckanext.nextgeoss.controllers.group:NextgeossGroupController'  # noqa: E501
+        group_controller = 'ckanext.nextgeoss.controllers.group:NextgeossGroupController'
         with routes.mapper.SubMapper(map, controller=group_controller) as m:
             m.connect('topic_index', '/topic', action='index')
             m.connect('/topic/list', action='list')
@@ -141,8 +131,6 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='use')
             m.connect('develop', '/develop',
                       action='develop')
-            m.connect('private', '/private',
-                      action='private')
 
         return map
 
@@ -157,6 +145,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         facets_dicts. facets_dict will be an ordered dictionary,
         so we need to preserve the order when we update.
         """
+        print(facets_dict)
         facets_dict['groups'] = _('Topics')
         facets_dict['organization'] = _('Providers')
 
@@ -173,21 +162,3 @@ class NextgeossPlugin(plugins.SingletonPlugin):
     def organization_facets(self, facets_dict, organization_type, package_type):  # noqa: E501
         """Update the facets used on organization search pages."""
         return self._update_facets(facets_dict)
-
-
-# Make the portal private for the beta
-# Yes, this is bad.
-# Locking down the beta is worse.
-# When the beta is over, we can just delete this section.
-def private(self, action, **env):
-    url = h.current_url()
-    if c.userobj.about != "true" \
-        and url != "/user/login" \
-        and url != "/user/register" \
-        and url != "/private" \
-        and not url.startswith("/opensearch"):  # noqa: E129
-
-        return h.redirect_to("/private")
-
-# Monkeypatch the controllers so that we can lock down the beta.
-base.BaseController.__after__ = private

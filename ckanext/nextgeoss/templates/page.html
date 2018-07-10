@@ -2,6 +2,28 @@
 
 {%- block page -%}
 
+{% set url = h.current_url() %}
+{% if c.userobj.about != "true" and url != "/user/login" and  url != "/user/register" %}
+  </br>
+  </br>
+  <article class="module">
+    <div class="module-content">
+        <h1 class="text-center">NextGEOSS is in a Closed Beta Phase</h1>
+        <div class="beta-access">
+          <p>To use the data hub during the closed beta phase you'll need to log in or register for an account.</p>
+          <p>Only participants in the closed beta may register.</p>
+          <p>Once the closed beta is completed, the data hub will be open to all users and will not require an account to use.</p>
+          </br>
+          <div class="text-center">
+            <a href="/user/login" class="btn btn-primary" type="button">{{ _('Log in') }}</a> or <a href="/user/register" class="btn btn-primary" type="button">{{ _('Register') }}</a>
+          </div>
+        </div>
+
+    </div>
+  </article>
+
+
+{% else %}
   {% block skip %}
     {{ super() }}
   {% endblock %}
@@ -61,6 +83,7 @@
   {%- block footer %}
     {% include "footer.html" %}
   {% endblock -%}
+{% endif %}
 {%- endblock -%}
 
 {%- block scripts %}
