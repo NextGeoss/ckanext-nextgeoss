@@ -48,7 +48,7 @@ def topic_resources(extras):
     for extra in extras:
         k, v = extra[0], extra[1]
         if 'resource_' in k and 'Social Media' not in v:
-            no_resources = no_resources - 1            
+            no_resources = no_resources - 1
             import ast
             values = ast.literal_eval(extra[1])
             resources.append({'key': extra[0], 'value': str(values)})
@@ -70,7 +70,6 @@ def get_value(resources, key):
 def get_pilot_extras(extras):
     pilot_extras = []
     print type(pilot_extras)
-    skip = {'resource_'}
 
     for extra in extras:
         k, v = extra[0], extra[1]
@@ -82,7 +81,8 @@ def get_pilot_extras(extras):
     return pilot_extras
 
 
-def harvest_sorted_extras(package_extras, auto_clean=False, subs=None, exclude=None):
+def harvest_sorted_extras(package_extras, auto_clean=False, subs=None,
+                          exclude=None):
     ''' Used for outputting package extras
     :param package_extras: the package extras
     :type package_extras: dict

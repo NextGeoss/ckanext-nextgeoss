@@ -2,8 +2,11 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import routes.mapper
 
+import ckan.lib.helpers as h
+
 from ckanext.nextgeoss import helpers
-from ckan.common import _
+from ckan.common import _, c
+import ckan.lib.base as base
 
 
 class NextgeossPlugin(plugins.SingletonPlugin):
@@ -25,18 +28,18 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
     def get_helpers(self):
         return {
-            'nextgeoss_get_jira_script': helpers.get_jira_script,
-            'nextgeoss_get_add_feedback_url': helpers.get_add_feedback_url,
-            'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
-            'nextgeoss_get_topic_resources': helpers.topic_resources,
-            'nextgeoss_get_value': helpers.get_value,
-            'nextgeoss_get_pilot_extras': helpers.get_pilot_extras,
-            'harvest_sorted_extras': helpers.harvest_sorted_extras,
-            'ng_extra_names': helpers.get_extra_names,
-            'ng_extras_to_exclude': helpers.get_extras_to_exclude,
-            'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
-            'ng_get_from_extras': helpers.get_from_extras,
-            'ng_get_source_namespace': helpers.get_source_namespace
+             'nextgeoss_get_jira_script': helpers.get_jira_script,
+             'nextgeoss_get_add_feedback_url': helpers.get_add_feedback_url,
+             'nextgeoss_get_bug_disclaimer': helpers.get_bug_disclaimer,
+             'nextgeoss_get_topic_resources': helpers.topic_resources,
+             'nextgeoss_get_value': helpers.get_value,
+             'nextgeoss_get_pilot_extras': helpers.get_pilot_extras,
+             'harvest_sorted_extras': helpers.harvest_sorted_extras,
+             'ng_extra_names': helpers.get_extra_names,
+             'ng_extras_to_exclude': helpers.get_extras_to_exclude,
+             'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
+             'ng_get_from_extras': helpers.get_from_extras,
+             'ng_get_source_namespace': helpers.get_source_namespace
         }
 
     # IRoutes
@@ -83,7 +86,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                      _redirect_code='301 Moved Permanently')
         map.redirect('/group/{url:.*}', '/topic/{url}',
                      _redirect_code='301 Moved Permanently')
-        group_controller = 'ckanext.nextgeoss.controllers.group:NextgeossGroupController'
+        group_controller = 'ckanext.nextgeoss.controllers.group:NextgeossGroupController'  # noqa: E501
         with routes.mapper.SubMapper(map, controller=group_controller) as m:
             m.connect('topic_index', '/topic', action='index')
             m.connect('/topic/list', action='list')
@@ -131,6 +134,10 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='use')
             m.connect('develop', '/develop',
                       action='develop')
+            m.connect('private', '/private',
+                      action='private')
+            m.connect('unauthorized', '/unauthorized',
+                      action='unauthorized')
 
         return map
 
@@ -145,7 +152,6 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         facets_dicts. facets_dict will be an ordered dictionary,
         so we need to preserve the order when we update.
         """
-        print(facets_dict)
         facets_dict['groups'] = _('Topics')
         facets_dict['organization'] = _('Providers')
 
@@ -162,3 +168,42 @@ class NextgeossPlugin(plugins.SingletonPlugin):
     def organization_facets(self, facets_dict, organization_type, package_type):  # noqa: E501
         """Update the facets used on organization search pages."""
         return self._update_facets(facets_dict)
+
+
+# Make the portal private for the beta
+# Yes, this is bad.
+# Locking down the beta is worse.
+# When the beta is over, we can just delete this section.
+def private(self, action, **env):
+    url = h.current_url()
+    if not c.userobj \
+        and url != "/user/login" \
+        and url != "/user/register" \
+        and url != "/private" \
+        and not url.startswith("/opensearch") \
+        and not url.startswith("/oauth2"):  # noqa: E129
+
+        return h.redirect_to("/private")
+
+    elif not c.userobj \
+        or url == "/user/login" \
+        or url == "/user/register" \
+        or url == "/private" \
+        or url.startswith("/opensearch") \
+        or url.startswith("/oauth2"):  # noqa: E129
+
+        pass
+
+    elif getattr(c.userobj, "about", "false") != "true" \
+        and url != "/user/login" \
+        and url != "/user/register" \
+        and url != "/unauthorized" \
+        and not url.startswith("/opensearch") \
+        and not url.startswith("/oauth2"):  # noqa: E129
+
+        return h.redirect_to("/unauthorized")
+
+# Monkeypatch the controllers so that we can lock down the beta.
+base.BaseController.__after__ = private  # noqa: E305
+
+# End of private beta code
