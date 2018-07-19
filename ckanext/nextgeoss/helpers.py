@@ -280,3 +280,26 @@ def get_source_namespace(data_dict):
     }
 
     return namespaces.get(source, None)
+
+
+def get_pkg_dict_dataset_extra(pkg_dict, key, default=None):
+    '''Returns the value for the dataset extra with the provided key.
+
+    If the key is not found, it returns a default value, which is None by
+    default.
+
+    :param pkg_dict: dictized dataset
+    :key: extra key to lookup
+    :default: default value returned if not found
+    '''
+
+    extras = pkg_dict['extras'] if 'extras' in pkg_dict else []
+
+    for extra in extras:
+        extras_tmp = ast.literal_eval(extra['value'])
+
+        for ext in extras_tmp:
+            if ext['key'] == key:
+                return ext['value']
+
+    return default
