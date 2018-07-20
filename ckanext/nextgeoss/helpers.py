@@ -294,16 +294,18 @@ def get_pkg_dict_dataset_extra(pkg_dict, key, default=None):
     '''
 
     extras = pkg_dict['extras'] if 'extras' in pkg_dict else []
+    value = ''
 
     for extra in extras:
-        extras_tmp = ast.literal_eval(extra['value'])
+        if extra['key'] == key:
+            value = extra['value']
 
-        if type(extras_tmp) == list:
+        if value == '':
+            extras_tmp = ast.literal_eval(extra['value'])
+
             for ext in extras_tmp:
                 if ext['key'] == key:
-                    return ext['value']
-        else:
-            if extra['key'] == key:
-                return extra['value']
+                    value = ext['value']
+        return value
 
     return default
