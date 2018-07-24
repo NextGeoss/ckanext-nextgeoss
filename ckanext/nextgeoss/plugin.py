@@ -39,7 +39,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'ng_extras_to_exclude': helpers.get_extras_to_exclude,
              'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
              'ng_get_from_extras': helpers.get_from_extras,
-             'ng_get_source_namespace': helpers.get_source_namespace
+             'ng_get_source_namespace': helpers.get_source_namespace,
+             'get_pkg_dict_dataset_extra': helpers.get_pkg_dict_dataset_extra
         }
 
     # IRoutes
