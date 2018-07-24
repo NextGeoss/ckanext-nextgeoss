@@ -248,15 +248,15 @@ def get_dataset_thumbnail_path(dataset):
     Return the local path for a dataset's thumbnail. If no thumbnail is
     available, return the path to a placeholder image.
     """
-    extras = {extra['key']: extra['value'] for extra in dataset['extras']}
+    # extras = {extra['key']: extra['value'] for extra in dataset['extras']}
 
-    if dataset['organization']['title'] == 'Vito':
-        return '/thumbnails/{}.png'.format(extras.get('identifier',
-                                                      'placeholder'))
-    elif dataset['organization']['title'] == 'Sentinel':
-        return '/thumbnails/{}.jpg'.format(extras.get('uuid', 'placeholder'))
-    else:
-        return '/base/images/placeholder-image.png'
+    # if dataset['organization']['title'] == 'Vito':
+    #     return '/thumbnails/{}.png'.format(extras.get('identifier',
+    #                                                   'placeholder'))
+    # elif dataset['organization']['title'] == 'Sentinel':
+    #     return '/thumbnails/{}.jpg'.format(extras.get('uuid', 'placeholder'))
+    # else:
+    return '/base/images/placeholder-image.png'
 
 
 def get_from_extras(data_dict, key, alt_value=None):
