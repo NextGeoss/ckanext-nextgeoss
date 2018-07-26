@@ -182,6 +182,7 @@ def private(self, action, **env):
         and url != "/user/register" \
         and url != "/private" \
         and not url.startswith("/opensearch") \
+        and not url.startswith("/logs") \
         and not url.startswith("/oauth2"):  # noqa: E129
 
         return h.redirect_to("/private")
@@ -191,6 +192,7 @@ def private(self, action, **env):
         or url == "/user/register" \
         or url == "/private" \
         or url.startswith("/opensearch") \
+        or url.startswith("/logs") \
         or url.startswith("/oauth2"):  # noqa: E129
 
         pass
@@ -200,6 +202,7 @@ def private(self, action, **env):
         and url != "/user/register" \
         and url != "/unauthorized" \
         and not url.startswith("/opensearch") \
+        and not url.startswith("/logs") \
         and not url.startswith("/oauth2"):  # noqa: E129
 
         return h.redirect_to("/unauthorized")
