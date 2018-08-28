@@ -10,6 +10,9 @@ from ckanext.nextgeoss import helpers
 from ckan.common import _, c, config
 import ckan.lib.base as base
 
+import shapely
+import shapely.geometry
+
 
 class NextgeossPlugin(plugins.SingletonPlugin):
     ''' Plugin for the NextGEOSS theme.
@@ -202,7 +205,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                 else:
                     # Check if coordinates are defined counter-clockwise,
                     # otherwise we'll get wrong results from Solr
-                    lr = shapely.geometry.polygon.LinearRing(geometry['coordinates'][0])
+                    lr = shapely.geometry.polygon.LinearRing(geometry['coordinates'][0])  # noqa: E501
                     if not lr.is_ccw:
                         lr.coords = list(lr.coords)[::-1]
                     polygon = shapely.geometry.polygon.Polygon(lr)
