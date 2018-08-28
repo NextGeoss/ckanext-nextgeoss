@@ -216,7 +216,6 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             if not wkt:
                 shape = shapely.geometry.asShape(geometry)
                 if not shape.is_valid:
-                    log.error('Wrong geometry, not indexing')
                     return pkg_dict
                 wkt = shape.wkt
 
