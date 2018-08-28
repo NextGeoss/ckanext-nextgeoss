@@ -1,4 +1,5 @@
 import ast
+import json
 
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
@@ -189,6 +190,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         # the spatial extension.
         geometry = pkg_dict.get("spatial", None)
         if geometry:
+            geometry = json.loads(geometry)
             wkt = None
 
             # Check potential problems with bboxes
