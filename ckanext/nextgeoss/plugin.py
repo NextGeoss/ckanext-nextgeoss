@@ -181,6 +181,42 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         if dataset_extra:
             pkg_dict.update(convert_dataset_extra(dataset_extra))
         pkg_dict.pop("extras_dataset_extra", None)
+
+        # Handle spatial indexing here since the string extras break
+        # the spatial extension.
+        geometry = pkg_dict.get("spatial", None)
+        if geometry:
+            wkt = None
+
+            # Check potential problems with bboxes
+            if geometry['type'] == 'Polygon' \
+               and len(geometry['coordinates']) == 1 \
+               and len(geometry['coordinates'][0]) == 5:
+
+                # Check wrong bboxes (4 same points)
+                xs = [p[0] for p in geometry['coordinates'][0]]
+                ys = [p[1] for p in geometry['coordinates'][0]]
+
+                if xs.count(xs[0]) == 5 and ys.count(ys[0]) == 5:
+                    wkt = 'POINT({x} {y})'.format(x=xs[0], y=ys[0])
+                else:
+                    # Check if coordinates are defined counter-clockwise,
+                    # otherwise we'll get wrong results from Solr
+                    lr = shapely.geometry.polygon.LinearRing(geometry['coordinates'][0])
+                    if not lr.is_ccw:
+                        lr.coords = list(lr.coords)[::-1]
+                    polygon = shapely.geometry.polygon.Polygon(lr)
+                    wkt = polygon.wkt
+
+            if not wkt:
+                shape = shapely.geometry.asShape(geometry)
+                if not shape.is_valid:
+                    log.error('Wrong geometry, not indexing')
+                    return pkg_dict
+                wkt = shape.wkt
+
+            pkg_dict['spatial_geom'] = wkt
+
         return pkg_dict
 
 
