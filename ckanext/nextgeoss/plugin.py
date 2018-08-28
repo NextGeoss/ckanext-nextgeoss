@@ -1,3 +1,5 @@
+import ast
+
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import routes.mapper
@@ -5,7 +7,7 @@ import routes.mapper
 import ckan.lib.helpers as h
 
 from ckanext.nextgeoss import helpers
-from ckan.common import _, c
+from ckan.common import _, c, config
 import ckan.lib.base as base
 
 
@@ -16,6 +18,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.ITemplateHelpers, inherit=True)
     plugins.implements(plugins.IRoutes)
     plugins.implements(plugins.IFacets)
+    plugins.implements(plugins.IPackageController, inherit=True)
 
     # IConfigurer
 
@@ -49,7 +52,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         # Rename organizations
         map.redirect('/organization', '/provider',
                      _redirect_code='301 Moved Permanently')
-        map.redirect('/organization/{url:.*}', '/provider/{url}',
+        map.redirect('/organization/{url}?{qq}', '/provider/{url}{query}',
                      _redirect_code='301 Moved Permanently')
         org_controller = 'ckan.controllers.organization:OrganizationController'
         with routes.mapper.SubMapper(map, controller=org_controller) as m:
@@ -170,44 +173,64 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         """Update the facets used on organization search pages."""
         return self._update_facets(facets_dict)
 
+    # IPackageController
+
+    def before_index(self, pkg_dict):
+        """Expand extras if they're saved as a single string."""
+        dataset_extra = pkg_dict.pop("dataset_extra", None)
+        if dataset_extra:
+            pkg_dict.update(convert_dataset_extra(dataset_extra))
+        pkg_dict.pop("extras_dataset_extra", None)
+        return pkg_dict
+
 
 # Make the portal private for the beta
 # Yes, this is bad.
 # Locking down the beta is worse.
 # When the beta is over, we can just delete this section.
 def private(self, action, **env):
-    url = h.current_url()
-    if not c.userobj \
-        and url != "/user/login" \
-        and url != "/user/register" \
-        and url != "/private" \
-        and not url.startswith("/opensearch") \
-        and not url.startswith("/logs") \
-        and not url.startswith("/oauth2"):  # noqa: E129
+    if "oauth2" in config.get("ckan.plugins"):
+        url = h.current_url()
+        if not c.userobj \
+            and url != "/user/login" \
+            and url != "/user/register" \
+            and url != "/private" \
+            and not url.startswith("/opensearch") \
+            and not url.startswith("/logs") \
+            and not url.startswith("/oauth2"):  # noqa: E129
 
-        return h.redirect_to("/private")
+            return h.redirect_to("/private")
 
-    elif not c.userobj \
-        or url == "/user/login" \
-        or url == "/user/register" \
-        or url == "/private" \
-        or url.startswith("/opensearch") \
-        or url.startswith("/logs") \
-        or url.startswith("/oauth2"):  # noqa: E129
+        elif not c.userobj \
+            or url == "/user/login" \
+            or url == "/user/register" \
+            or url == "/private" \
+            or url.startswith("/opensearch") \
+            or url.startswith("/logs") \
+            or url.startswith("/oauth2"):  # noqa: E129
 
+            pass
+
+        elif getattr(c.userobj, "about", "false") != "true" \
+            and url != "/user/login" \
+            and url != "/user/register" \
+            and url != "/unauthorized" \
+            and not url.startswith("/opensearch") \
+            and not url.startswith("/logs") \
+            and not url.startswith("/oauth2"):  # noqa: E129
+
+            return h.redirect_to("/unauthorized")
+    else:
         pass
-
-    elif getattr(c.userobj, "about", "false") != "true" \
-        and url != "/user/login" \
-        and url != "/user/register" \
-        and url != "/unauthorized" \
-        and not url.startswith("/opensearch") \
-        and not url.startswith("/logs") \
-        and not url.startswith("/oauth2"):  # noqa: E129
-
-        return h.redirect_to("/unauthorized")
 
 # Monkeypatch the controllers so that we can lock down the beta.
 base.BaseController.__after__ = private  # noqa: E305
 
 # End of private beta code
+
+
+def convert_dataset_extra(dataset_extra_string):
+    """Convert the dataset_extra string into indexable extras."""
+    extras = ast.literal_eval(dataset_extra_string)
+
+    return [(extra["key"], extra["value"]) for extra in extras]
