@@ -2,7 +2,7 @@
 {% set placeholder = _('Try "sea level portugal"') %}
 
 <form class="search-form" method="get" action="{% url_for controller='package', action='search' %}">
-  {% set count = h.get_site_statistics().dataset_count %}
+  {% set count = h.nextgeoss_get_site_statistics().dataset_count %}
   {% if count %}
       {% set search_message = ungettext('Search {number} Earth observation dataset', 'Search {number} Earth observation datasets', count) %}
   {% else %}
