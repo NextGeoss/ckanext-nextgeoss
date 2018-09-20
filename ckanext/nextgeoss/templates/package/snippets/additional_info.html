@@ -78,13 +78,23 @@
         'InstrumentName': 'Instrument Name',
         'OrbitDirection': 'Orbit Direction', 'StartTime': 'Start Time',
         'StopTime': 'Stop Time'}%}
-        {% for extra in h.harvest_sorted_extras(pkg_dict.extras, subs=subs, exclude=exclude) %}
-          {% set key, value = extra %}
-          <tr rel="dc:relation" resource="_:extra{{ i }}">
-            <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
-            <td class="dataset-details" property="rdf:value">{{ value }}</td>
-          </tr>
-        {% endfor %}
+        {% if pkg_dict.extras[0]['key'] == 'dataset_extra' %}
+          {% for extra in h.harvest_sorted_extras(pkg_dict.extras, subs=subs, exclude=exclude) %}
+            {% set key, value = extra %}
+            <tr rel="dc:relation" resource="_:extra{{ i }}">
+              <th scope="row" class="dataset-label" property="rdfs:label">{{WOO}}{{ _(key) }}</th>
+              <td class="dataset-details" property="rdf:value">{{ value }}</td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          {% for extra in h.sorted_extras(pkg_dict.extras, subs=subs, exclude=exclude) %}
+            {% set key, value = extra %}
+            <tr rel="dc:relation" resource="_:extra{{ i }}">
+              <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
+              <td class="dataset-details" property="rdf:value">{{ value }}</td>
+            </tr>
+          {% endfor %}
+        {% endif %}
       {% endblock %}
 
       {% endblock %}
