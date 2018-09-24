@@ -1,5 +1,6 @@
 from ckan.common import config
 import ckan.logic as logic
+import ckan.lib.helpers as helpers
 import ast
 
 
@@ -99,6 +100,7 @@ def harvest_sorted_extras(package_extras, auto_clean=False, subs=None,
     if not exclude:
         exclude = config.get('package_hide_extras', [])
     output = []
+
     for extra in sorted(package_extras, key=lambda x: x['key']):
         if extra.get('state') == 'deleted':
             continue
@@ -115,6 +117,7 @@ def harvest_sorted_extras(package_extras, auto_clean=False, subs=None,
             if isinstance(v, (list, tuple)):
                 v = ", ".join(map(unicode, v))
             output.append((k, v))
+
     return output
 
 
@@ -296,13 +299,16 @@ def get_pkg_dict_dataset_extra(pkg_dict, key, default=None):
 
     extras = pkg_dict['extras'] if 'extras' in pkg_dict else []
 
-    for extra in extras:
-        extras_tmp = ast.literal_eval(extra['value'])
+    if 'dataset_extra' in extras:
+        for extra in extras:
+            extras_tmp = ast.literal_eval(extra['value'])
 
-        for ext in extras_tmp:
-            if ext['key'] == key:
-                value = ext['value']
-                return value
+            for ext in extras_tmp:
+                if ext['key'] == key:
+                    value = ext['value']
+                    return value
+    else:
+        helpers.get_pkg_dict_extra(pkg_dict, key, default=None)
 
     return default
 
