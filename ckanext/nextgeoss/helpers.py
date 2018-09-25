@@ -316,7 +316,7 @@ def get_pkg_dict_dataset_extra(pkg_dict, key, default=None):
 def nextgeoss_get_site_statistics():
     stats = {}
     stats['dataset_count'] = logic.get_action('package_search')(
-        {'include_private': True}, {"rows": 1})['count']
+        {}, {'include_private': True})['count']
     stats['group_count'] = len(logic.get_action('group_list')({}, {}))
     stats['organization_count'] = len(
         logic.get_action('organization_list')({}, {}))
