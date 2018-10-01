@@ -45,6 +45,12 @@ body,.masthead, [role="main"], .main {
   background-size: cover;
   padding-bottom: 20px;
 }
+.search-box h2.heading {
+  margin-bottom: 0px;
+}
+.search-box h5.description {
+  margin-top: 0px;
+}
 .search-form {
     border-bottom: none;
     margin-bottom: 10px;
