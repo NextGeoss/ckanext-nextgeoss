@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12 col-sm-12">
         <h1 class="hero-title">{{ _('Europe&#8217;s Earth</br>Observation Data Hub')|safe }}</h1>
-        <h4 class="hero-subtitle">{{ _('Search satellite, remote sensing, in situ, and citizen science data about climate change, agriculture, polution and more.')|safe }}</h4>
+        <h4 class="hero-subtitle">{{ _('Satellite, remote sensing, in situ, and citizen science data about climate change, agriculture, polution and more.')|safe }}</h4>
       </div>
     </div>
   </div>
@@ -11,13 +11,13 @@
 
 <div class="search-box">
   <div class="container">
-    <div class="section text-center section-landing">
+    <div class="section text-center">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           {% snippet 'home/snippets/search.html' %}
         </div>
         <div class="col-md-8 col-md-offset-2">
-          <h5 class="description">{{ _('Want to explore the full the catalogue instead?') }}</h5>
+          <h5 class="description">{{ _('Want to explore the full the catalogue?') }}</h5>
           <a href="{{ h.url_for('dataset') }}" class="btn btn-primary">{{ _('Start exploring') }}</a>
         </div>
       </div>
