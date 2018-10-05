@@ -299,7 +299,7 @@ def get_pkg_dict_dataset_extra(pkg_dict, key, default=None):
 
     extras = pkg_dict['extras'] if 'extras' in pkg_dict else []
 
-    if 'dataset_extra' in extras:
+    if extras[0]['key'] == 'dataset_extra':
         for extra in extras:
             extras_tmp = ast.literal_eval(extra['value'])
 
@@ -310,7 +310,6 @@ def get_pkg_dict_dataset_extra(pkg_dict, key, default=None):
     else:
         helpers.get_pkg_dict_extra(pkg_dict, key, default=None)
 
-    return default
 
 
 def nextgeoss_get_site_statistics():
