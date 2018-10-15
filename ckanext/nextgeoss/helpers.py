@@ -308,8 +308,8 @@ def get_pkg_dict_dataset_extra(pkg_dict, key, default=None):
                     value = ext['value']
                     return value
     else:
-        helpers.get_pkg_dict_extra(pkg_dict, key, default=None)
-
+        default = helpers.get_pkg_dict_extra(pkg_dict, key, default=None)
+        return default
 
 
 def nextgeoss_get_site_statistics():
