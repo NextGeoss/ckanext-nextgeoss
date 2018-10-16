@@ -147,6 +147,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='private')
             m.connect('unauthorized', '/unauthorized',
                       action='unauthorized')
+            m.connect('opensearch', '/opensearch',
+                      action='opensearch')
 
         return map
 

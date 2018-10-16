@@ -42,3 +42,7 @@ class StaticController(base.BaseController):
 
     def unauthorized(self):
         return base.render('static/unauthorized.html')
+
+    def opensearch(self):
+        return base.render('static/opensearch.html')
+
