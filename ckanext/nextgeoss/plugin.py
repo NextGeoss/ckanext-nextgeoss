@@ -189,6 +189,11 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
         # Handle spatial indexing here since the string extras break
         # the spatial extension.
+        noa = pkg_dict.get("noa_expiration_date", None)
+
+        if noa is not None:
+          pkg_dict.pop("noa_expiration_date", None)
+
         geometry = pkg_dict.get("spatial", None)
         if geometry:
             geometry = json.loads(geometry)
