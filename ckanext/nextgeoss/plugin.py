@@ -228,23 +228,15 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
     def after_show(self, context, pkg_dict):
         """
-        Convert extras saved as a string to a normal extras list.
-
-        Note: This is only necessary if datasets have been indexed _without_
-        converting the string extras to a normal extras list. If _all_ the
-        datasets are correctly indexed (i.e., the conversion was carried out in
-        the before_index stage) then this method is not necessary.
+        Convert extras saved as a string to a normal extras list
+        when a package is requested.
         """
         return string_extras_to_extras_list(pkg_dict)
 
     def after_search(self, search_results, search_params):
         """
-        Convert extras saved as a string to a normal extras list.
-
-        Note: This is only necessary if datasets have been indexed _without_
-        converting the string extras to a normal extras list. If _all_ the
-        datasets are correctly indexed (i.e., the conversion was carried out in
-        the before_index stage) then this method is not necessary.
+        Convert extras saved as a string to a normal extras list
+        for all packages that appear in search results.
         """
         search_results["results"] = [string_extras_to_extras_list(result)
                                      for result in search_results["results"]]
