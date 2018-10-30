@@ -41,14 +41,11 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'nextgeoss_get_topic_resources': helpers.topic_resources,
              'nextgeoss_get_value': helpers.get_value,
              'nextgeoss_get_pilot_extras': helpers.get_pilot_extras,
-             'harvest_sorted_extras': helpers.harvest_sorted_extras,
              'ng_extra_names': helpers.get_extra_names,
              'ng_extras_to_exclude': helpers.get_extras_to_exclude,
              'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
-             'ng_get_from_extras': helpers.get_from_extras,
              'ng_get_source_namespace': helpers.get_source_namespace,
-             'get_pkg_dict_dataset_extra': helpers.get_pkg_dict_dataset_extra,
-             'nextgeoss_get_site_statistics': helpers.nextgeoss_get_site_statistics
+             'nextgeoss_get_site_statistics': helpers.nextgeoss_get_site_statistics  # noqa: E501
         }
 
     # IRoutes
@@ -194,7 +191,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         noa = pkg_dict.get("noa_expiration_date", None)
 
         if noa is not None:
-          pkg_dict.pop("noa_expiration_date", None)
+            pkg_dict.pop("noa_expiration_date", None)
 
         geometry = pkg_dict.get("spatial", None)
         if geometry:
@@ -231,11 +228,30 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
         return pkg_dict
 
+    def after_show(self, context, pkg_dict):
+        """
+        Convert extras saved as a string to a normal extras list
+        when a package is requested.
+        """
+        return string_extras_to_extras_list(pkg_dict)
+
+    def after_search(self, search_results, search_params):
+        """
+        Convert extras saved as a string to a normal extras list
+        for all packages that appear in search results.
+        """
+        search_results["results"] = [string_extras_to_extras_list(result)
+                                     for result in search_results["results"]]
+
+        return search_results
+
 
 # Make the portal private for the beta
 # Yes, this is bad.
 # Locking down the beta is worse.
 # When the beta is over, we can just delete this section.
+
+
 def private(self, action, **env):
     if "oauth2" in config.get("ckan.plugins"):
         url = h.current_url()
@@ -282,3 +298,13 @@ def convert_dataset_extra(dataset_extra_string):
     extras = ast.literal_eval(dataset_extra_string)
 
     return [(extra["key"], extra["value"]) for extra in extras]
+
+
+def string_extras_to_extras_list(pkg_dict):
+    """Convert extras saved as a string to a normal extras list."""
+    extras = pkg_dict.get("extras")
+
+    if extras and extras[0]["key"] == "dataset_extra":
+        pkg_dict["extras"] = ast.literal_eval(extras[0]["value"])
+
+    return pkg_dict

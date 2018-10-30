@@ -1,6 +1,5 @@
 from ckan.common import config
 import ckan.logic as logic
-import ckan.lib.helpers as helpers
 import ast
 
 
@@ -51,14 +50,12 @@ def topic_resources(extras):
         k, v = extra[0], extra[1]
         if 'resource_' in k and 'Social Media' not in v:
             no_resources = no_resources - 1
-            import ast
             values = ast.literal_eval(extra[1])
             resources.append({'key': extra[0], 'value': str(values)})
     return resources
 
 
 def get_value(resources, key):
-    import ast
     resources_tmp = ast.literal_eval(resources)
     value = ''
 
@@ -81,44 +78,6 @@ def get_pilot_extras(extras):
             print pilot_extras
     print type(pilot_extras)
     return pilot_extras
-
-
-def harvest_sorted_extras(package_extras, auto_clean=False, subs=None,
-                          exclude=None):
-    ''' Used for outputting package extras
-    :param package_extras: the package extras
-    :type package_extras: dict
-    :param auto_clean: If true capitalize and replace -_ with spaces
-    :type auto_clean: bool
-    :param subs: substitutes to use instead of given keys
-    :type subs: dict {'key': 'replacement'}
-    :param exclude: keys to exclude
-    :type exclude: list of strings
-    '''
-
-    # If exclude is not supplied use values defined in the config
-    if not exclude:
-        exclude = config.get('package_hide_extras', [])
-    output = []
-
-    for extra in sorted(package_extras, key=lambda x: x['key']):
-        if extra.get('state') == 'deleted':
-            continue
-        extras_tmp = ast.literal_eval(extra['value'])
-
-        for ext in extras_tmp:
-            k, v = ext['key'], ext['value']
-            if k in exclude:
-                continue
-            if subs and k in subs:
-                k = subs[k]
-            elif auto_clean:
-                k = k.replace('_', ' ').replace('-', ' ').title()
-            if isinstance(v, (list, tuple)):
-                v = ", ".join(map(unicode, v))
-            output.append((k, v))
-
-    return output
 
 
 def get_extra_names():
@@ -263,17 +222,6 @@ def get_dataset_thumbnail_path(dataset):
     return '/base/images/placeholder-image.png'
 
 
-def get_from_extras(data_dict, key, alt_value=None):
-    """Return the value of a key in the extras list, or an alternate value."""
-    extras = data_dict.get('extras')
-
-    for extra in extras:
-        if extra['key'] == key:
-            return extra['value']
-
-    return alt_value
-
-
 def get_source_namespace(data_dict):
     """Return the source namespace for a product."""
     source = data_dict['organization']['title']
@@ -284,32 +232,6 @@ def get_source_namespace(data_dict):
     }
 
     return namespaces.get(source, None)
-
-
-def get_pkg_dict_dataset_extra(pkg_dict, key, default=None):
-    '''Returns the value for the dataset extra with the provided key.
-
-    If the key is not found, it returns a default value, which is None by
-    default.
-
-    :param pkg_dict: dictized dataset
-    :key: extra key to lookup
-    :default: default value returned if not found
-    '''
-
-    extras = pkg_dict['extras'] if 'extras' in pkg_dict else []
-
-    if extras[0]['key'] == 'dataset_extra':
-        for extra in extras:
-            extras_tmp = ast.literal_eval(extra['value'])
-
-            for ext in extras_tmp:
-                if ext['key'] == key:
-                    value = ext['value']
-                    return value
-    else:
-        default = helpers.get_pkg_dict_extra(pkg_dict, key, default=None)
-        return default
 
 
 def nextgeoss_get_site_statistics():
