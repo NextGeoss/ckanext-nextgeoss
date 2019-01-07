@@ -1,4 +1,5 @@
 {% extends "page.html" %}
+
 {% block content %}
 
 <div role="main" class="hero">
@@ -17,28 +18,31 @@
 {% set counter_collections = 3 %}
 
 <div class="container">
-  <div class="section text-center section-landing">
     <div class="row">
-      <div class="topic-list">
         {% for _ in range(counter_collections, collections_count) %}
-          <div class="row">
-            {% for key, value in collection_list.items()[counter:counter_collections] %}
-              <div class="col-md-4">
-                <div class="light">
-                  <div>{{ value.name }}</div>
-                  <p class="text-center">{{ value.description }}</p>
-                  {% set collections_link = h.get_collections_tags(key) %}
-                  <a href={{ collections_link }}> Go to collection </a>
-                </div>
+          {% for key, value in collection_list.items()[counter:counter_collections] %}
+          <div class="col-sm-4">
+              <div class="custom_card">
+                  <div class="row">
+                      <div class="col-sm-2">
+                          <img width="50" src="image.jpg">
+                      </div>
+                      <div class="col-sm-10">
+                          <h4>{{value.name}}</h4>
+                          <span></span>
+                      </div>
+                      <div class="col-sm-12">
+                          <p>{{ value.description }}</p>
+                          {% set collections_link = h.get_collections_tags(key) %}                        
+                          <a href="{{ collections_link }}">Go to collection ></a>
+                      </div>
+                  </div>
               </div>
-            {% endfor %}            
           </div>
-          </br>
+        {% endfor %}
           {% set counter = counter + 3 %}
           {% set counter_collections = counter_collections + 3 %}
         {% endfor %}
-      </div>
-    </div>
   </div>
 </div>
 
