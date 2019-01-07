@@ -45,7 +45,9 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'ng_extras_to_exclude': helpers.get_extras_to_exclude,
              'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
              'ng_get_source_namespace': helpers.get_source_namespace,
-             'nextgeoss_get_site_statistics': helpers.nextgeoss_get_site_statistics  # noqa: E501
+             'nextgeoss_get_site_statistics': helpers.nextgeoss_get_site_statistics,  # noqa: E501
+             'get_collections_count': helpers.get_collections_count,
+             'get_collections_tags': helpers.get_collections_tags
         }
 
     # IRoutes
@@ -146,6 +148,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='unauthorized')
             m.connect('opensearch', '/opensearch',
                       action='opensearch')
+            m.connect('collections', '/collections',
+                      action='collections')
 
         return map
 

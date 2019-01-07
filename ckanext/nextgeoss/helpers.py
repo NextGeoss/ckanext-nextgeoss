@@ -242,3 +242,37 @@ def nextgeoss_get_site_statistics():
     stats['organization_count'] = len(
         logic.get_action('organization_list')({}, {}))
     return stats
+
+
+def get_collections_count():
+    from ckanext.opensearch import config
+
+    collections = config.load_settings("collections_list")
+    collections_count = collections.keys()
+    collections_count = len(collections_count)
+
+    return collections_count
+
+
+def get_collections_tags(collection_name):
+    from ckanext.opensearch import config
+
+    collections = config.load_settings("collections_list")
+    collections_count = collections.items()
+    link = "&tags="
+    tags_link = ""
+
+    for key, value in collections_count:
+        if key == collection_name:
+            for k,v in value.items():
+                if k == 'tags':
+                    len_tags = len(v)
+                    tags_link += "tags=" + v[0]
+                    del v[0]
+                    for a in v:
+                        tags_link += link + a
+
+    collections_link = "dataset?" + tags_link
+
+
+    return collections_link
