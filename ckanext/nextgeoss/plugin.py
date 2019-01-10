@@ -47,7 +47,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'ng_get_source_namespace': helpers.get_source_namespace,
              'nextgeoss_get_site_statistics': helpers.nextgeoss_get_site_statistics,  # noqa: E501
              'get_collections_count': helpers.get_collections_count,
-             'get_collections_tags': helpers.get_collections_tags
+             'get_collection_url': helpers.get_collection_url,
+             'get_collections_dataset_count': helpers.get_collections_dataset_count
         }
 
     # IRoutes

@@ -254,25 +254,22 @@ def get_collections_count():
     return collections_count
 
 
-def get_collections_tags(collection_name):
+def get_collection_url(collection_name):
     from ckanext.opensearch import config
 
-    collections = config.load_settings("collections_list")
-    collections_count = collections.items()
-    link = "&tags="
-    tags_link = ""
+    collection = 'collection_id:' + collection_name
 
-    for key, value in collections_count:
-        if key == collection_name:
-            for k,v in value.items():
-                if k == 'tags':
-                    len_tags = len(v)
-                    tags_link += "tags=" + v[0]
-                    del v[0]
-                    for a in v:
-                        tags_link += link + a
-
-    collections_link = "dataset?" + tags_link
+    return "dataset?q=" + collection
 
 
-    return collections_link
+def get_collections_dataset_count(collection_name):
+    collection = 'collection_id:' + collection_name
+    data_dict = {'q': '',
+                 'start': 0,
+                 'rows': 20, 
+                 'ext_bbox': None,
+                 'fq': collection }
+
+    results_dict = logic.get_action("package_search")({}, data_dict)
+
+    return results_dict['count']
