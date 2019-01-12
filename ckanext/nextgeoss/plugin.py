@@ -48,7 +48,10 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'nextgeoss_get_site_statistics': helpers.nextgeoss_get_site_statistics,  # noqa: E501
              'get_collections_count': helpers.get_collections_count,
              'get_collection_url': helpers.get_collection_url,
-             'get_collections_dataset_count': helpers.get_collections_dataset_count
+             'get_collections_dataset_count': helpers.get_collections_dataset_count,
+             'nextgeoss_get_facet_title': helpers.nextgeoss_get_facet_title,
+             'get_default_slider_values': helpers.get_default_slider_values,
+             'get_date_url_param': helpers.get_date_url_param
         }
 
     # IRoutes
@@ -165,8 +168,18 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         facets_dicts. facets_dict will be an ordered dictionary,
         so we need to preserve the order when we update.
         """
+        facets_dict.clear()
+        facets_dict['collection_name'] = plugins.toolkit._('Collections')
         facets_dict['groups'] = _('Topics')
         facets_dict['organization'] = _('Providers')
+        facets_dict['FamilyName']  = plugins.toolkit._('Family Name')
+        facets_dict['ProductType'] = plugins.toolkit._('Product Type')
+        facets_dict['OrbitDirection'] = plugins.toolkit._('Orbit Direction')
+        facets_dict['Swath'] = plugins.toolkit._('Acquisition Mode')
+        facets_dict['TransmitterReceiverPolarisation'] = plugins.toolkit._('Polarisation')
+        facets_dict['timerange_start'] = plugins.toolkit._('time_range')
+        facets_dict['timerange_end'] = plugins.toolkit._('End')
+
 
         return facets_dict
 
@@ -180,6 +193,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
     def organization_facets(self, facets_dict, organization_type, package_type):  # noqa: E501
         """Update the facets used on organization search pages."""
+
         return self._update_facets(facets_dict)
 
     # IPackageController

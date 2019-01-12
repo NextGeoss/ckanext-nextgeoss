@@ -1,7 +1,11 @@
 from ckan.common import config
 import ckan.logic as logic
+import ckan.plugins as p
 import ast
-
+import ckan.plugins.toolkit as tk
+import datetime
+import json
+import re
 
 def get_jira_script():
     jira_script = config.get('ckanext.nextgeoss.jira_issue_tracker')
@@ -273,3 +277,59 @@ def get_collections_dataset_count(collection_name):
     results_dict = logic.get_action("package_search")({}, data_dict)
 
     return results_dict['count']
+
+
+def nextgeoss_get_facet_title(name):
+    '''Deprecated in ckan 2.0 '''
+    # if this is set in the config use this
+    config_title = config.get('search.facets.%s.title' % name)
+    if config_title:
+        return config_title
+
+    facet_titles = {'organization': _('Organizations'),
+                    'groups': _('Groups'),
+                    'tags': _('Tags')}
+    print facet_titles
+    return facet_titles.get(name, name.capitalize())
+
+def get_default_slider_values():
+    '''Returns the earliest collection date from package_search'''
+
+    data_dict = {
+            'sort': 'begin-collection_date asc',
+            'rows': 1,
+            'q': 'begin-collection_date:[* TO *]',
+    }
+    result = p.toolkit.get_action('package_search')({}, data_dict)['results']
+    if len(result) == 1:
+        date = filter(lambda x: x['key'] == 'begin-collection_date',
+                result[0].get('extras', []))
+        begin = date[0]['value']
+    else:
+        begin = datetime.date.today().isoformat()
+
+    data_dict = {
+            'sort': 'end-collection_date desc',
+            'rows': 1,
+            'q': 'end-collection_date:[* TO *]',
+    }
+    result = p.toolkit.get_action('package_search')({}, data_dict)['results']
+    if len(result) == 1:
+        date = filter(lambda x: x['key'] == 'end-collection_date',
+                result[0].get('extras', []))
+        end = date[0]['value']
+    else:
+        end = datetime.date.today().isoformat()
+    return begin, end
+
+
+def get_date_url_param():
+    params = ['', '']
+    for k, v in tk.request.params.items():
+        if k == 'ext_begin_date':
+            params[0] = v
+        elif k == 'ext_end_date':
+            params[1] = v
+        else:
+            continue
+    return params

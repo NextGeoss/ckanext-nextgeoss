@@ -1,0 +1,142 @@
+.additional-info {
+    border: none;
+}
+
+.additional-info .dataset-group-label {
+    border-bottom: 2px solid #000;
+}
+
+.additional-info .dataset-label,
+.additional-info .dataset-details {
+    vertical-align: middle;
+}
+
+.additional-info .dataset-label {
+    font-weight: bold;
+    color: #666;
+    white-space: nowrap;
+    padding: 12px 1px 0;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 3px;
+}
+
+/* Enclose composite fields in a box with background for visual offset */
+.composite-subfield-group {
+    border: 1px solid #c5c5c5;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.composite-fieldset {
+    margin-bottom: 15px;
+}
+
+/* Adjust spacing in template between text box and help text */
+select, textarea, input[type="text"], input[type="email"], input[type="url"], input[type="tel"], legend {
+    margin-bottom: 5px !important;
+}
+
+.select2-container {
+    margin-bottom: 5px;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+.composite-repeating-list {
+    margin-top: 0px;
+    margin-bottom: 5px;
+
+}
+
+.info-block.composite-header-info {
+    margin-bottom: 2px;
+}
+
+hr {
+    margin: 5px 0px
+}
+
+h3.page-heading {
+    margin-bottom: 0px;
+}
+
+p.composite-header {
+    color: black;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 3px;
+    margin-top: 0px;
+}
+
+.dataset-repeating-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.dataset-repeating-list > li {
+    border-left: 3px solid #ccc;
+    padding-left: 8px;
+    margin-bottom: 8px;
+}
+
+.additional-info .tag {
+    border-radius: 0;
+}
+
+.additional-info .tag-list {
+    padding: 0;
+}
+
+.resource-item-dfo-preview {
+    line-height: 40px;
+    height: 40px;
+    vertical-align: middle;
+    margin-bottom: 10px;
+    border-left: 4px solid #FFFFFF;
+    display: flex;
+}
+
+.resource-item-dfo-preview .title {
+    padding-left: 8px;
+}
+
+.resource-item-actions {
+    margin-left: auto;
+}
+
+#resource-edit .form-horizontal .info-block {
+    padding: 0;
+}
+
+#dataset-edit .info-block,
+#resource-edit .info-block {
+    font-size: 15px;
+    color: #869fb7;
+    margin-bottom: 5px;
+}
+
+#resource-edit .info-block {
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+#dataset-edit .control-group .btn {
+    /* Fix alignment of +/- buttons with text inputs */
+    margin-bottom: 10px;
+    padding-top: unset;
+    padding-bottom: unset;
+}
+
+#dataset-edit div.first-subfield-info {
+    padding-left: 0;
+    margin-top: 0;
+}
+
+#dataset-edit .slug-preview {
+    margin-left: 0;
+    margin-bottom: 10px;
+}
