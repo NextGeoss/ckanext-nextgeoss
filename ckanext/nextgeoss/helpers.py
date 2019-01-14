@@ -289,6 +289,7 @@ def nextgeoss_get_facet_title(name):
     facet_titles = {'organization': _('Organizations'),
                     'groups': _('Groups'),
                     'tags': _('Tags')}
+    print 'FACETS'
     print facet_titles
     return facet_titles.get(name, name.capitalize())
 
@@ -333,3 +334,10 @@ def get_date_url_param():
         else:
             continue
     return params
+
+
+DEFAULT_SEARCH_NAMES = u'timerange_start timerange_end'
+
+def search_params():
+    u'''Returns a list of the current search names'''
+    return config.get(u'search.search_param', DEFAULT_SEARCH_NAMES).split()

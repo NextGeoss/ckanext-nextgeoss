@@ -14,6 +14,11 @@
           'translated_fields': c.translated_fields,
           'remove_field': c.remove_field }
         %}
+        {% set search_parameters = {
+          'fields': c.parameters_grouped,
+          'titles': c.search_parameters
+          }
+        %}        
         {% set sorting = [
           (_('Relevance'), 'score desc, metadata_modified desc'),
           (_('Name Ascending'), 'title_string asc'),
@@ -21,7 +26,7 @@
           (_('Last Modified'), 'metadata_modified desc'),
           (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
         %}
-        {% snippet 'package/snippets/search_form.html', form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}
+        {% snippet 'package/snippets/search_form.html', form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, search_parameters=search_parameters, show_empty=request.params, error=c.query_error, fields=c.fields %}
       {% endblock %}
     </div>
   </section>
@@ -72,18 +77,26 @@
 {% endblock %}
 
 {% block secondary_content %}
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-  {% resource 'nextgeoss/daterangepicker.js' %}
-  {% resource 'nextgeoss/search.js' %}  
+  <div class="filters">
+    <div>
+      <div class="filters-header">
+        <i class="fa fa-lg fa-filter"></i>
+        <span class="filters-header__title">{{ _('Date Range') }}</span>
+      </div>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+        {% resource 'nextgeoss/daterangepicker.js' %}
+        {% resource 'nextgeoss/search.js' %}  
 
-  <form method="post" class="search">
-      <label for="timerange_start">Start Date:</label>
-      <input type="text" name="timerange_start" class="form-control">
-      <label for="timerange_start">End Date:</label>
-      <input type="text" name="timerange_end" class="form-control">      
-      <input type="submit" value="Search" class="btn btn-primary" />
-  </form>
-
+        <form method="post" class="search">
+            <label for="timerange_start">Start Date:</label>
+            <input type="text" name="timerange_start" class="form-control">
+            <label for="timerange_start">End Date:</label>
+            <input type="text" name="timerange_end" class="form-control">      
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </form>
+      </div>
+  </div>
+  </br>
   <div class="filters">
     <div>
       <div class="filters-header">
@@ -93,7 +106,6 @@
       {% for facet in c.facet_titles %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
       {% endfor %}
-          {# Daterange #} 
     </div>
     <a class="close no-text hide-filters"><i class="fa fa-remove-sign"></i><span class="text">close</span></a>    
   </div>  

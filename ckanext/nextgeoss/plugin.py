@@ -155,6 +155,11 @@ class NextgeossPlugin(plugins.SingletonPlugin):
             m.connect('collections', '/collections',
                       action='collections')
 
+        package_controller = 'ckanext.nextgeoss.controllers.package:NextgeossPackageController'  # noqa: E501
+        with routes.mapper.SubMapper(map, controller=package_controller) as m:
+          m.connect('search', '/dataset', action='search',
+                    highlight_actions='index search')          
+
         return map
 
     def after_map(self, map):
@@ -177,9 +182,6 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         facets_dict['OrbitDirection'] = plugins.toolkit._('Orbit Direction')
         facets_dict['Swath'] = plugins.toolkit._('Acquisition Mode')
         facets_dict['TransmitterReceiverPolarisation'] = plugins.toolkit._('Polarisation')
-        facets_dict['timerange_start'] = plugins.toolkit._('time_range')
-        facets_dict['timerange_end'] = plugins.toolkit._('End')
-
 
         return facets_dict
 

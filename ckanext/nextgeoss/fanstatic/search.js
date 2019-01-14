@@ -56,6 +56,7 @@ $().ready(function(){
        "separator": " - "
      },
       "singleDatePicker": true,
+      "autoUpdateInput": false,      
     }).on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('YYYY-MM-DD'));
     }).on('cancel.daterangepicker', function(ev, picker) {
@@ -68,6 +69,7 @@ $().ready(function(){
        "separator": " - "
      },
       "singleDatePicker": true,
+      "autoUpdateInput": false,      
     }).on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('YYYY-MM-DD'));
     }).on('cancel.daterangepicker', function(ev, picker) {
