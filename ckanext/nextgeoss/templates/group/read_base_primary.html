@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block content_primary_nav %}
+  {{ h.build_nav_icon('group_read', _('Datasets'), id=c.group_dict.name) }}
   {{ h.build_nav_icon('topic_about', _('Metadata'), id=c.group_dict.name) }}
 
   {# Activity section available only for users that can create #}

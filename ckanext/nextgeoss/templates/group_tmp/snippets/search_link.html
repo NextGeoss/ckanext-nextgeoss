@@ -1,0 +1,7 @@
+{% if count %}
+  {% set search_message = ungettext('Search or browse {number} dataset from this topic', 'Search or browse {number} datasets from this topic', count).format(number=count) %}
+  <h5 class="dataset-detail-title"><a href="{{ h.url_for(controller='package', action='search', groups=group_name) }}">{{ search_message }}</a></h5>
+{% else %}
+  {% set search_message = _('This topic has no datasets associated with it') %}
+  <h5 class="dataset-detail-title">{{ search_message }}</h5>
+{% endif %}

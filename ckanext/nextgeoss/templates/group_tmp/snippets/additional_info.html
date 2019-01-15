@@ -1,0 +1,132 @@
+{# This snippet creates an Additional Info Table
+	extras is a list of tuples of the form (key, value)
+
+#}
+{% if extras %}
+
+  {% snippet "spatial/snippets/topic_map_big.html" %}
+	<!-- Resources -->
+	<section id="dataset-resources" class="resources">
+		<h3><i class="fa fa-download"></i> {{ _('Download and links') }}</h3>
+
+		{% block resource_list %}
+		{% set resources = h.nextgeoss_get_topic_resources(extras) %}
+
+		<div class="topic-list">
+			<ul class="resource-list">
+				{% for resource in resources %}
+				{% set key, value = resource %}
+				{% set resource_name = h.nextgeoss_get_value(resource['value'], 'name') %}
+				{% set resource_desc = h.nextgeoss_get_value(resource['value'], 'description') %}
+				{% set resource_link = h.nextgeoss_get_value(resource['value'], 'linkage') %}	
+				<div>
+					<div class="info" id="resource-box">
+						<div class="resource-box-left">
+							<div class="resource-box-file-type">
+								<div class="resource-box-icon">
+									<i class="fa fa-file-archive-o"></i>
+								</div>
+								<p class="resource-box-file-ext"></p>
+							</div>
+						</div>
+						<div class="resource-box-right">
+							<div class="resource-box-text-area">
+								<h3>
+									<a target="_blank"  href={{resource_link}}>{{resource_name}}</a></h3>
+									<p>
+										{{resource_desc}}
+									</p>
+								</div>
+								<div class="resource-box-buttons">
+									<a target="_blank"  href={{resource_link}} class="btn btn-primary"><i class="fa fa-info-circle"></i> {{ _('Resource link') }}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<div>
+						<div class="info" id="resource-box">
+							<div class="resource-box-left">
+								<div class="resource-box-file-type">
+									<div class="resource-box-icon">
+										<i class="fa fa-file-archive-o"></i>
+									</div>
+									<p class="resource-box-file-ext"></p>
+								</div>
+							</div>
+							<div class="resource-box-right">
+								<div class="resource-box-text-area">
+									<h3>Social Media</h3>
+									<p>
+										Link's to NextGeoss social media
+									</p>
+								</div>
+								<div class="resource-box-buttons">
+									<a href="https://twitter.com/@NextGEOSS" target="_blank" class="btn btn-primary btn-left">
+										<i class="fa fa-twitter"></i>
+										Twitter
+									</a>
+									<a href="https://www.facebook.com/Nextgeoss" target="_blank" class="btn btn-primary">
+										<i class="fa fa-facebook"></i>			        		
+										Facebook
+									</a>
+									<a href="https://www.youtube.com/channel/UCaRjEzOhODNvBZUuv3ugLng" target="_blank" class="btn btn-primary">
+										<i class="fa fa-youtube"></i>
+										Youtube
+									</a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</ul>
+			</div>
+			{% endblock %}
+		</section>
+
+		<section class="thumbnails-info">
+          <h3><i class="fa fa-image"></i> {{ _('Thumbnails') }}</h3>
+
+          <ul class="media-grid masonry" data-module="media-grid" style="position: relative">
+          	<li class="media-item masonry-brick">
+          		<a href="/thumb_eg1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg1.jpg')}}"></a>
+          	</li>
+          	<li class="media-item masonry-brick">
+          		<a href="/thumb_eg2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg2.jpg')}}"></a>
+          	</li>          	
+          </ul>
+        </section>
+
+        <section class="additional-info">
+          <h3><i class="fa fa-info-circle"></i> {{ _('Pilot Metadata') }}</h3>
+
+		<table class="table table-bordered table-dataset">
+			<tbody>
+				{% for extra in extras %}
+				{% set key, value = extra %}
+				{% set contact = ['e-mail', 'individualName', 'organisationName'] %}
+				{% if key not in contact and 'resource' not in key %}
+				<tr rel="dc:relation" resource="_:extra{{ i }}">
+					<th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
+					<td class="dataset-details" property="rdf:value">{{ value }}</td>
+				</tr>
+				{% endif %}
+				{% endfor %}
+
+				<tr rel="dc:relation" resource="_:extra{{ i }}">
+					<th scope="row" class="dataset-label" property="rdfs:label">Contact</th>
+					<td class="dataset-details" property="rdf:value">
+						{% for extra in extras %}
+						{% set key, value = extra %}
+						{% set contact = ['e-mail', 'individualName', 'organisationName'] %}
+
+						{% if key in contact %}
+						<b>{{ key }} </b> {{ value }} </br>
+						{% endif %}
+						{% endfor %}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	   </section>
+{% endif %}

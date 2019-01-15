@@ -100,7 +100,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                      _redirect_code='301 Moved Permanently')
         group_controller = 'ckanext.nextgeoss.controllers.group:NextgeossGroupController'  # noqa: E501
         with routes.mapper.SubMapper(map, controller=group_controller) as m:
-            m.connect('topic_index', '/topic', action='index')
+            m.connect('topic_index', '/topic', action='index',
+                      highlight_actions='index search')
             m.connect('/topic/list', action='list')
             m.connect('/topic/new', action='new')
             m.connect('topic_action', '/topic/{action}/{id}',
