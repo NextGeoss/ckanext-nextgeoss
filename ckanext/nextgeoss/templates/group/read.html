@@ -9,7 +9,7 @@
       <div class="dataset-detail-org-logo">
         <div class="image">
           <a href="{{ group_url }}">
-            <img src="{{ c.group_dict.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ c.group_dict.title }}" /> 
+            <img src="{{ c.group_dict.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ c.group_dict.title }}" />
           </a>
         </div>
       </div>
@@ -50,7 +50,7 @@
 
 
 {% block primary_content_inner %}
-  <h3 class="dataset-heading"><a href""> Collections used by Pilot: </a> </h3>
+  <h3 class="dataset-heading"><a href""> Data Collections used by Pilot: </a> </h3>
 
   {% block packages_list %}
     {% if c.collections %}
