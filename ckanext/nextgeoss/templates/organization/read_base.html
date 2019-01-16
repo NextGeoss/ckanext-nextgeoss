@@ -8,9 +8,11 @@
 {% endblock %}
 
 {% block content_primary_nav %}
-  {% if h.check_access('package_create', {'owner_org': c.group_dict.id}) %}
-    {{ h.build_nav_icon('provider_read', _('Datasets'), id=c.group_dict.name) }}
-    {{ h.build_nav_icon('provider_activity', _('Activity Stream'), id=c.group_dict.name) }}
+  {% if c.group_dict.extras %}
+	  {% if h.check_access('package_create', {'owner_org': c.group_dict.id}) %}
+	    {{ h.build_nav_icon('provider_read', _('Datasets'), id=c.group_dict.name) }}
+	    {{ h.build_nav_icon('provider_activity', _('Activity Stream'), id=c.group_dict.name) }}
+	  {% endif %}
   {% endif %}
 {% endblock %}
 
