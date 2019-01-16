@@ -51,7 +51,9 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'get_collections_dataset_count': helpers.get_collections_dataset_count,
              'nextgeoss_get_facet_title': helpers.nextgeoss_get_facet_title,
              'get_default_slider_values': helpers.get_default_slider_values,
-             'get_date_url_param': helpers.get_date_url_param
+             'get_date_url_param': helpers.get_date_url_param,
+             'get_group_collection_count': helpers.get_group_collection_count,
+             'collection_information': helpers.collection_information
         }
 
     # IRoutes
@@ -100,7 +102,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                      _redirect_code='301 Moved Permanently')
         group_controller = 'ckanext.nextgeoss.controllers.group:NextgeossGroupController'  # noqa: E501
         with routes.mapper.SubMapper(map, controller=group_controller) as m:
-            m.connect('topic_index', '/topic', action='index')
+            m.connect('topic_index', '/topic', action='index',
+                      highlight_actions='index search')
             m.connect('/topic/list', action='list')
             m.connect('/topic/new', action='new')
             m.connect('topic_action', '/topic/{action}/{id}',

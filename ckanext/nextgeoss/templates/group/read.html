@@ -1,7 +1,7 @@
 {% ckan_extends %}
-
+{% set group = c.group_dict %}
 {% block pre_primary %}
-  {% set group = c.group_dict %}
+
   <div class="container single-column group-org-header">
     {{ super() }}
 
@@ -45,11 +45,30 @@
         </a>
       </p>
     {% endif %}
+
+    {% if c.group_dict.name == 'biodiversity17' %}
+      <p>Download metadata file:
+        <a href="/biodiversity.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
   </div>
 {% endblock %}
 
+
 {% block primary_content_inner %}
-  {{ super() }}
+  <h3 class="dataset-heading"><a href""> Data Collections used by Pilot: </a> </h3>
+
+  {% block packages_list %}
+    {% if c.collections %}
+      {{ h.snippet('group/snippets/collections_list.html', collections=c.collections) }}
+    {% endif %}
+  {% endblock %}
+
 {% endblock %}
 
 {% block secondary_content %}

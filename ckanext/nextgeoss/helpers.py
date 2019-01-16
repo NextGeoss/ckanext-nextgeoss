@@ -289,9 +289,9 @@ def nextgeoss_get_facet_title(name):
     facet_titles = {'organization': _('Organizations'),
                     'groups': _('Groups'),
                     'tags': _('Tags')}
-    print 'FACETS'
-    print facet_titles
+
     return facet_titles.get(name, name.capitalize())
+
 
 def get_default_slider_values():
     '''Returns the earliest collection date from package_search'''
@@ -341,3 +341,36 @@ DEFAULT_SEARCH_NAMES = u'timerange_start timerange_end'
 def search_params():
     u'''Returns a list of the current search names'''
     return config.get(u'search.search_param', DEFAULT_SEARCH_NAMES).split()
+
+
+def get_group_collection_count(group):
+    group_extras = group['extras']
+    group_collections = []
+
+    for extra in group_extras:
+        if extra['key'] == 'collections':
+            col_value = extra['value'].split(", ")
+            for a in col_value:
+                group_collections.append(a)
+
+
+    collections = []
+
+    for collection_id in group_collections:
+        item = collection_information(collection_id)
+        collections.append(item)
+
+    print len(collections)
+
+    return len(collections)
+
+
+def collection_information(collection_id=None):
+    from ckanext.opensearch import config
+
+    collections = config.load_settings("collections_list")
+    collection_items = collections.items()
+
+    for collection in collection_items:
+        if collection[0] == collection_id:
+            return dict(collection[1])
