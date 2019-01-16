@@ -3,8 +3,14 @@
 
 #}
 {% if extras %}
+    {% if c.group_dict.name == 'biodiversity17' %}
+		{% snippet "spatial/snippets/spatial_query.html", default_extent="{ \"type\":
+		    \"Polygon\", \"coordinates\": [[[-25.1528, 35.3], [44.9158, 35.3], [44.9158,
+		    71.2838], [-25.1528, 71.2838], [-25.1528, 35.3]]]}" %}
+	{% else %}
+		{% snippet "spatial/snippets/topic_map_big.html" %}
+	{% endif %}
 
-  {% snippet "spatial/snippets/topic_map_big.html" %}
 	<!-- Resources -->
 	<section id="dataset-resources" class="resources">
 		<h3><i class="fa fa-download"></i> {{ _('Download and links') }}</h3>
@@ -88,12 +94,25 @@
           <h3><i class="fa fa-image"></i> {{ _('Thumbnails') }}</h3>
 
           <ul class="media-grid masonry" data-module="media-grid" style="position: relative">
-          	<li class="media-item masonry-brick">
-          		<a href="/thumb_eg1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg1.jpg')}}"></a>
-          	</li>
-          	<li class="media-item masonry-brick">
-          		<a href="/thumb_eg2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg2.jpg')}}"></a>
-          	</li>
+		    {% if c.group_dict.name == 'agriculture' %}
+		          	<li class="media-item masonry-brick">
+		          		<a href="/thumb_eg1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg1.jpg')}}"></a>
+		          	</li>
+		          	<li class="media-item masonry-brick">
+		          		<a href="/thumb_eg2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg2.jpg')}}"></a>
+		          	</li>
+			{% endif %}
+		    {% if c.group_dict.name == 'biodiversity17' %}
+		          	<li class="media-item masonry-brick">
+		          		<a href="/image1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/image1.jpg')}}"></a>
+		          	</li>
+		          	<li class="media-item masonry-brick">
+		          		<a href="/image2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/image2.jpg')}}"></a>
+		          	</li>
+		          	<li class="media-item masonry-brick">
+		          		<a href="/image3.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/image3.jpg')}}"></a>
+		          	</li>
+			{% endif %}
           </ul>
         </section>
 
@@ -105,7 +124,8 @@
 				{% for extra in extras %}
 				{% set key, value = extra %}
 				{% set contact = ['e-mail', 'individualName', 'organisationName'] %}
-				{% if key not in contact and 'resource' not in key %}
+				{% set skip = ['collections'] %}
+				{% if key not in contact and 'resource' not in key and key not in skip %}
 				<tr rel="dc:relation" resource="_:extra{{ i }}">
 					<th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
 					<td class="dataset-details" property="rdf:value">{{ value }}</td>
