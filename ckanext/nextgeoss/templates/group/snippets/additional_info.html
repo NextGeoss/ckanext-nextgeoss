@@ -18,7 +18,7 @@
 				{% set key, value = resource %}
 				{% set resource_name = h.nextgeoss_get_value(resource['value'], 'name') %}
 				{% set resource_desc = h.nextgeoss_get_value(resource['value'], 'description') %}
-				{% set resource_link = h.nextgeoss_get_value(resource['value'], 'linkage') %}	
+				{% set resource_link = h.nextgeoss_get_value(resource['value'], 'linkage') %}
 				<div>
 					<div class="info" id="resource-box">
 						<div class="resource-box-left">
@@ -67,7 +67,7 @@
 										Twitter
 									</a>
 									<a href="https://www.facebook.com/Nextgeoss" target="_blank" class="btn btn-primary">
-										<i class="fa fa-facebook"></i>			        		
+										<i class="fa fa-facebook"></i>
 										Facebook
 									</a>
 									<a href="https://www.youtube.com/channel/UCaRjEzOhODNvBZUuv3ugLng" target="_blank" class="btn btn-primary">
@@ -93,7 +93,7 @@
           	</li>
           	<li class="media-item masonry-brick">
           		<a href="/thumb_eg2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg2.jpg')}}"></a>
-          	</li>          	
+          	</li>
           </ul>
         </section>
 
@@ -131,4 +131,7 @@
 	   </section>
 {% else %}
 	<h3> More information coming soon </h2>
+	</br></br></br></br>
+	</br></br></br></br>
+	</br>
 {% endif %}

@@ -9,12 +9,12 @@
 
 {% block content_primary_nav %}
   {% if c.group_dict.extras %}
-  {{ h.build_nav_icon('topic_about', _('Metadata'), id=c.group_dict.name) }}
-  {{ h.build_nav_icon('topic_read', _('Datasets'), id=c.group_dict.name) }}
+    {{ h.build_nav_icon('topic_about', _('Metadata'), id=c.group_dict.name) }}
+    {{ h.build_nav_icon('topic_read', _('Datasets'), id=c.group_dict.name) }}
 
-  {# Activity section available only for users that can create #}
-  {% if h.check_access('package_create', {'owner_org': c.group_dict.id}) %}
-    {{ h.build_nav_icon('topic_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}
-  {% endif %}
+    {# Activity section available only for users that can create #}
+    {% if h.check_access('package_create', {'owner_org': c.group_dict.id}) %}
+      {{ h.build_nav_icon('topic_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}
+    {% endif %}
   {% endif %}
 {% endblock %}
