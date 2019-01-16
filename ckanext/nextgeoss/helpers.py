@@ -263,7 +263,7 @@ def get_collection_url(collection_name):
 
     collection = 'collection_id:' + collection_name
 
-    return "dataset?q=" + collection
+    return "dataset?collection_name=" + collection_name.replace(' ', '+')
 
 
 def get_collections_dataset_count(collection_name):
