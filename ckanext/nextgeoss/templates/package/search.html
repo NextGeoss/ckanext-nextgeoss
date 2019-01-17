@@ -22,7 +22,7 @@
   {% block search_title %}
     {% if not error %}
       <h2 style="display: flex; justify-content: center;">
-        {% snippet 'snippets/search_result_text.html', query=c.query, count=c.page.item_count, type='dataset' %}</h2>
+        {% snippet 'snippets/search_result_text.html', query=c.q, count=c.page.item_count, type='dataset' %}</h2>
     {% else %}
       <h2 style="display: flex; justify-content: center;">Error</h2>
     {% endif %}
