@@ -72,15 +72,13 @@ def get_value(resources, key):
 
 def get_pilot_extras(extras):
     pilot_extras = []
-    print type(pilot_extras)
 
     for extra in extras:
         k, v = extra[0], extra[1]
 
         if 'resource' not in k:
             pilot_extras.append({'key': k, 'value': v})
-            print pilot_extras
-    print type(pilot_extras)
+
     return pilot_extras
 
 
@@ -374,3 +372,9 @@ def collection_information(collection_id=None):
     for collection in collection_items:
         if collection[0] == collection_id:
             return dict(collection[1])
+
+
+def get_extras_value(extras, extras_key):
+    for extra in extras:
+        if extra['key'] == extras_key:
+            return extra['value']

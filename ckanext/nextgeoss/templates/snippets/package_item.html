@@ -4,7 +4,7 @@
 
   {% set thumbnail_path = h.ng_get_dataset_thumbnail_path(package) %}
   {% set thumbnail = h.url_for_static(thumbnail_path)%}
-  
+
   <div class="dataset-item-org-logo">
     <div class="image">
       <img src="{{ thumbnail }}" height= "210" width="210" alt="{{ package.name}} thumbnail" />
@@ -35,23 +35,24 @@
   </h3>
 
   <div class="dataset-item-org-title">
+    {% set org_link = h.url_for(controller='organization', action='read', id=package.organization.name) %}
     <b>Provider:</b> <a href="{{ org_link }}">{{ package.organization.title }}</a>
   </div>
 
   <div class="dataset-item-org-license">
-    <b> Pilots: </b>
     {% for group in package.groups %}
-      <a href="{{ o_link }}">{{ group.title }}</a>
+      <b> Pilots: </b>
+      {% set group_link = h.url_for(controller='group', action='read', id=group.name) %}
+      <a href="{{ group_link }}">{{ group.title }}</a>
     {% endfor %}
   </div>
 
   <div class="dataset-item-org-license">
-    <b> Collection: </b>  {{ package.title }}
-<!--     {% for extras in package.extras %}
-      {% if extras['key'] == 'collection_name' %}
-        {{ extras['value'] }}
+      {% set collection_name = h.get_extras_value(package.extras, 'collection_name') %}
+      {% if collection_name is not none %}
+        {% set collection_url = "/dataset?collection_name=" + collection_name.replace(' ', '+') %}
+          <b> Collection: </b>  <a href="{{ collection_url }}"> {{ package.title }} </a>
       {% endif %}
-    {% endfor %} -->
   </div>
 
 {% endblock %}

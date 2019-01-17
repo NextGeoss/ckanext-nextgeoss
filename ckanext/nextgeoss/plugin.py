@@ -53,7 +53,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'get_default_slider_values': helpers.get_default_slider_values,
              'get_date_url_param': helpers.get_date_url_param,
              'get_group_collection_count': helpers.get_group_collection_count,
-             'collection_information': helpers.collection_information
+             'collection_information': helpers.collection_information,
+             'get_extras_value': helpers.get_extras_value
         }
 
     # IRoutes
@@ -161,7 +162,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         package_controller = 'ckanext.nextgeoss.controllers.package:NextgeossPackageController'  # noqa: E501
         with routes.mapper.SubMapper(map, controller=package_controller) as m:
           m.connect('search', '/dataset', action='search',
-                    highlight_actions='index search')          
+                    highlight_actions='index search')
 
         return map
 
