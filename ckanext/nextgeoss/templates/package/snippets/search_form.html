@@ -19,6 +19,9 @@
         {% endblock %}
         <input type="text" class="search" name="q" value="{{ query }}" autocomplete="on" placeholder="{{ placeholder }}">
       </div>
+
+      <a href="{{ h.remove_url_param(['q']) }}" style="float: right; margin-left: 10px; max-height: 52px;" class="action btn btn-primary">{{ _('Clear Search Box') }}</a>
+
     {% endblock %}
 
     {% block search_search_fields %}

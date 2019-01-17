@@ -321,7 +321,8 @@ h4.title a {
 }
 
 .datasets-search-form-container__controls .search-input {
-  width: 560px;
+  width: 400px;
+  margin-left: 20px;
 }
 
 .datasets-search-form-container__controls .search {
@@ -1134,7 +1135,8 @@ button.btn.btn-navbar {
     justify-content: center;
   }
   .datasets-search-form-container__controls .search-input {
-    width: 100%;
+    width: 400px;
+    margin-left: 30px;
   }
   .filters {
     background-color: inherit !important;
