@@ -54,7 +54,7 @@ def search_url(params, package_type=None):
 
 class NextgeossPackageController(PackageController):
     def _to_dt(self, v):
-        return '{v}T00:00:00Z'.format(v=v)     
+        return '{v}T00:00:00Z'.format(v=v)
 
 
     def search(self):
@@ -97,7 +97,7 @@ class NextgeossPackageController(PackageController):
         sort_by = request.params.get('sort', None)
         params_nosort = [(k, v) for k, v in params_nopage if k != 'sort']
 
-    
+
 
         def _sort_by(fields):
             """
@@ -211,7 +211,7 @@ class NextgeossPackageController(PackageController):
 
             default_search_titles = {
                 'timerange_start': _('Timerange Start'),
-                'timerange_end': _('Timerange End'),                
+                'timerange_end': _('Timerange End'),
             }
 
             collection_names = ['Sentinel-1 Level-1 (SLC)', 'Sentinel-1 Level-1 (GRD)', 'Sentinel-1 Level-2 (OCN)',
@@ -235,9 +235,8 @@ class NextgeossPackageController(PackageController):
                 for f in facets:
                     if f in sentinel_facet_titles:
                         del facets[f]
-                
+
             c.facet_titles = facets
-            print facets
             c.search_parameters = search_parameters
 
             data_dict = {
