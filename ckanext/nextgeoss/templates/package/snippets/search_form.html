@@ -20,7 +20,7 @@
         <input type="text" class="search" name="q" value="{{ query }}" autocomplete="on" placeholder="{{ placeholder }}">
       </div>
 
-      <a href="{{ h.remove_url_param(['q']) }}" style="float: right; margin-left: 10px; max-height: 52px;" class="action btn btn-primary">{{ _('Clear Search Box') }}</a>
+      <a href="{{ h.remove_url_param(['q']) }}" style="float: right; margin-left: 10px; max-height: 52px; padding-top: 12px;" class="action btn btn-primary">{{ _('Clear Search Box') }}</a>
 
     {% endblock %}
 
@@ -33,7 +33,7 @@
     {% block search_sortby %}
       {% if sorting %}
         <div class="form-select control-group control-order-by">
-          <select id="field-order-by" name="sort" style="width: 230px !important">
+          <select id="field-order-by" name="sort" style="width: 210px !important">
             {% for label, value in sorting %}
               {% if label and value %}
                 <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
