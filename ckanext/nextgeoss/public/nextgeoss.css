@@ -342,7 +342,7 @@ h4.title a {
 .datasets-search-form-container__controls_header {
   display: flex;
   justify-content: center;
-  padding-top: 50px;
+  padding-top: 100px;
 }
 
 .datasets-search-form-container__controls_header .label {
