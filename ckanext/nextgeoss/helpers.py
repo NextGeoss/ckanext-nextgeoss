@@ -187,24 +187,24 @@ def get_extras_to_exclude():
     the config in the future.
     """
     extras_to_exclude = [
-        'thumbnail',
-        'filename',
-        'spatial',
-        'format',
-        'gmlfootprint',
-        'size',
-        'link',
-        'summary',
-        'filename',
+        'thumbnail', 'codede_download_url', 'codede_product_url', 'noa_product_url',
+        'filename', 'collection_description', 'collection_id', 'noa_download_url',
+        'spatial', 'scihub_download_url', 'scihub_product_url', 'scihub_thumbnail',
+        'format', 'noa_thumbnail', 'noa_manifest_url', 'scihub_manifest_url',
+        'gmlfootprint', 'code_manifest_url', 'code_thumbnail_url', 'code_download_url',
+        'size', 'code_thumbnail', 'code_product_url', 'timerange_start',
+        'link', 'timerange_end', 'downloadLink', 'Collection', 'metadata_download',
+        'summary', 'product_download', 'thumbnail_download',
+        'filename', 'geojsonLink', 'parent_identifier',
         'acquisition',
-        'thumbanil',
         'box',
         'localvalue',
         'published',
         'updated',
         'collection_name',
         'date',
-        'product'
+        'product',
+        'noa_expiration_date'
     ]
 
     return extras_to_exclude
@@ -270,7 +270,7 @@ def get_collections_dataset_count(collection_name):
     collection = 'collection_id:' + collection_name
     data_dict = {'q': '',
                  'start': 0,
-                 'rows': 20, 
+                 'rows': 20,
                  'ext_bbox': None,
                  'fq': collection }
 
