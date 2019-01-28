@@ -199,7 +199,7 @@ h2.heading {
     border-radius: 0px 0px 4px 4px;
     border: 0px 1px 1px 1px solid #dddddd;
     margin-top: -30px;
-    height: 300px;
+    height: auto;
     margin-bottom: -40px;
 }
 #green:first-child {

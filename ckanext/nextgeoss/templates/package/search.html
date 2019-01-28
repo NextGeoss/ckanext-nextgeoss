@@ -100,7 +100,11 @@
       <p><strong>There was an error while searching.</strong> Please try again.</p>
     {% endtrans %}
   {% endif %}
-  <a class="show-filters btn">{{ _('Filter Results') }}</a>
+  <a class="show-filters btn">{{ _('Filter Results') }}</a></br>
+
+  <a href="{{ h.generate_opensearch_query(request.params) }}" class="action btn btn-primary" style="right: 20px; margin-bottom: 10px;">
+    {{ _('OpenSearch matching query') }}
+  </a>
   </div>
 {% endblock %}
 

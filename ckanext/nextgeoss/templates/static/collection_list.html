@@ -29,12 +29,13 @@
                 <div class="custom_card">
                     <div class="row">
                         <div class="col-sm-2">
-                            <img width="100" src="image.jpg">
+                            <img width="100" style="padding-top: 10px"src="image.jpg">
                         </div>
                         <div class="col-sm-10">
                           <div class="card_head">
                             <h4><a href="{{ collections_link }}">{{value.name}}</a></h4>
-                            <span>Datasets: {{ h.get_collections_dataset_count(key) }}</span>
+                            <span>Datasets: {{ h.get_collections_dataset_count(key) }}</span></br>
+                            <span>Pilots: {{ h.get_collections_groups(key) }}</span>
                           </div>
                         </div>
                         <div class="col-sm-12">

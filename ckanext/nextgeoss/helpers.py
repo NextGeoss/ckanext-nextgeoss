@@ -277,6 +277,29 @@ def get_collections_dataset_count(collection_name):
     return results_dict['count']
 
 
+def get_collections_groups(collection_name):
+    collection = 'collection_id:' + collection_name
+    data_dict = {'q': '',
+                 'start': 0,
+                 'rows': 20,
+                 'ext_bbox': None,
+                 'fq': collection }
+
+    results_dict = logic.get_action("package_search")({}, data_dict)
+    results = results_dict['results']
+    groups_list = ''
+
+    for result in results:
+        if result.get('groups') != []:
+            groups = result.get('groups')
+            for group in groups:
+                if group['title'] not in groups_list:
+                    groups_list = groups_list + ' ' + group['title']
+
+    return groups_list
+
+
+
 def nextgeoss_get_facet_title(name):
     '''Deprecated in ckan 2.0 '''
     # if this is set in the config use this
@@ -351,14 +374,11 @@ def get_group_collection_count(group):
             for a in col_value:
                 group_collections.append(a)
 
-
     collections = []
 
     for collection_id in group_collections:
         item = collection_information(collection_id)
         collections.append(item)
-
-    print len(collections)
 
     return len(collections)
 
@@ -378,3 +398,27 @@ def get_extras_value(extras, extras_key):
     for extra in extras:
         if extra['key'] == extras_key:
             return extra['value']
+
+
+def generate_opensearch_query(params):
+    query = '/opensearch/search.atom?'
+
+    if 'collection_name' in params:
+        collection_name = params['collection_name']
+
+        from ckanext.opensearch import config
+
+        collections = config.load_settings("collections_list")
+        collection_items = collections.items()
+
+        for collection in collection_items:
+            collection_items = collection[1].items()
+            if collection_name in collection[1].items()[0]:
+                query = query + 'collection_id=' + collection[0]
+
+        for param in params:
+            if param != 'collection_name':
+                query = query + '&' + param + '=' + params[param]
+
+
+    return query

@@ -49,12 +49,14 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'get_collections_count': helpers.get_collections_count,
              'get_collection_url': helpers.get_collection_url,
              'get_collections_dataset_count': helpers.get_collections_dataset_count,
+             'get_collections_groups': helpers.get_collections_groups,
              'nextgeoss_get_facet_title': helpers.nextgeoss_get_facet_title,
              'get_default_slider_values': helpers.get_default_slider_values,
              'get_date_url_param': helpers.get_date_url_param,
              'get_group_collection_count': helpers.get_group_collection_count,
              'collection_information': helpers.collection_information,
-             'get_extras_value': helpers.get_extras_value
+             'get_extras_value': helpers.get_extras_value,
+             'generate_opensearch_query': helpers.generate_opensearch_query
         }
 
     # IRoutes
