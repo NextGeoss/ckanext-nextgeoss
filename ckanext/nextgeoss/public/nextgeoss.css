@@ -113,7 +113,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   margin-bottom: 30px;
 }
 .topic-list .topic-item img {
-  max-width: 170px;
+  max-height: 148px;
 }
 .hero {
   height: 60vh;
