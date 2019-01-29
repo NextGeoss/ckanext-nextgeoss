@@ -16,9 +16,15 @@
                 <label for="timerange_start">Start Date</label>
                 <input type="text" name="timerange_start" class="search search-input control-group">
               </div>
+              <div class="help-tip" style="margin-right: 5px; margin-left:-20px;">
+                <p>Choose a Start Date for timerange.</p>
+              </div>
               <div class="form-group">
                 <label for="timerange_start">End Date</label>
                 <input type="text" name="timerange_end" class="search search-input control-group">
+              </div>
+              <div class="help-tip" style="margin-right: 5px; margin-left:-20px;">
+                <p>Choose a End Date for timerange.</p>
               </div>
               <input type="submit" value="Search" class="btn btn-primary" />
           </form>
@@ -105,6 +111,10 @@
   <a href="{{ h.generate_opensearch_query(request.params) }}" class="action btn btn-primary" style="right: 20px; margin-bottom: 10px;">
     {{ _('OpenSearch matching query') }}
   </a>
+
+  <div class="help-tip">
+    <p>OpenSearch matching query button redirects the user to OpenSearch search page, taking into consideration the filters that the user selected.</p>
+  </div>
   </div>
 {% endblock %}
 
@@ -180,8 +190,11 @@
     <div>
       <div class="filters-header">
         <i class="fa fa-lg fa-filter"></i>
-          <span class="filters-header__title" data-toggle="tooltip" title="Refine your Search lists the options that user can query">
+          <span class="filters-header__title">
             {{ _('Refine your Search') }}
+            <div class="help-tip">
+            <p>Refine your Search section lists the different criteria a user can query by.</p>
+            </div>
           </span>
       </div>
       {% for facet in c.facet_titles %}

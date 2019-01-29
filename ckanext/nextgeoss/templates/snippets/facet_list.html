@@ -49,8 +49,7 @@ within_tertiary
       {% block facet_list_item %}
         <section class="{{ wrapper_class or 'module module-narrow module-shallow' }}">
           {% block facet_list_heading %}
-            <h2 class="module-heading datasets-filters-facet-title" data-toggle="tooltip"
-            title="List of available {{title}}. Select {{title}} to query by.">
+            <h2 class="module-heading datasets-filters-facet-title">
               {% if name == 'tags' %}
                 {% set icon = 'fa fa-tags' %}
               {% elif name == 'groups' %}
@@ -63,6 +62,10 @@ within_tertiary
               <i class="{{ icon }}"></i>
               {% set title = title or h.nextgeoss_get_facet_title(name) %}
               {{ _(title) }}
+
+              <div class="help-tip">
+                <p>List of available {{title}}. Select {{title}} to query by.</p>
+              </div>
             </h2>
           {% endblock %}
           {% block facet_list_items %}
