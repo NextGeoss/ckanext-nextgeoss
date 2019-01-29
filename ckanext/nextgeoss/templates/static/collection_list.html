@@ -19,7 +19,12 @@
 
 <div class="container">
     </br>
-    <h2> {{collections_count}} collections available </h2>
+    <div class="col-md-12">
+        <h2 class="col-md-4"> {{collections_count}} collections available</h2>
+        <div class="help-tip">
+        <p>A Collection is a group of earth observation (EO) datasets sharing exactly the same product specifications. All data sets belonging to a collection were observed with the identical sensor and processed with an identical algorithm.</p>
+        </div>
+    </div>
 
     {% for _ in range(counter_collections, collections_count) %}
     <div class="row">
