@@ -49,7 +49,8 @@ within_tertiary
       {% block facet_list_item %}
         <section class="{{ wrapper_class or 'module module-narrow module-shallow' }}">
           {% block facet_list_heading %}
-            <h2 class="module-heading datasets-filters-facet-title">
+            <h2 class="module-heading datasets-filters-facet-title" data-toggle="tooltip"
+            title="List of available {{title}}. Select {{title}} to query by.">
               {% if name == 'tags' %}
                 {% set icon = 'fa fa-tags' %}
               {% elif name == 'groups' %}
@@ -75,7 +76,7 @@ within_tertiary
                     {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
                       <li class="{{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
                         <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}" style="padding-left: 20px;">
-                          <span>{{ label }} 
+                          <span>{{ label }}
                             {% if name != 'groups' %}
                               <span class="badge" style="background-color: #673fb0;">{{ count }}</span>
                             {% endif %}
@@ -101,7 +102,7 @@ within_tertiary
             {% endwith %}
           {% endblock %}
         </section>
-      {% endblock %}      
+      {% endblock %}
     {% endif %}
-  {% endwith %} 
+  {% endwith %}
 {% endblock %}

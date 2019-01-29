@@ -176,7 +176,9 @@
     <div>
       <div class="filters-header">
         <i class="fa fa-lg fa-filter"></i>
-        <span class="filters-header__title">{{ _('Refine your Search') }}</span>
+          <span class="filters-header__title" data-toggle="tooltip" title="Refine your Search lists the options that user can query">
+            {{ _('Refine your Search') }}
+          </span>
       </div>
       {% for facet in c.facet_titles %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
