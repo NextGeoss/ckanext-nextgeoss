@@ -287,14 +287,14 @@ def get_collections_groups(collection_name):
 
     results_dict = logic.get_action("package_search")({}, data_dict)
     results = results_dict['results']
-    groups_list = ''
+    groups_list = []
 
     for result in results:
         if result.get('groups') != []:
             groups = result.get('groups')
             for group in groups:
                 if group['title'] not in groups_list:
-                    groups_list = groups_list + ' ' + group['title']
+                    groups_list.append({'title': group['title'], 'name': group['name']})
 
     return groups_list
 

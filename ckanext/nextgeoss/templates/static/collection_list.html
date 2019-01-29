@@ -40,7 +40,13 @@
                           <div class="card_head">
                             <h4><a href="{{ collections_link }}">{{value.name}}</a></h4>
                             <span>Datasets: {{ h.get_collections_dataset_count(key) }}</span></br>
-                            <span>Pilots: {{ h.get_collections_groups(key) }}</span>
+                            <span>Pilots:
+                                {% set groups = h.get_collections_groups(key) %}
+                                {% for group in groups %}
+                                  {% set group_link = h.url_for(controller='group', action='about', id=group.name) %}
+                                  <a href="{{ group_link }}" style="font-weight: normal; font-size: 15px !important;">{{ group.title }}</a>
+                                {% endfor %}
+                            </span>
                           </div>
                         </div>
                         <div class="col-sm-12">
