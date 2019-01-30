@@ -89,4 +89,33 @@
         });
     });
 </script>
+    <div class="row">
+        {% for _ in range(counter_collections, collections_count) %}
+          {% for key, value in collection_list.items()[counter:counter_collections] %}
+          <div class="col-sm-4">
+              <div class="custom_card">
+                  <div class="row">
+                      <div class="col-sm-2">
+                          <img width="50" src="image.jpg">
+                      </div>
+                      <div class="col-sm-10">
+                          <h4>{{value.name}}</h4>
+                          <span>Datasets: {{ h.get_collections_dataset_count(key) }}</span>
+                      </div>
+                      <div class="col-sm-12">
+                          <p>{{ value.description }}</p>
+                          {% set collections_link = h.get_collection_url(key) %}                        
+                          <a href="{{ collections_link }}">Go to collection ></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+          {% set counter = counter + 3 %}
+          {% set counter_collections = counter_collections + 3 %}
+        {% endfor %}
+  </div>
+</div>
+
+</div>
 {% endblock %}

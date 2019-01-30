@@ -268,7 +268,7 @@ def get_collections_dataset_count(collection_name):
     collection = 'collection_id:' + collection_name
     data_dict = {'q': '',
                  'start': 0,
-                 'rows': 20,
+                 'rows': 20, 
                  'ext_bbox': None,
                  'fq': collection }
 
@@ -378,3 +378,4 @@ def get_extras_value(extras, extras_key):
     for extra in extras:
         if extra['key'] == extras_key:
             return extra['value']
+

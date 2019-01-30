@@ -120,6 +120,7 @@
           'titles': c.search_parameters
           }
         %}
+
         {% set sorting = [
           (_('Relevance'), 'score desc, metadata_modified desc'),
           (_('Name Ascending'), 'title_string asc'),
@@ -179,11 +180,32 @@
           <span class="filters-header__title" data-toggle="tooltip" title="Refine your Search lists the options that user can query">
             {{ _('Refine your Search') }}
           </span>
+        <span class="filters-header__title">{{ _('Date Range') }}</span>
+      </div>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+        {% resource 'nextgeoss/daterangepicker.js' %}
+        {% resource 'nextgeoss/search.js' %}  
+
+        <form method="post" class="search">
+            <label for="timerange_start">Start Date:</label>
+            <input type="text" name="timerange_start" class="form-control">
+            <label for="timerange_start">End Date:</label>
+            <input type="text" name="timerange_end" class="form-control">      
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </form>
+      </div>
+  </div>
+  </br>
+  <div class="filters">
+    <div>
+      <div class="filters-header">
+        <i class="fa fa-lg fa-filter"></i>
+        <span class="filters-header__title">{{ _('Two Step Search') }}</span>
       </div>
       {% for facet in c.facet_titles %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
       {% endfor %}
     </div>
-    <a class="close no-text hide-filters"><i class="fa fa-remove-sign"></i><span class="text">close</span></a>
-  </div>
+    <a class="close no-text hide-filters"><i class="fa fa-remove-sign"></i><span class="text">close</span></a>    
+  </div>  
 {% endblock %}

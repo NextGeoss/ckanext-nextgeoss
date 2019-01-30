@@ -3,23 +3,8 @@
 
 #}
 {% if extras %}
-    {% if c.group_dict.name == 'biodiversity17' %}
 
-  
-  {% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
-  		extent = "{ \"type\":
-		    \"Polygon\", \"coordinates\": [[[-25.1528, 35.3], [44.9158, 35.3], [44.9158, 71.2838], [-25.1528, 71.2838], [-25.1528, 35.3]]]}"%}
-  
-{#
-		{% snippet "spatial/snippets/spatial_query.html", default_extent="{ \"type\":
-		    \"Polygon\", \"coordinates\": [[[-25.1528, 35.3], [44.9158, 35.3], [44.9158,
-		    71.2838], [-25.1528, 71.2838], [-25.1528, 35.3]]]}" %}
-#}
-
-{% else %}
-		{% snippet "spatial/snippets/topic_map_big.html" %}
-	{% endif %}
-
+  {% snippet "spatial/snippets/topic_map_big.html" %}
 	<!-- Resources -->
 	<section id="dataset-resources" class="resources">
 		<h3><i class="fa fa-download"></i> {{ _('Download and links') }}</h3>
@@ -33,7 +18,7 @@
 				{% set key, value = resource %}
 				{% set resource_name = h.nextgeoss_get_value(resource['value'], 'name') %}
 				{% set resource_desc = h.nextgeoss_get_value(resource['value'], 'description') %}
-				{% set resource_link = h.nextgeoss_get_value(resource['value'], 'linkage') %}
+				{% set resource_link = h.nextgeoss_get_value(resource['value'], 'linkage') %}	
 				<div>
 					<div class="info" id="resource-box">
 						<div class="resource-box-left">
@@ -82,7 +67,7 @@
 										Twitter
 									</a>
 									<a href="https://www.facebook.com/Nextgeoss" target="_blank" class="btn btn-primary">
-										<i class="fa fa-facebook"></i>
+										<i class="fa fa-facebook"></i>			        		
 										Facebook
 									</a>
 									<a href="https://www.youtube.com/channel/UCaRjEzOhODNvBZUuv3ugLng" target="_blank" class="btn btn-primary">
@@ -103,25 +88,12 @@
           <h3><i class="fa fa-image"></i> {{ _('Thumbnails') }}</h3>
 
           <ul class="media-grid masonry" data-module="media-grid" style="position: relative">
-		    {% if c.group_dict.name == 'agriculture' %}
-		          	<li class="media-item masonry-brick">
-		          		<a href="/thumb_eg1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg1.jpg')}}"></a>
-		          	</li>
-		          	<li class="media-item masonry-brick">
-		          		<a href="/thumb_eg2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg2.jpg')}}"></a>
-		          	</li>
-			{% endif %}
-		    {% if c.group_dict.name == 'biodiversity17' %}
-		          	<li class="media-item masonry-brick">
-		          		<a href="/image1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/image1.jpg')}}"></a>
-		          	</li>
-		          	<li class="media-item masonry-brick">
-		          		<a href="/image2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/image2.jpg')}}"></a>
-		          	</li>
-		          	<li class="media-item masonry-brick">
-		          		<a href="/image3.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/image3.jpg')}}"></a>
-		          	</li>
-			{% endif %}
+          	<li class="media-item masonry-brick">
+          		<a href="/thumb_eg1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg1.jpg')}}"></a>
+          	</li>
+          	<li class="media-item masonry-brick">
+          		<a href="/thumb_eg2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg2.jpg')}}"></a>
+          	</li>          	
           </ul>
         </section>
 
@@ -133,8 +105,7 @@
 				{% for extra in extras %}
 				{% set key, value = extra %}
 				{% set contact = ['e-mail', 'individualName', 'organisationName'] %}
-				{% set skip = ['collections'] %}
-				{% if key not in contact and 'resource' not in key and key not in skip %}
+				{% if key not in contact and 'resource' not in key %}
 				<tr rel="dc:relation" resource="_:extra{{ i }}">
 					<th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
 					<td class="dataset-details" property="rdf:value">{{ value }}</td>
@@ -158,9 +129,4 @@
 			</tbody>
 		</table>
 	   </section>
-{% else %}
-	<h3> More information coming soon </h2>
-	</br></br></br></br>
-	</br></br></br></br>
-	</br>
 {% endif %}

@@ -14,11 +14,17 @@
    margin-top:0;
    padding-top:5px;
 }
+
+.custom_card a {
+    color:#168b79;
+}
+
 .custom_card p
 {
     margin-top: 10px;
     color:#5a5a5a;
 }
+
 .custom_card .card_head span
 {
   color:#6b6b6b;
@@ -51,4 +57,13 @@ a.morelink {
 .collection_link {
   position: absolute;
   bottom: 20px;
+}
+
+.custom_card span
+{
+    color:#b4b3b3;
+}
+.custom_card a
+{
+    text-decoration:underline;;
 }
