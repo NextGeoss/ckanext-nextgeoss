@@ -365,14 +365,16 @@ def search_params():
 
 
 def get_group_collection_count(group):
-    group_extras = group['extras']
     group_collections = []
 
-    for extra in group_extras:
-        if extra['key'] == 'collections':
-            col_value = extra['value'].split(", ")
-            for a in col_value:
-                group_collections.append(a)
+    if 'extras' in group:
+        group_extras = group['extras']
+
+        for extra in group_extras:
+            if extra['key'] == 'collections':
+                col_value = extra['value'].split(", ")
+                for a in col_value:
+                    group_collections.append(a)
 
     collections = []
 
