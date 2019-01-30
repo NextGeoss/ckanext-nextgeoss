@@ -1,7 +1,11 @@
 from ckan.common import config
 import ckan.logic as logic
+import ckan.plugins as p
 import ast
-
+import ckan.plugins.toolkit as tk
+import datetime
+import json
+import re
 
 def get_jira_script():
     jira_script = config.get('ckanext.nextgeoss.jira_issue_tracker')
@@ -68,15 +72,13 @@ def get_value(resources, key):
 
 def get_pilot_extras(extras):
     pilot_extras = []
-    print type(pilot_extras)
 
     for extra in extras:
         k, v = extra[0], extra[1]
 
         if 'resource' not in k:
             pilot_extras.append({'key': k, 'value': v})
-            print pilot_extras
-    print type(pilot_extras)
+
     return pilot_extras
 
 
@@ -183,24 +185,24 @@ def get_extras_to_exclude():
     the config in the future.
     """
     extras_to_exclude = [
-        'thumbnail',
-        'filename',
-        'spatial',
-        'format',
-        'gmlfootprint',
-        'size',
-        'link',
-        'summary',
-        'filename',
+        'thumbnail', 'codede_download_url', 'codede_product_url', 'noa_product_url',
+        'filename', 'collection_description', 'collection_id', 'noa_download_url',
+        'spatial', 'scihub_download_url', 'scihub_product_url', 'scihub_thumbnail',
+        'format', 'noa_thumbnail', 'noa_manifest_url', 'scihub_manifest_url',
+        'gmlfootprint', 'code_manifest_url', 'code_thumbnail_url', 'code_download_url',
+        'size', 'code_thumbnail', 'code_product_url', 'timerange_start',
+        'link', 'timerange_end', 'downloadLink', 'Collection', 'metadata_download',
+        'summary', 'product_download', 'thumbnail_download',
+        'filename', 'geojsonLink', 'parent_identifier',
         'acquisition',
-        'thumbanil',
         'box',
         'localvalue',
         'published',
         'updated',
         'collection_name',
         'date',
-        'product'
+        'product',
+        'noa_expiration_date'
     ]
 
     return extras_to_exclude
@@ -242,3 +244,138 @@ def nextgeoss_get_site_statistics():
     stats['organization_count'] = len(
         logic.get_action('organization_list')({}, {}))
     return stats
+
+
+def get_collections_count():
+    from ckanext.opensearch import config
+
+    collections = config.load_settings("collections_list")
+    collections_count = collections.keys()
+    collections_count = len(collections_count)
+
+    return collections_count
+
+
+def get_collection_url(collection_name):
+    from ckanext.opensearch import config
+
+    collection = 'collection_id:' + collection_name
+
+    return "dataset?collection_name=" + collection_name.replace(' ', '+')
+
+
+def get_collections_dataset_count(collection_name):
+    collection = 'collection_id:' + collection_name
+    data_dict = {'q': '',
+                 'start': 0,
+                 'rows': 20, 
+                 'ext_bbox': None,
+                 'fq': collection }
+
+    results_dict = logic.get_action("package_search")({}, data_dict)
+
+    return results_dict['count']
+
+
+def nextgeoss_get_facet_title(name):
+    '''Deprecated in ckan 2.0 '''
+    # if this is set in the config use this
+    config_title = config.get('search.facets.%s.title' % name)
+    if config_title:
+        return config_title
+
+    facet_titles = {'organization': _('Organizations'),
+                    'groups': _('Groups'),
+                    'tags': _('Tags')}
+
+    return facet_titles.get(name, name.capitalize())
+
+
+def get_default_slider_values():
+    '''Returns the earliest collection date from package_search'''
+
+    data_dict = {
+            'sort': 'begin-collection_date asc',
+            'rows': 1,
+            'q': 'begin-collection_date:[* TO *]',
+    }
+    result = p.toolkit.get_action('package_search')({}, data_dict)['results']
+    if len(result) == 1:
+        date = filter(lambda x: x['key'] == 'begin-collection_date',
+                result[0].get('extras', []))
+        begin = date[0]['value']
+    else:
+        begin = datetime.date.today().isoformat()
+
+    data_dict = {
+            'sort': 'end-collection_date desc',
+            'rows': 1,
+            'q': 'end-collection_date:[* TO *]',
+    }
+    result = p.toolkit.get_action('package_search')({}, data_dict)['results']
+    if len(result) == 1:
+        date = filter(lambda x: x['key'] == 'end-collection_date',
+                result[0].get('extras', []))
+        end = date[0]['value']
+    else:
+        end = datetime.date.today().isoformat()
+    return begin, end
+
+
+def get_date_url_param():
+    params = ['', '']
+    for k, v in tk.request.params.items():
+        if k == 'ext_begin_date':
+            params[0] = v
+        elif k == 'ext_end_date':
+            params[1] = v
+        else:
+            continue
+    return params
+
+
+DEFAULT_SEARCH_NAMES = u'timerange_start timerange_end'
+
+def search_params():
+    u'''Returns a list of the current search names'''
+    return config.get(u'search.search_param', DEFAULT_SEARCH_NAMES).split()
+
+
+def get_group_collection_count(group):
+    group_extras = group['extras']
+    group_collections = []
+
+    for extra in group_extras:
+        if extra['key'] == 'collections':
+            col_value = extra['value'].split(", ")
+            for a in col_value:
+                group_collections.append(a)
+
+
+    collections = []
+
+    for collection_id in group_collections:
+        item = collection_information(collection_id)
+        collections.append(item)
+
+    print len(collections)
+
+    return len(collections)
+
+
+def collection_information(collection_id=None):
+    from ckanext.opensearch import config
+
+    collections = config.load_settings("collections_list")
+    collection_items = collections.items()
+
+    for collection in collection_items:
+        if collection[0] == collection_id:
+            return dict(collection[1])
+
+
+def get_extras_value(extras, extras_key):
+    for extra in extras:
+        if extra['key'] == extras_key:
+            return extra['value']
+

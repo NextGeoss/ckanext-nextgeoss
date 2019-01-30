@@ -1,13 +1,112 @@
-{% resource 'nextgeoss/js/search.js' %}
-
 {% ckan_extends %}
 
 {% import 'macros/form.html' as form %}
 
 {% block pre_primary %}
   {% snippet "spatial/snippets/spatial_query.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]" %}
+  <div class="module-content" id="green">
+    <div>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+        {% resource 'nextgeoss/daterangepicker.js' %}
+        {% resource 'nextgeoss/search.js' %}
+        <div class="row">
+        <div class="col-sm-10 text-center col-sm-offset-1">
+          <form method="post" class="datasets-search-form-container__controls_header form-inline">
+              <div class="form-group">
+                <label for="timerange_start">Start Date</label>
+                <input type="text" name="timerange_start" class="search search-input control-group">
+              </div>
+              <div class="form-group">
+                <label for="timerange_start">End Date</label>
+                <input type="text" name="timerange_end" class="search search-input control-group">
+              </div>
+              <input type="submit" value="Search" class="btn btn-primary" />
+          </form>
+        </div>
+        </div>
+      </div>
+
+  {% block search_title %}
+    {% if not error %}
+      <h2 style="display: flex; justify-content: center;">
+        {% snippet 'snippets/search_result_text.html', query=c.q, count=c.page.item_count, type='dataset' %}</h2>
+    {% else %}
+      <h2 style="display: flex; justify-content: center;">Error</h2>
+    {% endif %}
+  {% endblock %}
+
+
+  {% block search_facets %}
+        {% set facets = {
+          'fields': c.fields_grouped,
+          'search': c.search_facets,
+          'titles': c.facet_titles,
+          'translated_fields': c.translated_fields,
+          'remove_field': c.remove_field }
+        %}
+
+        {% set search_parameters = {
+          'fields': c.parameters_grouped,
+          'titles': c.search_parameters
+          }
+        %}
+    {% set show_empty = request.params %}
+    {% set count = c.page.item_count %}
+    {% set error=c.query_error %}
+
+    {% if facets %}
+      <p class="filter-list">
+        {% for field in facets.fields %}
+          {% set search_facets_items = facets.search.get(field)['items'] %}
+          <span class="facet">{{ facets.titles.get(field) }}:</span>
+          {% for value in facets.fields[field] %}
+            <span class="filtered pill">
+              {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
+                {{ facets.translated_fields[(field,value)] }}
+              {%- else -%}
+                {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
+              {%- endif %}
+              <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+            </span>
+          {% endfor %}
+        {% endfor %}
+
+        {% for field in search_parameters.fields %}
+          {% set search_facets_items = search_parameters['items'] %}
+          <span class="facet">{{ search_parameters.titles.get(field) }}:</span>
+          {% set value = search_parameters.fields[field] %}
+            <span class="filtered pill">
+              {%- if search_parameters.translated_fields and search_parameters.translated_fields.has_key((field,value)) -%}
+                {{ search_parameters.translated_fields[(field,value)] }}
+              {%- else -%}
+                {{ value }}
+              {%- endif %}
+              <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+            </span>
+        {% endfor %}
+      </p>
+      <a class="show-filters btn">{{ _('Filter Results') }}</a>
+    {% endif %}
+  {% endblock %}
+
+  {% if show_empty and count == 0 %}
+    {% trans %}
+      <p class="extra">Please try another search.</p>
+    {% endtrans %}
+  {% endif %}
+
+  {% if error %}
+    {% trans %}
+      <p><strong>There was an error while searching.</strong> Please try again.</p>
+    {% endtrans %}
+  {% endif %}
+  <a class="show-filters btn">{{ _('Filter Results') }}</a>
+  </div>
+{% endblock %}
+
+{% block primary_content %}
   <section class="module">
-    <div class="module-content" id="green">
+    <div class="module-content">
       {% block form %}
         {% set facets = {
           'fields': c.fields_grouped,
@@ -16,6 +115,12 @@
           'translated_fields': c.translated_fields,
           'remove_field': c.remove_field }
         %}
+        {% set search_parameters = {
+          'fields': c.parameters_grouped,
+          'titles': c.search_parameters
+          }
+        %}
+
         {% set sorting = [
           (_('Relevance'), 'score desc, metadata_modified desc'),
           (_('Name Ascending'), 'title_string asc'),
@@ -23,15 +128,9 @@
           (_('Last Modified'), 'metadata_modified desc'),
           (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
         %}
-        {% snippet 'package/snippets/search_form.html', form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}
+        {% snippet 'package/snippets/search_form.html', form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, search_parameters=search_parameters, show_empty=request.params, error=c.query_error, fields=c.fields %}
       {% endblock %}
-    </div>
-  </section>
-{% endblock %}
 
-{% block primary_content %}
-  <section class="module">
-    <div class="module-content">
       {% block page_primary_action %}
         {% if h.check_access('package_create') %}
           <div class="page_primary_action">
@@ -78,12 +177,35 @@
     <div>
       <div class="filters-header">
         <i class="fa fa-lg fa-filter"></i>
-        <span class="filters-header__title">{{ _('Filters') }}</span>
+          <span class="filters-header__title" data-toggle="tooltip" title="Refine your Search lists the options that user can query">
+            {{ _('Refine your Search') }}
+          </span>
+        <span class="filters-header__title">{{ _('Date Range') }}</span>
+      </div>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+        {% resource 'nextgeoss/daterangepicker.js' %}
+        {% resource 'nextgeoss/search.js' %}  
+
+        <form method="post" class="search">
+            <label for="timerange_start">Start Date:</label>
+            <input type="text" name="timerange_start" class="form-control">
+            <label for="timerange_start">End Date:</label>
+            <input type="text" name="timerange_end" class="form-control">      
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </form>
+      </div>
+  </div>
+  </br>
+  <div class="filters">
+    <div>
+      <div class="filters-header">
+        <i class="fa fa-lg fa-filter"></i>
+        <span class="filters-header__title">{{ _('Two Step Search') }}</span>
       </div>
       {% for facet in c.facet_titles %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
       {% endfor %}
     </div>
-    <a class="close no-text hide-filters"><i class="fa fa-remove-sign"></i><span class="text">close</span></a>
-  </div>
+    <a class="close no-text hide-filters"><i class="fa fa-remove-sign"></i><span class="text">close</span></a>    
+  </div>  
 {% endblock %}

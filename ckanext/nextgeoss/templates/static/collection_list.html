@@ -1,0 +1,121 @@
+{% extends "page.html" %}
+
+{% block content %}
+
+<div role="main" class="hero">
+  <div class="hero-text">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h1 class="hero-title">{{ _('Collections')|safe }}</h1>
+        <h4 class="hero-subtitle">{{ _('')|safe }}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% set collections_count = h.get_collections_count() %}
+{% set counter = 0 %}
+{% set counter_collections = 3 %}
+
+<div class="container">
+    </br>
+    <h2> {{collections_count}} collections available </h2>
+
+    {% for _ in range(counter_collections, collections_count) %}
+    <div class="row">
+          {% for key, value in collection_list.items()[counter:counter_collections] %}
+            {% set collections_link = h.get_collection_url(value.name) %}
+            <div class="col-sm-4">
+                <div class="custom_card">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img width="100" src="image.jpg">
+                        </div>
+                        <div class="col-sm-10">
+                          <div class="card_head">
+                            <h4><a href="{{ collections_link }}">{{value.name}}</a></h4>
+                            <span>Datasets: {{ h.get_collections_dataset_count(key) }}</span>
+                          </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="card_body comment more">
+                            {{ value.description }}
+                          </div>
+                        </div>
+                    </div>
+                    <a class="collection_link" href="{{ collections_link }}">Go to collection ></a>
+                </div>
+            </div>
+        {% endfor %}
+          {% set counter = counter + 3 %}
+          {% set counter_collections = counter_collections + 3 %}
+    </div>
+    {% endfor %}
+</div>
+
+</div>
+<script>
+    $(document).ready(function() {
+        var showChar = 120;
+        var ellipsestext = "...";
+        var moretext = "Read More";
+        var lesstext = "Read Less";
+        $('.more').each(function() {
+            var content = $(this).html();
+
+            if(content.length > showChar) {
+
+                var c = content.substr(0, showChar);
+                var h = content.substr(showChar-1, content.length - showChar);
+
+                var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span><a href="" class="morelink">'+moretext+'</a></span>';
+
+                $(this).html(html);
+            }
+
+        });
+
+        $(".morelink").click(function(){
+            if($(this).hasClass("less")) {
+                $(this).removeClass("less");
+                $(this).html(moretext);
+            } else {
+                $(this).addClass("less");
+                $(this).html(lesstext);
+            }
+            $(this).parent().prev().toggle();
+            $(this).prev().toggle();
+            return false;
+        });
+    });
+</script>
+    <div class="row">
+        {% for _ in range(counter_collections, collections_count) %}
+          {% for key, value in collection_list.items()[counter:counter_collections] %}
+          <div class="col-sm-4">
+              <div class="custom_card">
+                  <div class="row">
+                      <div class="col-sm-2">
+                          <img width="50" src="image.jpg">
+                      </div>
+                      <div class="col-sm-10">
+                          <h4>{{value.name}}</h4>
+                          <span>Datasets: {{ h.get_collections_dataset_count(key) }}</span>
+                      </div>
+                      <div class="col-sm-12">
+                          <p>{{ value.description }}</p>
+                          {% set collections_link = h.get_collection_url(key) %}                        
+                          <a href="{{ collections_link }}">Go to collection ></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+          {% set counter = counter + 3 %}
+          {% set counter_collections = counter_collections + 3 %}
+        {% endfor %}
+  </div>
+</div>
+
+</div>
+{% endblock %}

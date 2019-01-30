@@ -179,7 +179,7 @@ h2.heading {
 }
 .module-heading {
     background-color: inherit;
-    border-top: none;    
+    border-top: none;
 }
 .filters-header {
     text-align: center;
@@ -212,6 +212,10 @@ li.dataset-item {
     box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
 }
 .dataset-heading {
+  max-width: 400px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  padding-bottom: 10px;
 }
 .dataset-heading a {
     color: #168B7A;
@@ -243,14 +247,14 @@ h2.lined::before
   border-top: 2px solid #292929;
   content:"";
   margin: 0 auto
- ; position: absolute; 
+ ; position: absolute;
   top: 50%; left: 0; right: 0; bottom: 0;
   z-index: -1;
 }
 h2 span
 {
-  background: #fff; 
-  padding: 0 20px; 
+  background: #fff;
+  padding: 0 20px;
 }
 .info {
       box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
@@ -308,7 +312,7 @@ h4.title a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 300px;
+  margin-top: 20px;
 }
 
 .datasets-search-form-container__controls {
@@ -317,7 +321,8 @@ h4.title a {
 }
 
 .datasets-search-form-container__controls .search-input {
-  width: 560px;
+  width: 400px;
+  margin-left: 20px;
 }
 
 .datasets-search-form-container__controls .search {
@@ -327,6 +332,31 @@ h4.title a {
 }
 
 .datasets-search-form-container__controls select {
+  border-radius: 8px;
+  box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
+  width: 325px !important;
+  height: 52px;
+  padding-left: 25px;
+  margin-left: 15px;
+}
+
+.datasets-search-form-container__controls_header {
+  padding-top: 100px;
+}
+
+.datasets-search-form-container__controls_header .label {
+  margin-top: 5px;
+}
+
+.datasets-search-form-container__controls_header .search {
+  border-radius: 8px;
+  box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
+  padding: 15px 20px !important;
+  margin: 0px 20px 0 10px;
+  height: 40px;
+}
+
+.datasets-search-form-container__controls_header select {
   border-radius: 8px;
   box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
   width: 325px !important;
@@ -1105,13 +1135,14 @@ button.btn.btn-navbar {
     justify-content: center;
   }
   .datasets-search-form-container__controls .search-input {
-    width: 100%;
+    width: 400px;
+    margin-left: 30px;
   }
   .filters {
     background-color: inherit !important;
   }
   .filters > div {
-    background-color: inherit !important; 
+    background-color: inherit !important;
   }
   .toolbar .breadcrumb {
     color: inherit !important;
@@ -1304,4 +1335,35 @@ table.mobile-table td.dataset-details {
 
 .search-button {
   margin: 0px !important;
+}
+
+.custom_card
+{
+    background-color:#f7f7f7 !important;
+    padding: 20px !important;
+    margin-top:20px !important;
+}
+.custom_card h4
+{
+   color: #168b79 !important;
+   font-weight:normal !important;
+   margin-bottom: 0 !important;
+   margin-top:0 !important;
+   padding-top:5px !important;
+}
+.custom_card a {
+    color:#168b79 !important;
+}
+.custom_card p
+{
+    margin-top: 10px !important;
+    color:#5a5a5a !important;
+}
+.custom_card span
+{
+    color:#b4b3b3 !important;
+}
+.custom_card a
+{
+    text-decoration:underline !important;
 }

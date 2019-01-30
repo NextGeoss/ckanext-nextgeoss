@@ -49,22 +49,19 @@ within_tertiary
       {% block facet_list_item %}
         <section class="{{ wrapper_class or 'module module-narrow module-shallow' }}">
           {% block facet_list_heading %}
-            <h2 class="module-heading datasets-filters-facet-title">
+            <h2 class="module-heading datasets-filters-facet-title" data-toggle="tooltip"
+            title="List of available {{title}}. Select {{title}} to query by.">
               {% if name == 'tags' %}
                 {% set icon = 'fa fa-tags' %}
               {% elif name == 'groups' %}
                 {% set icon = 'fa fa-comments' %}
-              {% elif name == 'res_format' %}
-                {% set icon = 'fa fa-edit' %}
-              {% elif name == 'license_id' %}
-                {% set icon = 'fa fa-certificate' %}
               {% elif name == 'organization' %}
                 {% set icon = 'fa fa-sitemap' %}
               {% else %}
                 {% set icon = 'fa fa-filter' %}
               {% endif %}
               <i class="{{ icon }}"></i>
-              {% set title = title or h.get_facet_title(name) %}
+              {% set title = title or h.nextgeoss_get_facet_title(name) %}
               {{ _(title) }}
             </h2>
           {% endblock %}
@@ -79,7 +76,11 @@ within_tertiary
                     {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
                       <li class="{{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
                         <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}" style="padding-left: 20px;">
-                          <span>{{ label }} <span class="badge" style="background-color: #673fb0;">{{ count }}</span></span>
+                          <span>{{ label }}
+                            {% if name != 'groups' %}
+                              <span class="badge" style="background-color: #673fb0;">{{ count }}</span>
+                            {% endif %}
+                          </span>
                         </a>
                       </li>
                   {% endfor %}
@@ -101,7 +102,7 @@ within_tertiary
             {% endwith %}
           {% endblock %}
         </section>
-      {% endblock %}
+      {% endblock %}      
     {% endif %}
   {% endwith %}
 {% endblock %}
