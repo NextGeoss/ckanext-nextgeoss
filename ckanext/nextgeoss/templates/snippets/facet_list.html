@@ -54,13 +54,17 @@ within_tertiary
                 {% set icon = 'fa fa-tags' %}
               {% elif name == 'groups' %}
                 {% set icon = 'fa fa-comments' %}
+              {% elif name == 'res_format' %}
+                {% set icon = 'fa fa-edit' %}
+              {% elif name == 'license_id' %}
+                {% set icon = 'fa fa-certificate' %}
               {% elif name == 'organization' %}
                 {% set icon = 'fa fa-sitemap' %}
               {% else %}
                 {% set icon = 'fa fa-filter' %}
               {% endif %}
               <i class="{{ icon }}"></i>
-              {% set title = title or h.nextgeoss_get_facet_title(name) %}
+              {% set title = title or h.get_facet_title(name) %}
               {{ _(title) }}
             </h2>
           {% endblock %}
@@ -75,11 +79,7 @@ within_tertiary
                     {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
                       <li class="{{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
                         <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}" style="padding-left: 20px;">
-                          <span>{{ label }} 
-                            {% if name != 'groups' %}
-                              <span class="badge" style="background-color: #673fb0;">{{ count }}</span>
-                            {% endif %}
-                          </span>
+                          <span>{{ label }} <span class="badge" style="background-color: #673fb0;">{{ count }}</span></span>
                         </a>
                       </li>
                   {% endfor %}
@@ -101,7 +101,7 @@ within_tertiary
             {% endwith %}
           {% endblock %}
         </section>
-      {% endblock %}      
+      {% endblock %}
     {% endif %}
-  {% endwith %} 
+  {% endwith %}
 {% endblock %}

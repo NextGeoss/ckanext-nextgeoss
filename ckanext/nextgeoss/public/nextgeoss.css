@@ -1305,34 +1305,3 @@ table.mobile-table td.dataset-details {
 .search-button {
   margin: 0px !important;
 }
-
-.custom_card
-{
-    background-color:#f7f7f7 !important;
-    padding: 20px !important;
-    margin-top:20px !important;
-}
-.custom_card h4
-{
-   color: #168b79 !important;
-   font-weight:normal !important;
-   margin-bottom: 0 !important;
-   margin-top:0 !important;
-   padding-top:5px !important;
-}
-.custom_card a {
-    color:#168b79 !important;
-}
-.custom_card p
-{
-    margin-top: 10px !important;
-    color:#5a5a5a !important;
-}
-.custom_card span
-{
-    color:#b4b3b3 !important;
-}
-.custom_card a
-{
-    text-decoration:underline !important;
-}

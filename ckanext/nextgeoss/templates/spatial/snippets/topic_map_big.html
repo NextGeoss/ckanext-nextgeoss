@@ -17,7 +17,7 @@ extent
   <h3><i class="fa fa-globe"></i> {{ _('Spatial') }}</h3>
 
   {% set map_config = h.get_common_map_config() %}
-  <div class="dataset-map-expanded" id="dataset-map-big" data-module="spatial-query" data-default_extent="[[20.0853421, -41.0315431], [64.92, -25.87]]" data-module-map_config="{{ h.dump_json(map_config) }}">
+  <div  class="dataset-map-expanded" id="dataset-map-big" data-module="spatial-query" data-default_extent="[[20.0853421, -41.0315431], [64.92, -25.87]]" data-module-map_config="{{ h.dump_json(map_config) }}">
     <div id="dataset-map-container" style="height: 400px"></div>
   </div>
   <div id="dataset-map-attribution">

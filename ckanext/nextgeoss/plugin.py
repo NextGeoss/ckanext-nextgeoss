@@ -45,15 +45,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'ng_extras_to_exclude': helpers.get_extras_to_exclude,
              'ng_get_dataset_thumbnail_path': helpers.get_dataset_thumbnail_path,  # noqa: E501
              'ng_get_source_namespace': helpers.get_source_namespace,
-             'nextgeoss_get_site_statistics': helpers.nextgeoss_get_site_statistics,  # noqa: E501
-             'get_collections_count': helpers.get_collections_count,
-             'get_collection_url': helpers.get_collection_url,
-             'get_collections_dataset_count': helpers.get_collections_dataset_count,
-             'nextgeoss_get_facet_title': helpers.nextgeoss_get_facet_title,
-             'get_default_slider_values': helpers.get_default_slider_values,
-             'get_date_url_param': helpers.get_date_url_param,
-             'get_group_collection_count': helpers.get_group_collection_count,
-             'collection_information': helpers.collection_information
+             'nextgeoss_get_site_statistics': helpers.nextgeoss_get_site_statistics  # noqa: E501
         }
 
     # IRoutes
@@ -102,8 +94,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                      _redirect_code='301 Moved Permanently')
         group_controller = 'ckanext.nextgeoss.controllers.group:NextgeossGroupController'  # noqa: E501
         with routes.mapper.SubMapper(map, controller=group_controller) as m:
-            m.connect('topic_index', '/topic', action='index',
-                      highlight_actions='index search')
+            m.connect('topic_index', '/topic', action='index')
             m.connect('/topic/list', action='list')
             m.connect('/topic/new', action='new')
             m.connect('topic_action', '/topic/{action}/{id}',
@@ -155,13 +146,6 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='unauthorized')
             m.connect('opensearch', '/opensearch',
                       action='opensearch')
-            m.connect('collections', '/collections',
-                      action='collections')
-
-        package_controller = 'ckanext.nextgeoss.controllers.package:NextgeossPackageController'  # noqa: E501
-        with routes.mapper.SubMapper(map, controller=package_controller) as m:
-          m.connect('search', '/dataset', action='search',
-                    highlight_actions='index search')          
 
         return map
 
@@ -176,15 +160,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         facets_dicts. facets_dict will be an ordered dictionary,
         so we need to preserve the order when we update.
         """
-        facets_dict.clear()
-        facets_dict['collection_name'] = plugins.toolkit._('Collections')
         facets_dict['groups'] = _('Topics')
         facets_dict['organization'] = _('Providers')
-        facets_dict['FamilyName']  = plugins.toolkit._('Family Name')
-        facets_dict['ProductType'] = plugins.toolkit._('Product Type')
-        facets_dict['OrbitDirection'] = plugins.toolkit._('Orbit Direction')
-        facets_dict['Swath'] = plugins.toolkit._('Acquisition Mode')
-        facets_dict['TransmitterReceiverPolarisation'] = plugins.toolkit._('Polarisation')
 
         return facets_dict
 
@@ -198,7 +175,6 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
     def organization_facets(self, facets_dict, organization_type, package_type):  # noqa: E501
         """Update the facets used on organization search pages."""
-
         return self._update_facets(facets_dict)
 
     # IPackageController
