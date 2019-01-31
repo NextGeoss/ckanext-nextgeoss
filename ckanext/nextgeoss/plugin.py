@@ -158,7 +158,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='unauthorized')
             m.connect('opensearch', '/opensearch',
                       action='opensearch')
-            m.connect('collections', '/collections',
+            m.connect('collections', '/collection',
                       action='collections')
 
         package_controller = 'ckanext.nextgeoss.controllers.package:NextgeossPackageController'  # noqa: E501

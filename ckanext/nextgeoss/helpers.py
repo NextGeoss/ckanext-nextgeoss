@@ -7,6 +7,7 @@ import datetime
 import json
 from ckan.lib.helpers import url_for_static
 import re
+from ckanext.opensearch import config as opensearch_config
 
 def get_jira_script():
     jira_script = config.get('ckanext.nextgeoss.jira_issue_tracker')
@@ -261,9 +262,7 @@ def nextgeoss_get_site_statistics():
 
 
 def get_collections_count():
-    from ckanext.opensearch import config
-
-    collections = config.load_settings("collections_list")
+    collections = opensearch_config.load_settings("collections_list")
     collections_count = collections.keys()
     collections_count = len(collections_count)
 
@@ -271,8 +270,6 @@ def get_collections_count():
 
 
 def get_collection_url(collection_name):
-    from ckanext.opensearch import config
-
     collection = 'collection_id:' + collection_name
 
     return "dataset?collection_name=" + collection_name.replace(' ', '+')
@@ -402,9 +399,7 @@ def get_group_collection_count(group):
 
 
 def collection_information(collection_id=None):
-    from ckanext.opensearch import config
-
-    collections = config.load_settings("collections_list")
+    collections = opensearch_config.load_settings("collections_list")
     collection_items = collections.items()
 
     for collection in collection_items:
@@ -424,9 +419,7 @@ def generate_opensearch_query(params):
     if 'collection_name' in params:
         collection_name = params['collection_name']
 
-        from ckanext.opensearch import config
-
-        collections = config.load_settings("collections_list")
+        collections = opensearch_config.load_settings("collections_list")
         collection_items = collections.items()
 
         for collection in collection_items:
