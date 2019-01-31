@@ -3,6 +3,12 @@
 
 #}
 {% if extras %}
+    {% elif c.group_dict.name == 'agriculture_monitoring' %}
+
+  	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
+  		extent = "{ \"type\":
+		\"Polygon\", \"coordinates\": [[[-180, -90], [180, -90], [180, 90], [-180, 90], [-180, -90]]]}"%}
+
     {% if c.group_dict.name == 'biodiversity1' %}
 
   	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
