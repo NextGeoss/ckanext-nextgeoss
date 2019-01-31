@@ -5,6 +5,7 @@ import ast
 import ckan.plugins.toolkit as tk
 import datetime
 import json
+from ckan.lib.helpers import url_for_static
 import re
 
 def get_jira_script():
@@ -221,7 +222,20 @@ def get_dataset_thumbnail_path(dataset):
     # elif dataset['organization']['title'] == 'Sentinel':
     #     return '/thumbnails/{}.jpg'.format(extras.get('uuid', 'placeholder'))
     # else:
-    return '/base/images/placeholder-image.png'
+    image_path = ''
+    thumbnails_list = ['SENTINEL1_L1_SLC', 'SENTINEL1_L1_GRD', 'SENTINEL2_L1C', 'SENTINEL2_L2A', 'SENTINEL3_SRAL_L2_LAN', \
+        'SENTINEL3_OLCI_L1_EFR', 'SENTINEL3_OLCI_L1_ERR', 'SENTINEL3_OLCI_L2_LFR', 'SENTINEL3_OLCI_L2_LRR', \
+        'SENTINEL3_SLSTR_L1_RBT', 'SENTINEL3_SLSTR_L2_LST']
+
+    collection_id = get_extras_value(dataset['extras'], 'collection_id')
+
+    if collection_id in thumbnails_list:
+        image_path = collection_id + '.jpg'
+    else:
+        organization = dataset['organization']
+        image_path = organization['name'] + '.jpg'
+
+    return image_path
 
 
 def get_source_namespace(data_dict):

@@ -58,7 +58,6 @@ class NextgeossPackageController(PackageController):
 
 
     def search(self):
-        print 'PACKAGE'
         from ckan.lib.search import SearchError, SearchQueryError
 
         package_type = self._guess_package_type()
