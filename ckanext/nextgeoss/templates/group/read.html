@@ -22,9 +22,7 @@
       </h1>
 
       <h5 class="dataset-detail-title">Curated by NextGEOSS</h5>
-      {% if not c.group_dict.description %}
-        <h5 class="dataset-detail-title">More information coming soon</h5>
-      {% endif %}
+
 
       {% block package_notes %}
         {% if c.group_dict.description %}
