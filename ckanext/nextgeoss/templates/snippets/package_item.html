@@ -2,11 +2,10 @@
 
 {% block heading %}
 
-  {% set thumbnail_path = h.ng_get_dataset_thumbnail_path(package) %}
 
   <div class="dataset-item-org-logo">
     <div class="image">
-
+      {% set thumbnail_path = h.ng_get_dataset_thumbnail_path(package) %}
       <img src="{{ thumbnail_path }}" height= "210" width="210" alt="{{thumbnail_path}}" />
     </div>
   </div>
