@@ -429,7 +429,20 @@ def generate_opensearch_query(params):
 
         for param in params:
             if param != 'collection_name':
-                query = query + '&' + param + '=' + params[param]
+                param_tmp = ''
+                if param == 'TransmitterReceiverPolarisation':
+                    param_tmp = 'polarisation'
+                elif param == "Swath":
+                    param_tmp = "swath"
+                elif param == "orbitDirection":
+                    param_tmp = "orbit_direction"
+                elif param == "swathIdentifier":
+                    param_tmp = "swath"
+                elif param == "OrbitDirection":
+                    param_tmp = "orbit_direction"
+                else:
+                    param_tmp = param
+                query = query + '&' + param_tmp + '="' + params[param] + '"'
 
 
     return query
