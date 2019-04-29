@@ -1,6 +1,7 @@
 import ckan.lib.base as base
 import ckan.logic as logic
 import ckan.model as model
+import ckan.plugins.toolkit as tk
 
 from ckan.common import _, c
 from ckanext.opensearch import config
@@ -46,6 +47,9 @@ class StaticController(base.BaseController):
 
     def opensearch(self):
         return base.render('static/opensearch.html')
+
+    def support(self):
+        return tk.redirect_to('https://servicedesk.nextgeoss.eu')
 
     def collections(self):
         context = {'model': model, 'session': model.Session,
