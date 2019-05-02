@@ -1,0 +1,12 @@
+.opensearch-info-panel > .panel-group > .panel-info > .panel-heading {
+    background: #D7EDEC;
+    color: #333;
+}
+
+.opensearch-info-panel >.panel-group > .panel-info > .panel-heading h4 {
+    font-weight: bolder;
+}
+
+.opensearch-info-panel > .panel-group > .panel-info {
+    border-color: #D7EDEC;
+}
