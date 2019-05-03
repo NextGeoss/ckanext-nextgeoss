@@ -899,6 +899,7 @@ section.dataset-map-section {
 
 article.module {
   margin-top: 50px !important;
+  font-size: 1.15em;
 }
 
 .span9>article.module {
@@ -1329,7 +1330,7 @@ table.mobile-table td.dataset-details {
     margin-right: 0px;
     margin-left: 0px;
   }
-
+}
 .search-padding {
  padding-top: 20px;
 }
@@ -1450,4 +1451,22 @@ table.mobile-table td.dataset-details {
 @keyframes fadeIn {
     0% { opacity:0; }
     100% { opacity:100%; }
+}
+
+.opensearch-info-panel > .panel-group > .panel-info > .panel-heading {
+    background: #D7EDEC;
+    color: #333;
+    font-size: 1.22em;
+}
+
+.opensearch-info-panel >.panel-group > .panel-info > .panel-heading h4 {
+    font-weight: bolder;
+}
+
+.opensearch-info-panel > .panel-group > .panel-info {
+    border-color: #D7EDEC;
+}
+
+.opensearch-info-panel > .panel-group {
+    margin-top: 1.5em;
 }
