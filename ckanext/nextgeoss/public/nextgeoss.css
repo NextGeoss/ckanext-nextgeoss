@@ -98,6 +98,16 @@ body,.masthead, [role="main"], .main {
   outline: 0;
 }
 
+a {
+  word-break: break-word;
+}
+
+code {
+  word-break: break-word;
+  background-color: #f8f8f8;
+  color: #2f4f4f;
+}
+
 a:focus, a:active,
 button:active, button:focus, button:hover,
 button::-moz-focus-inner,
