@@ -1,104 +1,108 @@
 {% extends "page.html" %}
 
-{% block content %}
+{% block subtitle %}{{ _('Collections') }}{% endblock %}
 
-<div role="main" class="hero">
-  <div class="hero-text">
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <h1 class="hero-title">{{ _('Collections')|safe }}</h1>
-        <h4 class="hero-subtitle">{{ _('')|safe }}</h4>
-      </div>
-    </div>
-  </div>
-</div>
-
-{% set collections_count = h.get_collections_count() %}
-{% set counter = 0 %}
-{% set counter_collections = 3 %}
-
-<div class="container">
-    </br>
-    <div class="col-md-12">
-        <h2 class="col-md-4"> {{collections_count}} collections available</h2>
-        <div class="help-tip">
-        <p>A Collection is a group of earth observation (EO) datasets sharing exactly the same product specifications. All data sets belonging to a collection were observed with the identical sensor and processed with an identical algorithm.</p>
-        </div>
-    </div>
-
-    {% for _ in range(counter_collections, collections_count) %}
-    <div class="row">
-          {% for key, value in collection_list.items()[counter:counter_collections] %}
-            {% set collections_link = h.get_collection_url(value.name) %}
-            <div class="col-sm-4">
-                <div class="custom_card">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <img width="100" style="padding-top: 10px"src="image.jpg">
-                        </div>
-                        <div class="col-sm-10">
-                          <div class="card_head">
-                            <h4><a href="{{ collections_link }}">{{value.name}}</a></h4>
-                            <span>Datasets: {{ h.get_collections_dataset_count(key) }}</span></br>
-                            <span>Pilots:
-                                {% set groups = h.get_collections_groups(key) %}
-                                {% for group in groups %}
-                                  {% set group_link = h.url_for(controller='group', action='about', id=group.name) %}
-                                  <a href="{{ group_link }}" style="font-weight: normal; font-size: 15px !important;">{{ group.title }}</a>
-                                {% endfor %}
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="card_body comment more">
-                            {{ value.description }}
-                          </div>
-                        </div>
-                    </div>
-                    <a class="collection_link" href="{{ collections_link }}">Go to collection ></a>
-                </div>
-            </div>
-        {% endfor %}
-          {% set counter = counter + 3 %}
-          {% set counter_collections = counter_collections + 3 %}
-    </div>
-    {% endfor %}
-</div>
-
-</div>
-<script>
-    $(document).ready(function() {
-        var showChar = 120;
-        var ellipsestext = "...";
-        var moretext = "Read More";
-        var lesstext = "Read Less";
-        $('.more').each(function() {
-            var content = $(this).html();
-
-            if(content.length > showChar) {
-
-                var c = content.substr(0, showChar);
-                var h = content.substr(showChar-1, content.length - showChar);
-
-                var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span><a href="" class="morelink">'+moretext+'</a></span>';
-
-                $(this).html(html);
-            }
-
-        });
-
-        $(".morelink").click(function(){
-            if($(this).hasClass("less")) {
-                $(this).removeClass("less");
-                $(this).html(moretext);
-            } else {
-                $(this).addClass("less");
-                $(this).html(lesstext);
-            }
-            $(this).parent().prev().toggle();
-            $(this).prev().toggle();
-            return false;
-        });
-    });
-</script>
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('Collections'), controller='ckanext.nextgeoss.controller:StaticController', action='collections' %}</li>
 {% endblock %}
+
+{% block page_header %}{% endblock %}
+
+{% block primary %}
+  <article class="module">
+    <div class="module-content">
+      <h1 class="page-heading">{% block page_heading %}{{ _('Collections') }}{% endblock %}</h1>
+      <h4>{{ _('A Collection is a group of earth observation (EO) datasets sharing exactly the same product specifications.  All data sets belonging to a collection were observed with the identical sensor and processed with an identical algorithm.') }}</h4>
+      <h4>{{ _('The following collections are currently available in NextGEOSS:') }}</h4>
+
+      {% set collections_count = h.get_collections_count() %}
+      {% set collections_text = ungettext('{number} collection', '{number} collections', collections_count)%}
+      {% set collections_none = _('No collections yet') %}
+      {%- if collections_count -%}
+        {% set display_count = collections_text.format(number=h.localised_number(collections_count)) %}
+      {%- else -%}
+        {% set display_count = collections_none %}
+      {% endif %}
+      <h2 class="text-center list-counter">{{ display_count }}</h2>
+
+      {% set counter = 0 %}
+      {% set counter_collections = 3 %}
+      {% for _ in range(counter_collections, collections_count) %}
+      <div class="row">
+            {% for key, value in collection_list.items()[counter:counter_collections] %}
+              {% set collections_link = h.get_collection_url(value.name) %}
+              <div class="col-sm-4">
+                  <div class="custom_card">
+                      <div class="row">
+                          <div class="col-sm-2">
+                              <img width="100" style="padding-top: 10px"src="image.jpg">
+                          </div>
+                          <div class="col-sm-10">
+                            <div class="card_head">
+                              <h4><a href="{{ collections_link }}">{{value.name}}</a></h4>
+                              <span>Datasets: {{ h.get_collections_dataset_count(key) }}</span></br>
+                              <span>Pilots:
+                                  {% set groups = h.get_collections_groups(key) %}
+                                  {% for group in groups %}
+                                    {% set group_link = h.url_for(controller='group', action='about', id=group.name) %}
+                                    <a href="{{ group_link }}" style="font-weight: normal; font-size: 15px !important;">{{ group.title }}</a>
+                                  {% endfor %}
+                              </span>
+                            </div>
+                          </div>
+                          <div class="col-sm-12">
+                            <div class="card_body comment more">
+                              {{ value.description }}
+                            </div>
+                          </div>
+                      </div>
+                      <a class="collection_link" href="{{ collections_link }}">Go to collection ></a>
+                  </div>
+              </div>
+          {% endfor %}
+            {% set counter = counter + 3 %}
+            {% set counter_collections = counter_collections + 3 %}
+      </div>
+      {% endfor %}
+
+    </div>
+  </article>
+
+  <script>
+      $(document).ready(function() {
+          var showChar = 120;
+          var ellipsestext = "...";
+          var moretext = "Read More";
+          var lesstext = "Read Less";
+          $('.more').each(function() {
+              var content = $(this).html();
+
+              if(content.length > showChar) {
+
+                  var c = content.substr(0, showChar);
+                  var h = content.substr(showChar-1, content.length - showChar);
+
+                  var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span><a href="" class="morelink">'+moretext+'</a></span>';
+
+                  $(this).html(html);
+              }
+
+          });
+
+          $(".morelink").click(function(){
+              if($(this).hasClass("less")) {
+                  $(this).removeClass("less");
+                  $(this).html(moretext);
+              } else {
+                  $(this).addClass("less");
+                  $(this).html(lesstext);
+              }
+              $(this).parent().prev().toggle();
+              $(this).prev().toggle();
+              return false;
+          });
+      });
+  </script>
+{% endblock %}
+
+{% block secondary %}{% endblock %}
