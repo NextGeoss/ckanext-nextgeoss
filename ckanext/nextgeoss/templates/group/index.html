@@ -29,7 +29,7 @@
       {%- else -%}
         {% set topics_count = topics_none %}
       {% endif %}
-      <h2 class="text-center">{{ topics_count }}</h2>
+      <h2 class="text-center list-counter">{{ topics_count }}</h2>
 
       {% block groups_list %}
         {% if c.page.items or request.params %}
