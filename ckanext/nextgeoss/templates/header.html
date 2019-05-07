@@ -2,6 +2,10 @@
 
 {% block header_wrapper %}
 
+  <div class="disclaimer">
+    <p>{{ h.nextgeoss_get_bug_disclaimer() }}</p>
+  </div>
+
   {% block header_account %}
     {#
       If user object exists, show user toolbar on top.
