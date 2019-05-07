@@ -1,3 +1,4 @@
+
 {% extends "page.html" %}
 
 {% block subtitle %}{{ _('OpenSearch') }}{% endblock %}
@@ -13,66 +14,92 @@
 
       <p>The NextGEOSS data hub provides an OpenSearch interface supporting two-step search. Below you will find information about accessing the OpenSearch decription documents and the search endpoints, as well as a description of the available parameters. You will need a client to use OpenSearch. If you do not have an OpenSearch client or you are not a developer using the OpenSearch interface as the backend of your client or project, the OpenSearch interface is not for you. Please use the Web interface.
 
-      <h3>Accessing the Description Documents</h3>
+      <div class="opensearch-info-panel">
+        <div class="panel-group">
+          <div class="panel panel-default panel-info">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                Accessing the Description Documents
+              </h4>
+            </div>
+            <div class="panel-body">
+                <p>The description documents are available at the following endpoint: <code>https://catalogue.nextgeoss.eu/opensearch/description.xml?osdd={OpenSearch Description Document ID}</code>. The osdd parameter is required. There is one description document for step one of two-step search (or "collection search") and each individual collection has its own description document. The search results of collection search include a link to the description document for each collection, so you only need the description document for collection search in order to begin using the OpenSearch interface. Your client will discover the relevant collection-level description documents for you as you search.</p>
+                <p>Access the collection search description document here:
+                </br>
+                <a href="https://catalogue.nextgeoss.eu/opensearch/description.xml?osdd=collection">https://catalogue.nextgeoss.eu/opensearch/description.xml?osdd=collection</a>
+                </p>
+            </div>
+          </div>
+          <div class="panel panel-default panel-info">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                Accessing the Search Endpoints
+              </h4>
+            </div>
+            <div class="panel-body">
+              <p>The search endpoints are located at <code>https://catalogue.nextgeoss.eu/opensearch/collection_search.atom?</code> (for step one or collection search) and <code>https://catalogue.nextgeoss.eu/opensearch/search.atom?</code> (for step two or product search/search within a given collection).</p>
+              <p>The description documents instruct your client how to query each endpoint.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <p>The description documents are available at the following endpoint: https://catalogue.nextgeoss.eu/opensearch/description.xml?osdd={OpenSearch Description Document ID}. The osdd parameter is required. There is one description document for step one of two-step search (or "collection search") and each individual collection has its own description document. The search results of collection search include a link to the description document for each collection, so you only need the description document for collection search in order to begin using the OpenSearch interface. Your client will discover the relevant collection-level description documents for you as you search.</p>
-
-      <p>Access the collection search description document here:
-      </br>
-      <a href="https://catalogue.nextgeoss.eu/opensearch/description.xml?osdd=collection">https://catalogue.nextgeoss.eu/opensearch/description.xml?osdd=collection</a>
-      </p>
-
-      <h3>Accessing the Search Endpoints</h3>
-
-      <p>The search endpoints are located at https://catalogue.nextgeoss.eu/opensearch/collection_search.atom? (for step one or collection search) and https://catalogue.nextgeoss.eu/opensearch/search.atom? (for step two or product search/search within a given collection).</p>
-
-      <p>The description documents instruct your client how to query each endpoint.</p>
-
-      <h3>Search Parameters</h3>
-
-      <p>Consult a description document and the related standards for details about the supported search parameters. The data hub supports the OpenSearch Geo and Time extensions.</p>
-
-      <p>By default, the following parameters are supported:</p>
-      <ul>
-        <li>opensearch:searchTerms</li>
-        <li>opensearch:searchTerms</li>
-        <li>opensearch:maxResults</li>
-        <li>opensearch:startPage</li>
-        <li>geo:box</li>
-        <li>geo:geometry</li>
-        <li>geo:uid</li>
-        <li>time:start</li>
-        <li>time:end</li>
-        <li>eo:modificationDate</li>
-      </ul>
-
-      <p>Additional parameters, including parameters that are specific to individual collections (like cloud coverage) will be added as the project progresses.</p>
-
-      <h3>Search Results</h3>
-
-      <p>The OpenSearch search results present a subset of the metadata available for each collection or product in the results. These defaults are chosen to comply with OGC OpenSearch best practices. For more details, consult OGC's documentation.</p>
-
-      <p>The metadata included in each entry in the results feed are:</p>
-
-      <ul>
-        <li>atom:title</li>
-        <li>atom:id</li>
-        <li>dc:identifier</li>
-        <li>atom:link rel="self"</li>
-        <li>atom:link rel="up"</li>
-        <li>dc:publisher</li>
-        <li>atom:published</li>
-        <li>atom:updated</li>
-        <li>atom:summary</li>
-        <li>dc:date</li>
-        <li>georss:polygon</li>
-        <li>atom:link rel="alternate"</li>
-        <li>atom:category</li>
-        <li>atom:link rel="enclosure"</li>
-      </ul>
-
-      <p>More detailed metadata will be added as the project progresses.</p>
-
+      <div class="opensearch-info-panel">
+        <div class="panel-group">
+          <div class="panel panel-default panel-info">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                Search Parameters
+              </h4>
+            </div>
+            <div class="panel-body">
+              <p>Consult a description document and the related standards for details about the supported search parameters. The data hub supports the OpenSearch Geo and Time extensions.</p>
+              <p>By default, the following parameters are supported:</p>
+              <ul>
+                <li>opensearch:searchTerms</li>
+                <li>opensearch:searchTerms</li>
+                <li>opensearch:maxResults</li>
+                <li>opensearch:startPage</li>
+                <li>geo:box</li>
+                <li>geo:geometry</li>
+                <li>geo:uid</li>
+                <li>time:start</li>
+                <li>time:end</li>
+                <li>eo:modificationDate</li>
+              </ul>
+              <p>Additional parameters, including parameters that are specific to individual collections (like cloud coverage) will be added as the project progresses.</p>
+            </div>
+          </div>
+          <div class="panel panel-default panel-info">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                Search Results
+              </h4>
+            </div>
+            <div class="panel-body">
+              <p>The OpenSearch search results present a subset of the metadata available for each collection or product in the results. These defaults are chosen to comply with OGC OpenSearch best practices. For more details, consult OGC's documentation.</p>
+              <p>The metadata included in each entry in the results feed are:</p>
+              <ul>
+                <li>atom:title</li>
+                <li>atom:id</li>
+                <li>dc:identifier</li>
+                <li>atom:link rel="self"</li>
+                <li>atom:link rel="up"</li>
+                <li>dc:publisher</li>
+                <li>atom:published</li>
+                <li>atom:updated</li>
+                <li>atom:summary</li>
+                <li>dc:date</li>
+                <li>georss:polygon</li>
+                <li>atom:link rel="alternate"</li>
+                <li>atom:category</li>
+                <li>atom:link rel="enclosure"</li>
+              </ul>
+              <p>More detailed metadata will be added as the project progresses.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </article>
 {% endblock %}
