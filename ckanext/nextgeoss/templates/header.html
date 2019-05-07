@@ -75,7 +75,14 @@
       {# The .header-image class hides the main text and uses image replacement for the title #}
       <hgroup class="{{ g.header_class }} pull-left">
         {% block header_logo %}
-          {{ super() }}
+          {% if g.site_logo %}
+            <a class="logo" href="https://nextgeoss.eu/"><img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
+          {% else %}
+            <h1>
+              <a href="https://nextgeoss.eu/">{{ g.site_title }}</a>
+            </h1>
+            {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
+          {% endif %}
         {% endblock %}
       </hgroup>
 
