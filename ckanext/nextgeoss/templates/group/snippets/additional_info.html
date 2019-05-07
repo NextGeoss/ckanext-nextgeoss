@@ -34,6 +34,12 @@
   		extent = "{ \"type\":
 		\"Polygon\", \"coordinates\": [[[-66, -66], [66, -66], [66, 66], [-66, 66], [-66, -66]]]}"%}
 
+    {% elif c.group_dict.name == 'energy-1' %}
+
+  	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
+  		extent = "{ \"type\":
+		\"Polygon\", \"coordinates\": [[[-66, -66], [66, -66], [66, 66], [-66, 66], [-66, -66]]]}"%}
+
 	{% else %}
 		{% snippet "spatial/snippets/topic_map_big.html" %}
 	{% endif %}

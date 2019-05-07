@@ -86,6 +86,17 @@
         </a>
       </p>
     {% endif %}
+
+    {% if c.group_dict.name == 'energy-1' %}
+      <p>Download metadata file:
+        <a href="/energy-pilot-1.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
   </div>
 {% endblock %}
 
