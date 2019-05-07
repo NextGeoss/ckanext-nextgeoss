@@ -444,5 +444,4 @@ def generate_opensearch_query(params):
                     param_tmp = param
                 query = query + '&' + param_tmp + '="' + params[param] + '"'
 
-
     return query

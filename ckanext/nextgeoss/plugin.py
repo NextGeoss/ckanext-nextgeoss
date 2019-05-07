@@ -160,6 +160,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='opensearch')
             m.connect('collections', '/collection',
                       action='collections')
+            m.connect('support', '/support',
+                      action='support')
 
         package_controller = 'ckanext.nextgeoss.controllers.package:NextgeossPackageController'  # noqa: E501
         with routes.mapper.SubMapper(map, controller=package_controller) as m:
