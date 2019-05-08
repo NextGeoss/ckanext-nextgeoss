@@ -56,7 +56,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'get_group_collection_count': helpers.get_group_collection_count,
              'collection_information': helpers.collection_information,
              'get_extras_value': helpers.get_extras_value,
-             'generate_opensearch_query': helpers.generate_opensearch_query
+             'generate_opensearch_query': helpers.generate_opensearch_query,
+             'get_topics_spatial_information': helpers.get_topics_spatial_information
         }
 
     # IRoutes

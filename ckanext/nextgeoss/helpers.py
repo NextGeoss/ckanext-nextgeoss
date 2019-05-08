@@ -54,11 +54,24 @@ def topic_resources(extras):
 
     for extra in extras:
         k, v = extra[0], extra[1]
+        print extra
         if 'resource_' in k and 'Social Media' not in v:
             no_resources = no_resources - 1
             values = ast.literal_eval(extra[1])
             resources.append({'key': extra[0], 'value': str(values)})
     return resources
+
+
+def get_topics_spatial_information(extras):
+    spatial = ''
+
+    for extra in extras:
+        if extra[0] == 'extent':
+            spatial = str(extra[1])
+
+    print spatial.rstrip('}')
+
+    return spatial
 
 
 def get_value(resources, key):
@@ -232,7 +245,8 @@ def get_dataset_thumbnail_path(dataset):
 
     if collection_id in thumbnails_list:
         image_path = collection_id + '.jpg'
-    else:
+
+    if dataset['organization']:
         organization = dataset['organization']
         image_path = organization['name'] + '.jpg'
 
