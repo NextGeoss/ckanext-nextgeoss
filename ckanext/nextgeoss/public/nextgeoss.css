@@ -1463,20 +1463,20 @@ table.mobile-table td.dataset-details {
     100% { opacity:100%; }
 }
 
-.opensearch-info-panel > .panel-group > .panel-info > .panel-heading {
-    background: #D7EDEC;
-    color: #333;
-    font-size: 1.22em;
+.opensearch-info-panel .panel-heading {
+    background: #D7EDEC !important;
+    color: #333 !important;
+    font-size: 1.22em !important;
 }
 
-.opensearch-info-panel >.panel-group > .panel-info > .panel-heading h4 {
-    font-weight: bolder;
+.opensearch-info-panel .panel-heading h4 {
+    font-weight: bolder !important;
 }
 
-.opensearch-info-panel > .panel-group > .panel-info {
-    border-color: #D7EDEC;
+.opensearch-info-panel .panel-info {
+    border-color: #D7EDEC !important;
 }
 
-.opensearch-info-panel > .panel-group {
-    margin-top: 1.5em;
+.opensearch-info-panel .panel-group {
+    margin-top: 1.5em !important;
 }
