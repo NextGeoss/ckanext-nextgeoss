@@ -48,7 +48,6 @@
             <h1 class="dataset-detail-title">{{ h.resource_display_name(res) | truncate(50) }}</h1>
             <h5 class="dataset-detail-title">{{ _('Part of dataset ') }} <a href="{{ dataset_link }}">{{ pkg.title }}</a></h5>
             <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
-            <h5 class="dataset-detail-title">{{ _('Licensed under ') }} {% snippet "snippets/license_inline.html", pkg_dict=pkg %}</h5>
           {% endblock %}
 
           {% block resource_read_url %}
@@ -113,10 +112,6 @@
           <tr>
             <th class="dataset-label" scope="row">{{ _('Format') }}</th>
             <td class="dataset-details">{{ res.mimetype_inner or res.mimetype or res.format or _('unknown') }}</td>
-          </tr>
-          <tr>
-            <th class="dataset-label" scope="row">{{ _('License') }}</th>
-            <td class="dataset-details">{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
           </tr>
 
           {% for key, value in h.format_resource_items(res.items()) %}
