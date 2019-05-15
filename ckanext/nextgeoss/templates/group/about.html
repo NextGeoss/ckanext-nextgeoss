@@ -119,6 +119,17 @@
         </a>
       </p>
     {% endif %}
+
+    {% if c.group_dict.name == 'food_security' %}
+      <p>Download metadata file:
+        <a href="/food_security.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
   </div>
 {% endblock %}
 
