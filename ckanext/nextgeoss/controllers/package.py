@@ -230,7 +230,9 @@ class NextgeossPackageController(PackageController):
             for plugin in p.PluginImplementations(p.IFacets):
                 facets = plugin.dataset_facets(facets, package_type)
 
-            if collection_params not in collection_names:
+            # Remove Sentinel facets for organizations and non-sentinel collections
+            if collection_params not in collection_names or \
+               package_type == 'organization':
                 for f in facets:
                     if f in sentinel_facet_titles:
                         del facets[f]

@@ -459,3 +459,7 @@ def generate_opensearch_query(params):
                 query = query + '&' + param_tmp + '="' + params[param] + '"'
 
     return query
+
+
+def get_organization_url(organization_name):
+    return "dataset?organization=" + organization_name

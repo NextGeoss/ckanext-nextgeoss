@@ -50,6 +50,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'get_collection_url': helpers.get_collection_url,
              'get_collections_dataset_count': helpers.get_collections_dataset_count,
              'get_collections_groups': helpers.get_collections_groups,
+             'get_organization_url': helpers.get_organization_url,
              'nextgeoss_get_facet_title': helpers.nextgeoss_get_facet_title,
              'get_default_slider_values': helpers.get_default_slider_values,
              'get_date_url_param': helpers.get_date_url_param,
