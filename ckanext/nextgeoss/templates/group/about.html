@@ -25,7 +25,7 @@
 
       {% block package_notes %}
         {% if c.group_dict.description %}
-          <div class="notes embedded-content dataset-notes">
+          <div data-module='nextgeoss_read_more_paragraph' class="notes embedded-content dataset-notes">
             {{ h.render_markdown(_(c.group_dict.description)) }}
           </div>
         {% endif %}
