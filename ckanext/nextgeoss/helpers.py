@@ -102,7 +102,7 @@ def get_begin_period_topics(extras):
     for extra in extras:
         k, v = extra[0], extra[1]
 
-        if 'begin_position' in k:
+        if 'begin_position' in k and v != '':
             date =  datetime.datetime.strptime(str(v), '%Y-%m-%d')
             period += date.strftime("%d %B, %Y") + ' '
 
@@ -116,7 +116,7 @@ def get_end_period_topics(extras):
     for extra in extras:
         k, v = extra[0], extra[1]
 
-        if 'end_position' in k:
+        if 'end_position' in k and v != '':
             date =  datetime.datetime.strptime(str(v), '%Y-%m-%d')
             period += date.strftime("%d %B, %Y")
 
