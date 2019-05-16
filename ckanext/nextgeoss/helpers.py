@@ -1,13 +1,16 @@
-from ckan.common import config
-import ckan.logic as logic
-import ckan.plugins as p
 import ast
-import ckan.plugins.toolkit as tk
 import datetime
 import json
-from ckan.lib.helpers import url_for_static
 import re
+import collections
+import operator
+import ckan.logic as logic
+import ckan.plugins as p
+import ckan.plugins.toolkit as tk
+from ckan.common import config
+from ckan.lib.helpers import url_for_static
 from ckanext.opensearch import config as opensearch_config
+
 
 def get_jira_script():
     jira_script = config.get('ckanext.nextgeoss.jira_issue_tracker')
@@ -326,7 +329,6 @@ def get_collections_groups(collection_name):
     return groups_list
 
 
-
 def nextgeoss_get_facet_title(name):
     '''Deprecated in ckan 2.0 '''
     # if this is set in the config use this
@@ -419,6 +421,14 @@ def collection_information(collection_id=None):
     for collection in collection_items:
         if collection[0] == collection_id:
             return dict(collection[1])
+
+
+def sort_collections(collections_list):
+    """collections_list: an OrderedDict with collection id as key and collection attrs as value"""
+    return collections.OrderedDict(
+        sorted(collections_list.items(),
+        key=lambda x: x[1].get('name'))
+    )
 
 
 def get_extras_value(extras, extras_key):
