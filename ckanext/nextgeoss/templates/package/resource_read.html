@@ -5,6 +5,9 @@
 {% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
 {% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
 {% set org_logo = pkg.organization.get('image_url') or h.url_for_static('/base/images/placeholder-organization.png')%}
+{% set dataset_name = pkg.name %}
+{% set dataset_link = h.url_for(controller='package', action='read', id=pkg.id) %}
+{% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
 
 {% block head_extras -%}
   {{ super() }}
@@ -26,7 +29,7 @@
   <div class="container single-column">
   {% block resource %}
       {% block resource_inner %}
-        
+
         {% if h.check_access('package_update', {'id':pkg.id }) %}
           <ul class="nav nav-tabs">
             {% block content_primary_nav %}
@@ -46,9 +49,8 @@
         {% block resource_content %}
           {% block resource_read_title %}
             <h1 class="dataset-detail-title">{{ h.resource_display_name(res) | truncate(50) }}</h1>
-            <h5 class="dataset-detail-title">{{ _('Part of dataset ') }} <a href="{{ dataset_link }}">{{ pkg.title }}</a></h5>
             <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
-            <h5 class="dataset-detail-title">{{ _('Licensed under ') }} {% snippet "snippets/license_inline.html", pkg_dict=pkg %}</h5>
+            <h5 class="dataset-detail-title">{{ _('Part of dataset ') }} <a href="{{ dataset_link }}">{{ pkg.name }}</a></h5>
           {% endblock %}
 
           {% block resource_read_url %}
@@ -64,13 +66,13 @@
 
           <div class="notes embedded-content dataset-notes" property="rdfs:label">
             {% if res.description %}
-              {{ h.render_markdown('res.description') }}
+              {{ h.render_markdown(res.description) }}
             {% elif not res.description and c.package.notes %}
               <h3>{{ _('From the dataset abstract') }}</h3>
               <blockquote>{{ h.markdown_extract(h.get_translated(c.package, 'notes')) }}</blockquote>
               <p>{% trans dataset=c.package.title, url=h.url_for(controller='package', action='read', id=c.package['name']) %}Source: <a href="{{ url }}">{{ dataset }}</a>{% endtrans %}</p>
             {% else %}
-              <p class="empty">{{ _('There is no description for this resource') }}</p>    
+              <p class="empty">{{ _('There is no description for this resource') }}</p>
             {% endif %}
           </div>
         {% endblock %}
@@ -114,10 +116,6 @@
             <th class="dataset-label" scope="row">{{ _('Format') }}</th>
             <td class="dataset-details">{{ res.mimetype_inner or res.mimetype or res.format or _('unknown') }}</td>
           </tr>
-          <tr>
-            <th class="dataset-label" scope="row">{{ _('License') }}</th>
-            <td class="dataset-details">{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
-          </tr>
 
           {% for key, value in h.format_resource_items(res.items()) %}
             <tr class="toggle-more"><th class="dataset-label" scope="row">{{ key }}</th><td class="dataset-details">{{ value }}</td></tr>
@@ -134,6 +132,5 @@
 
 {% endblock %}
 
-{% block single_column %}
-  {# prevents page template from inluding primary and secondary columns #}
+{% block secondary %}
 {% endblock %}
