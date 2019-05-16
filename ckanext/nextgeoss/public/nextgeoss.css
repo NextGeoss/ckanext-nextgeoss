@@ -543,6 +543,10 @@ h5.dataset-detail-title {
   margin-top: 50px;
 }
 
+.dataset-notes > p {
+  margin-top: 10px !important;
+}
+
 #dataset-resources h3 {
   border-bottom: 1px solid #292929;
 }
