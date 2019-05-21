@@ -1,6 +1,7 @@
 from ckan.common import config
 import ckan.logic as logic
 import ckan.plugins as p
+import ckan.model as model
 import ast
 import ckan.plugins.toolkit as tk
 import datetime
@@ -12,6 +13,12 @@ from ckanext.opensearch import config as opensearch_config
 def get_jira_script():
     jira_script = config.get('ckanext.nextgeoss.jira_issue_tracker')
     return jira_script
+
+
+def get_parent_groups():
+    group_list = config.get('ckan.featured_groups')
+
+    return group_list
 
 
 def get_add_feedback_url(dataset):
@@ -54,7 +61,7 @@ def topic_resources(extras):
 
     for extra in extras:
         k, v = extra[0], extra[1]
-        print extra
+
         if 'resource_' in k and 'Social Media' not in v:
             no_resources = no_resources - 1
             values = ast.literal_eval(extra[1])
@@ -391,27 +398,6 @@ def search_params():
     return config.get(u'search.search_param', DEFAULT_SEARCH_NAMES).split()
 
 
-def get_group_collection_count(group):
-    group_collections = []
-
-    if 'extras' in group:
-        group_extras = group['extras']
-
-        for extra in group_extras:
-            if extra['key'] == 'collections':
-                col_value = extra['value'].split(", ")
-                for a in col_value:
-                    group_collections.append(a)
-
-    collections = []
-
-    for collection_id in group_collections:
-        item = collection_information(collection_id)
-        collections.append(item)
-
-    return len(collections)
-
-
 def collection_information(collection_id=None):
     collections = opensearch_config.load_settings("collections_list")
     collection_items = collections.items()
@@ -459,3 +445,11 @@ def generate_opensearch_query(params):
                 query = query + '&' + param_tmp + '="' + params[param] + '"'
 
     return query
+
+
+def get_children_group_count(name):
+    group = model.Group.get(name)
+
+    children =  model.Group.get_children_groups(group)
+
+    return len(children)

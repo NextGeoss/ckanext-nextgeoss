@@ -29,7 +29,7 @@
       {% set counter_collections = 3 %}
       {% for _ in range(counter_collections, collections_count) %}
       <div class="row">
-            {% for key, value in collection_list.items()[counter:counter_collections] %}
+            {% for key, value in collection_list.items()|reverse[counter:counter_collections] %}
               {% set collections_link = h.get_collection_url(value.name) %}
               <div class="col-sm-4">
                   <div class="custom_card">

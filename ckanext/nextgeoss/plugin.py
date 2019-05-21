@@ -53,11 +53,12 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'nextgeoss_get_facet_title': helpers.nextgeoss_get_facet_title,
              'get_default_slider_values': helpers.get_default_slider_values,
              'get_date_url_param': helpers.get_date_url_param,
-             'get_group_collection_count': helpers.get_group_collection_count,
              'collection_information': helpers.collection_information,
              'get_extras_value': helpers.get_extras_value,
              'generate_opensearch_query': helpers.generate_opensearch_query,
-             'get_topics_spatial_information': helpers.get_topics_spatial_information
+             'get_topics_spatial_information': helpers.get_topics_spatial_information,
+             'get_children_group_count': helpers.get_children_group_count,
+             'get_parent_groups': helpers.get_parent_groups,
         }
 
     # IRoutes
