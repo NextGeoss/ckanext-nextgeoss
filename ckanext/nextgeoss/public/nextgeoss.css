@@ -513,7 +513,9 @@ h4.title a {
 }
 
 .nav-item.active > a span, .nav-aside li.active a span {
-  display: inline;
+  overflow: hidden !important;
+  display: inline !important;
+  white-space: normal !important;
 }
 
 .nav-item.active > a:before, .nav-aside li.active a:before {
