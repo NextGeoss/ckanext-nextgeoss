@@ -1350,7 +1350,7 @@ table.mobile-table td.dataset-details {
     margin-right: 0px;
     margin-left: 0px;
   }
-
+}
 .search-padding {
  padding-top: 20px;
 }
@@ -1489,4 +1489,8 @@ table.mobile-table td.dataset-details {
 
 .opensearch-info-panel > .panel-group {
     margin-top: 1.5em;
+}
+
+.dataset-detail {
+  overflow: auto;
 }
