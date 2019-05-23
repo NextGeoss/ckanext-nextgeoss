@@ -204,7 +204,8 @@ def get_extras_to_exclude():
         'collection_name',
         'date',
         'product',
-        'noa_expiration_date'
+        'noa_expiration_date',
+        'uuid',
     ]
 
     return extras_to_exclude
