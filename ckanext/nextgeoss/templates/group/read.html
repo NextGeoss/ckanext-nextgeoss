@@ -1,4 +1,5 @@
-{% ckan_extends %}
+{% extends "group/read_base_primary.html" %}
+
 {% set group = c.group_dict %}
 
 {% block pre_primary %}
@@ -34,7 +35,7 @@
       {% endblock %}
     {% endblock %}
 
-{% if c.group_dict.name == 'agriculture_monitoring' %}
+    {% if c.group_dict.name == 'agriculture_monitoring' %}
       <p>Download metadata file:
         <a href="/agriculture_monitoring.xml" download>
           <button type="button" class="btn btn-default btn-sm">
@@ -148,7 +149,7 @@
 
 
 {% block primary_content_inner %}
-  <h3 class="dataset-heading"><a href""> Data Collections used by Pilot: </a> </h3>
+  <h3 class="topic-collections-title"><i class="fa fa-info-circle"></i> Data Collections used by Pilot: </h3>
 
   {% block packages_list %}
     {% if c.collections %}
@@ -159,17 +160,4 @@
 {% endblock %}
 
 {% block secondary_content %}
-  <div class="filters">
-    <div>
-      <div class="filters-header">
-        <i class="fa fa-lg fa-filter"></i>
-        <span class="filters-header__title">{{ _('Filters') }}</span>
-      </div>
-
-      {% for facet in c.facet_titles %}
-        {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet, extras={'id':c.group_dict.id}) }}
-      {% endfor %}
-    </div>
-    <a class="close no-text hide-filters"><i class="fa-remove-sign"></i><span class="text">close</span></a>
-  </div>
 {% endblock %}
