@@ -71,13 +71,14 @@
 {% endblock %}
 
 {% block organization_facets %}
+  {% set organization_facets = ['groups', 'collection_name'] %}
   <div class="filters">
     <div>
       <div class="filters-header">
         <i class="fa fa-lg fa-filter"></i>
         <span class="filters-header__title">{{ _('Filters') }}</span>
       </div>
-      {% for facet in c.facet_titles %}
+      {% for facet in organization_facets %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet, extras={'id':c.group_dict.id}) }}
       {% endfor %}
     </div>
