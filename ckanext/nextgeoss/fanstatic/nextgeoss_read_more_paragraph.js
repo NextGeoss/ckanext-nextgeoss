@@ -6,15 +6,12 @@
 ckan.module('nextgeoss_read_more_paragraph', function ($) {
   return {
     initialize: function () {
-      var showChar = 120;
+      var paragraphs = this.el.children('p');
       var ellipsestext = "...";
       var moretext = "Read More";
       var lesstext = "Read Less";
 
-      var content = this.el.html();
-
-      if (content.length > showChar) {
-        var paragraphs = this.el.children('p');
+      if (paragraphs.length > 1) {
         var visibleParagraph = paragraphs[0];
         var invisibleParagraphs = paragraphs.slice(1);
 
