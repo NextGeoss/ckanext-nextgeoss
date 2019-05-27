@@ -25,45 +25,50 @@
       {% endif %}
       <h2 class="text-center list-counter">{{ display_count }}</h2>
 
-      {% set counter = 0 %}
-      {% set counter_collections = 3 %}
-      {% for _ in range(counter_collections, collections_count) %}
-      <div class="row">
-            {% for key, value in collection_list.items()[counter:counter_collections] %}
-              {% set collections_link = h.get_collection_url(value.name) %}
-              <div class="col-sm-4">
-                  <div class="custom_card">
-                      <div class="row">
-                          <div class="col-sm-2">
-                              <img width="100" style="padding-top: 10px"src="image.jpg">
+      <ul id='collection-list'>
+        {% set counter = 0 %}
+        {% set counter_collections = 3 %}
+        {% for _ in range(counter_collections, collections_count) %}
+        <div class="row">
+              {% for key, value in collection_list.items()[counter:counter_collections] %}
+                {% set collections_link = h.get_collection_url(value.name) %}
+                <div class="col-sm-4">
+                    <li>
+                      <div class="custom_card">
+                          <div class="row">
+                              <div class="col-sm-2">
+                                  <img width="100" style="padding-top: 10px"src="image.jpg">
+                              </div>
+                              <div class="col-sm-10">
+                                <div class="card_head">
+                                  <h4><a href="{{ collections_link }}">{{value.name}}</a></h4>
+                                  <span>Datasets: {{ h.get_collections_dataset_count(key) }}</span></br>
+                                  <span>Pilots:
+                                      {% set groups = h.get_collections_groups(key) %}
+                                      {% for group in groups %}
+                                        {% set group_link = h.url_for(controller='group', action='about', id=group.name) %}
+                                        <a href="{{ group_link }}" style="font-weight: normal; font-size: 15px !important;">{{ group.title }}</a>
+                                      {% endfor %}
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="col-sm-12">
+                                <div class="card_body comment more">
+                                  {{ value.description }}
+                                </div>
+                              </div>
                           </div>
-                          <div class="col-sm-10">
-                            <div class="card_head">
-                              <h4><a href="{{ collections_link }}">{{value.name}}</a></h4>
-                              <span>Datasets: {{ h.get_collections_dataset_count(key) }}</span></br>
-                              <span>Pilots:
-                                  {% set groups = h.get_collections_groups(key) %}
-                                  {% for group in groups %}
-                                    {% set group_link = h.url_for(controller='group', action='about', id=group.name) %}
-                                    <a href="{{ group_link }}" style="font-weight: normal; font-size: 15px !important;">{{ group.title }}</a>
-                                  {% endfor %}
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-sm-12">
-                            <div class="card_body comment more">
-                              {{ value.description }}
-                            </div>
-                          </div>
+                          <a class="collection_link" href="{{ collections_link }}">Go to collection ></a>
                       </div>
-                      <a class="collection_link" href="{{ collections_link }}">Go to collection ></a>
-                  </div>
-              </div>
-          {% endfor %}
-            {% set counter = counter + 3 %}
-            {% set counter_collections = counter_collections + 3 %}
-      </div>
-      {% endfor %}
+                    </li>
+                </div>
+            {% endfor %}
+              {% set counter = counter + 3 %}
+              {% set counter_collections = counter_collections + 3 %}
+        </div>
+        {% endfor %}
+      </ul>
+      <h4 id="load-more-collections" class="text-center">Load more</h2>
 
     </div>
   </article>
@@ -100,6 +105,20 @@
               $(this).parent().prev().toggle();
               $(this).prev().toggle();
               return false;
+          });
+
+          $(function () {
+              var shownCards=9;
+              var totalCards = $('#collection-list li').size();
+              $('#collection-list li').slice(0, shownCards).show();
+              $('#load-more-collections').on('click', function (e) {
+                  e.preventDefault();
+                  shownCards = shownCards+3;
+                  $('#collection-list li').slice(0, shownCards).slideDown();
+                  if (shownCards >= totalCards) {
+                      $('#load-more-collections').addClass("no-hover");
+                  }
+              });
           });
       });
   </script>
