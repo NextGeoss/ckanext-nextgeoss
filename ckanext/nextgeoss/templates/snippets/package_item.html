@@ -50,7 +50,7 @@
       {% set collection_name = h.get_extras_value(package.extras, 'collection_name') %}
       {% if collection_name is not none %}
         {% set collection_url = "/dataset?collection_name=" + collection_name.replace(' ', '+') %}
-          <b> Collection: </b>  <a href="{{ collection_url }}"> {{ package.title }} </a>
+          <b> Collection: </b>  <a href="{{ collection_url }}"> {{ collection_name }} </a>
       {% endif %}
   </div>
 
