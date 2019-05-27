@@ -25,7 +25,7 @@
 
       {% block package_notes %}
         {% if c.group_dict.description %}
-          <div class="notes embedded-content dataset-notes">
+          <div data-module='nextgeoss_read_more_paragraph' class="notes embedded-content dataset-notes">
             {{ h.render_markdown(_(c.group_dict.description)) }}
           </div>
         {% endif %}
@@ -76,6 +76,17 @@
       </p>
     {% endif %}
 
+    {% if c.group_dict.name == 'disasters' %}
+      <p>Download metadata file:
+        <a href="/disaster.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
     {% if c.group_dict.name == 'space-and-security' %}
       <p>Download metadata file:
         <a href="/satcen.xml" download>
@@ -112,6 +123,17 @@
     {% if c.group_dict.name == 'geocradle' %}
       <p>Download metadata file:
         <a href="/geo_cradle.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'food-security' %}
+      <p>Download metadata file:
+        <a href="/food_security.xml" download>
           <button type="button" class="btn btn-default btn-sm">
           <span class="fa fa-cloud-download"></span>
           ISO19139

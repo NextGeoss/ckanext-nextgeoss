@@ -30,6 +30,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'nextgeoss')
+        toolkit.add_resource('fanstatic', 'nextgeoss_read_more_paragraph')
 
     # ITemplateHelpers
 
@@ -57,7 +58,9 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'collection_information': helpers.collection_information,
              'get_extras_value': helpers.get_extras_value,
              'generate_opensearch_query': helpers.generate_opensearch_query,
-             'get_topics_spatial_information': helpers.get_topics_spatial_information
+             'get_topics_spatial_information': helpers.get_topics_spatial_information,
+             'get_begin_period_topics': helpers.get_begin_period_topics,
+             'get_end_period_topics': helpers.get_end_period_topics
         }
 
     # IRoutes

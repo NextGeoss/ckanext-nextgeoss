@@ -54,7 +54,6 @@ def topic_resources(extras):
 
     for extra in extras:
         k, v = extra[0], extra[1]
-        print extra
         if 'resource_' in k and 'Social Media' not in v:
             no_resources = no_resources - 1
             values = ast.literal_eval(extra[1])
@@ -95,6 +94,34 @@ def get_pilot_extras(extras):
             pilot_extras.append({'key': k, 'value': v})
 
     return pilot_extras
+
+
+def get_begin_period_topics(extras):
+    period = ''
+
+    for extra in extras:
+        k, v = extra[0], extra[1]
+
+        if 'begin_position' in k and v != '':
+            date =  datetime.datetime.strptime(str(v), '%Y-%m-%d')
+            period += date.strftime("%d %B, %Y") + ' '
+
+    return period
+
+
+
+def get_end_period_topics(extras):
+    period = ''
+
+    for extra in extras:
+        k, v = extra[0], extra[1]
+
+        if 'end_position' in k and v != '':
+            date =  datetime.datetime.strptime(str(v), '%Y-%m-%d')
+            period += date.strftime("%d %B, %Y")
+
+    return period
+
 
 
 def get_extra_names():

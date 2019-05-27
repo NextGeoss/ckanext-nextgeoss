@@ -150,6 +150,16 @@
 		          	<li class="media-item masonry-brick">
 		          		<a href="/armines-2.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/armines-2.png')}}"></a>
 		          	</li>
+		    {% elif c.group_dict.name == 'food_security' %}
+		          	<li class="media-item masonry-brick">
+		          		<a href="/armines-1.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/nextgeoss_foodsec_pilot_8.png')}}"></a>
+		          	</li>
+		          	<li class="media-item masonry-brick">
+		          		<a href="/armines-2.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/nextgeoss_foodsec_pilot_9.png')}}"></a>
+		          	</li>
+		          	<li class="media-item masonry-brick">
+		          		<a href="/armines-2.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/nextgeoss_foodsec_pilot_12.png')}}"></a>
+		          	</li>
 		    {% else %}
 		    No Thumbnails available
 			{% endif %}
@@ -164,14 +174,24 @@
 				{% for extra in extras %}
 				{% set key, value = extra %}
 				{% set contact = ['e-mail', 'individualName', 'organisationName'] %}
-				{% set skip = ['collections', 'extent'] %}
+				{% set skip = ['collections', 'extent', 'begin_position', 'end_position'] %}
 				{% if key not in contact and 'resource' not in key and key not in skip %}
 				<tr rel="dc:relation" resource="_:extra{{ i }}">
-					<th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
+					<th scope="row" class="dataset-label" property="rdfs:label">{{ _(key).replace('_', ' ') }}</th>
 					<td class="dataset-details" property="rdf:value">{{ value }}</td>
 				</tr>
 				{% endif %}
 				{% endfor %}
+
+				{% set period_begin = h.get_begin_period_topics(extras) %}
+				{% set period_end = h.get_end_period_topics(extras) %}
+
+				<tr rel="dc:relation" resource="_:extra{{ i }}">
+					<th scope="row" class="dataset-label" property="rdfs:label">{{_('pilot validity period')}}</th>
+					<td class="dataset-details" property="rdf:value">
+						{{period_begin}}  TO {{period_end}}
+					</td>
+				</tr>
 
 				<tr rel="dc:relation" resource="_:extra{{ i }}">
 					<th scope="row" class="dataset-label" property="rdfs:label">Contact</th>
