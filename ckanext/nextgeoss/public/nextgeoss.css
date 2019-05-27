@@ -1513,3 +1513,7 @@ table.mobile-table td.dataset-details {
     color: black !important;
     pointer-events: none !important;
 }
+
+.dataset-detail {
+  overflow: auto;
+}
