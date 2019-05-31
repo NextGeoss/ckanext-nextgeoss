@@ -248,6 +248,7 @@ def get_extras_to_exclude():
         'product',
         'noa_expiration_date',
         'uuid',
+        'dataset_extra',
     ]
 
     return extras_to_exclude
