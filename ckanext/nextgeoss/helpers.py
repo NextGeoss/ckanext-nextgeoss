@@ -246,6 +246,7 @@ def get_extras_to_exclude():
         'collection_name',
         'date',
         'product',
+        'product_url',
         'noa_expiration_date',
         'uuid',
         'dataset_extra',
