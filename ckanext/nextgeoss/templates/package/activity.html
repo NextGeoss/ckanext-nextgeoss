@@ -11,31 +11,7 @@
   <div class="container single-column">
     {% snippet "package/snippets/nav_tabs.html", pkg=pkg %}
     {% block package_description %}
-      <div class="dataset-detail">
-        <div class="dataset-detail-org-logo">
-          <div class="image">
-            <img src="{{ thumbnail_path }}" height= "210" width="210" alt="{{ thumbnail_path }}" />
-          </div>
-        </div>
-        {% if pkg.private %}
-          <span class="dataset-private label label-inverse pull-right">
-            <i class="fa fa-lock"></i>
-            {{ _('Private') }}
-          </span>
-        {% endif %}
-        <h1 class="dataset-detail-title">
-          {% block page_heading %}
-            {{ h.dataset_display_name(pkg) }}
-            {% if pkg.state.startswith('draft') %}
-              [{{ _('Draft') }}]
-            {% endif %}
-            {% if pkg.state == 'deleted' %}
-              [{{ _('Deleted') }}]
-            {% endif %}
-          {% endblock %}
-        </h1>
-        <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
-      </div>
+      {{ super() }}
     {% endblock %}
 
     <section class="additional-info">
