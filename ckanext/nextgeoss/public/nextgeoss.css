@@ -485,6 +485,7 @@ h4.title a {
 .dataset-item-org-logo {
   float: right;
   clear: left;
+  margin-top: 5px !important;
 }
 
 .dataset-item-org-logo .image img {
@@ -539,7 +540,6 @@ h4.title a {
 .dataset-detail-org-logo {
   float: right;
   clear: left;
-  margin-top: 20px;
 }
 
 h1.dataset-detail-title {
@@ -547,8 +547,16 @@ h1.dataset-detail-title {
 }
 
 h5.dataset-detail-title {
-  margin-top: 0px;
   margin-bottom: 5px;
+}
+
+.dataset-detail-title {
+  word-break: break-all;
+  margin-top: 0px !important;
+}
+
+.dataset-intro, .organization-intro {
+  margin-top: 10px !important;
 }
 
 .dataset-notes {
