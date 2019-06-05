@@ -241,7 +241,7 @@ li.dataset-item {
 }
 .module {
     margin-top: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 .breadcrumb>li+li:before {
     content: none;
@@ -1346,7 +1346,7 @@ table.mobile-table td.dataset-details {
     margin-right: 0px;
     margin-left: 0px;
   }
-
+}
 .search-padding {
  padding-top: 20px;
 }
@@ -1485,4 +1485,27 @@ table.mobile-table td.dataset-details {
 
 .opensearch-info-panel > .panel-group {
     margin-top: 1.5em;
+}
+
+#collection-list {
+  list-style: none;
+}
+#collection-list li{
+  display:none;
+}
+#load-more-collections {
+    color: black !important;
+    align-content: center !important;
+    cursor: pointer !important;
+    padding-bottom: 0% !important;
+    margin-bottom: 0% !important;
+    margin-top: 1em;
+}
+#load-more-collections:hover {
+    color: #168b79  !important;
+}
+.no-hover {
+    cursor: none !important;
+    color: black !important;
+    pointer-events: none !important;
 }
