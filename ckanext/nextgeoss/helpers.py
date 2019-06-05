@@ -1,6 +1,7 @@
 from ckan.common import config
 import ckan.logic as logic
 import ckan.plugins as p
+import ckan.lib.helpers as h
 import ast
 import ckan.plugins.toolkit as tk
 import datetime
@@ -479,3 +480,18 @@ def generate_opensearch_query(params):
                 query = query + '&' + param_tmp + '="' + params[param] + '"'
 
     return query
+
+
+def get_featured_groups_list():
+    parent_groups = []
+    group_list = config.get('ckan.featured_groups')
+
+    groups = h.get_featured_groups(count=40)
+
+    for group in groups:
+        print group_list
+        print group['name']
+        if group['name'] in group_list:
+            parent_groups.append(group)
+
+    return parent_groups
