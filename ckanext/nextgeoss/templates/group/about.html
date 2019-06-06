@@ -3,10 +3,6 @@
 {% block pre_primary %}
 {% set group = c.group_dict %}
 
-{% block pre_primary %}
-  {{ super() }}
-{% endblock %}
-
 {% block primary_content_inner %}
   {% block group_extras %}
     {% snippet 'group/snippets/additional_info.html', extras = h.sorted_extras(c.group_dict.extras), name=c.group_dict.name %}
