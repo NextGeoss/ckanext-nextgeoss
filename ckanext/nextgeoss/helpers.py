@@ -489,8 +489,6 @@ def get_featured_groups_list():
     groups = h.get_featured_groups(count=40)
 
     for group in groups:
-        print group_list
-        print group['name']
         if group['name'] in group_list:
             parent_groups.append(group)
 
