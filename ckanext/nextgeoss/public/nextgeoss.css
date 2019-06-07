@@ -1393,10 +1393,9 @@ table.mobile-table td.dataset-details {
 }
 
 .help-tip{
-    position: absolute;
-    top: 18px;
-    right: 18px;
+    position: relative;
     text-align: center;
+    align-self: center;
     background-color: #BCDBEA;
     border-radius: 50%;
     width: 24px;
@@ -1427,7 +1426,6 @@ table.mobile-table td.dataset-details {
     background-color: #1E2021;
     padding: 20px;
     width: 300px;
-    position: absolute;
     border-radius: 3px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
     right: -4px;
@@ -1451,9 +1449,14 @@ table.mobile-table td.dataset-details {
     width:100%;
     height:40px;
     content:'';
-    position: absolute;
     top:-40px;
     left:0;
+}
+
+.navbar-help-tip{
+  width: 20px;
+  height: 19px;
+  font-size: 13px;
 }
 
 /* CSS animation */
