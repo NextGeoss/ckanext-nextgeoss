@@ -29,7 +29,7 @@
       {%- else -%}
         {% set providers_count = providers_none %}
       {% endif %}
-      <h2 class="text-center">{{ providers_count }}</h2>
+      <h2 class="text-center list-counter">{{ providers_count }}</h2>
 
       {% block organizations_list %}
         {% if c.page.items or request.params %}

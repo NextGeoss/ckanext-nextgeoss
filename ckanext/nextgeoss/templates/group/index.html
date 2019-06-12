@@ -18,8 +18,8 @@
       {% endblock %}
 
       <h1 class="page-heading">{% block page_heading %}{{ _('Topics') }}{% endblock %}</h1>
-      <h4>{{ _('NextGEOSS seeks to educate the public and facilitate the work of researchers and institutions by highlighting certain issues that are crucial to the future of Europe and the world. By curating a selection of topics and presenting an overview of each issue as well as easy access to the myriad datasets related to it, the Next GEOSS data hub serves as a jumping off point for engaged exploration.') }}</h4>
-      <h4>{{ _('The following topics are considered especially relevant:') }}</h4>
+      <h4>{{ _('NextGEOSS DataHub catalogues pilot services developed and integrated within NextGEOSS and also the services developed by other European Projects across several thematic topics. The goal of this catalogue is to allow service or pilot owners to promote their Earth Observation based services in the GEO Community and get acknowledged as a service provider to increase global visibility and discoverability.')}}</h4>
+      <h4>{{ _('The following thematic topics are are considered especially relevant:') }}</h4>
 
       {% set count = c.page.items|length %}
       {% set topics_count = ungettext('{number} topic', '{number} topics', count) %}
@@ -29,7 +29,7 @@
       {%- else -%}
         {% set topics_count = topics_none %}
       {% endif %}
-      <h2 class="text-center">{{ topics_count }}</h2>
+      <h2 class="text-center list-counter">{{ topics_count }}</h2>
 
       {% block groups_list %}
         {% if c.page.items or request.params %}

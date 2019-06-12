@@ -1,10 +1,12 @@
+from collections import OrderedDict
+
 import ckan.lib.base as base
 import ckan.logic as logic
 import ckan.model as model
 import ckan.plugins.toolkit as tk
 
 from ckan.common import _, c
-from ckanext.opensearch import config
+from ckanext.opensearch import config as opensearch_config
 
 
 class StaticController(base.BaseController):
@@ -52,10 +54,10 @@ class StaticController(base.BaseController):
         return tk.redirect_to('https://servicedesk.nextgeoss.eu')
 
     def collections(self):
-        context = {'model': model, 'session': model.Session,
-                    'user': c.user, 'auth_user_obj': c.userobj}
-        collection_list = config.load_settings("collections_list")
+        collection_list = opensearch_config.load_settings("collections_list")
+        collection_list_newest_first = OrderedDict(reversed(collection_list.items()))
+        return base.render('static/collection_list.html',
+            extra_vars={'collection_list': collection_list_newest_first})
 
-
-        return base.render('static/collection_list.html', extra_vars={'collection_list': collection_list})
-
+    def support(self):
+        return tk.redirect_to('https://servicedesk.nextgeoss.eu')

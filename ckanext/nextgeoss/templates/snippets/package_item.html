@@ -2,12 +2,10 @@
 
 {% block heading %}
 
-  {% set thumbnail_path = h.ng_get_dataset_thumbnail_path(package) %}
-  {% set thumbnail = h.url_for_static(thumbnail_path)%}
-
   <div class="dataset-item-org-logo">
     <div class="image">
-      <img src="{{ thumbnail }}" height= "210" width="210" alt="{{ package.name}} thumbnail" />
+      {% set thumbnail_path = h.ng_get_dataset_thumbnail_path(package) %}
+      <img src="{{ thumbnail_path }}" height= "210" width="210" alt="{{ thumbnail_path }}" />
     </div>
   </div>
 
@@ -51,10 +49,9 @@
       {% set collection_name = h.get_extras_value(package.extras, 'collection_name') %}
       {% if collection_name is not none %}
         {% set collection_url = "/dataset?collection_name=" + collection_name.replace(' ', '+') %}
-          <b> Collection: </b>  <a href="{{ collection_url }}"> {{ package.title }} </a>
+          <b> Collection: </b>  <a href="{{ collection_url }}"> {{ collection_name }} </a>
       {% endif %}
   </div>
-
 
 {% endblock %}
 
