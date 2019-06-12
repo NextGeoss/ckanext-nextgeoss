@@ -57,7 +57,10 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'get_group_collection_count': helpers.get_group_collection_count,
              'collection_information': helpers.collection_information,
              'get_extras_value': helpers.get_extras_value,
-             'generate_opensearch_query': helpers.generate_opensearch_query
+             'generate_opensearch_query': helpers.generate_opensearch_query,
+             'get_topics_spatial_information': helpers.get_topics_spatial_information,
+             'get_begin_period_topics': helpers.get_begin_period_topics,
+             'get_end_period_topics': helpers.get_end_period_topics
         }
 
     # IRoutes
@@ -161,6 +164,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='opensearch')
             m.connect('collections', '/collection',
                       action='collections')
+            m.connect('support', '/support',
+                      action='support')
 
         package_controller = 'ckanext.nextgeoss.controllers.package:NextgeossPackageController'  # noqa: E501
         with routes.mapper.SubMapper(map, controller=package_controller) as m:

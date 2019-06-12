@@ -65,6 +65,28 @@
       </p>
     {% endif %}
 
+    {% if c.group_dict.name == 'disaster_risk_reduction' %}
+      <p>Download metadata file:
+        <a href="/disaster.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'disasters' %}
+      <p>Download metadata file:
+        <a href="/disaster.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
     {% if c.group_dict.name == 'space-and-security' %}
       <p>Download metadata file:
         <a href="/satcen.xml" download>
@@ -79,6 +101,39 @@
     {% if c.group_dict.name == 'energy' %}
       <p>Download metadata file:
         <a href="/armines.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'energy-1' %}
+      <p>Download metadata file:
+        <a href="/energy-pilot-1.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'geocradle' %}
+      <p>Download metadata file:
+        <a href="/geo_cradle.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'food-security' %}
+      <p>Download metadata file:
+        <a href="/food_security.xml" download>
           <button type="button" class="btn btn-default btn-sm">
           <span class="fa fa-cloud-download"></span>
           ISO19139

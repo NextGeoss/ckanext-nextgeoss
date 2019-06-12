@@ -19,6 +19,7 @@ Example:
     <ul class="{{ list_class or 'dataset-list unstyled' }}">
     	{% block package_list_inner %}
 	      {% for collection in collections %}
+          {% if collection.name %}
           <li class="dataset-item">
               <div class="dataset-content">
                 <div class="dataset-item-org-logo">
@@ -35,6 +36,7 @@ Example:
                 <div>{{ collection.description }}</div>
               </div>
           </li>
+          {% endif %}
 	      {% endfor %}
 	    {% endblock %}
     </ul>

@@ -62,6 +62,18 @@ def topic_resources(extras):
     return resources
 
 
+def get_topics_spatial_information(extras):
+    spatial = ''
+
+    for extra in extras:
+        if extra[0] == 'extent':
+            spatial = str(extra[1])
+
+    print spatial.rstrip('}')
+
+    return spatial
+
+
 def get_value(resources, key):
     resources_tmp = ast.literal_eval(resources)
     value = ''
@@ -83,6 +95,34 @@ def get_pilot_extras(extras):
             pilot_extras.append({'key': k, 'value': v})
 
     return pilot_extras
+
+
+def get_begin_period_topics(extras):
+    period = ''
+
+    for extra in extras:
+        k, v = extra[0], extra[1]
+
+        if 'begin_position' in k and v != '':
+            date =  datetime.datetime.strptime(str(v), '%Y-%m-%d')
+            period += date.strftime("%d %B, %Y") + ' '
+
+    return period
+
+
+
+def get_end_period_topics(extras):
+    period = ''
+
+    for extra in extras:
+        k, v = extra[0], extra[1]
+
+        if 'end_position' in k and v != '':
+            date =  datetime.datetime.strptime(str(v), '%Y-%m-%d')
+            period += date.strftime("%d %B, %Y")
+
+    return period
+
 
 
 def get_extra_names():
@@ -233,7 +273,8 @@ def get_dataset_thumbnail_path(dataset):
 
     if collection_id in thumbnails_list:
         image_path = collection_id + '.jpg'
-    else:
+
+    if dataset['organization']:
         organization = dataset['organization']
         image_path = organization['name'] + '.jpg'
 
@@ -444,6 +485,5 @@ def generate_opensearch_query(params):
                 else:
                     param_tmp = param
                 query = query + '&' + param_tmp + '="' + params[param] + '"'
-
 
     return query

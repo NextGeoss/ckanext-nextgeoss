@@ -3,6 +3,8 @@
 
 #}
 {% if extras %}
+	{% set spatial = h.get_topics_spatial_information(extras) %}
+
     {% if c.group_dict.name == 'agriculture_monitoring' %}
 
   	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
@@ -15,27 +17,20 @@
   		extent = "{ \"type\":
 		\"Polygon\", \"coordinates\": [[[-25.1528, 35.3], [44.9158, 35.3], [44.9158, 71.2838], [-25.1528, 71.2838], [-25.1528, 35.3]]]}"%}
 
-    {% elif c.group_dict.name == 'coastal' %}
-
-  	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
-  		extent = "{ \"type\":
-		\"Polygon\", \"coordinates\": [[[-180, -90], [180, -90], [180, 90], [-180, 90], [-180, -90]]]}"%}
-
-
-    {% elif c.group_dict.name == 'space-and-security' %}
-
-  	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
-  		extent = "{ \"type\":
-		\"Polygon\", \"coordinates\": [[[7.27294922, 15.81339576], [9.73388672, 15.81339576], [9.73388672, 18.68787869], [7.27294922, 18.68787869], [7.27294922, 15.81339576]]]}"%}
-
     {% elif c.group_dict.name == 'energy' %}
 
   	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
   		extent = "{ \"type\":
 		\"Polygon\", \"coordinates\": [[[-66, -66], [66, -66], [66, 66], [-66, 66], [-66, -66]]]}"%}
 
+    {% elif c.group_dict.name == 'energy-1' %}
+
+  	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
+  		extent = "{ \"type\":
+		\"Polygon\", \"coordinates\": [[[-66, -66], [66, -66], [66, 66], [-66, 66], [-66, -66]]]}"%}
+
 	{% else %}
-		{% snippet "spatial/snippets/topic_map_big.html" %}
+		{% snippet "spatial/snippets/dataset_map_big.html",  default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]", extent = spatial %}
 	{% endif %}
 
 	<!-- Resources -->
@@ -128,7 +123,7 @@
 		          	<li class="media-item masonry-brick">
 		          		<a href="/thumb_eg2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg2.jpg')}}"></a>
 		          	</li>
-		    {% elif c.group_dict.name == 'biodiversity1' %}
+		    {% elif 'biodiversity' in c.group_dict.name %}
 		          	<li class="media-item masonry-brick">
 		          		<a href="/image1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/image1.jpg')}}"></a>
 		          	</li>
@@ -155,6 +150,16 @@
 		          	<li class="media-item masonry-brick">
 		          		<a href="/armines-2.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/armines-2.png')}}"></a>
 		          	</li>
+		    {% elif c.group_dict.name == 'food_security' %}
+		          	<li class="media-item masonry-brick">
+		          		<a href="/armines-1.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/nextgeoss_foodsec_pilot_8.png')}}"></a>
+		          	</li>
+		          	<li class="media-item masonry-brick">
+		          		<a href="/armines-2.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/nextgeoss_foodsec_pilot_9.png')}}"></a>
+		          	</li>
+		          	<li class="media-item masonry-brick">
+		          		<a href="/armines-2.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/nextgeoss_foodsec_pilot_12.png')}}"></a>
+		          	</li>
 		    {% else %}
 		    No Thumbnails available
 			{% endif %}
@@ -169,14 +174,24 @@
 				{% for extra in extras %}
 				{% set key, value = extra %}
 				{% set contact = ['e-mail', 'individualName', 'organisationName'] %}
-				{% set skip = ['collections'] %}
+				{% set skip = ['collections', 'extent', 'begin_position', 'end_position'] %}
 				{% if key not in contact and 'resource' not in key and key not in skip %}
 				<tr rel="dc:relation" resource="_:extra{{ i }}">
-					<th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
+					<th scope="row" class="dataset-label" property="rdfs:label">{{ _(key).replace('_', ' ') }}</th>
 					<td class="dataset-details" property="rdf:value">{{ value }}</td>
 				</tr>
 				{% endif %}
 				{% endfor %}
+
+				{% set period_begin = h.get_begin_period_topics(extras) %}
+				{% set period_end = h.get_end_period_topics(extras) %}
+
+				<tr rel="dc:relation" resource="_:extra{{ i }}">
+					<th scope="row" class="dataset-label" property="rdfs:label">{{_('pilot validity period')}}</th>
+					<td class="dataset-details" property="rdf:value">
+						{{period_begin}}  TO {{period_end}}
+					</td>
+				</tr>
 
 				<tr rel="dc:relation" resource="_:extra{{ i }}">
 					<th scope="row" class="dataset-label" property="rdfs:label">Contact</th>

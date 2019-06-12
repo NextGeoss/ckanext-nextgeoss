@@ -2,6 +2,6 @@
   <a href="{{ h.url_for(controller='group', action='about', id=group.name) }}">
   <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" />
   <h4 class="title">
-    <a href="{{ h.url_for(controller='group', action='about', id=group.name) }}">{{ group.title or group.name }}</a>
+    <a href="{{ h.url_for(controller='group', action='about', id=group.name) }}">{{ group.title|truncate(15) or group.name|truncate(15)}}</a>
   </h4>
 {% endblock %}
