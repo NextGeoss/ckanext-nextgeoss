@@ -50,6 +50,9 @@ class StaticController(base.BaseController):
     def opensearch(self):
         return base.render('static/opensearch.html')
 
+    def support(self):
+        return tk.redirect_to('https://servicedesk.nextgeoss.eu')
+
     def collections(self):
         collection_list = opensearch_config.load_settings("collections_list")
         collection_list_newest_first = OrderedDict(reversed(collection_list.items()))

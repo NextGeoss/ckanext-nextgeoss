@@ -163,7 +163,9 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='unauthorized')
             m.connect('opensearch', '/opensearch',
                       action='opensearch')
-            m.connect('collections', '/collection',
+            m.connect('support', '/support',
+                      action='support')
+            m.connect('collections', '/collections',
                       action='collections')
             m.connect('support', '/support',
                       action='support')
