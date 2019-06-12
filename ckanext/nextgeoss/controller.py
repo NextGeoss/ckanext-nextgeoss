@@ -3,7 +3,7 @@ import ckan.logic as logic
 import ckan.model as model
 
 from ckan.common import _, c
-from ckanext.opensearch import config
+from ckanext.opensearch import config as opensearch_config
 
 
 class StaticController(base.BaseController):
@@ -48,10 +48,7 @@ class StaticController(base.BaseController):
         return base.render('static/opensearch.html')
 
     def collections(self):
-        context = {'model': model, 'session': model.Session,
-                    'user': c.user, 'auth_user_obj': c.userobj}
-        collection_list = config.load_settings("collections_list")
-
+        collection_list = opensearch_config.load_settings("collections_list")
 
         return base.render('static/collection_list.html', extra_vars={'collection_list': collection_list})
 

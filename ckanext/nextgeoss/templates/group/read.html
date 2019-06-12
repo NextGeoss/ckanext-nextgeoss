@@ -22,9 +22,7 @@
       </h1>
 
       <h5 class="dataset-detail-title">Curated by NextGEOSS</h5>
-      {% if not c.group_dict.description %}
-        <h5 class="dataset-detail-title">More information coming soon</h5>
-      {% endif %}
+
 
       {% block package_notes %}
         {% if c.group_dict.description %}
@@ -49,6 +47,28 @@
     {% if c.group_dict.name == 'biodiversity17' %}
       <p>Download metadata file:
         <a href="/biodiversity.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'coastal' %}
+      <p>Download metadata file:
+        <a href="/CoReSyF.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'space-and-security' %}
+      <p>Download metadata file:
+        <a href="/satcen.xml" download>
           <button type="button" class="btn btn-default btn-sm">
           <span class="fa fa-cloud-download"></span>
           ISO19139

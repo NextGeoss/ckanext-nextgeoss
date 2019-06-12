@@ -22,13 +22,10 @@
       </h1>
 
       <h5 class="dataset-detail-title">Curated by NextGEOSS</h5>
-      {% if not c.group_dict.description %}
-        <h5 class="dataset-detail-title">More information coming soon</h5>
-      {% endif %}
 
       {% block package_notes %}
         {% if c.group_dict.description %}
-          <div class="notes embedded-content dataset-notes">
+          <div data-module='nextgeoss_read_more_paragraph' class="notes embedded-content dataset-notes">
             {{ h.render_markdown(_(c.group_dict.description)) }}
           </div>
         {% endif %}
@@ -37,7 +34,7 @@
 
     {% if c.group_dict.name == 'agriculture_monitoring' %}
       <p>Download metadata file:
-        <a href="/metadata_example.xml" download>
+        <a href="/agriculture_monitoring.xml" download>
           <button type="button" class="btn btn-default btn-sm">
           <span class="fa fa-cloud-download"></span>
           ISO19139
@@ -46,9 +43,42 @@
       </p>
     {% endif %}
 
-    {% if c.group_dict.name == 'biodiversity17' %}
+    {% if c.group_dict.name == 'biodiversity1' %}
       <p>Download metadata file:
         <a href="/biodiversity.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'coastal' %}
+      <p>Download metadata file:
+        <a href="/CoReSyF.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'space-and-security' %}
+      <p>Download metadata file:
+        <a href="/satcen.xml" download>
+          <button type="button" class="btn btn-default btn-sm">
+          <span class="fa fa-cloud-download"></span>
+          ISO19139
+          </button>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if c.group_dict.name == 'energy' %}
+      <p>Download metadata file:
+        <a href="/armines.xml" download>
           <button type="button" class="btn btn-default btn-sm">
           <span class="fa fa-cloud-download"></span>
           ISO19139

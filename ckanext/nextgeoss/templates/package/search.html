@@ -16,9 +16,15 @@
                 <label for="timerange_start">Start Date</label>
                 <input type="text" name="timerange_start" class="search search-input control-group">
               </div>
+              <div class="help-tip" style="margin-right: 5px; margin-left:-20px;">
+                <p>Choose a Start Date for timerange.</p>
+              </div>
               <div class="form-group">
                 <label for="timerange_start">End Date</label>
                 <input type="text" name="timerange_end" class="search search-input control-group">
+              </div>
+              <div class="help-tip" style="margin-right: 5px; margin-left:-20px;">
+                <p>Choose a End Date for timerange.</p>
               </div>
               <input type="submit" value="Search" class="btn btn-primary" />
           </form>
@@ -100,7 +106,16 @@
       <p><strong>There was an error while searching.</strong> Please try again.</p>
     {% endtrans %}
   {% endif %}
-  <a class="show-filters btn">{{ _('Filter Results') }}</a>
+
+  <a class="show-filters btn">{{ _('Filter Results') }}</a></br>
+
+  <a href="{{ h.generate_opensearch_query(request.params) }}" class="action btn btn-primary" style="right: 20px; margin-bottom: 10px;">
+    {{ _('OpenSearch matching query') }}
+  </a>
+
+  <div class="help-tip">
+    <p>OpenSearch matching query button redirects the user to OpenSearch search page, taking into consideration the filters that the user selected.</p>
+  </div>
   </div>
 {% endblock %}
 
@@ -177,35 +192,17 @@
     <div>
       <div class="filters-header">
         <i class="fa fa-lg fa-filter"></i>
-          <span class="filters-header__title" data-toggle="tooltip" title="Refine your Search lists the options that user can query">
+          <span class="filters-header__title">
             {{ _('Refine your Search') }}
+            <div class="help-tip">
+            <p>Refine your Search section lists the different criteria a user can query by.</p>
+            </div>
           </span>
-        <span class="filters-header__title">{{ _('Date Range') }}</span>
-      </div>
-        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-        {% resource 'nextgeoss/daterangepicker.js' %}
-        {% resource 'nextgeoss/search.js' %}  
-
-        <form method="post" class="search">
-            <label for="timerange_start">Start Date:</label>
-            <input type="text" name="timerange_start" class="form-control">
-            <label for="timerange_start">End Date:</label>
-            <input type="text" name="timerange_end" class="form-control">      
-            <input type="submit" value="Search" class="btn btn-primary" />
-        </form>
-      </div>
-  </div>
-  </br>
-  <div class="filters">
-    <div>
-      <div class="filters-header">
-        <i class="fa fa-lg fa-filter"></i>
-        <span class="filters-header__title">{{ _('Two Step Search') }}</span>
       </div>
       {% for facet in c.facet_titles %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
       {% endfor %}
     </div>
-    <a class="close no-text hide-filters"><i class="fa fa-remove-sign"></i><span class="text">close</span></a>    
-  </div>  
+    <a class="close no-text hide-filters"><i class="fa fa-remove-sign"></i><span class="text">close</span></a>
+  </div>
 {% endblock %}

@@ -6,6 +6,9 @@ import ckan.plugins.toolkit as tk
 import datetime
 import json
 import re
+from ckan.lib.helpers import url_for_static
+from ckanext.opensearch import config as opensearch_config
+
 
 def get_jira_script():
     jira_script = config.get('ckanext.nextgeoss.jira_issue_tracker')
@@ -221,7 +224,20 @@ def get_dataset_thumbnail_path(dataset):
     # elif dataset['organization']['title'] == 'Sentinel':
     #     return '/thumbnails/{}.jpg'.format(extras.get('uuid', 'placeholder'))
     # else:
-    return '/base/images/placeholder-image.png'
+    image_path = ''
+    thumbnails_list = ['SENTINEL1_L1_SLC', 'SENTINEL1_L1_GRD', 'SENTINEL2_L1C', 'SENTINEL2_L2A', 'SENTINEL3_SRAL_L2_LAN', \
+        'SENTINEL3_OLCI_L1_EFR', 'SENTINEL3_OLCI_L1_ERR', 'SENTINEL3_OLCI_L2_LFR', 'SENTINEL3_OLCI_L2_LRR', \
+        'SENTINEL3_SLSTR_L1_RBT', 'SENTINEL3_SLSTR_L2_LST']
+
+    collection_id = get_extras_value(dataset['extras'], 'collection_id')
+
+    if collection_id in thumbnails_list:
+        image_path = collection_id + '.jpg'
+    else:
+        organization = dataset['organization']
+        image_path = organization['name'] + '.jpg'
+
+    return image_path
 
 
 def get_source_namespace(data_dict):
@@ -247,9 +263,8 @@ def nextgeoss_get_site_statistics():
 
 
 def get_collections_count():
-    from ckanext.opensearch import config
+    collections = opensearch_config.load_settings("collections_list")
 
-    collections = config.load_settings("collections_list")
     collections_count = collections.keys()
     collections_count = len(collections_count)
 
@@ -257,8 +272,6 @@ def get_collections_count():
 
 
 def get_collection_url(collection_name):
-    from ckanext.opensearch import config
-
     collection = 'collection_id:' + collection_name
 
     return "dataset?collection_name=" + collection_name.replace(' ', '+')
@@ -268,13 +281,37 @@ def get_collections_dataset_count(collection_name):
     collection = 'collection_id:' + collection_name
     data_dict = {'q': '',
                  'start': 0,
-                 'rows': 20, 
+                 'rows': 20,
                  'ext_bbox': None,
                  'fq': collection }
 
     results_dict = logic.get_action("package_search")({}, data_dict)
 
     return results_dict['count']
+
+
+def get_collections_groups(collection_name):
+    collection = 'collection_id:' + collection_name
+    data_dict = {'q': '',
+                 'start': 0,
+                 'rows': 20,
+                 'ext_bbox': None,
+                 'fq': collection }
+
+    results_dict = logic.get_action("package_search")({}, data_dict)
+    results = results_dict['results']
+    groups_list = []
+    groups_tmp = ''
+
+    for result in results:
+        if result.get('groups') != []:
+            groups = result.get('groups')
+            for group in groups:
+                if group['title'] not in groups_tmp:
+                    groups_tmp += group['title']
+                    groups_list.append({'title': group['title'], 'name': group['name']})
+
+    return groups_list
 
 
 def nextgeoss_get_facet_title(name):
@@ -342,15 +379,16 @@ def search_params():
 
 
 def get_group_collection_count(group):
-    group_extras = group['extras']
     group_collections = []
 
-    for extra in group_extras:
-        if extra['key'] == 'collections':
-            col_value = extra['value'].split(", ")
-            for a in col_value:
-                group_collections.append(a)
+    if 'extras' in group:
+        group_extras = group['extras']
 
+        for extra in group_extras:
+            if extra['key'] == 'collections':
+                col_value = extra['value'].split(", ")
+                for a in col_value:
+                    group_collections.append(a)
 
     collections = []
 
@@ -358,15 +396,11 @@ def get_group_collection_count(group):
         item = collection_information(collection_id)
         collections.append(item)
 
-    print len(collections)
-
     return len(collections)
 
 
 def collection_information(collection_id=None):
-    from ckanext.opensearch import config
-
-    collections = config.load_settings("collections_list")
+    collections = opensearch_config.load_settings("collections_list")
     collection_items = collections.items()
 
     for collection in collection_items:
@@ -379,3 +413,37 @@ def get_extras_value(extras, extras_key):
         if extra['key'] == extras_key:
             return extra['value']
 
+
+def generate_opensearch_query(params):
+    query = '/opensearch/search.atom?'
+
+    if 'collection_name' in params:
+        collection_name = params['collection_name']
+
+        collections = opensearch_config.load_settings("collections_list")
+        collection_items = collections.items()
+
+        for collection in collection_items:
+            collection_items = collection[1].items()
+            if collection_name in collection[1].items()[0]:
+                query = query + 'collection_id=' + collection[0]
+
+        for param in params:
+            if param != 'collection_name':
+                param_tmp = ''
+                if param == 'TransmitterReceiverPolarisation':
+                    param_tmp = 'polarisation'
+                elif param == "Swath":
+                    param_tmp = "swath"
+                elif param == "orbitDirection":
+                    param_tmp = "orbit_direction"
+                elif param == "swathIdentifier":
+                    param_tmp = "swath"
+                elif param == "OrbitDirection":
+                    param_tmp = "orbit_direction"
+                else:
+                    param_tmp = param
+                query = query + '&' + param_tmp + '="' + params[param] + '"'
+
+
+    return query

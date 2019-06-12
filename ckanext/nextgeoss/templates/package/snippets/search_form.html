@@ -50,9 +50,6 @@
   </div>
 
   {% block search_facets %}
-  {% endblock %}
-
-  {% block search_facets %}
     {% if facets %}
       <p class="filter-list">
         {% for field in facets.fields %}
@@ -82,10 +79,11 @@
               {%- endif %}
               <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
             </span>
-        {% endfor %}    
-      </p>     
+        {% endfor %}
+      </p>
       <a class="show-filters btn">{{ _('Filter Results') }}</a>
     {% endif %}
+
   {% endblock %}
 
   {% if show_empty and count == 0 %}

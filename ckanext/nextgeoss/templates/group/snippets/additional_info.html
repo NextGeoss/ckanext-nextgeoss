@@ -3,20 +3,38 @@
 
 #}
 {% if extras %}
-    {% if c.group_dict.name == 'biodiversity17' %}
+    {% if c.group_dict.name == 'agriculture_monitoring' %}
 
-  
-  {% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
+  	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
   		extent = "{ \"type\":
-		    \"Polygon\", \"coordinates\": [[[-25.1528, 35.3], [44.9158, 35.3], [44.9158, 71.2838], [-25.1528, 71.2838], [-25.1528, 35.3]]]}"%}
-  
-{#
-		{% snippet "spatial/snippets/spatial_query.html", default_extent="{ \"type\":
-		    \"Polygon\", \"coordinates\": [[[-25.1528, 35.3], [44.9158, 35.3], [44.9158,
-		    71.2838], [-25.1528, 71.2838], [-25.1528, 35.3]]]}" %}
-#}
+		\"Polygon\", \"coordinates\": [[[-180, -90], [180, -90], [180, 90], [-180, 90], [-180, -90]]]}"%}
 
-{% else %}
+    {% elif c.group_dict.name == 'biodiversity1' %}
+
+  	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
+  		extent = "{ \"type\":
+		\"Polygon\", \"coordinates\": [[[-25.1528, 35.3], [44.9158, 35.3], [44.9158, 71.2838], [-25.1528, 71.2838], [-25.1528, 35.3]]]}"%}
+
+    {% elif c.group_dict.name == 'coastal' %}
+
+  	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
+  		extent = "{ \"type\":
+		\"Polygon\", \"coordinates\": [[[-180, -90], [180, -90], [180, 90], [-180, 90], [-180, -90]]]}"%}
+
+
+    {% elif c.group_dict.name == 'space-and-security' %}
+
+  	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
+  		extent = "{ \"type\":
+		\"Polygon\", \"coordinates\": [[[7.27294922, 15.81339576], [9.73388672, 15.81339576], [9.73388672, 18.68787869], [7.27294922, 18.68787869], [7.27294922, 15.81339576]]]}"%}
+
+    {% elif c.group_dict.name == 'energy' %}
+
+  	{% snippet "spatial/snippets/dataset_map_big.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]",
+  		extent = "{ \"type\":
+		\"Polygon\", \"coordinates\": [[[-66, -66], [66, -66], [66, 66], [-66, 66], [-66, -66]]]}"%}
+
+	{% else %}
 		{% snippet "spatial/snippets/topic_map_big.html" %}
 	{% endif %}
 
@@ -103,15 +121,14 @@
           <h3><i class="fa fa-image"></i> {{ _('Thumbnails') }}</h3>
 
           <ul class="media-grid masonry" data-module="media-grid" style="position: relative">
-		    {% if c.group_dict.name == 'agriculture' %}
+		    {% if c.group_dict.name == 'agriculture_monitoring' %}
 		          	<li class="media-item masonry-brick">
 		          		<a href="/thumb_eg1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg1.jpg')}}"></a>
 		          	</li>
 		          	<li class="media-item masonry-brick">
 		          		<a href="/thumb_eg2.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/thumb_eg2.jpg')}}"></a>
 		          	</li>
-			{% endif %}
-		    {% if c.group_dict.name == 'biodiversity17' %}
+		    {% elif c.group_dict.name == 'biodiversity1' %}
 		          	<li class="media-item masonry-brick">
 		          		<a href="/image1.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/image1.jpg')}}"></a>
 		          	</li>
@@ -121,6 +138,25 @@
 		          	<li class="media-item masonry-brick">
 		          		<a href="/image3.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/image3.jpg')}}"></a>
 		          	</li>
+		    {% elif c.group_dict.name == 'coastal' %}
+		          	<li class="media-item masonry-brick">
+		          		<a href="/Co-ReSyF-1.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/Co-ReSyF-1.png')}}"></a>
+		          	</li>
+		          	<li class="media-item masonry-brick">
+		          		<a href="/Co-ReSyF-2.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/Co-ReSyF-2.png')}}"></a>
+		          	</li>
+		          	<li class="media-item masonry-brick">
+		          		<a href="/Co-ReSyF-3.jpg" target="_blank"><img class="media-image" src="{{h.url_for_static('/Co-ReSyF-3.jpg')}}"></a>
+		          	</li>
+		    {% elif c.group_dict.name == 'energy' %}
+		          	<li class="media-item masonry-brick">
+		          		<a href="/armines-1.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/armines-1.png')}}"></a>
+		          	</li>
+		          	<li class="media-item masonry-brick">
+		          		<a href="/armines-2.png" target="_blank"><img class="media-image" src="{{h.url_for_static('/armines-2.png')}}"></a>
+		          	</li>
+		    {% else %}
+		    No Thumbnails available
 			{% endif %}
           </ul>
         </section>

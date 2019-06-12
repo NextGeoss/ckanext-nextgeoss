@@ -54,11 +54,10 @@ def search_url(params, package_type=None):
 
 class NextgeossPackageController(PackageController):
     def _to_dt(self, v):
-        return '{v}T00:00:00Z'.format(v=v)     
+        return '{v}T00:00:00Z'.format(v=v)
 
 
     def search(self):
-        print 'PACKAGE'
         from ckan.lib.search import SearchError, SearchQueryError
 
         package_type = self._guess_package_type()
@@ -96,6 +95,7 @@ class NextgeossPackageController(PackageController):
 
         sort_by = request.params.get('sort', None)
         params_nosort = [(k, v) for k, v in params_nopage if k != 'sort']
+
 
         def _sort_by(fields):
             """
