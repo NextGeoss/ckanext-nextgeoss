@@ -6,28 +6,31 @@
     {{ super() }}
 
     {% block package_description %}
-      <div class="dataset-detail-org-logo">
-        <div class="image">
-          <a href="{{ org_link }}">
-            <img src="{{ c.group_dict.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ c.group_dict.title }}" />
-          </a>
-        </div>
-      </div>
+      <div class="dataset-detail">
 
-      <h1 class="dataset-detail-title">
-        {% block page_heading %}
-          {% set name = c.group_dict.title or c.group_dict.name %}
-          {{ name }}
-        {% endblock %}
-      </h1>
-
-      {% block package_notes %}
-        {% if c.group_dict.description %}
-          <div class="notes embedded-content dataset-notes">
-            {{ h.render_markdown(_(c.group_dict.description)) }}
+        <div class="dataset-detail-org-logo">
+          <div class="image">
+            <a href="{{ org_link }}">
+              <img src="{{ c.group_dict.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ c.group_dict.title }}" />
+            </a>
           </div>
-        {% endif %}
-      {% endblock %}
+        </div>
+
+        <h1 class="dataset-detail-title">
+          {% block page_heading %}
+            {% set name = c.group_dict.title or c.group_dict.name %}
+            {{ name }}
+          {% endblock %}
+        </h1>
+
+        {% block package_notes %}
+          {% if c.group_dict.description %}
+            <div class="notes embedded-content dataset-notes">
+              {{ h.render_markdown(_(c.group_dict.description)) }}
+            </div>
+          {% endif %}
+        {% endblock %}
+      </div>
     {% endblock %}
   </div>
 {% endblock %}
@@ -71,13 +74,14 @@
 {% endblock %}
 
 {% block organization_facets %}
+  {% set organization_facets = ['groups', 'collection_name'] %}
   <div class="filters">
     <div>
       <div class="filters-header">
         <i class="fa fa-lg fa-filter"></i>
         <span class="filters-header__title">{{ _('Filters') }}</span>
       </div>
-      {% for facet in c.facet_titles %}
+      {% for facet in organization_facets %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet, extras={'id':c.group_dict.id}) }}
       {% endfor %}
     </div>

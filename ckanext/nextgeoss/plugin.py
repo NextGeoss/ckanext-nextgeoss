@@ -60,7 +60,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'generate_opensearch_query': helpers.generate_opensearch_query,
              'get_topics_spatial_information': helpers.get_topics_spatial_information,
              'get_begin_period_topics': helpers.get_begin_period_topics,
-             'get_end_period_topics': helpers.get_end_period_topics
+             'get_end_period_topics': helpers.get_end_period_topics,
+             'get_featured_groups_list': helpers.get_featured_groups_list
         }
 
     # IRoutes

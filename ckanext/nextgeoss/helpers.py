@@ -1,6 +1,7 @@
 from ckan.common import config
 import ckan.logic as logic
 import ckan.plugins as p
+import ckan.lib.helpers as h
 import ast
 import ckan.plugins.toolkit as tk
 import datetime
@@ -256,27 +257,20 @@ def get_dataset_thumbnail_path(dataset):
     Return the local path for a dataset's thumbnail. If no thumbnail is
     available, return the path to a placeholder image.
     """
-    # extras = {extra['key']: extra['value'] for extra in dataset['extras']}
-
-    # if dataset['organization']['title'] == 'Vito':
-    #     return '/thumbnails/{}.png'.format(extras.get('identifier',
-    #                                                   'placeholder'))
-    # elif dataset['organization']['title'] == 'Sentinel':
-    #     return '/thumbnails/{}.jpg'.format(extras.get('uuid', 'placeholder'))
-    # else:
-    image_path = ''
     thumbnails_list = ['SENTINEL1_L1_SLC', 'SENTINEL1_L1_GRD', 'SENTINEL2_L1C', 'SENTINEL2_L2A', 'SENTINEL3_SRAL_L2_LAN', \
         'SENTINEL3_OLCI_L1_EFR', 'SENTINEL3_OLCI_L1_ERR', 'SENTINEL3_OLCI_L2_LFR', 'SENTINEL3_OLCI_L2_LRR', \
         'SENTINEL3_SLSTR_L1_RBT', 'SENTINEL3_SLSTR_L2_LST']
 
-    collection_id = get_extras_value(dataset['extras'], 'collection_id')
-
-    if collection_id in thumbnails_list:
-        image_path = collection_id + '.jpg'
-
+    group_image_url = url_for_static('/base/images/placeholder-organization.png')
     if dataset['organization']:
-        organization = dataset['organization']
-        image_path = organization['name'] + '.jpg'
+        org_id = dataset['organization']['id']
+        org_details = logic.get_action('organization_show')({}, {'id': org_id})
+        group_image_url = org_details['image_display_url']
+
+    image_path = group_image_url
+    collection_id = get_extras_value(dataset['extras'], 'collection_id')
+    if collection_id in thumbnails_list:
+        image_path ='/{}.jpg'.format(collection_id)
 
     return image_path
 
@@ -487,3 +481,16 @@ def generate_opensearch_query(params):
                 query = query + '&' + param_tmp + '="' + params[param] + '"'
 
     return query
+
+
+def get_featured_groups_list():
+    parent_groups = []
+    group_list = config.get('ckan.featured_groups')
+
+    groups = h.get_featured_groups(count=40)
+
+    for group in groups:
+        if group['name'] in group_list:
+            parent_groups.append(group)
+
+    return parent_groups

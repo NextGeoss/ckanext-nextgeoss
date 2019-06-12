@@ -6,46 +6,49 @@
 {% set col_title = pkg.title %}
 {% set col_link = h.get_collection_url(col_title) %}
 {% set thumbnail_path = h.ng_get_dataset_thumbnail_path(pkg) %}
-{% set thumbnail = h.url_for_static(thumbnail_path)%}
 
 {% block pre_primary %}
   <div class="container single-column">
     {% snippet "package/snippets/nav_tabs.html", pkg=pkg %}
     {% block package_description %}
-      <div class="dataset-detail-org-logo">
-        <div class="image">
-		      <img src="{{ thumbnail }}" height= "210" width="210" alt="{{ pkg.name}} thumbnail" />
-        </div>
-      </div>
-      {% if pkg.private %}
-        <span class="dataset-private label label-inverse pull-right">
-          <i class="fa fa-lock"></i>
-          {{ _('Private') }}
-        </span>
-      {% endif %}
-      <h1 class="dataset-detail-title">
-        {% block page_heading %}
-          {{ pkg.name }}
-          {% if pkg.state.startswith('draft') %}
-            [{{ _('Draft') }}]
+      <div class="dataset-detail">
+        <div class="dataset-detail-org-logo">
+            <div class="image">
+              <a href="{{ org_link }}">
+                <img src="{{ thumbnail_path }}" height= "210" width="210" alt="{{ thumbnail_path }}" />
+              </a>
+            </div>
+          </div>
+          {% if pkg.private %}
+            <span class="dataset-private label label-inverse pull-right">
+              <i class="fa fa-lock"></i>
+              {{ _('Private') }}
+            </span>
           {% endif %}
-          {% if pkg.state == 'deleted' %}
-            [{{ _('Deleted') }}]
-          {% endif %}
-        {% endblock %}
-      </h1>
-      <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
-      <h5 class="dataset-detail-title">{{ _('Part of collection ') }} <a href="{{ col_link }}">{{ col_title }}</a></h5>
+          <h1 class="dataset-detail-title">
+            {% block page_heading %}
+              {{ pkg.name }}
+              {% if pkg.state.startswith('draft') %}
+                [{{ _('Draft') }}]
+              {% endif %}
+              {% if pkg.state == 'deleted' %}
+                [{{ _('Deleted') }}]
+              {% endif %}
+            {% endblock %}
+          </h1>
+          <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
+          <h5 class="dataset-detail-title">{{ _('Part of collection ') }} <a href="{{ col_link }}">{{ col_title }}</a></h5>
 
-      {% block package_notes %}
-         <div class="notes embedded-content dataset-notes">
-        {% if pkg.notes %}
-          {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
-        {% else %}
-          <p class="empty">{{ _('There is no description for this dataset') }}</p>
-        {% endif %}
-        </div>
-      {% endblock %}
+          {% block package_notes %}
+              <div class="notes embedded-content dataset-notes">
+            {% if pkg.notes %}
+              {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+            {% else %}
+              <p class="empty">{{ _('There is no description for this dataset') }}</p>
+            {% endif %}
+            </div>
+          {% endblock %}
+      </div>
 
     {% endblock %}
 

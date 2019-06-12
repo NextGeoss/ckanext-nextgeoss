@@ -16,23 +16,17 @@ Example:
 #}
 {% block package_list %}
   {% if collections %}
-    <ul class="{{ list_class or 'dataset-list unstyled' }}">
+    <ul class="dataset-list resource-list">
     	{% block package_list_inner %}
 	      {% for collection in collections %}
           {% if collection.name %}
           <li class="dataset-item">
-              <div class="dataset-content">
-                <div class="dataset-item-org-logo">
-                  <div class="image">
-                    <img src="/base/images/placeholder-image.png" height= "210" width="210" alt="" />
-                  </div>
-                </div>
-
+              <div class="dataset-content topic-collection">
                 <h3 class="dataset-heading">
                   {% set collection_name = collection.name.replace(' ', ('+')) %}
                   <a href="/dataset?collection_name={{collection_name}}">{{collection.name}}</a>
                 </h3>
-
+                <hr>
                 <div>{{ collection.description }}</div>
               </div>
           </li>

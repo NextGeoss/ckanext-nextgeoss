@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 import ckan.lib.base as base
 import ckan.logic as logic
 import ckan.model as model
@@ -50,8 +52,9 @@ class StaticController(base.BaseController):
 
     def collections(self):
         collection_list = opensearch_config.load_settings("collections_list")
-
-        return base.render('static/collection_list.html', extra_vars={'collection_list': collection_list})
+        collection_list_newest_first = OrderedDict(reversed(collection_list.items()))
+        return base.render('static/collection_list.html',
+            extra_vars={'collection_list': collection_list_newest_first})
 
     def support(self):
         return tk.redirect_to('https://servicedesk.nextgeoss.eu')
