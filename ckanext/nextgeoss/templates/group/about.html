@@ -1,7 +1,10 @@
 {% extends "group/read_base_primary.html" %}
 
-{% block pre_primary %}
 {% set group = c.group_dict %}
+
+{% block pre_primary %}
+  {{ super() }}
+{% endblock %}
 
 {% block primary_content_inner %}
   {% block group_extras %}
