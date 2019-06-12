@@ -1491,6 +1491,10 @@ table.mobile-table td.dataset-details {
     margin-top: 1.5em;
 }
 
+.dataset-detail {
+  overflow: auto;
+}
+
 li.dataset-item {
   overflow: auto !important;
 }
