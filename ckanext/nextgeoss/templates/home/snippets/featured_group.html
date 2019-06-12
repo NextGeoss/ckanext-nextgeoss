@@ -1,4 +1,4 @@
-{% set groups = h.get_featured_groups_list() %}
+{% set groups = h.get_featured_groups_list(count=40) %}
 
 {% for group in groups %}
   <div class="col-md-2">
