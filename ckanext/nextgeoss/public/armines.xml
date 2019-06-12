@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:geonet="http://www.fao.org/geonetwork" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd">
+<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml"
+                 xmlns:gts="http://www.isotc211.org/2005/gts"
+                 xmlns:gco="http://www.isotc211.org/2005/gco"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd">
   <gmd:fileIdentifier>
-      <gco:CharacterString>e97fbcf2-2655-43e9-833c-2ca262528abf</gco:CharacterString>
+      <gco:CharacterString>abe315a8-d01b-4fe7-baa2-0b0d4edb64d8</gco:CharacterString>
   </gmd:fileIdentifier>
   <gmd:language>
       <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
   </gmd:language>
   <gmd:characterSet>
-      <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"/>
+      <gmd:MD_CharacterSetCode codeListValue="utf8"
+                               codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"/>
   </gmd:characterSet>
-  <gmd:hierarchyLevel>
-      <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="service"/>
-  </gmd:hierarchyLevel>
   <gmd:contact>
       <gmd:CI_ResponsibleParty>
          <gmd:individualName>
-            <gco:CharacterString>Lionel MENARD</gco:CharacterString>
+            <gco:CharacterString>Lionel Menard</gco:CharacterString>
          </gmd:individualName>
          <gmd:organisationName>
-            <gco:CharacterString>MINES ParisTech / ARMINES</gco:CharacterString>
+            <gco:CharacterString>MINES ParisTech</gco:CharacterString>
          </gmd:organisationName>
          <gmd:positionName>
-            <gco:CharacterString>Research Scientist</gco:CharacterString>
+            <gco:CharacterString>Research Enginner</gco:CharacterString>
          </gmd:positionName>
          <gmd:contactInfo>
             <gmd:CI_Contact>
@@ -37,11 +39,11 @@
                </gmd:phone>
                <gmd:address>
                   <gmd:CI_Address>
-                     <gmd:deliveryPoint gco:nilReason="missing">
-                        <gco:CharacterString/>
+                     <gmd:deliveryPoint>
+                        <gco:CharacterString>MINES ParisTech</gco:CharacterString>
                      </gmd:deliveryPoint>
                      <gmd:city>
-                        <gco:CharacterString>SOPHIA ANTIPOLIS</gco:CharacterString>
+                        <gco:CharacterString>Sophia Antipolis</gco:CharacterString>
                      </gmd:city>
                      <gmd:administrativeArea gco:nilReason="missing">
                         <gco:CharacterString/>
@@ -52,24 +54,21 @@
                      <gmd:country>
                         <gco:CharacterString>France</gco:CharacterString>
                      </gmd:country>
+                     <gmd:electronicMailAddress>
+                        <gco:CharacterString>lionel.menard@mines-paristech.fr</gco:CharacterString>
+                     </gmd:electronicMailAddress>
                   </gmd:CI_Address>
                </gmd:address>
-               <gmd:onlineResource>
-                  <gmd:CI_OnlineResource>
-                     <gmd:linkage>
-                        <gmd:URL>http://www.webservice-energy.org</gmd:URL>
-                     </gmd:linkage>
-                  </gmd:CI_OnlineResource>
-               </gmd:onlineResource>
             </gmd:CI_Contact>
          </gmd:contactInfo>
          <gmd:role>
-            <gmd:CI_RoleCode codeListValue="pointOfContact" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_RoleCode"/>
+            <gmd:CI_RoleCode codeListValue="pointOfContact"
+                             codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_RoleCode"/>
          </gmd:role>
       </gmd:CI_ResponsibleParty>
   </gmd:contact>
   <gmd:dateStamp>
-      <gco:DateTime>2018-12-06T16:36:52</gco:DateTime>
+      <gco:DateTime>2018-08-14T13:35:23</gco:DateTime>
   </gmd:dateStamp>
   <gmd:metadataStandardName>
       <gco:CharacterString>ISO 19115:2003/19139</gco:CharacterString>
@@ -77,41 +76,121 @@
   <gmd:metadataStandardVersion>
       <gco:CharacterString>1.0</gco:CharacterString>
   </gmd:metadataStandardVersion>
+  <gmd:spatialRepresentationInfo>
+      <gmd:MD_GridSpatialRepresentation>
+         <gmd:numberOfDimensions>
+            <gco:Integer>3</gco:Integer>
+         </gmd:numberOfDimensions>
+         <gmd:axisDimensionProperties>
+            <gmd:MD_Dimension>
+               <gmd:dimensionName>
+                  <gmd:MD_DimensionNameTypeCode codeListValue="row"
+                                                codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_DimensionNameTypeCode"/>
+               </gmd:dimensionName>
+               <gmd:dimensionSize>
+                  <gco:Integer/>
+               </gmd:dimensionSize>
+               <gmd:resolution>
+                  <gco:Measure uom=""/>
+               </gmd:resolution>
+            </gmd:MD_Dimension>
+         </gmd:axisDimensionProperties>
+         <gmd:axisDimensionProperties>
+            <gmd:MD_Dimension>
+               <gmd:dimensionName>
+                  <gmd:MD_DimensionNameTypeCode codeListValue="column"
+                                                codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_DimensionNameTypeCode"/>
+               </gmd:dimensionName>
+               <gmd:dimensionSize>
+                  <gco:Integer/>
+               </gmd:dimensionSize>
+               <gmd:resolution>
+                  <gco:Measure uom=""/>
+               </gmd:resolution>
+            </gmd:MD_Dimension>
+         </gmd:axisDimensionProperties>
+         <gmd:axisDimensionProperties>
+            <gmd:MD_Dimension>
+               <gmd:dimensionName>
+                  <gmd:MD_DimensionNameTypeCode codeListValue="vertical"
+                                                codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_DimensionNameTypeCode"/>
+               </gmd:dimensionName>
+               <gmd:dimensionSize>
+                  <gco:Integer/>
+               </gmd:dimensionSize>
+               <gmd:resolution>
+                  <gco:Measure uom=""/>
+               </gmd:resolution>
+            </gmd:MD_Dimension>
+         </gmd:axisDimensionProperties>
+         <gmd:cellGeometry>
+            <gmd:MD_CellGeometryCode codeListValue="area"
+                                     codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CellGeometryCode"/>
+         </gmd:cellGeometry>
+         <gmd:transformationParameterAvailability>
+            <gco:Boolean>false</gco:Boolean>
+         </gmd:transformationParameterAvailability>
+      </gmd:MD_GridSpatialRepresentation>
+  </gmd:spatialRepresentationInfo>
+  <gmd:referenceSystemInfo>
+      <gmd:MD_ReferenceSystem>
+         <gmd:referenceSystemIdentifier>
+            <gmd:RS_Identifier>
+               <gmd:code>
+                  <gco:CharacterString>WGS 1984</gco:CharacterString>
+               </gmd:code>
+            </gmd:RS_Identifier>
+         </gmd:referenceSystemIdentifier>
+      </gmd:MD_ReferenceSystem>
+  </gmd:referenceSystemInfo>
   <gmd:identificationInfo>
-      <srv:SV_ServiceIdentification>
+      <gmd:MD_DataIdentification>
          <gmd:citation>
             <gmd:CI_Citation>
                <gmd:title>
-                  <gco:CharacterString>NextGEOSS Pilot -  Constructing Gridded Data for Grid Operations</gco:CharacterString>
+                  <gco:CharacterString>CAMS radiation: A time-series of solar radiation at ground level for Europe, Africa and Atlantic Ocean since 2004</gco:CharacterString>
                </gmd:title>
                <gmd:date>
                   <gmd:CI_Date>
                      <gmd:date>
-                        <gco:DateTime>2018-10-15T12:00:00</gco:DateTime>
+                        <gco:Date>2014-07-21</gco:Date>
                      </gmd:date>
                      <gmd:dateType>
-                        <gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation"/>
+                        <gmd:CI_DateTypeCode codeListValue="publication"
+                                             codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode"/>
                      </gmd:dateType>
                   </gmd:CI_Date>
                </gmd:date>
+               <gmd:edition>
+                  <gco:CharacterString>V1</gco:CharacterString>
+               </gmd:edition>
+               <gmd:presentationForm>
+                  <gmd:CI_PresentationFormCode codeListValue="modelDigital"
+                                               codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_PresentationFormCode"/>
+               </gmd:presentationForm>
             </gmd:CI_Citation>
          </gmd:citation>
          <gmd:abstract>
-            <gco:CharacterString>Satellite images are routinely processed to yield information on clouds properties. The Copernicus Atmosphere Monitoring Service (CAMS) offer access to properties of the cloudless atmosphere every 3h. These sets of information are combined together with site-specific properties, e.g. elevation and shadowing by local relief, to produce estimates of the solar radiation at a given site. Thus, the computation is made on an ad hoc basis on-the-fly. To better account for changes in solar position and possible shadowing effects, computations of the solar radiation are made every 1 min and the results are then aggregated e.g. every 15 min or 1 h, chosen by the user. The operations that are currently working satisfactorily though improvements should be brought to ease access to data by users. A new use case has arisen recently due to the large penetration of PV plants in Europe. Grid operators need a better knowledge of the very local production of electricity by PV plants that are connected to the grid in order to ensure the stability and quality of the electricity delivered to customers. Accordingly, their requests are for time-series of solar radiation over a regular grid of points covering their area of interest which may be nation-wide. Though the time-series may be short, e.g. two days of estimates every 15 min, the number of grid nodes may be high. An area of say 1000 km x 1000 km with a grid cell of 10 km in size means running the model for 10 000 nodes at the same time. The concept of cloud computing supporting the NexGEOSS infrastructure may help in solving this issue in both computational aspects and dissemination aspects.</gco:CharacterString>
+            <gco:CharacterString>The CAMS radiation (Copernicus Atmosphere Monitoring Service) service provides time series of Global, Direct, and Diffuse Irradiations on horizontal surface, and Direct Irradiation on normal plane (DNI) for the actual weather conditions as well as for clear-sky conditions. The geographical coverage is the field-of-view of the Meteosat satellite, roughly speaking Europe, Africa, Atlantic Ocean, Middle East (-66° to 66° in both latitudes and longitudes). Data are available with a time step ranging from 15 min to 1 month.
+Copernicus Solar Radiation Web site: http://atmosphere.copernicus.eu/services/sr/</gco:CharacterString>
          </gmd:abstract>
+         <gmd:purpose>
+            <gco:CharacterString>Assessment of the solar radiation at ground level for various applications. The underlying CAMS radiation method exploits the atmospheric properties provided by the Copernicus Atmospheric Service to take into account the dynamics of cloud properties, aerosols properties, water vapour and ozone contents.</gco:CharacterString>
+         </gmd:purpose>
          <gmd:status>
-            <gmd:MD_ProgressCode codeListValue="completed" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ProgressCode"/>
+            <gmd:MD_ProgressCode codeListValue="onGoing"
+                                 codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ProgressCode"/>
          </gmd:status>
          <gmd:pointOfContact>
             <gmd:CI_ResponsibleParty>
                <gmd:individualName>
-                  <gco:CharacterString>Lionel MENARD</gco:CharacterString>
+                  <gco:CharacterString>Lionel Menard</gco:CharacterString>
                </gmd:individualName>
                <gmd:organisationName>
-                  <gco:CharacterString>MINES ParisTech / ARMINES</gco:CharacterString>
+                  <gco:CharacterString>MINES ParisTech</gco:CharacterString>
                </gmd:organisationName>
                <gmd:positionName>
-                  <gco:CharacterString>Research Scientist</gco:CharacterString>
+                  <gco:CharacterString>Research Enginner</gco:CharacterString>
                </gmd:positionName>
                <gmd:contactInfo>
                   <gmd:CI_Contact>
@@ -127,11 +206,11 @@
                      </gmd:phone>
                      <gmd:address>
                         <gmd:CI_Address>
-                           <gmd:deliveryPoint gco:nilReason="missing">
-                              <gco:CharacterString/>
+                           <gmd:deliveryPoint>
+                              <gco:CharacterString>MINES ParisTech</gco:CharacterString>
                            </gmd:deliveryPoint>
                            <gmd:city>
-                              <gco:CharacterString>SOPHIA ANTIPOLIS</gco:CharacterString>
+                              <gco:CharacterString>Sophia Antipolis</gco:CharacterString>
                            </gmd:city>
                            <gmd:administrativeArea gco:nilReason="missing">
                               <gco:CharacterString/>
@@ -142,26 +221,31 @@
                            <gmd:country>
                               <gco:CharacterString>France</gco:CharacterString>
                            </gmd:country>
+                           <gmd:electronicMailAddress>
+                              <gco:CharacterString>lionel.menard@mines-paristech.fr</gco:CharacterString>
+                           </gmd:electronicMailAddress>
                         </gmd:CI_Address>
                      </gmd:address>
-                     <gmd:onlineResource>
-                        <gmd:CI_OnlineResource>
-                           <gmd:linkage>
-                              <gmd:URL>www.webservice-energy.org</gmd:URL>
-                           </gmd:linkage>
-                        </gmd:CI_OnlineResource>
-                     </gmd:onlineResource>
                   </gmd:CI_Contact>
                </gmd:contactInfo>
                <gmd:role>
-                  <gmd:CI_RoleCode codeListValue="pointOfContact" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_RoleCode"/>
+                  <gmd:CI_RoleCode codeListValue="originator"
+                                   codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_RoleCode"/>
                </gmd:role>
             </gmd:CI_ResponsibleParty>
          </gmd:pointOfContact>
-         <gmd:graphicOverview>
+         <gmd:resourceMaintenance>
+            <gmd:MD_MaintenanceInformation>
+               <gmd:maintenanceAndUpdateFrequency>
+                  <gmd:MD_MaintenanceFrequencyCode codeListValue="continual"
+                                                   codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_MaintenanceFrequencyCode"/>
+               </gmd:maintenanceAndUpdateFrequency>
+            </gmd:MD_MaintenanceInformation>
+         </gmd:resourceMaintenance>
+         <gmd:graphicOverview xmlns:srv="http://www.isotc211.org/2005/srv">
             <gmd:MD_BrowseGraphic>
                <gmd:fileName>
-                  <gco:CharacterString>http://geocatalog.webservice-energy.org:80/geonetwork/srv/eng/resources.get?uuid=e97fbcf2-2655-43e9-833c-2ca262528abf&amp;fname=NextGEOSS-Logo_s.png</gco:CharacterString>
+                  <gco:CharacterString>http://geocatalog.webservice-energy.org:80/geonetwork/srv/eng/resources.get?uuid=86cad9de-1bc7-404b-bbd6-8a4f3e2f2101&amp;fname=HelioClim4-Copernicus-SoDa-Pro_s.png</gco:CharacterString>
                </gmd:fileName>
                <gmd:fileDescription>
                   <gco:CharacterString>thumbnail</gco:CharacterString>
@@ -171,10 +255,10 @@
                </gmd:fileType>
             </gmd:MD_BrowseGraphic>
          </gmd:graphicOverview>
-         <gmd:graphicOverview>
+         <gmd:graphicOverview xmlns:srv="http://www.isotc211.org/2005/srv">
             <gmd:MD_BrowseGraphic>
                <gmd:fileName>
-                  <gco:CharacterString>http://geocatalog.webservice-energy.org:80/geonetwork/srv/eng/resources.get?uuid=e97fbcf2-2655-43e9-833c-2ca262528abf&amp;fname=NextGEOSS-Logo.png</gco:CharacterString>
+                  <gco:CharacterString>http://geocatalog.webservice-energy.org:80/geonetwork/srv/eng/resources.get?uuid=86cad9de-1bc7-404b-bbd6-8a4f3e2f2101&amp;fname=HelioClim4-Copernicus-SoDa-Pro.png</gco:CharacterString>
                </gmd:fileName>
                <gmd:fileDescription>
                   <gco:CharacterString>large_thumbnail</gco:CharacterString>
@@ -187,31 +271,16 @@
          <gmd:descriptiveKeywords>
             <gmd:MD_Keywords>
                <gmd:keyword>
-                  <gco:CharacterString>Solar radiation</gco:CharacterString>
+                  <gco:CharacterString>Solar Radiation</gco:CharacterString>
                </gmd:keyword>
                <gmd:keyword>
-                  <gco:CharacterString>GHI</gco:CharacterString>
+                  <gco:CharacterString>Clouds</gco:CharacterString>
                </gmd:keyword>
                <gmd:keyword>
-                  <gco:CharacterString>DHI</gco:CharacterString>
-               </gmd:keyword>
-               <gmd:keyword>
-                  <gco:CharacterString>BHI</gco:CharacterString>
-               </gmd:keyword>
-               <gmd:keyword>
-                  <gco:CharacterString>Copernicus Atmosphere Monitoring Service</gco:CharacterString>
+                  <gco:CharacterString>Irradiance</gco:CharacterString>
                </gmd:keyword>
                <gmd:keyword>
                   <gco:CharacterString>CAMS</gco:CharacterString>
-               </gmd:keyword>
-               <gmd:keyword>
-                  <gco:CharacterString>Gridded data</gco:CharacterString>
-               </gmd:keyword>
-               <gmd:keyword>
-                  <gco:CharacterString>Time series</gco:CharacterString>
-               </gmd:keyword>
-               <gmd:keyword>
-                  <gco:CharacterString>NextGEOSS</gco:CharacterString>
                </gmd:keyword>
                <gmd:keyword>
                   <gco:CharacterString>MINES ParisTech</gco:CharacterString>
@@ -220,33 +289,83 @@
                   <gco:CharacterString>ARMINES</gco:CharacterString>
                </gmd:keyword>
                <gmd:keyword>
-                  <gco:CharacterString>GEOSS</gco:CharacterString>
-               </gmd:keyword>
-               <gmd:keyword>
-                  <gco:CharacterString>WPS</gco:CharacterString>
-               </gmd:keyword>
-               <gmd:keyword>
-                  <gco:CharacterString>OGC</gco:CharacterString>
+                  <gco:CharacterString>GA_BUSINESS</gco:CharacterString>
                </gmd:keyword>
                <gmd:type>
-                  <gmd:MD_KeywordTypeCode codeListValue="theme" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"/>
+                  <gmd:MD_KeywordTypeCode codeListValue="theme"
+                                          codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"/>
                </gmd:type>
             </gmd:MD_Keywords>
          </gmd:descriptiveKeywords>
-         <srv:serviceType>
-            <gco:LocalName codeSpace="www.w3c.org">OGC:WPS</gco:LocalName>
-         </srv:serviceType>
-         <srv:serviceTypeVersion>
-            <gco:CharacterString>1.1.1</gco:CharacterString>
-         </srv:serviceTypeVersion>
-         <srv:accessProperties>
-            <gmd:MD_StandardOrderProcess>
-               <gmd:fees>
-                  <gco:CharacterString>NONE</gco:CharacterString>
-               </gmd:fees>
-            </gmd:MD_StandardOrderProcess>
-         </srv:accessProperties>
-         <srv:extent>
+         <gmd:descriptiveKeywords>
+            <gmd:MD_Keywords>
+               <gmd:keyword>
+                  <gco:CharacterString>Europe</gco:CharacterString>
+               </gmd:keyword>
+               <gmd:keyword>
+                  <gco:CharacterString>Africa</gco:CharacterString>
+               </gmd:keyword>
+               <gmd:keyword>
+                  <gco:CharacterString>Atlantic Ocean</gco:CharacterString>
+               </gmd:keyword>
+               <gmd:type>
+                  <gmd:MD_KeywordTypeCode codeListValue="place"
+                                          codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"/>
+               </gmd:type>
+            </gmd:MD_Keywords>
+         </gmd:descriptiveKeywords>
+         <gmd:resourceConstraints>
+            <gmd:MD_LegalConstraints>
+               <gmd:useConstraints>
+                  <gmd:MD_RestrictionCode codeListValue="license"
+                                          codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_RestrictionCode"/>
+               </gmd:useConstraints>
+               <gmd:otherConstraints>
+                  <gco:CharacterString>License description can be found here:
+http://www.soda-pro.com/documents/10157/326300/CAMS-data-license.pdf/59241f5b-085d-4e79-bf42-1f19b0731d9f</gco:CharacterString>
+               </gmd:otherConstraints>
+            </gmd:MD_LegalConstraints>
+         </gmd:resourceConstraints>
+         <gmd:spatialRepresentationType>
+            <gmd:MD_SpatialRepresentationTypeCode codeListValue=""
+                                                  codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_SpatialRepresentationTypeCode"/>
+         </gmd:spatialRepresentationType>
+         <gmd:spatialResolution>
+            <gmd:MD_Resolution>
+               <gmd:equivalentScale>
+                  <gmd:MD_RepresentativeFraction>
+                     <gmd:denominator>
+                        <gco:Integer/>
+                     </gmd:denominator>
+                  </gmd:MD_RepresentativeFraction>
+               </gmd:equivalentScale>
+            </gmd:MD_Resolution>
+         </gmd:spatialResolution>
+         <gmd:language>
+            <gco:CharacterString>eng</gco:CharacterString>
+         </gmd:language>
+         <gmd:characterSet>
+            <gmd:MD_CharacterSetCode codeListValue="utf8"
+                                     codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"/>
+         </gmd:characterSet>
+         <gmd:topicCategory>
+            <gmd:MD_TopicCategoryCode>climatologyMeteorologyAtmosphere</gmd:MD_TopicCategoryCode>
+         </gmd:topicCategory>
+         <gmd:extent>
+            <gmd:EX_Extent>
+               <gmd:temporalElement>
+                  <gmd:EX_TemporalExtent>
+                     <gmd:extent>
+                        <gml:TimePeriod gml:id="d15661e520a1052958">
+                           <gml:beginPosition/>
+                           <gml:endPosition/>
+                        </gml:TimePeriod>
+                     </gmd:extent>
+                  </gmd:EX_TemporalExtent>
+               </gmd:temporalElement>
+            </gmd:EX_Extent>
+         </gmd:extent>
+         <gmd:extent>
             <gmd:EX_Extent>
                <gmd:geographicElement>
                   <gmd:EX_GeographicBoundingBox>
@@ -265,80 +384,58 @@
                   </gmd:EX_GeographicBoundingBox>
                </gmd:geographicElement>
             </gmd:EX_Extent>
-         </srv:extent>
-         <srv:couplingType>
-            <srv:SV_CouplingType codeListValue="tight" codeList="http://www.isotc211.org/2005/iso19119/resources/Codelist/gmxCodelists.xml#SV_CouplingType"/>
-         </srv:couplingType>
-         <srv:containsOperations/>
-      </srv:SV_ServiceIdentification>
+         </gmd:extent>
+         <gmd:supplementalInformation gco:nilReason="missing">
+            <gco:CharacterString/>
+         </gmd:supplementalInformation>
+      </gmd:MD_DataIdentification>
   </gmd:identificationInfo>
   <gmd:distributionInfo>
       <gmd:MD_Distribution>
-         <gmd:distributionFormat>
-            <gmd:MD_Format>
-               <gmd:name>
-                  <gco:CharacterString>OGC:OWS Context</gco:CharacterString>
-               </gmd:name>
-               <gmd:version>
-                  <gco:CharacterString>1.1.1</gco:CharacterString>
-               </gmd:version>
-            </gmd:MD_Format>
-         </gmd:distributionFormat>
          <gmd:transferOptions>
             <gmd:MD_DigitalTransferOptions>
                <gmd:onLine>
                   <gmd:CI_OnlineResource>
                      <gmd:linkage>
-                        <gmd:URL>https://nextgeoss.eu/pilots/energy-grid/</gmd:URL>
-                     </gmd:linkage>
-                     <gmd:protocol>
-                        <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
-                     </gmd:protocol>
-                     <gmd:name>
-                        <gco:CharacterString>NextGEOSS Portal</gco:CharacterString>
-                     </gmd:name>
-                     <gmd:description>
-                        <gco:CharacterString>NetxGEOSS Energy Pilot Home Page</gco:CharacterString>
-                     </gmd:description>
-                  </gmd:CI_OnlineResource>
-               </gmd:onLine>
-            </gmd:MD_DigitalTransferOptions>
-         </gmd:transferOptions>
-         <gmd:transferOptions>
-            <gmd:MD_DigitalTransferOptions>
-               <gmd:onLine>
-                  <gmd:CI_OnlineResource>
-                     <gmd:linkage>
-                        <gmd:URL>https://notebooks-qa.terradue.com/user/lmenard/lab</gmd:URL>
+                        <gmd:URL>http://www.soda-pro.com/web-services/radiation/cams-radiation-service</gmd:URL>
                      </gmd:linkage>
                      <gmd:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--partners</gco:CharacterString>
                      </gmd:protocol>
                      <gmd:name>
-                        <gco:CharacterString>JupyterHub Web Client</gco:CharacterString>
+                        <gco:CharacterString>Helper Application</gco:CharacterString>
                      </gmd:name>
                      <gmd:description>
-                        <gco:CharacterString>Free access to the JupyterHub Web Client. Registration is required prior to access the Web Client</gco:CharacterString>
+                        <gco:CharacterString>Access the CAMS radiation service (Free registration required)</gco:CharacterString>
                      </gmd:description>
                   </gmd:CI_OnlineResource>
                </gmd:onLine>
-            </gmd:MD_DigitalTransferOptions>
-         </gmd:transferOptions>
-         <gmd:transferOptions>
-            <gmd:MD_DigitalTransferOptions>
                <gmd:onLine>
                   <gmd:CI_OnlineResource>
                      <gmd:linkage>
-                        <gmd:URL>https://github.com/ec-nextgeoss/armines-cams-gridded-data/blob/master/NextGEOSS-Pilot%231.ipynb</gmd:URL>
+                        <gmd:URL/>
                      </gmd:linkage>
-                     <gmd:protocol>
-                        <gco:CharacterString>WWW:LINK-1.0-http--partners</gco:CharacterString>
+                     <gmd:protocol gco:nilReason="missing">
+                        <gco:CharacterString/>
                      </gmd:protocol>
                      <gmd:name>
-                        <gco:CharacterString>GitHub Master</gco:CharacterString>
+                        <gmx:MimeFileType xmlns:gmx="http://www.isotc211.org/2005/gmx" type=""/>
+                     </gmd:name>
+                  </gmd:CI_OnlineResource>
+               </gmd:onLine>
+               <gmd:onLine>
+                  <gmd:CI_OnlineResource>
+                     <gmd:linkage>
+                        <gmd:URL>http://www.soda-is.com/service/wps?SERVICE=WPS&amp;Request=DescribeProcess&amp;Identifier=get_cams_radiation&amp;version=1.0.0</gmd:URL>
+                     </gmd:linkage>
+                     <gmd:protocol>
+                        <gco:CharacterString>OGC:WPS</gco:CharacterString>
+                     </gmd:protocol>
+                     <gmd:name gco:nilReason="missing">
+                        <gco:CharacterString/>
                      </gmd:name>
                      <gmd:description>
-                        <gco:CharacterString>Access to the GitHub Master Branch of the Energy Pilot</gco:CharacterString>
+                        <gco:CharacterString>Access the WPS GetCapabilities (see CAMS radiation operation).</gco:CharacterString>
                      </gmd:description>
                   </gmd:CI_OnlineResource>
                </gmd:onLine>
@@ -351,15 +448,9 @@
          <gmd:scope>
             <gmd:DQ_Scope>
                <gmd:level>
-                  <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="service"/>
+                  <gmd:MD_ScopeCode codeListValue="dataset"
+                                    codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"/>
                </gmd:level>
-               <gmd:levelDescription>
-                  <gmd:MD_ScopeDescription>
-                     <gmd:other gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </gmd:other>
-                  </gmd:MD_ScopeDescription>
-               </gmd:levelDescription>
             </gmd:DQ_Scope>
          </gmd:scope>
          <gmd:lineage>
