@@ -1,156 +1,14 @@
-{% ckan_extends %}
+{% extends "group/read_base_primary.html" %}
+
 {% set group = c.group_dict %}
 
 {% block pre_primary %}
-
-  <div class="container single-column group-org-header">
-    {{ super() }}
-
-    {% block package_description %}
-      <div class="dataset-detail">
-        <div class="dataset-detail-org-logo">
-          <div class="image">
-            <a href="{{ group_url }}">
-              <img src="{{ c.group_dict.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ c.group_dict.title }}" />
-            </a>
-          </div>
-        </div>
-
-        <h1 class="dataset-detail-title">
-            {% block page_heading %}
-            {% set name = c.group_dict.title or c.group_dict.name %}
-            {{ name }}
-          {% endblock %}
-        </h1>
-
-        <h5 class="dataset-detail-title">Curated by NextGEOSS</h5>
-
-
-        {% block package_notes %}
-          {% if c.group_dict.description %}
-            <div class="notes embedded-content dataset-notes">
-              {{ h.render_markdown(_(c.group_dict.description)) }}
-            </div>
-          {% endif %}
-        {% endblock %}
-      </div>
-    {% endblock %}
-
-{% if c.group_dict.name == 'agriculture_monitoring' %}
-      <p>Download metadata file:
-        <a href="/agriculture_monitoring.xml" download>
-          <button type="button" class="btn btn-default btn-sm">
-          <span class="fa fa-cloud-download"></span>
-          ISO19139
-          </button>
-        </a>
-      </p>
-    {% endif %}
-
-    {% if c.group_dict.name == 'biodiversity1' %}
-      <p>Download metadata file:
-        <a href="/biodiversity.xml" download>
-          <button type="button" class="btn btn-default btn-sm">
-          <span class="fa fa-cloud-download"></span>
-          ISO19139
-          </button>
-        </a>
-      </p>
-    {% endif %}
-
-    {% if c.group_dict.name == 'coastal' %}
-      <p>Download metadata file:
-        <a href="/CoReSyF.xml" download>
-          <button type="button" class="btn btn-default btn-sm">
-          <span class="fa fa-cloud-download"></span>
-          ISO19139
-          </button>
-        </a>
-      </p>
-    {% endif %}
-
-    {% if c.group_dict.name == 'disaster_risk_reduction' %}
-      <p>Download metadata file:
-        <a href="/disaster.xml" download>
-          <button type="button" class="btn btn-default btn-sm">
-          <span class="fa fa-cloud-download"></span>
-          ISO19139
-          </button>
-        </a>
-      </p>
-    {% endif %}
-
-    {% if c.group_dict.name == 'disasters' %}
-      <p>Download metadata file:
-        <a href="/disaster.xml" download>
-          <button type="button" class="btn btn-default btn-sm">
-          <span class="fa fa-cloud-download"></span>
-          ISO19139
-          </button>
-        </a>
-      </p>
-    {% endif %}
-
-    {% if c.group_dict.name == 'space-and-security' %}
-      <p>Download metadata file:
-        <a href="/satcen.xml" download>
-          <button type="button" class="btn btn-default btn-sm">
-          <span class="fa fa-cloud-download"></span>
-          ISO19139
-          </button>
-        </a>
-      </p>
-    {% endif %}
-
-    {% if c.group_dict.name == 'energy' %}
-      <p>Download metadata file:
-        <a href="/armines.xml" download>
-          <button type="button" class="btn btn-default btn-sm">
-          <span class="fa fa-cloud-download"></span>
-          ISO19139
-          </button>
-        </a>
-      </p>
-    {% endif %}
-
-    {% if c.group_dict.name == 'energy-1' %}
-      <p>Download metadata file:
-        <a href="/energy-pilot-1.xml" download>
-          <button type="button" class="btn btn-default btn-sm">
-          <span class="fa fa-cloud-download"></span>
-          ISO19139
-          </button>
-        </a>
-      </p>
-    {% endif %}
-
-    {% if c.group_dict.name == 'geocradle' %}
-      <p>Download metadata file:
-        <a href="/geo_cradle.xml" download>
-          <button type="button" class="btn btn-default btn-sm">
-          <span class="fa fa-cloud-download"></span>
-          ISO19139
-          </button>
-        </a>
-      </p>
-    {% endif %}
-
-    {% if c.group_dict.name == 'food-security' %}
-      <p>Download metadata file:
-        <a href="/food_security.xml" download>
-          <button type="button" class="btn btn-default btn-sm">
-          <span class="fa fa-cloud-download"></span>
-          ISO19139
-          </button>
-        </a>
-      </p>
-    {% endif %}
-  </div>
+  {{ super() }}
 {% endblock %}
 
 
 {% block primary_content_inner %}
-  <h3 class="dataset-heading"><a href""> Data Collections used by Pilot: </a> </h3>
+  <h3 class="topic-collections-title"><i class="fa fa-info-circle"></i> Data Collections used by Pilot: </h3>
 
   {% block packages_list %}
     {% if c.collections %}
@@ -161,17 +19,4 @@
 {% endblock %}
 
 {% block secondary_content %}
-  <div class="filters">
-    <div>
-      <div class="filters-header">
-        <i class="fa fa-lg fa-filter"></i>
-        <span class="filters-header__title">{{ _('Filters') }}</span>
-      </div>
-
-      {% for facet in c.facet_titles %}
-        {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet, extras={'id':c.group_dict.id}) }}
-      {% endfor %}
-    </div>
-    <a class="close no-text hide-filters"><i class="fa-remove-sign"></i><span class="text">close</span></a>
-  </div>
 {% endblock %}

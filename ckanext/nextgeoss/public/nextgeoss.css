@@ -1494,3 +1494,16 @@ table.mobile-table td.dataset-details {
 .dataset-detail {
   overflow: auto;
 }
+
+li.dataset-item {
+  overflow: auto !important;
+}
+
+.topic-collection h3 {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+h3.topic-collections-title {
+  border-bottom: 1px solid #292929;
+}
