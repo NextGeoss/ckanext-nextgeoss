@@ -102,6 +102,16 @@ body,.masthead, [role="main"], .main {
   outline: 0;
 }
 
+a {
+  word-break: break-word;
+}
+
+code {
+  word-break: break-word;
+  background-color: #f8f8f8;
+  color: #2f4f4f;
+}
+
 a:focus, a:active,
 button:active, button:focus, button:hover,
 button::-moz-focus-inner,
@@ -907,6 +917,7 @@ section.dataset-map-section {
 
 article.module {
   margin-top: 50px !important;
+  font-size: 1.15em;
 }
 
 .span9>article.module {
@@ -1337,7 +1348,7 @@ table.mobile-table td.dataset-details {
     margin-right: 0px;
     margin-left: 0px;
   }
-
+}
 .search-padding {
  padding-top: 20px;
 }
@@ -1458,4 +1469,22 @@ table.mobile-table td.dataset-details {
 @keyframes fadeIn {
     0% { opacity:0; }
     100% { opacity:100%; }
+}
+
+.opensearch-info-panel .panel-heading {
+    background: #D7EDEC !important;
+    color: #333 !important;
+    font-size: 1.22em !important;
+}
+
+.opensearch-info-panel .panel-heading h4 {
+    font-weight: bolder !important;
+}
+
+.opensearch-info-panel .panel-info {
+    border-color: #D7EDEC !important;
+}
+
+.opensearch-info-panel .panel-group {
+    margin-top: 1.5em !important;
 }
