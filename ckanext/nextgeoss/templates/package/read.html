@@ -4,7 +4,8 @@
 {% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
 {% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
 {% set col_title = pkg.title %}
-{% set col_link = h.get_collection_url(col_title) %}
+{% set col_name = h.get_extras_value(pkg.extras, 'collection_name') %}
+{% set col_link = h.get_collection_url(col_name) %}
 {% set thumbnail_path = h.ng_get_dataset_thumbnail_path(pkg) %}
 
 {% block pre_primary %}
@@ -37,17 +38,20 @@
             {% endblock %}
           </h1>
           <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
-          <h5 class="dataset-detail-title">{{ _('Part of collection ') }} <a href="{{ col_link }}">{{ col_title }}</a></h5>
+          {% if col_name is not none %}
+            <h5 class="dataset-detail-title">{{ _('Part of collection ') }} <a href="{{ col_link }}">{{ col_title }}</a></h5>
+          {% endif %}
+        {% endblock %}
 
-          {% block package_notes %}
-              <div class="notes embedded-content dataset-notes">
-            {% if pkg.notes %}
-              {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
-            {% else %}
-              <p class="empty">{{ _('There is no description for this dataset') }}</p>
-            {% endif %}
-            </div>
-          {% endblock %}
+        {% block package_notes %}
+            <div class="notes embedded-content dataset-notes">
+          {% if pkg.notes %}
+            {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+          {% else %}
+            <p class="empty">{{ _('There is no description for this dataset') }}</p>
+          {% endif %}
+          </div>
+        {% endblock %}
       </div>
 
     {% endblock %}
