@@ -1497,13 +1497,14 @@ table.mobile-table td.dataset-details {
     margin-top: 1.5em;
 }
 
-<<<<<<< HEAD
 #collection-list {
   list-style: none;
 }
+
 #collection-list li{
   display:none;
 }
+
 #load-more-collections {
     color: black !important;
     align-content: center !important;
@@ -1512,9 +1513,11 @@ table.mobile-table td.dataset-details {
     margin-bottom: 0% !important;
     margin-top: 1em;
 }
+
 #load-more-collections:hover {
     color: #168b79  !important;
 }
+
 .no-hover {
     cursor: none !important;
     color: black !important;
