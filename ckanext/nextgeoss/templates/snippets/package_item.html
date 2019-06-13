@@ -48,8 +48,8 @@
   <div class="dataset-item-org-license">
       {% set collection_name = h.get_extras_value(package.extras, 'collection_name') %}
       {% if collection_name is not none %}
-        {% set collection_url = "/dataset?collection_name=" + collection_name.replace(' ', '+') %}
-          <b> Collection: </b>  <a href="{{ collection_url }}"> {{ collection_name }} </a>
+        {% set collection_url = h.get_collection_url(collection_name) %}
+          <b> Collection: </b>  <a href="{{ collection_url }}"> {{ package.title }} </a>
       {% endif %}
   </div>
 
