@@ -1,12 +1,6 @@
 {% extends "package/read_base.html" %}
 
 {% set pkg = c.pkg_dict %}
-{% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
-{% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
-{% set col_title = pkg.title %}
-{% set col_name = h.get_extras_value(pkg.extras, 'collection_name') %}
-{% set col_link = h.get_collection_url(col_name) %}
-{% set thumbnail_path = h.ng_get_dataset_thumbnail_path(pkg) %}
 
 {% block pre_primary %}
   <div class="container single-column">
