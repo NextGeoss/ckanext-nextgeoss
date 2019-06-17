@@ -6,10 +6,10 @@
     {{ super() }}
 
     {% block package_description %}
-      <div class="dataset-detail">
+      <div class="group-intro">
         <div class="dataset-detail-org-logo">
           <div class="image">
-            <a href="{{ group_url }}"></a>
+            <a href="{{ group_url }}">
               <img src="{{ c.group_dict.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" height= "100" width="100" alt="{{ c.group_dict.title }}" />
             </a>
           </div>

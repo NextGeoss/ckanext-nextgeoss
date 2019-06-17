@@ -1,7 +1,12 @@
 {% extends "page.html" %}
 
 {% set pkg = c.pkg_dict or pkg_dict %}
-
+{% set thumbnail = h.ng_get_dataset_thumbnail_path(pkg) %}
+{% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
+{% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
+{% set col_title = pkg.title %}
+{% set col_name = h.get_extras_value(pkg.extras, 'collection_name') %}
+{% set col_link = h.get_collection_url(col_name) %}
 {% block breadcrumb_content_selected %} class="active"{% endblock %}
 
 {% block subtitle %}{{ _('Datasets') }}{% endblock %}
@@ -21,4 +26,35 @@
     <li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
     <li class="active"><a href="">{{ _('Create Dataset') }}</a></li>
   {% endif %}
+{% endblock %}
+
+{% block pre_primary %}
+    {% block package_description %}
+      <div class="dataset-intro">
+        <div class="dataset-detail-org-logo">
+          <div class="image">
+            <img src="{{ thumbnail }}" height= "210" width="210" alt="{{ pkg.name}} thumbnail" />
+          </div>
+        </div>
+        {% if pkg.private %}
+          <span class="dataset-private label label-inverse pull-right">
+            <i class="fa fa-lock"></i>
+            {{ _('Private') }}
+          </span>
+        {% endif %}
+        <h1 class="dataset-detail-title">
+          {% block page_heading %}
+            {{ pkg.name }}
+            {% if pkg.state.startswith('draft') %}
+              [{{ _('Draft') }}]
+            {% endif %}
+            {% if pkg.state == 'deleted' %}
+              [{{ _('Deleted') }}]
+            {% endif %}
+          {% endblock %}
+        </h1>
+        <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
+        <h5 class="dataset-detail-title">{{ _('Part of collection ') }} <a href="{{ col_link }}">{{ col_title }}</a></h5>
+      </div>
+    {% endblock %}
 {% endblock %}

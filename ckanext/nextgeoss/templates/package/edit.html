@@ -1,45 +1,12 @@
 {% extends 'package/edit_base.html' %}
 
 {% set pkg = c.pkg_dict %}
-{% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
-{% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
-{% set thumbnail_path = h.ng_get_dataset_thumbnail_path(pkg) %}
-
 
 {% block pre_primary %}
   <div class="container single-column">
   {% snippet "package/snippets/edit_tabs.html", pkg=pkg %}
   {% block package_description %}
-    <div class="dataset-detail">
-
-      <div class="dataset-detail-org-logo">
-        <div class="image">
-          <a href="{{ org_link }}">
-            <img src="{{ thumbnail_path }}" height= "210" width="210" alt="{{ thumbnail_path }}" />
-          </a>
-        </div>
-      </div>
-
-      {% if pkg.private %}
-        <span class="dataset-private label label-inverse pull-right">
-          <i class="fa fa-lock"></i>
-          {{ _('Private') }}
-        </span>
-      {% endif %}
-
-      <h1 class="dataset-detail-title">
-        {% block page_heading %}
-          {{ h.dataset_display_name(pkg) }}
-          {% if pkg.state.startswith('draft') %}
-            [{{ _('Draft') }}]
-          {% endif %}
-          {% if pkg.state == 'deleted' %}
-            [{{ _('Deleted') }}]
-          {% endif %}
-        {% endblock %}
-      </h1>
-      <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
-    </div>
+    {{ super() }}
   {% endblock %}
 
   <section class="edit-dataset-info">
