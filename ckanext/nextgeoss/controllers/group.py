@@ -74,7 +74,6 @@ class NextgeossGroupController(GroupController):
 
         # unicode format (decoded from utf8)
         c.q = request.params.get('q', '')
-        print 'IN'
 
         try:
             # Do not query for the group datasets when dictizing, as they will
@@ -104,7 +103,6 @@ class NextgeossGroupController(GroupController):
         else:
             q += ' groups:"%s"' % c.group_dict.get('name')
 
-        print 'IN _read'
 
         c.description_formatted = \
             h.render_markdown(c.group_dict.get('description'))
@@ -179,7 +177,7 @@ class NextgeossGroupController(GroupController):
             c.fields = []
             c.fields_grouped = {}
             search_extras = {}
-            
+
             for (param, value) in request.params.items():
                 if param not in ['q', 'page', 'sort'] \
                         and len(value) and not param.startswith('_'):
@@ -215,7 +213,7 @@ class NextgeossGroupController(GroupController):
 
             default_search_titles = {
                 'timerange_start': _('Timerange Start'),
-                'timerange_end': _('Timerange End'),                
+                'timerange_end': _('Timerange End'),
             }
 
             collection_names = ['Sentinel-1 Level-1 (SLC)', 'Sentinel-1 Level-1 (GRD)', 'Sentinel-1 Level-2 (OCN)',
@@ -237,7 +235,7 @@ class NextgeossGroupController(GroupController):
             if collection_params not in collection_names:
                 for f in facets:
                     if f in sentinel_facet_titles:
-                        del facets[f]            
+                        del facets[f]
 
             c.facet_titles = facets
 
@@ -266,7 +264,6 @@ class NextgeossGroupController(GroupController):
 
             c.group_dict['package_count'] = query['count']
             c.group_dict['collection_count'] = len(c.collections)
-            print c.group_dict
 
             c.search_facets = query['search_facets']
             c.search_facets_limits = {}
@@ -328,7 +325,7 @@ class NextgeossGroupController(GroupController):
             h.flash_error(msg)
             c.page = h.Page([], 0)
             return render(self._index_template(group_type),
-                          extra_vars={'group_type': group_type})            
+                          extra_vars={'group_type': group_type})
 
         data_dict_page_results = {
             'all_fields': True,
@@ -351,4 +348,19 @@ class NextgeossGroupController(GroupController):
 
         c.page.items = page_results
         return render(self._index_template(group_type),
-                      extra_vars={'group_type': group_type})        
+                      extra_vars={'group_type': group_type})
+
+
+    def output_data(self, id):
+        group_type = self._ensure_controller_matches_group_type(id)
+        context = {'model': model, 'session': model.Session,
+                   'user': c.user}
+        c.group_dict = self._get_group_dict(id)
+        group_type = c.group_dict['type']
+        self._setup_template_variables(context, {'id': id},
+                                       group_type=group_type)
+        limit = 20
+        self._read(id, limit, group_type)
+
+        return render('group/output.html',
+                      extra_vars={'group_type': group_type})
