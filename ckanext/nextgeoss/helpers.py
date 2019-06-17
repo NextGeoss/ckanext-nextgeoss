@@ -264,16 +264,18 @@ def get_dataset_thumbnail_path(dataset):
         'SENTINEL3_OLCI_L1_EFR', 'SENTINEL3_OLCI_L1_ERR', 'SENTINEL3_OLCI_L2_LFR', 'SENTINEL3_OLCI_L2_LRR', \
         'SENTINEL3_SLSTR_L1_RBT', 'SENTINEL3_SLSTR_L2_LST']
 
-    group_image_url = url_for_static('/base/images/placeholder-organization.png')
+    default_image_url = url_for_static('/base/images/placeholder-organization.png')
+    image_path = default_image_url
     if dataset['organization']:
         org_id = dataset['organization']['id']
         org_details = logic.get_action('organization_show')({}, {'id': org_id})
         group_image_url = org_details['image_display_url']
+        image_path = group_image_url
 
-    image_path = group_image_url
     collection_id = get_extras_value(dataset['extras'], 'collection_id')
     if collection_id in thumbnails_list:
-        image_path ='/{}.jpg'.format(collection_id)
+        collection_image_url = '/{}.jpg'.format(collection_id)
+        image_path = collection_image_url
 
     return image_path
 
