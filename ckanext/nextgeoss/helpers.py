@@ -492,10 +492,11 @@ def get_featured_groups_list():
     parent_groups = []
     group_list = config.get('ckan.featured_groups')
 
-    groups = h.get_featured_groups(count=40)
+    if group_list is not None:
+        groups = h.get_featured_groups(count=40)
 
-    for group in groups:
-        if group['name'] in group_list:
-            parent_groups.append(group)
+        for group in groups:
+            if group['name'] in group_list:
+                parent_groups.append(group)
 
     return parent_groups
