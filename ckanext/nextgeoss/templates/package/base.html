@@ -1,12 +1,7 @@
 {% extends "page.html" %}
 
 {% set pkg = c.pkg_dict or pkg_dict %}
-{% set thumbnail = h.ng_get_dataset_thumbnail_path(pkg) %}
-{% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
-{% set org_link = h.url_for(controller='organization', action='read', id=pkg.owner_org) %}
-{% set col_title = pkg.title %}
-{% set col_name = h.get_extras_value(pkg.extras, 'collection_name') %}
-{% set col_link = h.get_collection_url(col_name) %}
+
 {% block breadcrumb_content_selected %} class="active"{% endblock %}
 
 {% block subtitle %}{{ _('Datasets') }}{% endblock %}
@@ -15,9 +10,9 @@
   {% if pkg %}
     {% set dataset = h.dataset_display_name(pkg) %}
     {% if pkg.organization %}
-      {% set organization = h.get_translated(pkg.organization, 'title') or pkg.organization.name %}
+      {% set org_title = h.get_translated(pkg.organization, 'title') or pkg.organization.name %}
       <li>{% link_for _('Providers'), controller='organization', action='index' %}</li>
-      <li>{% link_for organization|truncate(30), controller='organization', action='read', id=pkg.organization.name %}</li>
+      <li>{% link_for org_title|truncate(30), controller='organization', action='read', id=pkg.organization.name %}</li>
     {% else %}
       <li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
     {% endif %}
@@ -29,7 +24,12 @@
 {% endblock %}
 
 {% block pre_primary %}
-    {% block package_description %}
+  {% block package_description %}
+    {% if pkg %}
+      {% set thumbnail = h.ng_get_dataset_thumbnail_path(pkg) %}
+      {% set col_title = pkg.title %}
+      {% set col_name = h.get_extras_value(pkg.extras, 'collection_name') %}
+      {% set col_link = h.get_collection_url(col_name) %}
       <div class="dataset-intro">
         <div class="dataset-detail-org-logo">
           <div class="image">
@@ -53,8 +53,13 @@
             {% endif %}
           {% endblock %}
         </h1>
-        <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
+        {% if pkg.organization %}
+          {% set org_title = pkg.organization.get('title') or pkg.organization['name'] %}
+          {% set org_link = h.url_for(controller='organization', action='read', id=pkg.organization.name) %}
+          <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
+        {% endif %}
         <h5 class="dataset-detail-title">{{ _('Part of collection ') }} <a href="{{ col_link }}">{{ col_title }}</a></h5>
       </div>
-    {% endblock %}
+    {% endif %}
+  {% endblock %}
 {% endblock %}
