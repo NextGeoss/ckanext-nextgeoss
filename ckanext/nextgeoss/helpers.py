@@ -312,6 +312,10 @@ def get_collections_count():
 
 
 def get_collection_url(collection_name):
+    '''
+        Create URL that filters the dataset according to the
+        collection_name that has been passed.
+    '''
     collection = 'collection_id:' + collection_name
 
     return "/dataset?collection_name=" + collection_name.replace(' ', '+')
@@ -449,9 +453,16 @@ def collection_information(collection_id=None):
 
 
 def get_extras_value(extras, extras_key):
+    '''
+        Return the value from extras from a given key.
+    '''
+    value = ''
+
     for extra in extras:
         if extra['key'] == extras_key:
-            return extra['value']
+            value = extra['value']
+
+    return value
 
 
 def generate_opensearch_query(params):
