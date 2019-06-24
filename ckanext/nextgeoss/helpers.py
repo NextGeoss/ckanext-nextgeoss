@@ -216,7 +216,12 @@ def get_extra_names():
         'resulttime': 'Result time',
         'timeinstant': 'Time instant',
         'timeposition': 'Time position',
-        'pos': 'Position'
+        'pos': 'Position',
+        'file_identifier': 'Identifier',
+        'lineage': 'Lineage',
+        'purpose': 'Purpose',
+        'legal_notice': 'Legal Notice',
+        'supplemental_information': 'Supplemental Information',
     }
 
     return new_names
@@ -250,6 +255,7 @@ def get_extras_to_exclude():
         'noa_expiration_date',
         'uuid',
         'dataset_extra',
+        'is_output',
     ]
 
     return extras_to_exclude
