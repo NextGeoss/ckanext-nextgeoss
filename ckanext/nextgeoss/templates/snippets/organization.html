@@ -20,7 +20,7 @@ Example:
 {% block info %}
   <div class="module module-narrow module-shallow context-info">
     {% if has_context_title %}
-      <h2 class="module-heading"><i class="fa fa-building"></i> {{ _('Provider') }}</h2>
+      <h2 class="module-heading"><i class="fa fa-building"></i> {{ _('Data Provider') }}</h2>
     {% endif %}
     <section class="module-content">
       {% block inner %}
@@ -45,7 +45,7 @@ Example:
           {% link_for _('read more'), controller='organization', action='about', id=organization.name %}
         </p>
       {% else %}
-        <p class="empty">{{ _('There is no description for this provider') }}</p>
+        <p class="empty">{{ _('There is no description for this data provider') }}</p>
       {% endif %}
       {% endblock %}
       {% if show_nums %}

@@ -4,7 +4,7 @@
   <section class="module span6 offset3">
     <div class="module-content">
       {% block form %}
-        <p>{{ _('Are you sure you want to delete provider - {name}?').format(name=c.group_dict.name) }}</p>
+        <p>{{ _('Are you sure you want to delete data provider - {name}?').format(name=c.group_dict.name) }}</p>
         <p class="form-actions">
           <form id="organization-confirm-delete-form" action="{{ '/topic/delete/' + c.group_dict.name }}" method="post">
             <button class="btn" type="submit" name="cancel" >{{ _('Cancel') }}</button>
