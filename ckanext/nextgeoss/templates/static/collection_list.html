@@ -12,12 +12,12 @@
   <article class="module">
     <div class="module-content">
       <h1 class="page-heading">{% block page_heading %}{{ _('Data Collections') }}{% endblock %}</h1>
-      <h4>{{ _('A Data Collection is a group of earth observation (EO) datasets sharing exactly the same product specifications.  All data sets belonging to a Data Collection were observed with the identical sensor and processed with an identical algorithm.') }}</h4>
-      <h4>{{ _('The following Data Collections are currently available in NextGEOSS:') }}</h4>
+      <h4>{{ _('A data collection is a group of earth observation (EO) datasets sharing exactly the same product specifications.  All data sets belonging to a data collection were observed with the identical sensor and processed with an identical algorithm.') }}</h4>
+      <h4>{{ _('The following data collections are currently available in NextGEOSS:') }}</h4>
 
       {% set collections_count = h.get_collections_count() %}
-      {% set collections_text = ungettext('{number} Data Collection', '{number} Data Collections', collections_count)%}
-      {% set collections_none = _('No Data Collections yet') %}
+      {% set collections_text = ungettext('{number} data collection', '{number} data collections', collections_count)%}
+      {% set collections_none = _('No data collections yet') %}
       {%- if collections_count -%}
         {% set display_count = collections_text.format(number=h.localised_number(collections_count)) %}
       {%- else -%}
