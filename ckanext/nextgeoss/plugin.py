@@ -188,7 +188,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         so we need to preserve the order when we update.
         """
         facets_dict.clear()
-        facets_dict['collection_name'] = plugins.toolkit._('Collections')
+        facets_dict['collection_name'] = plugins.toolkit._('Data Collections')
         facets_dict['groups'] = _('Topics')
         facets_dict['organization'] = _('Providers')
         facets_dict['FamilyName']  = plugins.toolkit._('Family Name')

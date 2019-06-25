@@ -49,7 +49,7 @@
       {% set collection_name = h.get_extras_value(package.extras, 'collection_name') %}
       {% if collection_name is not none %}
         {% set collection_url = h.get_collection_url(collection_name) %}
-          <b> Collection: </b>  <a href="{{ collection_url }}"> {{ package.title }} </a>
+          <b>Data Collection: </b>  <a href="{{ collection_url }}"> {{ package.title }} </a>
       {% endif %}
   </div>
 
