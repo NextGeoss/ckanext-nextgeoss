@@ -1,0 +1,18 @@
+{% extends "group/read_base_primary.html" %}
+
+{% set group = c.group_dict %}
+
+{% block pre_primary %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block primary_content_inner %}
+  {% block packages_list %}
+      {{ h.snippet('group/snippets/output_data_list.html', collections=c.collections) }}
+  {% endblock %}
+
+{% endblock %}
+
+{% block secondary_content %}
+{% endblock %}

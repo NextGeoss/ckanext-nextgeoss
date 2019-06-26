@@ -523,3 +523,15 @@ def get_featured_groups_list():
                 parent_groups.append(group)
 
     return parent_groups
+
+
+def get_topic_output_data(datasets):
+    topic_datasets = []
+
+    for dataset in datasets:
+        for d in dataset['extras']:
+            if d['key'] == 'is_output' and d['value'] == 'True':
+                print 'in'
+                topic_datasets.append(dataset)
+
+    return topic_datasets
