@@ -27,7 +27,6 @@
   {% block package_description %}
     {% if pkg %}
       {% set thumbnail = h.ng_get_dataset_thumbnail_path(pkg) %}
-      {% set col_title = pkg.title %}
       {% set col_name = h.get_extras_value(pkg.extras, 'collection_name') %}
       {% if col_name | length > 0 %}
         {% set col_link = h.get_collection_url(col_name) %}
@@ -61,7 +60,7 @@
           <h5 class="dataset-detail-title">{{ _('Published by ') }} <a href="{{ org_link }}">{{ org_title }}</a></h5>
         {% endif %}
         {% if col_link is defined %}
-          <h5 class="dataset-detail-title">{{ _('Part of collection ') }} <a href="{{ col_link }}">{{ col_title }}</a></h5>
+          <h5 class="dataset-detail-title">{{ _('Part of collection ') }} <a href="{{ col_link }}">{{ col_name }}</a></h5>
         {% endif %}
       </div>
     {% endif %}
