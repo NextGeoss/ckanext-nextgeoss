@@ -500,9 +500,17 @@ def generate_opensearch_query(params):
                     param_tmp = "orbit_direction"
                 elif param == "TransmitterReceiverPolarisation":
                     param_tmp = "polarisation"
+                elif param == 'Swath':
+                    param_tmp = "swath"
                 else:
                     param_tmp = param
-                query = query + '&' + param_tmp + '=' + params[param]
+
+                if ' ' in params[param]:
+                    value = '"' + params[param] + '"'
+                else:
+                    value = params[param]
+
+                query = query + '&' + param_tmp + '=' + value
 
     return query
 
