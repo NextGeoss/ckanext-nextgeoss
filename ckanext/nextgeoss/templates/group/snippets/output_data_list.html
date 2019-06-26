@@ -15,5 +15,6 @@ Example:
 
 #}
 {% block package_list %}
-      {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
+	{% set datasets = h.get_topic_output_data(c.page.items) %}
+	{{ h.snippet('snippets/package_list.html', packages=datasets) }}
 {% endblock %}
