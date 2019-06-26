@@ -1,9 +1,9 @@
 {% extends "page.html" %}
 
-{% block subtitle %}{{ _('Providers') }}{% endblock %}
+{% block subtitle %}{{ _('Data Providers') }}{% endblock %}
 
 {% block breadcrumb_content %}
-  <li class="active">{% link_for _('Providers'), controller='organization', action='index' %}</li>
+  <li class="active">{% link_for _('Data Providers'), controller='organization', action='index' %}</li>
 {% endblock %}
 
 {% block page_header %}{% endblock %}
@@ -13,17 +13,17 @@
     <div class="module-content">
       {% block page_primary_action %}
         {% if h.check_access('organization_create') %}
-          {% link_for _('Add Provider'), controller='organization', action='new', class_='btn btn-primary', icon='plus-sign-alt' %}
+          {% link_for _('Add Data Provider'), controller='organization', action='new', class_='btn btn-primary', icon='plus-sign-alt' %}
         {% endif %}
       {% endblock %}
 
-      <h1 class="page-heading">{% block page_heading %}{{ _('Providers') }}{% endblock %}</h1>
+      <h1 class="page-heading">{% block page_heading %}{{ _('Data Providers') }}{% endblock %}</h1>
       <h4>{{ _('NextGEOSS engages the main providers of earth observation data, including Copernicus Collaborative Ground Segments and Core Services. The data hub draws upon resources provided by public, commercial, and research institutions working with satellite, aerial, and in situ measurements.') }}</h4>
-      <h4>{{ _('The following providers are currently integrated in the NextGEOSS system:') }}</h4>
+      <h4>{{ _('The following data providers are currently integrated in the NextGEOSS system:') }}</h4>
 
       {% set count = c.page.items|length %}
-      {% set providers_count = ungettext('{number} provider', '{number} providers', count) %}
-      {% set providers_none = _('No providers found for "{query}"') %}
+      {% set providers_count = ungettext('{number} data provider', '{number} data providers', count) %}
+      {% set providers_none = _('No data providers found for "{query}"') %}
       {%- if count -%}
         {% set providers_count = providers_count.format(number=h.localised_number(count)) %}
       {%- else -%}
@@ -38,7 +38,7 @@
           {% endif %}
         {% else %}
           <p class="empty">
-            {{ _('There are currently no providers for this site') }}.
+            {{ _('There are currently no data providers for this site') }}.
             {% if h.check_access('organization_create') %}
               {% link_for _('How about creating one?'), controller='organization', action='new' %}</a>.
             {% endif %}

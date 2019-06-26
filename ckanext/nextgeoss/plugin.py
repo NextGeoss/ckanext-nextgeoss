@@ -190,7 +190,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
         facets_dict.clear()
         facets_dict['collection_name'] = plugins.toolkit._('Data Collections')
         facets_dict['groups'] = _('Topics')
-        facets_dict['organization'] = _('Providers')
+        facets_dict['organization'] = _('Data Providers')
         facets_dict['FamilyName']  = plugins.toolkit._('Family Name')
         facets_dict['ProductType'] = plugins.toolkit._('Product Type')
         facets_dict['OrbitDirection'] = plugins.toolkit._('Orbit Direction')

@@ -11,7 +11,7 @@
     {% set dataset = h.dataset_display_name(pkg) %}
     {% if pkg.organization %}
       {% set org_title = h.get_translated(pkg.organization, 'title') or pkg.organization.name %}
-      <li>{% link_for _('Providers'), controller='organization', action='index' %}</li>
+      <li>{% link_for _('Data Providers'), controller='organization', action='index' %}</li>
       <li>{% link_for org_title|truncate(30), controller='organization', action='read', id=pkg.organization.name %}</li>
     {% else %}
       <li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
