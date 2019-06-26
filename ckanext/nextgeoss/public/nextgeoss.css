@@ -103,10 +103,6 @@ body,.masthead, [role="main"], .main {
   outline: 0;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> release_24_04
 a {
   word-break: break-word;
 }
@@ -1489,7 +1485,6 @@ table.mobile-table td.dataset-details {
     100% { opacity:100%; }
 }
 
-<<<<<<< HEAD
 .opensearch-info-panel > .panel-group > .panel-info > .panel-heading {
     background: #D7EDEC;
     color: #333;
@@ -1541,6 +1536,7 @@ table.mobile-table td.dataset-details {
 
 li.dataset-item {
   overflow: auto !important;
+  display: inline-block !important;
 }
 
 .topic-collection h3 {

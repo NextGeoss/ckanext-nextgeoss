@@ -197,7 +197,7 @@ class NextgeossGroupController(GroupController):
             search_parameters = OrderedDict()
 
             default_facet_titles = {
-                'collection_name': _('Collections'),
+                'collection_name': _('Data Collections'),
                 'organization': _('Organizations'),
                 'groups': _('Groups'),
                 'tags': _('Tags'),

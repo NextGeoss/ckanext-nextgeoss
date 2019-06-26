@@ -30,9 +30,9 @@ Example:
   {% block datasets %}
     {% set collection_count = h.get_group_collection_count(group) %}
     {% if collection_count %}
-      <strong class="count"> {{collection_count}} Collections used </strong>
+      <strong class="count"> {{collection_count}} data collections used </strong>
     {% else %}
-      <strong class="count"> 0 Collections used </strong>
+      <strong class="count"> 0 data collections used </strong>
     {% endif %}
   {% endblock %}
   {% block link %}
