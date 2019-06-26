@@ -216,7 +216,12 @@ def get_extra_names():
         'resulttime': 'Result time',
         'timeinstant': 'Time instant',
         'timeposition': 'Time position',
-        'pos': 'Position'
+        'pos': 'Position',
+        'file_identifier': 'Identifier',
+        'lineage': 'Lineage',
+        'purpose': 'Purpose',
+        'legal_notice': 'Legal Notice',
+        'supplemental_information': 'Supplemental Information',
     }
 
     return new_names
@@ -250,6 +255,7 @@ def get_extras_to_exclude():
         'noa_expiration_date',
         'uuid',
         'dataset_extra',
+        'is_output',
     ]
 
     return extras_to_exclude
@@ -477,14 +483,14 @@ def generate_opensearch_query(params):
         for collection in collection_items:
             collection_items = collection[1].items()
             if collection_name in collection[1].items()[0]:
-                query = query + 'collection_id=' + collection[0]
+                query = query + 'productType=' + collection[0]
 
         for param in params:
             if param != 'collection_name':
                 param_tmp = ''
-                if param == 'TransmitterReceiverPolarisation':
+                if param == 'polarisationChannels':
                     param_tmp = 'polarisation'
-                elif param == "Swath":
+                elif param == "swathIdentifier":
                     param_tmp = "swath"
                 elif param == "orbitDirection":
                     param_tmp = "orbit_direction"
@@ -492,9 +498,11 @@ def generate_opensearch_query(params):
                     param_tmp = "swath"
                 elif param == "OrbitDirection":
                     param_tmp = "orbit_direction"
+                elif param == "TransmitterReceiverPolarisation":
+                    param_tmp = "polarisation"
                 else:
                     param_tmp = param
-                query = query + '&' + param_tmp + '="' + params[param] + '"'
+                query = query + '&' + param_tmp + '=' + params[param]
 
     return query
 
@@ -507,10 +515,11 @@ def get_featured_groups_list():
     parent_groups = []
     group_list = config.get('ckan.featured_groups').split()
 
-    groups = h.get_featured_groups(count=40)
+    if group_list is not None:
+        groups = h.get_featured_groups(count=40)
 
-    for group in groups:
-        if group['name'] in group_list:
-            parent_groups.append(group)
+        for group in groups:
+            if group['name'] in group_list:
+                parent_groups.append(group)
 
     return parent_groups
