@@ -1,9 +1,9 @@
 {% extends "page_primary.html" %}
 
-{% block subtitle %}{{ c.group_dict.display_name }} - {{ _('Topics') }}{% endblock %}
+{% block subtitle %}{{ c.group_dict.display_name }} - {{ _('Thematic Areas') }}{% endblock %}
 
 {% block breadcrumb_content %}
-  <li>{% link_for _('Topics'), controller='group', action='index' %}</li>
+  <li>{% link_for _('Thematic Areas'), controller='group', action='index' %}</li>
   <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name %}</li>
 {% endblock %}
 

@@ -1,9 +1,9 @@
 {% ckan_extends %}
 
-{% block subtitle %}{{ _('Topics') }}{% endblock %}
+{% block subtitle %}{{ _('Thematic Areas') }}{% endblock %}
 
 {% block breadcrumb_content %}
-  <li class="active">{% link_for _('Topics'), controller='group', action='index' %}</li>
+  <li class="active">{% link_for _('Thematic Areas'), controller='group', action='index' %}</li>
 {% endblock %}
 
 {% block page_header %}{% endblock %}
@@ -13,17 +13,17 @@
     <div class="module-content">
       {% block page_primary_action %}
         {% if h.check_access('group_create') %}
-          {% link_for _('Add Topic'), controller='group', action='new', class_='btn btn-primary', icon='plus-sign-alt' %}
+          {% link_for _('Add Thematic Area'), controller='group', action='new', class_='btn btn-primary', icon='plus-sign-alt' %}
         {% endif %}
       {% endblock %}
 
-      <h1 class="page-heading">{% block page_heading %}{{ _('Topics') }}{% endblock %}</h1>
-      <h4>{{ _('NextGEOSS seeks to educate the public and facilitate the work of researchers and institutions by highlighting certain issues that are crucial to the future of Europe and the world. By curating a selection of topics and presenting an overview of each issue as well as easy access to the myriad datasets related to it, the Next GEOSS data hub serves as a jumping off point for engaged exploration.') }}</h4>
-      <h4>{{ _('The following topics are considered especially relevant:') }}</h4>
+      <h1 class="page-heading">{% block page_heading %}{{ _('Thematic Areas') }}{% endblock %}</h1>
+      <h4>{{ _('NextGEOSS seeks to educate the public and facilitate the work of researchers and institutions by highlighting certain issues that are crucial to the future of Europe and the world. By curating a selection of thematic areas and presenting an overview of each issue as well as easy access to the myriad datasets related to it, the Next GEOSS data hub serves as a jumping off point for engaged exploration.') }}</h4>
+      <h4>{{ _('The following thematic areas are considered especially relevant:') }}</h4>
 
       {% set count = c.page.items|length %}
-      {% set topics_count = ungettext('{number} topic', '{number} topics', count) %}
-      {% set topics_none = _('No topics yet') %}
+      {% set topics_count = ungettext('{number} thematic area', '{number} thematic areas', count) %}
+      {% set topics_none = _('No thematic areas yet') %}
       {%- if count -%}
         {% set topics_count = topics_count.format(number=h.localised_number(count)) %}
       {%- else -%}
@@ -38,7 +38,7 @@
           {% endif %}
         {% else %}
           <p class="empty">
-            {{ _('There are currently no topics for this site') }}.
+            {{ _('There are currently no thematic areas for this site') }}.
             {% if h.check_access('group_create') %}
               {% link_for _('How about creating one?'), controller='group', action='new' %}</a>.
             {% endif %}

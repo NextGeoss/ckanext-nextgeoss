@@ -1,11 +1,11 @@
 {% ckan_extends %}
 
 {% block subtitle %}
-  {{ _('Manage') }} - {{ c.group_dict.display_name }} - {{ _('Topics') }}
+  {{ _('Manage') }} - {{ c.group_dict.display_name }} - {{ _('Thematic Areas') }}
 {% endblock %}
 
 {% block breadcrumb_content %}
-  <li>{% link_for _('Topics'), controller='group', action='index' %}</li>
+  <li>{% link_for _('Thematic Areas'), controller='group', action='index' %}</li>
   {% block breadcrumb_content_inner %}
     <li>{% link_for group.display_name|truncate(35), controller='group', action='read', id=group.name %}</li>
     <li class="active">{% link_for _('Manage'), controller='group', action='edit', id=group.name %}</li>

@@ -2,7 +2,7 @@
   <ul class="nav nav-tabs">
     {% block content_primary_nav %}
       {{ h.build_nav_icon('dataset_read', _('Dataset'), id=pkg.name) }}
-      {{ h.build_nav_icon('dataset_groups', _('Topics'), id=pkg.name) }}
+      {{ h.build_nav_icon('dataset_groups', _('Thematic Areas'), id=pkg.name) }}
       {{ h.build_nav_icon('dataset_activity', _('Activity Stream'), id=pkg.name) }}
       {% if self.content_action() | trim %}
         <div class="content-action-button">
