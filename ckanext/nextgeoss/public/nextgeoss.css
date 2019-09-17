@@ -1536,7 +1536,7 @@ table.mobile-table td.dataset-details {
 
 li.dataset-item {
   overflow: auto !important;
-  display: inline-block !important;
+  display: block !important;
 }
 
 .topic-collection h3 {
