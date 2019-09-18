@@ -328,7 +328,6 @@ h4.title a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
 }
 
 .datasets-search-form-container__controls {
@@ -942,12 +941,10 @@ article.module {
 }
 
 #group-datasets-search-form {
-  margin-top: -20px;
   margin-bottom: 50px;
  }
 
  #organization-datasets-search-form {
-  margin-top: -20px;
   margin-bottom: 50px;
  }
 
