@@ -463,6 +463,12 @@ h4.title a {
   box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
 }
 
+.fa-search {
+  float: left !important;
+  clear: left;
+  margin-bottom: 6px;
+}
+
 .fa-search:before {
   color: #168B7A;
 }
