@@ -20,6 +20,10 @@
           {% endblock %}
         </h1>
 
+        {% if c.group_dict.collection_id %}
+          <h5 class="dataset-detail-title">{{ _('Collection ID: ') }} <a href="{{ h.current_url() }}">{{ c.group_dict.collection_id }}</a></h5>
+        {% endif %}
+
         {% block package_notes %}
           {% if c.group_dict.description %}
             <div class="notes embedded-content dataset-notes">
@@ -31,7 +35,6 @@
     {% endblock %}
   </div>
 {% endblock %}
-
 
 {% block content_primary_nav %}
   {% if h.check_access('package_create', {'owner_org': c.group_dict.id}) %}
