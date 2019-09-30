@@ -28,6 +28,12 @@ Example:
   {% set text_query_none = _('No data providers found for "{query}"') %}
   {% set text_no_query = ungettext('{number} data provider found', '{number} data providers found', count) %}
   {% set text_no_query_none = _('No data providers found') %}
+
+{% elif type == 'collection' %}
+  {% set text_query = ungettext('{number} data collection found for "{query}"', '{number} data collections found for "{query}"', count) %}
+  {% set text_query_none = _('No data collections found for "{query}"') %}
+  {% set text_no_query = ungettext('{number} data collection found', '{number} data collections found', count) %}
+  {% set text_no_query_none = _('No data collections found') %}
 {%- endif -%}
 
 {% if query %}

@@ -167,8 +167,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
                       action='opensearch')
             m.connect('support', '/support',
                       action='support')
-            m.connect('collections', '/collection',
-                      action='collections')
+            m.connect('collections', '/collection_list',
+                      action='collections', group_type='collection')
             m.connect('support', '/support',
                       action='support')
 

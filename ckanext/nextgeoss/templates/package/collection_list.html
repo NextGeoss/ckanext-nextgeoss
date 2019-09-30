@@ -1,0 +1,45 @@
+{% ckan_extends %}
+{% import 'macros/form.html' as form %}
+
+{% set pkg = c.pkg_dict %}
+
+{% block subtitle %}
+  {{ _('Collections') }} - {{ super() }}
+{% endblock %}
+
+{% block pre_primary %}
+  <div class="container single-column">
+      {% snippet "package/snippets/nav_tabs.html", pkg=pkg %}
+      {% block package_description %}
+        {{ super() }}
+      {% endblock %}
+      <section class="additional-info">
+        <h3><i class="fa fa-info-circle"></i> {{ _('Collections') }}</h3>
+      </section>
+  </div>
+
+  {% if c.collection_dropdown %}
+    <form class="add-to-group" method="post">
+      <select id="field-add_collection" name="collection_added" data-module="autocomplete">
+        {% for option in c.collection_dropdown %}
+          <option value="{{ option[0] }}"> {{ option[1] }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-primary" title="{{ _('Associate this collection with this dataset') }}">{{ _('Add to collection') }}</button>
+    </form>
+  {% endif %}
+
+  {% if c.pkg_dict.groups %}
+    <form method="post">
+      {% snippet 'collection/snippets/collection_list.html', groups=c.pkg_dict.groups %}
+    </form>
+  {% else %}
+    <p class="empty">{{ _('There are no collections associated with this dataset') }}</p>
+  {% endif %}
+{% endblock %}
+
+{% block primary_content_inner %}
+{% endblock %}
+
+{% block secondary %}
+{% endblock %}
