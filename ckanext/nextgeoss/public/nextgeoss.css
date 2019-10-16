@@ -328,7 +328,6 @@ h4.title a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
 }
 
 .datasets-search-form-container__controls {
@@ -461,6 +460,12 @@ h4.title a {
   border-radius: 8px;
   padding-left: 70px !important;
   box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
+}
+
+.fa-search {
+  float: left !important;
+  clear: left;
+  margin-bottom: 6px;
 }
 
 .fa-search:before {
@@ -936,12 +941,10 @@ article.module {
 }
 
 #group-datasets-search-form {
-  margin-top: -20px;
   margin-bottom: 50px;
  }
 
  #organization-datasets-search-form {
-  margin-top: -20px;
   margin-bottom: 50px;
  }
 
