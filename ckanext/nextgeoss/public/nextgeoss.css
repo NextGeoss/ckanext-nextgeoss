@@ -228,7 +228,6 @@ li.dataset-item {
     box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
 }
 .dataset-heading {
-  max-width: 400px;
   text-overflow: ellipsis;
   word-wrap: break-word;
   padding-bottom: 10px;
@@ -495,6 +494,7 @@ h4.title a {
   float: right;
   clear: left;
   margin-top: 5px !important;
+  margin-left: 30px !important;
 }
 
 .dataset-item-org-logo .image img {
@@ -1544,7 +1544,7 @@ table.mobile-table td.dataset-details {
 
 li.dataset-item {
   overflow: auto !important;
-  display: inline-block !important;
+  display: block !important;
 }
 
 .topic-collection h3 {
