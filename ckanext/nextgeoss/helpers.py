@@ -473,7 +473,6 @@ def get_extras_value(extras, extras_key):
 
 def generate_opensearch_query(params):
     query = '/opensearch/search.atom?'
-    print params
 
     if 'collection_name' in params:
         collection_name = params['collection_name']
@@ -514,7 +513,6 @@ def generate_opensearch_query(params):
                 query = query + '&' + param_tmp + '=' + value
     else:
         for param in params:
-            print param
             query = query + '&' + param + '=' + params[param]
 
     return query
