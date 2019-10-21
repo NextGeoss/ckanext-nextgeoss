@@ -228,11 +228,11 @@ li.dataset-item {
     box-shadow: 0px 3px 13px -2px rgb(173, 173, 173);
 }
 .dataset-heading {
-  text-overflow: ellipsis;
-  word-wrap: break-word;
+  overflow: auto;
   padding-bottom: 10px;
 }
 .dataset-heading a {
+    word-break: break-all;
     color: #168B7A;
     font-size: 1.5em;
     font-weight: 400;
