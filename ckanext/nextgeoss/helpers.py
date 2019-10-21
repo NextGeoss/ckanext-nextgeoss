@@ -518,8 +518,8 @@ def generate_opensearch_query(params):
             if param == 'ext_bbox':
                 param_tmp = "bbox"
                 query = query + '&' + param_tmp + '=' + params[param]
-
-            query = query + '&' + param + '=' + params[param]
+            else:
+                query = query + '&' + param + '=' + params[param]
 
     return query
 
