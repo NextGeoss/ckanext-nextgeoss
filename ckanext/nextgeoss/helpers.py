@@ -502,6 +502,8 @@ def generate_opensearch_query(params):
                     param_tmp = "polarisation"
                 elif param == 'Swath':
                     param_tmp = "swath"
+                elif param == 'ext_bbox':
+                    param_tmp = "bbox"
                 else:
                     param_tmp = param
 
@@ -513,6 +515,10 @@ def generate_opensearch_query(params):
                 query = query + '&' + param_tmp + '=' + value
     else:
         for param in params:
+            if param == 'ext_bbox':
+                param_tmp = "bbox"
+                query = query + '&' + param_tmp + '=' + params[param]
+
             query = query + '&' + param + '=' + params[param]
 
     return query
