@@ -40,8 +40,7 @@ def get_bug_disclaimer():
     of the banner in case the script does not load at all).
     """
     setting = 'ckanext.nextgeoss.bug_disclaimer'
-    default = 'WARNING: We are still collecting data!'
-    disclaimer = config.get(setting, default)
+    disclaimer = config.get(setting)
 
     return disclaimer
 
