@@ -2,9 +2,11 @@
 
 {% block header_wrapper %}
 
+  {% if  h.nextgeoss_get_bug_disclaimer() != None %}
   <div class="disclaimer">
     <p>{{ h.nextgeoss_get_bug_disclaimer() }}</p>
   </div>
+  {% endif %}
 
   {% block header_account %}
     {#
