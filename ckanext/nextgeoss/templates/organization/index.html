@@ -31,6 +31,9 @@
       {% endif %}
       <h2 class="text-center list-counter">{{ providers_count }}</h2>
 
+      {% block organizations_search_form %}
+        {% snippet 'snippets/search_form.html', form_id='organization-search-form', type='organization', query=q, sorting_selected=sort_by_selected, count=c.page.item_count, placeholder=_('Search organizations...'), show_empty=request.params, no_bottom_border=true if c.page.items, sorting = [(_('Name Ascending'), 'title asc'), (_('Name Descending'), 'title desc')] %}
+      {% endblock %}
       {% block organizations_list %}
         {% if c.page.items or request.params %}
           {% if c.page.items %}
