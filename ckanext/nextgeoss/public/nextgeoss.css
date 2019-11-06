@@ -902,8 +902,8 @@ section.dataset-map-section {
 
 .media-item img {
   padding: 10px;
-  max-height: 180px;
-  max-width: 200px;
+  max-height: 100%;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
