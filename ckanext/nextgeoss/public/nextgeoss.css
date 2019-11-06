@@ -434,6 +434,16 @@ h4.title a {
   margin-top: 20px !important;
 }
 
+.pagination {
+  display: block;
+  margin-top: 40px;
+}
+
+.pagination-left {
+  display: inline-block !important;
+  margin-left: 10px;
+}
+
 .datasets-page .module-content {
   padding-right: 0;
 }

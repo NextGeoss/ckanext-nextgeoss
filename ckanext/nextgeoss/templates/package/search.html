@@ -159,7 +159,9 @@
     </div>
 
     {% block page_pagination %}
-      {{ c.page.pager(q=c.q) }}
+      <div class="pagination-left">
+        {{ c.page.pager(q=c.q) }}
+      </div>
     {% endblock %}
   </section>
 
