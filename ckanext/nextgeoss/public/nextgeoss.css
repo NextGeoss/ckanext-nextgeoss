@@ -1573,3 +1573,7 @@ h3.topic-collections-title {
 .opensearch-info-panel .panel-group {
     margin-top: 1.5em !important;
 }
+
+#organization-search-form {
+  margin-top: 40px !important;
+}
