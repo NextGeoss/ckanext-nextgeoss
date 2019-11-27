@@ -56,7 +56,7 @@
           {% block resource_read_url %}
             {% set url_explanation = _('URL to access resource at source:')%}
             {% if res.url and h.is_url(res.url) %}
-              <p>{{ url_explanation }} <a href="{{ res.url }}" title="{{ res.url }}" class="resource-url-analytics">{{ res.url }}</a></p>
+              <p>{{ url_explanation }} <a href="{{ res.url }}" title="{{ res.url }}" class="resource-url-analytics resource-type-{{ res.resource_type }}">{{ res.url }}</a></p>
             {% elif res.url %}
               <p>{{ url_explanation }} {{ res.url }}</p>
             {% else %}
