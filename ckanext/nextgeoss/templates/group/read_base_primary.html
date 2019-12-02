@@ -7,6 +7,12 @@
   <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name %}</li>
 {% endblock %}
 
+{% block content_action %}
+{% if h.check_access('group_update', {'id': c.group_dict.id}) %}
+{% link_for _('Manage'), controller='group', action='edit', id=c.group_dict.name, class_='btn btn-default btn-right', style='float:right', icon='wrench' %}
+{% endif %}
+{% endblock %}
+
 {% block pre_primary %}
   {% set group = c.group_dict %}
     <div class="container single-column group-org-header" xmlns="http://www.w3.org/1999/html">
