@@ -895,8 +895,17 @@ section.dataset-map-section {
   text-align: center;
 }
 
+.media-image-wrapper {
+  height: 180px;
+  width: 220px;
+}
+
 .media-item img {
   padding: 10px;
+  max-height: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .media-item p {
@@ -906,7 +915,6 @@ section.dataset-map-section {
 
 .media-grid {
   margin: 0px;
-  padding-left: 20px;
   background: none;
   border: none;
 }
