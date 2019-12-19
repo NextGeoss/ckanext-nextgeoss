@@ -33,7 +33,7 @@
           {% set button_label = _('More info') %}
         {% endif %}
         <a href="{{ url }}" class="btn btn-primary btn-left"><i class="fa fa-info-circle"></i> {{ button_label }}</a>
-        <a href="{{ res.url }}"  class="btn btn-primary"><i class="fa fa-download"></i> {{ _('Download') }}</a>
+        <a href="{{ res.url }}"  class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}"><i class="fa fa-download"></i> {{ _('Download') }}</a>
       </div>
     </div>
   </div>
