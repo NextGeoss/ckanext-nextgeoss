@@ -2,6 +2,14 @@
 
 {% import 'macros/form.html' as form %}
 
+{% block links %}
+   {{ super() }}
+   <link rel="alternate" type="text/n3" href="{{ h.url_for('dcat_catalog', _format='n3', qualified=True) }}"/>
+   <link rel="alternate" type="text/ttl" href="{{ h.url_for('dcat_catalog', _format='ttl', qualified=True) }}"/>
+   <link rel="alternate" type="application/rdf+xml" href="{{ h.url_for('dcat_catalog', _format='xml', qualified=True) }}"/>
+   <link rel="alternate" type="application/ld+json" href="{{ h.url_for('dcat_catalog', _format='jsonld', qualified=True) }}"/>
+{% endblock -%}
+
 {% block pre_primary %}
   {% snippet "spatial/snippets/spatial_query.html", default_extent="[[39.0853421, -41.0315431], [64.92, -55.87]]" %}
   <div class="module-content" id="green">
@@ -159,7 +167,9 @@
     </div>
 
     {% block page_pagination %}
-      {{ c.page.pager(q=c.q) }}
+      <div class="pagination-left">
+        {{ c.page.pager(q=c.q) }}
+      </div>
     {% endblock %}
   </section>
 

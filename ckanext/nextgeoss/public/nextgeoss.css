@@ -434,6 +434,16 @@ h4.title a {
   margin-top: 20px !important;
 }
 
+.pagination {
+  display: block;
+  margin-top: 40px;
+}
+
+.pagination-left {
+  display: inline-block !important;
+  margin-left: 10px;
+}
+
 .datasets-page .module-content {
   padding-right: 0;
 }
@@ -895,8 +905,17 @@ section.dataset-map-section {
   text-align: center;
 }
 
+.media-image-wrapper {
+  height: 180px;
+  width: 220px;
+}
+
 .media-item img {
   padding: 10px;
+  max-height: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .media-item p {
@@ -906,7 +925,6 @@ section.dataset-map-section {
 
 .media-grid {
   margin: 0px;
-  padding-left: 20px;
   background: none;
   border: none;
 }
@@ -1572,4 +1590,8 @@ h3.topic-collections-title {
 
 .opensearch-info-panel .panel-group {
     margin-top: 1.5em !important;
+}
+
+#organization-search-form {
+  margin-top: 40px !important;
 }
