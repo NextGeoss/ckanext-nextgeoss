@@ -139,8 +139,6 @@ def get_extra_names():
         'InstrumentName': 'Instrument Name',
         'OrbitDirection': 'Orbit Direction',
         'ProductType': 'Product Type',
-        'StartTime': 'Start Time',
-        'StopTime': 'Stop Time',
         'uuid': 'UUID',
         'beginposition': 'Sensing start',
         'cloudcoverpercentage': 'Cloud coverage percentage',
