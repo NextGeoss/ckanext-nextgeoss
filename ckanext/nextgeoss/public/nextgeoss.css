@@ -901,16 +901,24 @@ section.dataset-map-section {
 }
 
 .media-item {
-  width: 250px;
+  width: 260px;
+  height: 380px;
+  text-align: center;
+}
+
+.media-body {
+  width: 220px;
+  height: 160px;
   text-align: center;
 }
 
 .media-image-wrapper {
   height: 180px;
-  width: 220px;
+  display: flex;
 }
 
 .media-item img {
+  object-fit: scale-down;
   padding: 10px;
   max-height: 100%;
   max-width: 100%;
