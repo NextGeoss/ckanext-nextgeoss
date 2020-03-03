@@ -1251,6 +1251,9 @@ button.btn.btn-navbar {
   }
 }
 
+.search-form .control-order-by select {
+  height: 100% !important;
+}
 
 .atlwdg-trigger.atlwdg-TOP {
   left: 0px !important;
