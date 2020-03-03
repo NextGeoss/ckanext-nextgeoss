@@ -12,7 +12,7 @@
     {% block search_input %}
       <div class="search-input control-group {{ search_class }}">
         {% block search_input_button %}
-        <button type="submit" value="search" style="left: 20px;">
+        <button type="submit" value="search" style="left: 20px; max-height: 52px;">
           <i class="fa fa-search"></i>
           <span>{{ _('Submit') }}</span>
         </button>
@@ -34,7 +34,7 @@
     {% block search_sortby %}
       {% if sorting %}
         <div class="form-select control-group control-order-by">
-          <select id="field-order-by" name="sort" style="width: 210px !important">
+          <select id="field-order-by" name="sort" style="width: 210px !important;  max-height: 52px;">
             {% for label, value in sorting %}
               {% if label and value %}
                 <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
