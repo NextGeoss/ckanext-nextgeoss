@@ -216,54 +216,54 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
     # IPackageController
 
-    def before_index(self, pkg_dict):
-        """Expand extras if they're saved as a single string."""
-        dataset_extra = pkg_dict.pop("dataset_extra", None)
-        if dataset_extra:
-            pkg_dict.update(convert_dataset_extra(dataset_extra))
-        pkg_dict.pop("extras_dataset_extra", None)
+    # def before_index(self, pkg_dict):
+    #     """Expand extras if they're saved as a single string."""
+    #     dataset_extra = pkg_dict.pop("dataset_extra", None)
+    #     if dataset_extra:
+    #         pkg_dict.update(convert_dataset_extra(dataset_extra))
+    #     pkg_dict.pop("extras_dataset_extra", None)
 
-        # Handle spatial indexing here since the string extras break
-        # the spatial extension.
-        noa = pkg_dict.get("noa_expiration_date", None)
+    #     # Handle spatial indexing here since the string extras break
+    #     # the spatial extension.
+    #     noa = pkg_dict.get("noa_expiration_date", None)
 
-        if noa is not None:
-            pkg_dict.pop("noa_expiration_date", None)
+    #     if noa is not None:
+    #         pkg_dict.pop("noa_expiration_date", None)
 
-        geometry = pkg_dict.get("spatial", None)
-        if geometry:
-            geometry = json.loads(geometry)
-            wkt = None
+    #     geometry = pkg_dict.get("spatial", None)
+    #     if geometry:
+    #         geometry = json.loads(geometry)
+    #         wkt = None
 
-            # Check potential problems with bboxes
-            if geometry['type'] == 'Polygon' \
-               and len(geometry['coordinates']) == 1 \
-               and len(geometry['coordinates'][0]) == 5:
+    #         # Check potential problems with bboxes
+    #         if geometry['type'] == 'Polygon' \
+    #            and len(geometry['coordinates']) == 1 \
+    #            and len(geometry['coordinates'][0]) == 5:
 
-                # Check wrong bboxes (4 same points)
-                xs = [p[0] for p in geometry['coordinates'][0]]
-                ys = [p[1] for p in geometry['coordinates'][0]]
+    #             # Check wrong bboxes (4 same points)
+    #             xs = [p[0] for p in geometry['coordinates'][0]]
+    #             ys = [p[1] for p in geometry['coordinates'][0]]
 
-                if xs.count(xs[0]) == 5 and ys.count(ys[0]) == 5:
-                    wkt = 'POINT({x} {y})'.format(x=xs[0], y=ys[0])
-                else:
-                    # Check if coordinates are defined counter-clockwise,
-                    # otherwise we'll get wrong results from Solr
-                    lr = shapely.geometry.polygon.LinearRing(geometry['coordinates'][0])  # noqa: E501
-                    if not lr.is_ccw:
-                        lr.coords = list(lr.coords)[::-1]
-                    polygon = shapely.geometry.polygon.Polygon(lr)
-                    wkt = polygon.wkt
+    #             if xs.count(xs[0]) == 5 and ys.count(ys[0]) == 5:
+    #                 wkt = 'POINT({x} {y})'.format(x=xs[0], y=ys[0])
+    #             else:
+    #                 # Check if coordinates are defined counter-clockwise,
+    #                 # otherwise we'll get wrong results from Solr
+    #                 lr = shapely.geometry.polygon.LinearRing(geometry['coordinates'][0])  # noqa: E501
+    #                 if not lr.is_ccw:
+    #                     lr.coords = list(lr.coords)[::-1]
+    #                 polygon = shapely.geometry.polygon.Polygon(lr)
+    #                 wkt = polygon.wkt
 
-            if not wkt:
-                shape = shapely.geometry.asShape(geometry)
-                if not shape.is_valid:
-                    return pkg_dict
-                wkt = shape.wkt
+    #         if not wkt:
+    #             shape = shapely.geometry.asShape(geometry)
+    #             if not shape.is_valid:
+    #                 return pkg_dict
+    #             wkt = shape.wkt
 
-            pkg_dict['spatial_geom'] = wkt
+    #         pkg_dict['spatial_geom'] = wkt
 
-        return pkg_dict
+    #     return pkg_dict
 
     def after_show(self, context, pkg_dict):
         """
