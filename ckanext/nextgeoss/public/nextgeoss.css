@@ -1542,6 +1542,7 @@ table.mobile-table td.dataset-details {
 
 #collection-list {
   list-style: none;
+  margin-left: 0px !important;
 }
 
 #collection-list li{
