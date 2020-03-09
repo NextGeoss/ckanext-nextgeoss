@@ -959,7 +959,6 @@ section.dataset-map-section {
 
 .module-content:first-child {
   padding-top: 0px;
-  padding-right: 0px !important;
 }
 
 article.module {
@@ -1220,6 +1219,13 @@ button.btn.btn-navbar {
   }
   .dataset-detail-org-logo {
     width: 60px;
+  }
+}
+
+@media (min-width: 768px) {
+  .span9 div.module-content {
+      padding-left: 10px;
+      padding-right:  0px !important;
   }
 }
 
