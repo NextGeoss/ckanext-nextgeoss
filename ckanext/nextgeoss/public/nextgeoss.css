@@ -960,6 +960,11 @@ section.dataset-map-section {
 
 .module-content:first-child {
   padding-top: 0px;
+  padding-right: 0px !important;
+}
+
+#dataset-search-form {
+ margin-left: -20px !important;
 }
 
 article.module {
