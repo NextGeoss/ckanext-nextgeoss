@@ -901,6 +901,11 @@ section.dataset-map-section {
 }
 
 .media-item {
+  width: 250px;
+  text-align: center;
+}
+
+.media-item.organization-card {
   width: 260px;
   height: 380px;
   text-align: center;
