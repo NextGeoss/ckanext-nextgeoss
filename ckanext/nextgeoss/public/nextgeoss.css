@@ -614,6 +614,11 @@ h5.dataset-detail-title {
     margin-bottom: 50px;
 }
 
+.edit-resource-info {
+  border-bottom: 1px solid #292929;
+  margin-bottom: 50px;
+}
+
 .social h3 {
   border-bottom: 1px solid #292929;
 }
