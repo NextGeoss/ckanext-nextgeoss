@@ -210,7 +210,6 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
     def harvest_facets(self, facets_dict):
         """Update the facets used on the harvest page."""
-
         facets_dict.clear()
         facets_dict['frequency']  = plugins.toolkit._('Frequency')
         facets_dict['collection_name'] = plugins.toolkit._('Data Collections')
