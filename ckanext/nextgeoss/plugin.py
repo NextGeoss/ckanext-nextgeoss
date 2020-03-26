@@ -203,8 +203,18 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
     def dataset_facets(self, facets_dict, package_type):
         """Update the facets used on dataset search pages."""
-        return self._update_facets(facets_dict)
+        if package_type == 'harvest':
+            return self.harvest_facets(facets_dict)
+        else:
+            return self._update_facets(facets_dict)
 
+    def harvest_facets(self, facets_dict):
+        facets_dict.clear()
+        facets_dict['frequency']  = plugins.toolkit._('Frequency')
+        facets_dict['collection_name'] = plugins.toolkit._('Data Collections')
+        facets_dict['organization'] = _('Data Providers')
+        return facets_dict
+        
     def group_facets(self, facets_dict, group_type, package_type):
         """Update the facets used on group search pages."""
         return self._update_facets(facets_dict)
