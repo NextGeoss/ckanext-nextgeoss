@@ -292,7 +292,7 @@ h4.title a {
   margin-top: 15px;
   margin-bottom: 30px;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 15px;
 }
 .container .toolbar {
   margin-left: -15px;
@@ -314,7 +314,7 @@ h4.title a {
 
 #dataset-map-attribution {
   background-color: #D7EDEC;
-  margin: 0px !important;
+  margin: 0px 10px !important;
 }
 
 #dataset-map .module-heading {
@@ -336,7 +336,6 @@ h4.title a {
 
 .datasets-search-form-container__controls .search-input {
   width: 400px;
-  margin-left: 20px;
 }
 
 .datasets-search-form-container__controls .search {
@@ -1223,6 +1222,13 @@ button.btn.btn-navbar {
   }
 }
 
+@media (min-width: 768px) {
+  .span9 div.module-content {
+      padding-left: 10px;
+      padding-right:  0px !important;
+  }
+}
+
 @media (max-width: 768px) {
   .search-form .control-order-by select {
     margin-left: 0px !important;
@@ -1542,6 +1548,7 @@ table.mobile-table td.dataset-details {
 
 #collection-list {
   list-style: none;
+  margin-left: 0px !important;
 }
 
 #collection-list li{
