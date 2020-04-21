@@ -59,6 +59,7 @@
 
 {% block resources_inner %}
   <h5>{{ _('Download resources directly from source:') }}</h5>
+  {% set noa_resources = h.get_linker_service_resources(package.name) %}
   {% for resource in package.resources %}
     {% set url = resource.url %}
     {% if resource.format %}
@@ -68,6 +69,11 @@
     {% endif %}
     <li>
       <a href="{{ url }}" class="label"><i class="fa fa-download"></i>  {{ format }}</a>
+    </li>
+  {% endfor %}
+  {% for link in noa_resources %}
+    <li>
+      <a href="{{ link }}" class="label"><i class="fa fa-download"></i>dataset</a>
     </li>
   {% endfor %}
 {% endblock %}

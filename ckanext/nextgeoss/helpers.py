@@ -5,6 +5,7 @@ import ckan.lib.helpers as h
 import ast
 import ckan.plugins.toolkit as tk
 import datetime
+import requests
 import json
 import re
 from ckan.lib.helpers import url_for_static
@@ -14,6 +15,37 @@ from ckanext.opensearch import config as opensearch_config
 def get_jira_script():
     jira_script = config.get('ckanext.nextgeoss.jira_issue_tracker')
     return jira_script
+
+
+def get_linker_service_resources(dataset_name):
+    """
+    Retrieve the sources of the dataset from the Noa Linker Service.
+    """
+
+    noa_url = config.get('ckanext.nextgeoss.linker_service_base_url')
+    noa_user = config.get('ckanext.nextgeoss.linker_service_user')
+    noa_password = config.get('ckanext.nextgeoss.linker_service_password')
+    resources = []
+
+    if noa_url:
+        query_url = "{0}/search?q={1}&format=json".format(noa_url, dataset_name)
+        print('QUERY_URL {0}'.format(query_url))
+        response = requests.get(query_url, auth=(noa_user, noa_password))
+        response_body = response.json()
+        # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
+        results = response_body['feed'].get('entry', [])
+        if isinstance(results, dict):
+            results = [results]
+        resources = []
+        for entry in results:
+            sources = entry.get('sources')
+            if isinstance(sources, dict):
+                sources = [sources]
+            for source in sources:
+                resources.append(source['link'])
+
+    return resources
+
 
 
 def get_add_feedback_url(dataset):

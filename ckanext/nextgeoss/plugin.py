@@ -62,7 +62,8 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'get_begin_period_topics': helpers.get_begin_period_topics,
              'get_end_period_topics': helpers.get_end_period_topics,
              'get_featured_groups_list': helpers.get_featured_groups_list,
-             'get_topic_output_data': helpers.get_topic_output_data
+             'get_topic_output_data': helpers.get_topic_output_data,
+             'get_linker_service_resources': helpers.get_linker_service_resources,
         }
 
     # IRoutes
