@@ -2,6 +2,7 @@ from ckan.common import config
 import ckan.logic as logic
 import ckan.plugins as p
 import ckan.lib.helpers as h
+import logging
 import ast
 import ckan.plugins.toolkit as tk
 import datetime
@@ -11,6 +12,7 @@ import re
 from ckan.lib.helpers import url_for_static
 from ckanext.opensearch import config as opensearch_config
 
+log = logging.getLogger(__name__)
 
 def get_jira_script():
     jira_script = config.get('ckanext.nextgeoss.jira_issue_tracker')
@@ -30,19 +32,24 @@ def get_linker_service_resources(dataset_name):
     if noa_url:
         query_url = "{0}/search?q={1}&format=json".format(noa_url, dataset_name)
         print('QUERY_URL {0}'.format(query_url))
-        response = requests.get(query_url, auth=(noa_user, noa_password))
-        response_body = response.json()
-        # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
-        results = response_body['feed'].get('entry', [])
-        if isinstance(results, dict):
-            results = [results]
-        resources = []
+        try:
+            response = requests.get(query_url, auth=(noa_user, noa_password), timeout=0.001)
+            response.raise_for_status()
+            response_body = response.json()
+            # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
+            results = response_body['feed'].get('entry', [])
+            if isinstance(results, dict):
+                results = [results]
+        except requests.exceptions.RequestException as e:
+            log.error('Error querying the Noa Linker Service: %s', e.message)
+            results = []
+
         for entry in results:
             sources = entry.get('sources')
             if isinstance(sources, dict):
                 sources = [sources]
             for source in sources:
-                resources.append(source['link'])
+                resources.append(source['link']['href'])
 
     return resources
 
