@@ -19,7 +19,7 @@ def get_jira_script():
     return jira_script
 
 
-def get_linker_service_resources(dataset_name):
+def get_linker_service_resources(dataset_name, testing=False):
     """
     Retrieve the sources of the dataset from the Noa Linker Service.
     """
@@ -28,12 +28,13 @@ def get_linker_service_resources(dataset_name):
     noa_user = config.get('ckanext.nextgeoss.linker_service_user')
     noa_password = config.get('ckanext.nextgeoss.linker_service_password')
     resources = []
+    print('QUERY_URL {0}'.format(noa_url))
 
-    if noa_url:
+    if noa_url or testing:
         query_url = "{0}/search?q={1}&format=json".format(noa_url, dataset_name)
         print('QUERY_URL {0}'.format(query_url))
         try:
-            response = requests.get(query_url, auth=(noa_user, noa_password), timeout=0.001)
+            response = requests.get(query_url, auth=(noa_user, noa_password), timeout=1)
             response.raise_for_status()
             response_body = response.json()
             # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
@@ -50,6 +51,8 @@ def get_linker_service_resources(dataset_name):
                 sources = [sources]
             for source in sources:
                 resources.append(source['link']['href'])
+    else:
+        log.info('Configuration for Linker Service is missing.')
 
     return resources
 
