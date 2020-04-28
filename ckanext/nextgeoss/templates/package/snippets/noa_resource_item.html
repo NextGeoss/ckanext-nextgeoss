@@ -1,0 +1,32 @@
+<div>
+  <div class="info" id="resource-box">
+    <div class="resource-box-left">
+      <div class="resource-box-file-type">
+        <div class="resource-box-icon">
+        <i class="fa fa-file-archive-o"></i>
+        </div>
+        <p class="resource-box-file-ext">{{ _('DATA') }}</p>
+      </div>
+    </div>
+
+    <div class="resource-box-right">
+      <div class="resource-box-text-area">
+        <h3>
+          <a href="{{ res }}" class="resource-box-title">Unnamed resource</a>
+        </hr>
+        </h3>
+        <p>
+          {% if res.description %}
+            {{ h.markdown_extract(h.get_translated(res, 'description'), extract_length=300) }}
+          {% else %}
+            <p class="empty">{{ _('There is no description for this resource') }}</p>
+          {% endif %}
+        </p>
+      </div>
+
+      <div class="resource-box-buttons">
+        <a href="{{ res }}"  class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}"><i class="fa fa-download"></i> {{ _('Download') }}</a>
+      </div>
+    </div>
+  </div>
+</div>

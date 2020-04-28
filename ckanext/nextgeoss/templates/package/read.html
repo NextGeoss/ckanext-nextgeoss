@@ -31,6 +31,13 @@
       {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
     {% endblock %}
 
+    {% if h.get_linker_service_resources(pkg.name)|length > 0 %}
+    {% block noa_resources %}
+      {% set dataset_noa_resources = h.get_linker_service_resources(pkg.name) %}
+      {% snippet "package/snippets/noa_resources_list.html", pkg=pkg, resources=dataset_noa_resources %}
+    {% endblock %}
+    {% endif %}
+
     {% block package_additional_info %}
       {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
     {% endblock %}

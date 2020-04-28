@@ -34,7 +34,7 @@ def get_linker_service_resources(dataset_name, testing=False):
         query_url = "{0}/search?q={1}&format=json".format(noa_url, dataset_name)
         print('QUERY_URL {0}'.format(query_url))
         try:
-            response = requests.get(query_url, auth=(noa_user, noa_password), timeout=1)
+            response = requests.get(query_url, auth=(noa_user, noa_password), timeout=2)
             response.raise_for_status()
             response_body = response.json()
             # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
@@ -46,11 +46,11 @@ def get_linker_service_resources(dataset_name, testing=False):
             results = []
 
         for entry in results:
-            sources = entry.get('sources')
+            sources = entry.get('sources', {}).get('link')
             if isinstance(sources, dict):
                 sources = [sources]
             for source in sources:
-                resources.append(source['link']['href'])
+                resources.append(source['href'])
     else:
         log.info('Configuration for Linker Service is missing.')
 
