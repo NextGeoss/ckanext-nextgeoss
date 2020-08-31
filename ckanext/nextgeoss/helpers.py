@@ -23,41 +23,44 @@ def get_jira_script():
 
 
 def get_noa_linker_resources(packages):
-    noa_url = config.get('ckanext.nextgeoss.linker_service_base_url')
-    noa_user = config.get('ckanext.nextgeoss.linker_service_user')
-    noa_password = config.get('ckanext.nextgeoss.linker_service_password')
+    noa_active = config.get('ckanext.nextgeoss.noa_linker_acitve', False)
     noa_package_resources = {}
 
-    if noa_url:
-        with FuturesSession(max_workers=25) as session:
-            urls = ["{0}/search?q={1}&format=json".format(noa_url, package['name']) for package in packages]
-            futures = [session.get(url, auth=(noa_user, noa_password), timeout=2) for url in urls]
-            for future in as_completed(futures):
-                response = future.result()
-                package_query = urlparse.urlparse(response.request.url).query
-                package_name = urlparse.parse_qs(package_query)['q'][0]
-                package_resources = []
-                try:
-                    response_body = response.json()
-                    response.raise_for_status()
-                    # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
-                    results = response_body['feed'].get('entry', [])
-                except requests.exceptions.RequestException as e:
-                    log.error('Error querying the Noa Linker Service: %s', e.message)
-                    results = []
+    if noa_active == True:
+        noa_url = config.get('ckanext.nextgeoss.linker_service_base_url')
+        noa_user = config.get('ckanext.nextgeoss.linker_service_user')
+        noa_password = config.get('ckanext.nextgeoss.linker_service_password')
 
-                if isinstance(results, dict):
-                    results = [results]
+        if noa_url:
+            with FuturesSession(max_workers=25) as session:
+                urls = ["{0}/search?q={1}&format=json".format(noa_url, package['name']) for package in packages]
+                futures = [session.get(url, auth=(noa_user, noa_password), timeout=2) for url in urls]
+                for future in as_completed(futures):
+                    response = future.result()
+                    package_query = urlparse.urlparse(response.request.url).query
+                    package_name = urlparse.parse_qs(package_query)['q'][0]
+                    package_resources = []
+                    try:
+                        response_body = response.json()
+                        response.raise_for_status()
+                        # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
+                        results = response_body['feed'].get('entry', [])
+                    except requests.exceptions.RequestException as e:
+                        log.error('Error querying the Noa Linker Service: %s', e.message)
+                        results = []
 
-                for entry in results:
-                    sources = entry.get('sources', {}).get('link')
-                    if isinstance(sources, dict):
-                        sources = [sources]
-                    for source in sources:
-                        package_resources.append(source['href'])
-                noa_package_resources[package_name] = package_resources
-    else:
-        log.info('Configuration for Linker Service is missing.')
+                    if isinstance(results, dict):
+                        results = [results]
+
+                    for entry in results:
+                        sources = entry.get('sources', {}).get('link')
+                        if isinstance(sources, dict):
+                            sources = [sources]
+                        for source in sources:
+                            package_resources.append(source['href'])
+                    noa_package_resources[package_name] = package_resources
+        else:
+            log.info('Configuration for Linker Service is missing.')
 
     return noa_package_resources
 
