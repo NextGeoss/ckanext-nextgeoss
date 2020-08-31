@@ -92,34 +92,38 @@ def get_noa_linker_package_resources(dataset_name, testing=False):
     """
     Retrieve the sources of the dataset from the Noa Linker Service.
     """
-
-    noa_url = config.get('ckanext.nextgeoss.linker_service_base_url')
-    noa_user = config.get('ckanext.nextgeoss.linker_service_user')
-    noa_password = config.get('ckanext.nextgeoss.linker_service_password')
+    noa_active = config.get('ckanext.nextgeoss.noa_linker_acitve', False)
     resources = []
 
-    if noa_url or testing:
-        query_url = "{0}/search?q={1}&format=json".format(noa_url, dataset_name)
-        try:
-            response = requests.get(query_url, auth=(noa_user, noa_password), timeout=2)
-            response.raise_for_status()
-            response_body = response.json()
-            # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
-            results = response_body['feed'].get('entry', [])
-            if isinstance(results, dict):
-                results = [results]
-        except requests.exceptions.RequestException as e:
-            log.error('Error querying the Noa Linker Service: %s', e.message)
-            results = []
+    if noa_active == str('True'):
+        noa_url = config.get('ckanext.nextgeoss.linker_service_base_url')
+        noa_user = config.get('ckanext.nextgeoss.linker_service_user')
+        noa_password = config.get('ckanext.nextgeoss.linker_service_password')
 
-        for entry in results:
-            sources = entry.get('sources', {}).get('link')
-            if isinstance(sources, dict):
-                sources = [sources]
-            for source in sources:
-                resources.append(source['href'])
-    else:
-        log.info('Configuration for Linker Service is missing.')
+        if noa_url or testing:
+            query_url = "{0}/search?q={1}&format=json".format(noa_url, dataset_name)
+            try:
+                response = requests.get(query_url, auth=(noa_user, noa_password), timeout=2)
+                response.raise_for_status()
+                response_body = response.json()
+                # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
+                results = response_body['feed']
+
+                if isinstance(results, dict):
+                    results = [results]
+            except requests.exceptions.RequestException as e:
+                log.error('Error querying the Noa Linker Service: %s', e.message)
+                results = []
+
+            for entry in results:
+                sources = entry.get('link', {})
+
+                if isinstance(sources, dict):
+                    sources = [sources]
+                for source in sources:
+                    resources.append(source['href'])
+        else:
+            log.info('Configuration for Linker Service is missing.')
 
     return resources
 
