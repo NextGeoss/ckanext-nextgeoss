@@ -26,7 +26,7 @@ links to the resources for a specific Dataset.
 For the NOA linker provider you will need the follwoing setup in your .ini file:
 
 ```
-ckanext.nextgeoss.noa_linker_active = True/False
+ckanext.nextgeoss.noa_linker_active = True/False (default False)
 ckanext.nextgeoss.linker_service_base_url = link_to_noa_linker_service
 ckanext.nextgeoss.linker_service_user = user
 ckanext.nextgeoss.linker_service_password = pass
