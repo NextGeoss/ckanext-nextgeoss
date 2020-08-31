@@ -26,15 +26,25 @@ def get_noa_linker_resources(packages):
     noa_active = config.get('ckanext.nextgeoss.noa_linker_acitve', False)
     noa_package_resources = {}
 
-    if noa_active == True:
+    if noa_active == str('True'):
         noa_url = config.get('ckanext.nextgeoss.linker_service_base_url')
         noa_user = config.get('ckanext.nextgeoss.linker_service_user')
         noa_password = config.get('ckanext.nextgeoss.linker_service_password')
 
         if noa_url:
+            # Check if the collection_id of the package is Sentinel
+            # If it is - make a call to NOA linker service
+            # if not - skip
+            new_package = []
+            for package in packages:
+                collection_id = get_extras_value(package['extras'], 'collection_id')
+                if 'SENTINEL' in collection_id:
+                    new_package.append(package)
+
             with FuturesSession(max_workers=25) as session:
-                urls = ["{0}/search?q={1}&format=json".format(noa_url, package['name']) for package in packages]
+                urls = ["{0}/search?q={1}&format=json".format(noa_url, package['name']) for package in new_package]
                 futures = [session.get(url, auth=(noa_user, noa_password), timeout=2) for url in urls]
+
                 for future in as_completed(futures):
                     response = future.result()
                     package_query = urlparse.urlparse(response.request.url).query
