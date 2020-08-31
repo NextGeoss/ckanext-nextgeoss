@@ -37,20 +37,12 @@ def get_noa_linker_resources(packages):
             # if not - skip
             new_package = []
             for package in packages:
-                collection_id = get_extras_value(package['extras'], 'collection_id')
+                    include = check_dataset_collection_timestamp(package)
 
-                # check if the dataset is older then 3 months (92 days)
-                timerange_start = get_extras_value(package['extras'], 'timerange_start')
-                timerange_start = datetime.datetime.strptime(timerange_start, '%Y-%m-%dT%H:%M:%S.%fZ')
-                date_today = datetime.datetime.now()
-
-                time_between_insertion = date_today - timerange_start
-
-                if 'SENTINEL' in collection_id and time_between_insertion.days < 92:
-                    new_package.append(package)
+                    if include == True:
+                        new_package.append(package)
 
             with FuturesSession(max_workers=25) as session:
-                print noa_url
                 urls = ["{0}/search?q={1}&format=json".format(noa_url, package['name']) for package in new_package]
                 futures = [session.get(url, auth=(noa_user, noa_password), timeout=2) for url in urls]
 
@@ -88,7 +80,7 @@ def get_noa_linker_resources(packages):
     return noa_package_resources
 
 
-def get_noa_linker_package_resources(dataset_name, testing=False):
+def get_noa_linker_package_resources(dataset, testing=False):
     """
     Retrieve the sources of the dataset from the Noa Linker Service.
     """
@@ -96,11 +88,14 @@ def get_noa_linker_package_resources(dataset_name, testing=False):
     resources = []
 
     if noa_active == str('True'):
+        dataset_name = dataset.get('name')
         noa_url = config.get('ckanext.nextgeoss.linker_service_base_url')
         noa_user = config.get('ckanext.nextgeoss.linker_service_user')
         noa_password = config.get('ckanext.nextgeoss.linker_service_password')
 
-        if noa_url or testing:
+        include = check_dataset_collection_timestamp(dataset)
+
+        if noa_url and include == True :
             query_url = "{0}/search?q={1}&format=json".format(noa_url, dataset_name)
             try:
                 response = requests.get(query_url, auth=(noa_user, noa_password), timeout=2)
@@ -127,6 +122,37 @@ def get_noa_linker_package_resources(dataset_name, testing=False):
 
     return resources
 
+
+def check_dataset_collection_timestamp(package):
+    '''
+        This function is going to be used by the NOA Linker Service functions.
+        In this function, we will check if the collection is Sentinel and
+        if the dataset is not older then 3 months.
+
+        Parameters:
+             package - dataset dictionary
+
+        Returns True or False
+    '''
+    include = False
+
+    collection_id = get_extras_value(package['extras'], 'collection_id')
+
+    # check if the dataset is older then 3 months (92 days)
+    timerange_start = get_extras_value(package['extras'], 'timerange_start')
+    timerange_start = datetime.datetime.strptime(timerange_start, '%Y-%m-%dT%H:%M:%S.%fZ')
+    date_today = datetime.datetime.now()
+
+    time_between_insertion = date_today - timerange_start
+
+    if 'SENTINEL' in collection_id and time_between_insertion.days < 92:
+        include = True
+
+    return  include
+
+
+def parse_noa_response_data():
+    return False
 
 
 def get_add_feedback_url(dataset):
@@ -662,7 +688,6 @@ def get_topic_output_data(datasets):
     for dataset in datasets:
         for d in dataset['extras']:
             if d['key'] == 'is_output' and d['value'] == 'True':
-                print 'in'
                 topic_datasets.append(dataset)
 
     return topic_datasets
