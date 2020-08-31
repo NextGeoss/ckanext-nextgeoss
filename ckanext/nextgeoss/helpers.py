@@ -38,10 +38,19 @@ def get_noa_linker_resources(packages):
             new_package = []
             for package in packages:
                 collection_id = get_extras_value(package['extras'], 'collection_id')
-                if 'SENTINEL' in collection_id:
+
+                # check if the dataset is older then 3 months (92 days)
+                timerange_start = get_extras_value(package['extras'], 'timerange_start')
+                timerange_start = datetime.datetime.strptime(timerange_start, '%Y-%m-%dT%H:%M:%S.%fZ')
+                date_today = datetime.datetime.now()
+
+                time_between_insertion = date_today - timerange_start
+
+                if 'SENTINEL' in collection_id and time_between_insertion.days < 92:
                     new_package.append(package)
 
             with FuturesSession(max_workers=25) as session:
+                print noa_url
                 urls = ["{0}/search?q={1}&format=json".format(noa_url, package['name']) for package in new_package]
                 futures = [session.get(url, auth=(noa_user, noa_password), timeout=2) for url in urls]
 
@@ -54,7 +63,8 @@ def get_noa_linker_resources(packages):
                         response_body = response.json()
                         response.raise_for_status()
                         # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
-                        results = response_body['feed'].get('entry', [])
+                        results = response_body['feed']
+
                     except requests.exceptions.RequestException as e:
                         log.error('Error querying the Noa Linker Service: %s', e.message)
                         results = []
@@ -63,12 +73,15 @@ def get_noa_linker_resources(packages):
                         results = [results]
 
                     for entry in results:
-                        sources = entry.get('sources', {}).get('link')
+                        sources = entry.get('link', {})
+
                         if isinstance(sources, dict):
                             sources = [sources]
                         for source in sources:
                             package_resources.append(source['href'])
+
                     noa_package_resources[package_name] = package_resources
+
         else:
             log.info('Configuration for Linker Service is missing.')
 

@@ -21,7 +21,8 @@
     {% block package_list_inner %}
     {% for package in packages %}
     {% set noa_package_resources = noa_packages_resources[package.name]%}
-    {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title, noa_package_resources=noa_package_resources %}
+    {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources,
+      banner=banner, truncate=truncate, truncate_title=truncate_title, noa_package_resources=noa_package_resources %}
     {% endfor %}
     {% endblock %}
   </ul>
