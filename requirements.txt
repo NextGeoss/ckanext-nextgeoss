@@ -1,2 +1,2 @@
 shapely
-requests_futures
+requests_futures == 0.9.9
