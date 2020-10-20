@@ -62,6 +62,12 @@
         {% if col_link is defined %}
           <h5 class="dataset-detail-title">{{ _('Part of collection ') }} <a href="{{ col_link }}">{{ col_name }}</a></h5>
         {% endif %}
+      </br>
+        <a href="https://catalogue.nextgeoss.eu" class="btn btn-primary" style="display:block; margin-right: 150px; margin-left:150px;">
+          <i class="fa fa-info-circle"></i>
+          {{_('Explore datasets in NEXTGEOSS improved User Portal')}}
+        </a>
+
       </div>
     {% endif %}
   {% endblock %}
