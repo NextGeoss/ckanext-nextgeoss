@@ -65,6 +65,7 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'get_topic_output_data': helpers.get_topic_output_data,
              'get_noa_linker_package_resources': helpers.get_noa_linker_package_resources,
              'get_noa_linker_resources': helpers.get_noa_linker_resources,
+             'get_noa_linker_resources_for_package': helpers.get_noa_linker_resources_for_package,
 
         }
 

@@ -22,6 +22,69 @@ def get_jira_script():
     return jira_script
 
 
+def get_noa_linker_resources_for_package(package):
+    noa_active = config.get('ckanext.nextgeoss.noa_linker_acitve', False)
+    noa_package_resources = {}
+
+    if noa_active == str('True'):
+        noa_url = config.get('ckanext.nextgeoss.linker_service_base_url')
+        noa_user = config.get('ckanext.nextgeoss.linker_service_user')
+        noa_password = config.get('ckanext.nextgeoss.linker_service_password')
+
+        package_id = package.get('id', None)
+        package = logic.get_action('package_show')({}, {'id': package_id})
+
+
+        if noa_url:
+            # Check if the collection_id of the package is Sentinel
+            # If it is - make a call to NOA linker service
+            # if not - skip
+            new_package = []
+
+            include = check_dataset_collection_timestamp(package)
+
+            if include == True:
+                new_package.append(package)
+
+
+            with FuturesSession(max_workers=25) as session:
+                urls = ["{0}/search?q={1}&format=json".format(noa_url, package['name']) for package in new_package]
+                futures = [session.get(url, auth=(noa_user, noa_password), timeout=2) for url in urls]
+
+                for future in as_completed(futures):
+                    response = future.result()
+                    package_query = urlparse.urlparse(response.request.url).query
+                    package_name = urlparse.parse_qs(package_query)['q'][0]
+                    package_resources = []
+                    try:
+                        response_body = response.json()
+                        response.raise_for_status()
+                        # Sometimes `entry` is a dict, sometimes an array, depending on n.o. results
+                        results = response_body['feed']
+
+                    except requests.exceptions.RequestException as e:
+                        log.error('Error querying the Noa Linker Service: %s', e.message)
+                        results = []
+
+                    if isinstance(results, dict):
+                        results = [results]
+
+                    for entry in results:
+                        sources = entry.get('link', {})
+
+                        if isinstance(sources, dict):
+                            sources = [sources]
+                        for source in sources:
+                            package_resources.append(source['href'])
+
+                    noa_package_resources[package_name] = package_resources
+
+        else:
+            log.info('Configuration for Linker Service is missing.')
+
+    return noa_package_resources
+
+
 def get_noa_linker_resources(packages):
     noa_active = config.get('ckanext.nextgeoss.noa_linker_acitve', False)
     noa_package_resources = {}
@@ -36,11 +99,18 @@ def get_noa_linker_resources(packages):
             # If it is - make a call to NOA linker service
             # if not - skip
             new_package = []
-            for package in packages:
-                    include = check_dataset_collection_timestamp(package)
 
-                    if include == True:
-                        new_package.append(package)
+            if len(packages) > 1:
+                for package in packages:
+                        include = check_dataset_collection_timestamp(package)
+
+                        if include == True:
+                            new_package.append(package)
+            else:
+                include = check_dataset_collection_timestamp(packages)
+
+                if include == True:
+                    new_package.append(packages)
 
             with FuturesSession(max_workers=25) as session:
                 urls = ["{0}/search?q={1}&format=json".format(noa_url, package['name']) for package in new_package]
@@ -135,18 +205,23 @@ def check_dataset_collection_timestamp(package):
         Returns True or False
     '''
     include = False
+    extras = package.get('extras', None)
 
-    collection_id = get_extras_value(package['extras'], 'collection_id')
+    if extras is not None:
+        collection_id = get_extras_value(package['extras'], 'collection_id')
 
-    # check if the dataset is older then 3 months (92 days)
-    timerange_start = get_extras_value(package['extras'], 'timerange_start')
-    timerange_start = datetime.datetime.strptime(timerange_start, '%Y-%m-%dT%H:%M:%S.%fZ')
-    date_today = datetime.datetime.now()
+        # check if the dataset is older then 3 months (92 days)
+        timerange_start = get_extras_value(package['extras'], 'timerange_start')
+        try:
+            timerange_start = datetime.datetime.strptime(timerange_start, '%Y-%m-%dT%H:%M:%S.%fZ')
+        except:
+            timerange_start = datetime.datetime.strptime(timerange_start, '%Y-%m-%dT%H:%M:%S')
+        date_today = datetime.datetime.now()
 
-    time_between_insertion = date_today - timerange_start
+        time_between_insertion = date_today - timerange_start
 
-    if 'SENTINEL' in collection_id and time_between_insertion.days < 92:
-        include = True
+        if 'SENTINEL' in collection_id and time_between_insertion.days < 92:
+            include = True
 
     return  include
 
