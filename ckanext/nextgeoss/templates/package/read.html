@@ -31,6 +31,11 @@
       {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
     {% endblock %}
 
+    {% block noa_resources %}
+      {% set package_noa_resources = h.get_noa_linker_package_resources(pkg) %}
+      {% snippet "package/snippets/noa_resources_list.html", pkg=pkg, resources=package_noa_resources %}
+    {% endblock %}
+
     {% block package_additional_info %}
       {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
     {% endblock %}

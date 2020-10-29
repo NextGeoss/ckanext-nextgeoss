@@ -162,7 +162,8 @@
         {% endif %}
       {% endblock %}
       {% block package_search_results_list %}
-        {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
+        {% set noa_packages_resources = h.get_noa_linker_resources(c.page.items) %}
+        {{ h.snippet('snippets/package_list.html', packages=c.page.items, noa_packages_resources=noa_packages_resources) }}
       {% endblock %}
     </div>
 

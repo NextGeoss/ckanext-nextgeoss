@@ -70,4 +70,12 @@
       <a href="{{ url }}" class="label"><i class="fa fa-download"></i>  {{ format }}</a>
     </li>
   {% endfor %}
+  {% if noa_package_resources|length > 0 %}
+  <h5>{{ _('Download resources from the Noa Linker Service:') }}</h5>
+  {% for link in noa_package_resources %}
+    <li>
+      <a href="{{ link }}" class="label"><i class="fa fa-download"></i> DATA</a>
+    </li>
+  {% endfor %}
+  {% endif %}
 {% endblock %}

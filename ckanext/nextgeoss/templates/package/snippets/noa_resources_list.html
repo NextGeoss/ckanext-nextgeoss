@@ -1,0 +1,31 @@
+
+{#
+  Renders a list of resources with icons and view links.
+
+  resources - A list of resources to render
+  pkg - A package object that the resources belong to.
+
+  Example:
+
+    {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=package_noa_resources %}
+#}
+
+<h4 style="margin-top: 60px; margin-left: 10px;">{{ _('Or download resources from the Noa Linker Service:') }}</h3>
+
+<section id="dataset-resources" class="resources">
+
+  {% block resource_list %}
+  {% if resources %}
+    <div class="topic-list">
+      <ul class="resource-list">
+      {% block resource_list_inner %}
+        {% for resource in resources %}
+          {% snippet 'package/snippets/noa_resource_item.html', pkg=pkg, res=resource %}
+        {% endfor %}
+      {% endblock %}
+      </ul>
+    </div>
+  {% endif %}
+  {% endblock %}
+</section>
+

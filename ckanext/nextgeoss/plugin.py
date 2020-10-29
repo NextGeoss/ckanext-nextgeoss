@@ -62,7 +62,11 @@ class NextgeossPlugin(plugins.SingletonPlugin):
              'get_begin_period_topics': helpers.get_begin_period_topics,
              'get_end_period_topics': helpers.get_end_period_topics,
              'get_featured_groups_list': helpers.get_featured_groups_list,
-             'get_topic_output_data': helpers.get_topic_output_data
+             'get_topic_output_data': helpers.get_topic_output_data,
+             'get_noa_linker_package_resources': helpers.get_noa_linker_package_resources,
+             'get_noa_linker_resources': helpers.get_noa_linker_resources,
+             'get_noa_linker_resources_for_package': helpers.get_noa_linker_resources_for_package,
+
         }
 
     # IRoutes
@@ -210,7 +214,6 @@ class NextgeossPlugin(plugins.SingletonPlugin):
 
     def harvest_facets(self, facets_dict):
         """Update the facets used on the harvest page."""
-
         facets_dict.clear()
         facets_dict['frequency']  = plugins.toolkit._('Frequency')
         facets_dict['collection_name'] = plugins.toolkit._('Data Collections')

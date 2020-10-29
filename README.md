@@ -21,6 +21,17 @@ All of the changes and customizations mentioned above are contained in the NextG
 
 The NiMMbus functionality can be broken out into a separate plugin.
 
+This extension also adds an integration with the NOA Linker Service. Which allows us to query and get additional
+links to the resources for a specific Dataset.
+For the NOA linker provider you will need the follwoing setup in your .ini file:
+
+```
+ckanext.nextgeoss.noa_linker_active = True/False (default False)
+ckanext.nextgeoss.linker_service_base_url = link_to_noa_linker_service
+ckanext.nextgeoss.linker_service_user = user
+ckanext.nextgeoss.linker_service_password = pass
+```
+
 ## Development Installation
 
 To install ckanext-nextgeoss for development, activate your CKAN virtualenv and
